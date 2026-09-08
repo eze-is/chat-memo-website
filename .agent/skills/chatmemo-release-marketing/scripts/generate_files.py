@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Chat Memo 更新文件生成工具
+Chat Memo 海报与宣传 Markdown 生成工具
 
 使用方法：
     python3 generate_files.py --version 1.1.3 --date "2025年12月10日" \
@@ -52,7 +52,7 @@ def load_template(template_name):
 def get_project_root():
     """获取官网仓根目录。"""
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    # scripts → chatmemo-update → skills → .agent → website
+    # scripts → chatmemo-release-marketing → skills → .agent → website
     for _ in range(4):
         current_dir = os.path.dirname(current_dir)
     return current_dir
