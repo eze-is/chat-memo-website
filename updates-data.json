@@ -7,8 +7,8 @@
         "en": "September 8, 2026"
       },
       "summary": {
-        "zh-CN": "更稳定地保存 AI 对话，更安心地保留你的数据。",
-        "en": "More reliable AI conversation capture, with better protection for your saved data."
+        "zh-CN": "更稳定地保存 AI 对话，更安心地保留你的数据。若更新后旧会话无法自动记录，请在 Chat Memo 中删除对应会话后重试即可。",
+        "en": "More reliable AI conversation capture, with better protection for your saved data. If an existing conversation no longer saves automatically after updating, delete its record in Chat Memo and try again."
       },
       "features": [
         {
