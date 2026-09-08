@@ -1,6 +1,74 @@
 {
   "updates": [
     {
+      "version": "v1.4.0",
+      "date": {
+        "zh-CN": "2026年9月8日",
+        "en": "September 8, 2026"
+      },
+      "summary": {
+        "zh-CN": "更稳定地保存 AI 对话，更安心地保留你的数据。",
+        "en": "More reliable AI conversation capture, with better protection for your saved data."
+      },
+      "features": [
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "自动保存稳定性提升",
+            "en": "Improved auto-save reliability"
+          },
+          "description": {
+            "zh-CN": "取消手动保存，增强自动保存，减少滚动漏记与历史记录反复变化；关闭开关即可暂停。为避免页面卸载造成误删，不再同步网页内的消息删除操作。如需重新与网页一致，请在 Chat Memo 中删除对应会话后，重新滚动网页完成采集。",
+            "en": "Removed manual save and strengthened auto-save to reduce missed messages and unwanted changes while scrolling. Turn off the switch to pause. To prevent accidental deletion when pages unload content, website message deletions are no longer synced. To recapture the current conversation, delete its record in Chat Memo and scroll through the source webpage again to complete capture."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "多平台适配修复",
+            "en": "Updated platform support"
+          },
+          "description": {
+            "zh-CN": "修复 ChatGPT 临时会话重复记录，以及豆包、Gemini、千问等平台的部分正文漏采问题；改进 Kimi、千问和元宝的正文识别，减少思考与页面操作文字混入。",
+            "en": "Fixed duplicate ChatGPT records from temporary conversation URLs and missing content on Doubao, Gemini and Qianwen. Improved answer extraction on Kimi, Qianwen and Yuanbao to exclude reasoning summaries and interface text."
+          }
+        },
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "数据备份与升级须知",
+            "en": "Data backups and upgrade notes"
+          },
+          "description": {
+            "zh-CN": "本次升级涉及数据迁移，Chat Memo 会在迁移前自动保留本地数据快照。从 1.3.3 升级后，你可在设置 → 数据备份中随时下载升级前的数据快照，同时获取 Markdown 文档。",
+            "en": "This upgrade includes a data migration. Chat Memo automatically retains a local snapshot before migration. After upgrading from 1.3.3, you can download your pre-upgrade data snapshot and Markdown documents from Settings → Data Backup."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "其他优化",
+            "en": "Other improvements"
+          },
+          "description": {
+            "zh-CN": "优化保存与加载提示，修复加载失败被显示为空库的问题；补入历史内容时保留已确认消息的身份与时间。",
+            "en": "Improved save and loading feedback, fixed loading errors appearing as an empty library, and preserved retained messages’ identities and timestamps when inserting earlier content."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "阅读与设置界面优化",
+            "en": "Refined reading and settings views"
+          },
+          "description": {
+            "zh-CN": "统一对话卡片与设置样式，提问和回答分组更清晰，长回答预览更充足，阅读历史对话更轻松。",
+            "en": "Refined conversation cards and settings, clearer question-and-answer grouping, and longer answer previews make saved conversations easier to read."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.3.3",
       "date": {
         "zh-CN": "2026年6月16日",
