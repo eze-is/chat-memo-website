@@ -55,7 +55,10 @@
     
     <style>
         body {
-            font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: #37352f;
+            line-height: 1.6;
+            letter-spacing: -0.003em;
         }
         
         /* 英雄区动画样式 */
@@ -101,53 +104,29 @@
         
         /* 自定义滚动条样式 */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: transparent;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
+            background: rgba(55, 53, 47, 0.16);
+            border-radius: 3px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
+            background: rgba(55, 53, 47, 0.24);
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-        }
-        
-        /* 卡片悬停效果增强 */
-        .step-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* 渐变分割线 */
-        .gradient-divider {
-            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
-            height: 1px;
+
+        .section-marker {
+            width: 2.5rem;
+            height: 2px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(90deg, #60a5fa 0%, #8b5cf6 52%, #ec4899 100%);
+            border-radius: 9999px;
         }
     </style>
 </head>
@@ -165,9 +144,8 @@
             </div>
             <div id="hero-content" class="hero-content container mx-auto px-6 text-center relative z-10">
 
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-[1.1]">
-                    <span class="text-4xl md:text-6xl">🎉</span> 
-                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" data-key="hero-title">欢迎使用 Chat Memo！</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-[#37352f] mb-6 leading-[1.15]">
+                    <span data-key="hero-title">欢迎使用 Chat Memo！</span>
                 </h1>
                 <p class="text-lg md:text-xl mb-10 text-gray-600 max-w-2xl mx-auto leading-relaxed" data-key="hero-description">
                     恭喜你迈出了构建个人 AI 智慧资产的第一步！<br>
@@ -181,7 +159,7 @@
                             href="https://zkv549gmz8.feishu.cn/share/base/form/shrcns8ISnlywj2tdVsNuvF6sEf" 
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg hover:shadow-xl transform hover:scale-105 text-lg"
+                            class="bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 whitespace-nowrap text-lg"
                             onclick="gtag('event', 'click', {'event_category': 'engagement', 'event_label': 'hero_survey_click'});"
                             data-key="hero-cta-button"
                         >
@@ -189,7 +167,7 @@
                         </a>
                     </div>
                     <p class="text-sm text-gray-600 mt-4 text-center leading-relaxed" data-key="hero-cta-note">
-                        💌 作者将只在有重要功能更新时发送邮件，绝不打扰
+                        作者将只在有重要功能更新时发送邮件，绝不打扰
                     </p>
                 </div>
             </div>
@@ -202,7 +180,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-key="guide-title">
                         快速入门指南
                     </h2>
-                    <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+                    <div class="section-marker mb-6"></div>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed" data-key="guide-description">
                         按照以下简单步骤，立即开始自动保存你的 AI 对话
                     </p>
@@ -210,9 +188,9 @@
 
                 <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     <!-- Step 1 -->
-                    <div class="step-card transition-all duration-200 ease-in-out bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-blue-300 hover:-translate-y-1">
-                        <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6 mx-auto">
-                            <span class="text-2xl font-bold text-green-600">1</span>
+                    <div class="bg-white border border-gray-200 rounded-xl p-8 transition-colors duration-200 hover:border-gray-300">
+                        <div class="flex items-center justify-center w-12 h-12 bg-emerald-50 rounded-full mb-6 mx-auto">
+                            <span class="text-lg font-semibold text-emerald-600">1</span>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center" data-key="step1-title">
                             开始对话
@@ -229,9 +207,9 @@
                     </div>
 
                     <!-- Step 2 -->
-                    <div class="step-card transition-all duration-200 ease-in-out bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-blue-300 hover:-translate-y-1">
-                        <div class="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6 mx-auto">
-                            <span class="text-2xl font-bold text-purple-600">2</span>
+                    <div class="bg-white border border-gray-200 rounded-xl p-8 transition-colors duration-200 hover:border-gray-300">
+                        <div class="flex items-center justify-center w-12 h-12 bg-violet-50 rounded-full mb-6 mx-auto">
+                            <span class="text-lg font-semibold text-violet-600">2</span>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center" data-key="step2-title">
                             自动保存
@@ -241,15 +219,15 @@
                         </p>
                         <div class="text-center">
                             <div class="inline-flex items-center justify-center">
-                                <img src="resource/images/float.png" alt="Chat Memo浮动标签界面截图" class="h-10 w-auto opacity-90 hover:opacity-100 transition-all duration-200 shadow-lg rounded-lg">
+                                <img src="resource/images/float.png" alt="Chat Memo浮动标签界面截图" class="h-10 w-auto opacity-90 border border-gray-200 rounded-lg">
                             </div>
                         </div>
                     </div>
 
                     <!-- Step 3 -->
-                    <div class="step-card transition-all duration-200 ease-in-out bg-white border border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-blue-300 hover:-translate-y-1">
-                        <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6 mx-auto">
-                            <span class="text-2xl font-bold text-blue-600">3</span>
+                    <div class="bg-white border border-gray-200 rounded-xl p-8 transition-colors duration-200 hover:border-gray-300">
+                        <div class="flex items-center justify-center w-12 h-12 bg-blue-50 rounded-full mb-6 mx-auto">
+                            <span class="text-lg font-semibold text-blue-600">3</span>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4 text-center" data-key="step3-title">
                             复制/导出
@@ -258,8 +236,8 @@
                             你可以在对话详情页中复制对话，也可以在设置中一键导出全部对话记录
                         </p>
                         <div class="text-center">
-                            <div class="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
-                                ⚙️&nbsp;<span data-key="step3-status">随时导出</span>
+                            <div class="inline-flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium">
+                                <span data-key="step3-status">随时导出</span>
                             </div>
                         </div>
                     </div>
@@ -274,42 +252,42 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-key="features-title">
                         你将获得什么？
                     </h2>
-                    <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+                    <div class="section-marker mb-6"></div>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed" data-key="features-description">
                         Chat Memo 为你提供强大的 AI 对话管理能力
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                    <div class="feature-card text-center p-8 bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 group">
-                        <div class="flex items-center justify-center mx-auto mb-6">
-                            <span class="text-4xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                    <div class="text-left p-6 bg-white rounded-xl border border-gray-200">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 mb-5">
+                            <span class="text-xl">📚</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300" data-key="feature1-title">统一管理</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-key="feature1-title">统一管理</h3>
                         <p class="text-gray-600 text-base leading-relaxed" data-key="feature1-description">所有平台的对话集中在一处，告别分散管理的烦恼</p>
                     </div>
                     
-                    <div class="feature-card text-center p-8 bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 group">
-                        <div class="flex items-center justify-center mx-auto mb-6">
-                            <span class="text-4xl group-hover:scale-110 transition-transform duration-300">🔍</span>
+                    <div class="text-left p-6 bg-white rounded-xl border border-gray-200">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-violet-50 mb-5">
+                            <span class="text-xl">🔍</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300" data-key="feature2-title">智能搜索</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-key="feature2-title">智能搜索</h3>
                         <p class="text-gray-600 text-base leading-relaxed" data-key="feature2-description">快速找到任何历史对话，让知识触手可及</p>
                     </div>
                     
-                    <div class="feature-card text-center p-8 bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 group">
-                        <div class="flex items-center justify-center mx-auto mb-6">
-                            <span class="text-4xl group-hover:scale-110 transition-transform duration-300">🔗</span>
+                    <div class="text-left p-6 bg-white rounded-xl border border-gray-200">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-amber-50 mb-5">
+                            <span class="text-xl">🔗</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300" data-key="feature3-title">一键跳转</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-key="feature3-title">一键跳转</h3>
                         <p class="text-gray-600 text-base leading-relaxed" data-key="feature3-description">一键跳转原对话网页，方便继续和 AI 探讨</p>
                     </div>
                     
-                    <div class="feature-card text-center p-8 bg-white rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 group">
-                        <div class="flex items-center justify-center mx-auto mb-6">
-                            <span class="text-4xl group-hover:scale-110 transition-transform duration-300">⚡</span>
+                    <div class="text-left p-6 bg-white rounded-xl border border-gray-200">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-50 mb-5">
+                            <span class="text-xl">⚡</span>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300" data-key="feature4-title">无感体验</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-key="feature4-title">无感体验</h3>
                         <p class="text-gray-600 text-base leading-relaxed" data-key="feature4-description">后台自动运行，不影响你的正常使用体验</p>
                     </div>
                 </div>
@@ -317,50 +295,36 @@
         </section>
 
         <!-- Tips Section -->
-        <section class="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <section class="py-24 bg-gradient-to-br from-blue-50/70 via-white to-violet-50/70">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-key="tips-title">
-                            💡 使用小贴士
+                            使用小贴士
                         </h2>
-                        <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
+                        <div class="section-marker mb-6"></div>
                         <p class="text-lg text-gray-600 leading-relaxed" data-key="tips-description">
                             让 Chat Memo 发挥最大价值的实用建议
                         </p>
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                            <div class="flex items-start gap-6">
-                                <div class="flex items-center justify-center flex-shrink-0">
-                                    <span class="text-3xl">🎯</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-4" data-key="tip1-title">给对话起个好标题</h3>
-                                    <p class="text-gray-600 leading-relaxed" data-key="tip1-description">
-                                        Chat Memo 默认对话标题为你的第一句话。在重要对话时，可以先在记录详情中修改标题，可以更容易在后续搜索中找到。
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="bg-white rounded-xl p-8 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4" data-key="tip1-title">给对话起个好标题</h3>
+                            <p class="text-gray-600 leading-relaxed" data-key="tip1-description">
+                                Chat Memo 默认对话标题为你的第一句话。在重要对话时，可以先在记录详情中修改标题，可以更容易在后续搜索中找到。
+                            </p>
                         </div>
 
-                        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                            <div class="flex items-start gap-6">
-                                <div class="flex items-center justify-center flex-shrink-0">
-                                    <span class="text-3xl">🤖</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-4" data-key="tip2-title">利用 AI 为你回顾</h3>
-                                    <p class="text-gray-600 leading-relaxed mb-4" data-key="tip2-description">
-                                        访问我们的主页了解如何用 AI 分析你的对话历史，生成个人洞察报告和主题总结。
-                                    </p>
-                                    <a href="https://chatmemo.ai/#value-discovery" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors group">
-                                        <span data-key="tip2-link">了解更多</span> 
-                                        <span class="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="bg-white rounded-xl p-8 border border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4" data-key="tip2-title">利用 AI 为你回顾</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4" data-key="tip2-description">
+                                访问我们的主页了解如何用 AI 分析你的对话历史，生成个人洞察报告和主题总结。
+                            </p>
+                            <a href="https://chatmemo.ai/#value-discovery" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors group">
+                                <span data-key="tip2-link">了解更多</span>
+                                <span class="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -368,11 +332,11 @@
         </section>
 
         <!-- FAQ Section -->
-        <section class="py-24 bg-gray-50/70">
+        <section class="py-24 bg-white">
             <div class="container mx-auto px-6 max-w-3xl">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-key="faq-title">常见问题</h2>
-                    <div class="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+                    <div class="section-marker"></div>
                 </div>
                 <div class="space-y-4">
                     <!-- FAQ Item 1 -->
@@ -439,19 +403,44 @@
                             <p class="text-gray-600 leading-relaxed" data-key="faq5-a">感谢反馈。为了醒目地提醒保存状态，当时悬浮标签是刻意做得明显。目前介意的话，可以随意拖动悬浮标签的位置，放到你想放的地方～</p>
                         </div>
                     </div>
+
+                    <!-- FAQ Item 6 -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <button class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFAQ('faq6')">
+                            <h3 class="text-lg font-semibold text-gray-900" data-key="faq6-q">为什么部分对话抓取不完整？</h3>
+                            <svg id="faq6-icon" class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq6-content" class="hidden px-6 pb-5">
+                            <p class="text-gray-600 leading-relaxed" data-key="faq6-a">如果是 Chat Memo 已支持的平台，请先在 Chat Memo 中删除这条对话记录，再刷新原网页，重新抓取。<br>抓取历史消息时，请匀速、稳定地滚动，等每批内容加载完成后再继续，避免快速滚动、连续触发页面加载。<br>如果仍然抓取不完整，请通过 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Feedback</a> 联系作者排查。</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 7 -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                        <button class="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFAQ('faq7')">
+                            <h3 class="text-lg font-semibold text-gray-900" data-key="faq7-q">为什么我在原网页删除了消息，Chat Memo 里还保留着？</h3>
+                            <svg id="faq7-icon" class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq7-content" class="hidden px-6 pb-5">
+                            <p class="text-gray-600 leading-relaxed" data-key="faq7-a">Chat Memo 目前会同步对话中的新增消息，以及已有消息的明确变更。<br>对于直接删除已有消息的行为，受网页内容加载与识别机制限制，Chat Memo 暂时不会主动同步删除，以免误删已经保存的内容。<br>如果希望两边完全一致，可以在 Chat Memo 中删除整条对话记录，再从原网页重新抓取。单条消息删除功能将在后续版本中支持。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Email Subscription Section -->
-        <section class="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white text-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <section class="py-20 bg-gray-900 text-white text-center relative overflow-hidden">
             <div class="container mx-auto px-6 relative">
                 <div class="max-w-2xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight" data-key="subscription-title">
                         保持联系，不错过任何新动态
                     </h2>
-                    <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-6 rounded-full"></div>
+                    <div class="w-10 h-px bg-gray-600 mx-auto mb-6"></div>
                     <p class="text-lg text-gray-300 mb-8 leading-relaxed" data-key="subscription-description">
                         我们正在以极快的速度迭代！留下邮箱，确保你能收到 Pro 功能发布、独家使用技巧等内部资讯。
                     </p>
@@ -461,7 +450,7 @@
                                 href="https://zkv549gmz8.feishu.cn/share/base/form/shrcns8ISnlywj2tdVsNuvF6sEf" 
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:shadow-blue-500/30 whitespace-nowrap transform hover:scale-105 text-lg"
+                                class="bg-white hover:bg-gray-100 text-gray-900 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 whitespace-nowrap text-lg"
                                 onclick="gtag('event', 'click', {'event_category': 'engagement', 'event_label': 'footer_survey_click'});"
                                 data-key="subscription-cta-button"
                             >
@@ -472,19 +461,19 @@
                     
                     <!-- 社交媒体链接 -->
                     <div class="flex items-center justify-center space-x-6 mt-8">
-                        <a href="https://discord.gg/hWU7DpvyUw" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#5865F2] transition-colors transform hover:scale-110" title="Discord">
+                        <a href="https://discord.gg/hWU7DpvyUw" target="_blank" rel="noopener noreferrer" class="text-[#5865F2] hover:opacity-80 transition-opacity" title="Discord">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
                             </svg>
                         </a>
-                        <a href="https://x.com/eze_is_1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors transform hover:scale-110" title="X (Twitter)">
+                        <a href="https://x.com/eze_is_1" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-80 transition-opacity" title="X (Twitter)">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
                         </a>
                         <div class="relative group">
-                            <a href="#" class="text-gray-400 hover:text-green-400 transition-all duration-200 transform hover:scale-110" title="Chat Memo 作者公众号">
-                                <img src="resource/images/wechat.png" alt="微信联系方式图标" class="w-6 h-6 filter grayscale hover:grayscale-0 brightness-90 hover:brightness-100 transition-all duration-200">
+                            <a href="#" class="hover:opacity-80 transition-opacity" title="Chat Memo 作者公众号">
+                                <img src="resource/images/wechat.png" alt="微信联系方式图标" class="w-6 h-6">
                             </a>
                             <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
                                 <div class="bg-white rounded-xl shadow-xl border border-gray-100 p-6 backdrop-blur-sm flex flex-col items-center">
@@ -493,8 +482,8 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="https://okjk.co/hLZBMP" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors transform hover:scale-110" title="即刻">
-                            <img src="resource/icons/jike_icon.png" alt="即刻社交平台图标" class="w-6 h-6 filter grayscale hover:grayscale-0 transition-all">
+                        <a href="https://okjk.co/hLZBMP" target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity" title="即刻">
+                            <img src="resource/icons/jike_icon.png" alt="即刻社交平台图标" class="w-6 h-6">
                         </a>
                     </div>
                 </div>
@@ -521,7 +510,7 @@
                 'hero-title': '欢迎使用 Chat Memo！',
                 'hero-description': '恭喜你迈出了构建个人 AI 智慧资产的第一步！<br>让我们帮助你快速上手，开始你的记忆积累之旅。',
                 'hero-cta-button': '订阅更新与独家技巧',
-                'hero-cta-note': '💌 作者将只在有重要功能更新时发送邮件，绝不打扰',
+                'hero-cta-note': '作者将只在有重要功能更新时发送邮件，绝不打扰',
                 
                 // 快速入门指南
                 'guide-title': '快速入门指南',
@@ -547,7 +536,7 @@
                 'feature4-description': '后台自动运行，不影响你的正常使用体验',
                 
                 // 使用小贴士
-                'tips-title': '💡 使用小贴士',
+                'tips-title': '使用小贴士',
                 'tips-description': '让 Chat Memo 发挥最大价值的实用建议',
                 'tip1-title': '给对话起个好标题',
                 'tip1-description': 'Chat Memo 默认对话标题为你的第一句话。在重要对话时，可以先在记录详情中修改标题，可以更容易在后续搜索中找到。',
@@ -567,6 +556,10 @@
                 'faq4-a': '当前版本，因部分浏览器限制，无法正常打开侧边栏。接下来会想办法迭代修复，在此之前优先推荐使用 Chrome、Edge 等主流浏览器。',
                 'faq5-q': '悬浮标签有点占据网页位置，能优化吗？',
                 'faq5-a': '感谢反馈。为了醒目地提醒保存状态，当时悬浮标签是刻意做得明显。目前介意的话，可以随意拖动悬浮标签的位置，放到你想放的地方～',
+                'faq6-q': '为什么部分对话抓取不完整？',
+                'faq6-a': '如果是 Chat Memo 已支持的平台，请先在 Chat Memo 中删除这条对话记录，再刷新原网页，重新抓取。<br>抓取历史消息时，请匀速、稳定地滚动，等每批内容加载完成后再继续，避免快速滚动、连续触发页面加载。<br>如果仍然抓取不完整，请通过 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Feedback</a> 联系作者排查。',
+                'faq7-q': '为什么我在原网页删除了消息，Chat Memo 里还保留着？',
+                'faq7-a': 'Chat Memo 目前会同步对话中的新增消息，以及已有消息的明确变更。<br>对于直接删除已有消息的行为，受网页内容加载与识别机制限制，Chat Memo 暂时不会主动同步删除，以免误删已经保存的内容。<br>如果希望两边完全一致，可以在 Chat Memo 中删除整条对话记录，再从原网页重新抓取。单条消息删除功能将在后续版本中支持。',
                 
                 // 邮件订阅
                 'subscription-title': '保持联系，不错过任何新动态',
@@ -593,7 +586,7 @@
                 'hero-title': 'Welcome to Chat Memo!',
                 'hero-description': 'Congratulations on starting your AI knowledge journey!<br>Let us help you get started and build your memory collection.',
                 'hero-cta-button': 'Subscribe for Updates & Exclusive Tips',
-                'hero-cta-note': '💌 Author will only send emails for important feature updates, never spam',
+                'hero-cta-note': 'Author will only send emails for important feature updates, never spam',
                 
                 // 快速入门指南
                 'guide-title': 'Quick Start Guide',
@@ -619,7 +612,7 @@
                 'feature4-description': 'Runs in background automatically, no impact on your normal usage experience',
                 
                 // 使用小贴士
-                'tips-title': '💡 Usage Tips',
+                'tips-title': 'Usage Tips',
                 'tips-description': 'Practical suggestions to maximize Chat Memo\'s value',
                 'tip1-title': 'Give Conversations Good Titles',
                 'tip1-description': 'Chat Memo defaults conversation titles to your first sentence. For important conversations, you can modify the title in record details first, making it easier to find in future searches.',
@@ -639,6 +632,10 @@
                 'faq4-a': 'In the current version, due to limitations of some browsers, the sidebar cannot open normally. We will try to iterate and fix this in the future. In the meantime, we recommend using mainstream browsers like Chrome and Edge.',
                 'faq5-q': 'The floating tag takes up webpage space, can it be optimized?',
                 'faq5-a': 'Thank you for the feedback. To prominently remind of the saving status, the floating tag was intentionally made obvious. If you mind it currently, you can freely drag the floating tag to wherever you want to place it~',
+                'faq6-q': 'Why is part of a conversation missing after capture?',
+                'faq6-a': 'If the conversation is from a platform supported by Chat Memo, delete the conversation record in Chat Memo, refresh the original webpage, and capture it again.<br>When loading older messages, scroll at a steady pace and wait for each batch to finish loading before continuing. Avoid scrolling quickly and triggering multiple page loads in succession.<br>If the conversation is still incomplete, please contact the author through <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">Feedback</a>.',
+                'faq7-q': 'Why do messages deleted from the original webpage remain in Chat Memo?',
+                'faq7-a': 'Chat Memo currently syncs new messages and clear changes to existing messages in a conversation.<br>Because webpage content is loaded and identified in different ways, Chat Memo does not currently sync direct deletions of existing messages. This prevents saved content from being removed by mistake.<br>To make both copies match, delete the entire conversation record in Chat Memo and capture it again from the original webpage. Support for deleting individual messages will be added in a future version.',
                  
                 // 邮件订阅
                 'subscription-title': 'Stay Connected, Don\'t Miss Any Updates',
