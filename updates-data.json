@@ -1,10 +1,10 @@
 {
   "updates": [
     {
-      "version": "v1.4.1",
+      "version": "v1.4.2",
       "date": {
-        "zh-CN": "2026年9月10日",
-        "en": "September 10, 2026"
+        "zh-CN": "2026年9月11日",
+        "en": "September 11, 2026"
       },
       "summary": {
         "zh-CN": "新增 Google AI Mode 自动保存，修复 ChatGPT 含链接消息和腾讯元宝新版回复漏记，并让删除后的跨页面状态更加一致。",
