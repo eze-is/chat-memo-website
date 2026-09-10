@@ -1,6 +1,52 @@
 {
   "updates": [
     {
+      "version": "v1.4.1",
+      "date": {
+        "zh-CN": "2026年9月10日",
+        "en": "September 10, 2026"
+      },
+      "summary": {
+        "zh-CN": "新增 Google AI Mode 自动保存，修复 ChatGPT 含链接消息和腾讯元宝新版回复漏记，并让删除后的跨页面状态更加一致。",
+        "en": "Adds automatic saving for Google AI Mode, fixes missed ChatGPT link messages and newer Tencent Yuanbao replies, and keeps deletion state consistent across pages."
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "支持 Google AI Mode",
+            "en": "Google AI Mode support"
+          },
+          "description": {
+            "zh-CN": "Google AI Mode 对话现在可以自动保存到 Chat Memo，并支持筛选、导出和返回原会话。",
+            "en": "Google AI Mode conversations can now be saved automatically in Chat Memo, filtered, exported, and reopened."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "修复部分对话漏记",
+            "en": "Fix missed conversation content"
+          },
+          "description": {
+            "zh-CN": "修复 ChatGPT 含链接的用户消息以及腾讯元宝新版深度搜索回复无法完整保存的问题。",
+            "en": "Fixes missing ChatGPT user messages containing links and newer Tencent Yuanbao deep-search replies."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "删除后的状态更一致",
+            "en": "More consistent deletion state"
+          },
+          "description": {
+            "zh-CN": "删除或清空记录后，已打开的侧栏会及时返回目录，当前已打开的来源页面不会立即把记录重新建回。",
+            "en": "After deleting or clearing records, open sidebars return to the library and the currently open source page no longer immediately recreates deleted entries."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.4.0",
       "date": {
         "zh-CN": "2026年9月8日",
