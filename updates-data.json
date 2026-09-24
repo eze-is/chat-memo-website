@@ -1,6 +1,63 @@
 {
   "updates": [
     {
+      "version": "v1.5.0",
+      "date": {
+        "zh-CN": "2026年9月24日",
+        "en": "September 24, 2026"
+      },
+      "summary": {
+        "zh-CN": "新增按平台控制自动保存，并改进当前会话识别、重复记录管理与 Google AI Mode 的保存归属。",
+        "en": "Adds per-platform auto-save controls and improves current-conversation identification, duplicate management, and Google AI Mode save targeting."
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "按平台控制自动保存",
+            "en": "Per-platform auto-save controls"
+          },
+          "description": {
+            "zh-CN": "在「平台配置」中分别暂停或开启九个平台的自动保存。总开关暂停全部平台时，各平台的选择仍会保留；悬浮胶囊继续显示暂停状态。",
+            "en": "Pause or enable auto-save for each of the nine platforms in Platform settings. Turning off the main switch pauses all platforms while preserving their individual choices; the floating capsule still shows the paused state."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "更清楚地查看当前对话",
+            "en": "Clearer current-conversation status"
+          },
+          "description": {
+            "zh-CN": "列表标出当前网页对应的记录，暂停时显示「自动保存已暂停」。若发现同一对话有多份本地记录，可进入管理；已有副本不会自动合并或删除。",
+            "en": "The library marks the record matching the current page and shows when auto-save is paused. If multiple local records match a conversation, you can review them; existing copies are not automatically merged or deleted."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "改进 Google AI Mode 对话保存",
+            "en": "Improve Google AI Mode saving"
+          },
+          "description": {
+            "zh-CN": "根据对话内容确认本地记录，减少原网页链接变化造成的重复保存；内容确实分支时分别保存，并保留原记录。",
+            "en": "Matches local records by conversation content to reduce duplicates caused by changing source links. Distinct content branches are saved separately while the original record remains."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "修复 Gemini 页内切换时的错存风险",
+            "en": "Fix save targeting when switching Gemini conversations"
+          },
+          "description": {
+            "zh-CN": "修复在同一页面窗口切换 Gemini 对话时，旧对话内容可能写入新记录的问题。",
+            "en": "Fixes a case where switching Gemini conversations in the same tab could write content from the previous conversation into the new record."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.4.3",
       "date": {
         "zh-CN": "2026年9月11日",
