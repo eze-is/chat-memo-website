@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <url>
-        <loc>https://chatmemo.ai/</loc>
-        <lastmod>2025-06-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/" />
-    </url>
-    <url>
-        <loc>https://chatmemo.ai/welcome.html</loc>
-        <lastmod>2025-06-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/welcome.html" />
-        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/welcome.html" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome.html" />
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url><loc>https://chatmemo.ai/en/</loc></url>
+    <url><loc>https://chatmemo.ai/zh-CN/</loc></url>
+    <url><loc>https://chatmemo.ai/ja/</loc></url>
+    <url><loc>https://chatmemo.ai/es/</loc></url>
+    <url><loc>https://chatmemo.ai/en/welcome</loc></url>
+    <url><loc>https://chatmemo.ai/zh-CN/welcome</loc></url>
+    <url><loc>https://chatmemo.ai/ja/welcome</loc></url>
+    <url><loc>https://chatmemo.ai/es/welcome</loc></url>
+    <url><loc>https://chatmemo.ai/en/updates</loc></url>
+    <url><loc>https://chatmemo.ai/zh-CN/updates</loc></url>
+    <url><loc>https://chatmemo.ai/ja/updates</loc></url>
+    <url><loc>https://chatmemo.ai/es/updates</loc></url>
 </urlset>

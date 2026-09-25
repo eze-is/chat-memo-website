@@ -4,3 +4,5 @@ CLAUDE.md
 .claude/skills
 .agents/
 .Codex/
+node_modules/
+.wrangler/

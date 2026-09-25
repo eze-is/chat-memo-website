@@ -4,77 +4,105 @@
       "version": "v1.5.0",
       "date": {
         "zh-CN": "2026年9月25日",
-        "en": "September 25, 2026"
+        "en": "September 25, 2026",
+        "ja": "2026年9月25日",
+        "es": "25 de septiembre de 2026"
       },
       "summary": {
         "zh-CN": "新增日语和西班牙语界面、按平台控制自动保存，并改进窄侧栏布局与对话保存。",
-        "en": "Adds Japanese and Spanish interfaces and per-platform auto-save controls, with better narrow-sidebar layouts and conversation saving."
+        "en": "Adds Japanese and Spanish interfaces and per-platform auto-save controls, with better narrow-sidebar layouts and conversation saving.",
+        "ja": "日本語・スペイン語の画面表示と、プラットフォームごとの自動保存設定に対応。狭いサイドバーでの表示と会話の保存も改善しました。",
+        "es": "Incorpora interfaces en japonés y español y controles de guardado automático por plataforma. También mejora la disposición en paneles laterales estrechos y el guardado de conversaciones."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "新增日语和西班牙语界面",
-            "en": "Japanese and Spanish interfaces"
+            "en": "Japanese and Spanish interfaces",
+            "ja": "日本語・スペイン語の画面表示に対応",
+            "es": "Interfaces en japonés y español"
           },
           "description": {
             "zh-CN": "Chrome 界面语言为日语或西班牙语时，插件会自动显示对应语言。已保存的对话原文保持不变；未支持的界面语言继续回退英文。",
-            "en": "When Chrome's interface language is Japanese or Spanish, Chat Memo displays its interface in that language. Saved conversation text stays unchanged; unsupported interface languages fall back to English."
+            "en": "When Chrome's interface language is Japanese or Spanish, Chat Memo displays its interface in that language. Saved conversation text stays unchanged; unsupported interface languages fall back to English.",
+            "ja": "Chrome の表示言語が日本語またはスペイン語なら、Chat Memo もその言語で表示します。保存済みの会話の原文は変わりません。未対応の表示言語では英語で表示します。",
+            "es": "Si el idioma de la interfaz de Chrome es japonés o español, Chat Memo muestra la interfaz en ese idioma. El texto original de las conversaciones guardadas no cambia; los idiomas de interfaz no admitidos usan el inglés como alternativa."
           }
         },
         {
           "type": "new",
           "title": {
             "zh-CN": "按平台控制自动保存",
-            "en": "Per-platform auto-save controls"
+            "en": "Per-platform auto-save controls",
+            "ja": "プラットフォームごとの自動保存設定",
+            "es": "Control del guardado automático por plataforma"
           },
           "description": {
             "zh-CN": "在「平台配置」中分别暂停或开启九个平台的自动保存。总开关暂停全部平台时，各平台的选择仍会保留；悬浮胶囊继续显示暂停状态。",
-            "en": "Pause or enable auto-save for each of the nine platforms in Platform settings. Turning off the main switch pauses all platforms while preserving their individual choices; the floating capsule still shows the paused state."
+            "en": "Pause or enable auto-save for each of the nine platforms in Platform settings. Turning off the main switch pauses all platforms while preserving their individual choices; the floating capsule still shows the paused state.",
+            "ja": "「プラットフォーム設定」で、9 つのプラットフォームそれぞれの自動保存を一時停止・再開できます。全体のスイッチをオフにしても個別設定は保持され、フローティングラベルには一時停止の状態が表示されます。",
+            "es": "Puedes pausar o activar el guardado automático para cada una de las nueve plataformas desde Configuración de plataformas. Si desactivas el interruptor principal, todas quedan en pausa sin perder sus preferencias individuales; la etiqueta flotante sigue mostrando el estado de pausa."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "更清楚地查看当前对话",
-            "en": "Clearer current-conversation status"
+            "en": "Clearer current-conversation status",
+            "ja": "現在の会話の状態をわかりやすく表示",
+            "es": "Estado más claro de la conversación actual"
           },
           "description": {
             "zh-CN": "列表标出当前网页对应的记录，暂停时显示「自动保存已暂停」。若发现同一对话有多份本地记录，可进入管理；已有副本不会自动合并或删除。",
-            "en": "The library marks the record matching the current page and shows when auto-save is paused. If multiple local records match a conversation, you can review them; existing copies are not automatically merged or deleted."
+            "en": "The library marks the record matching the current page and shows when auto-save is paused. If multiple local records match a conversation, you can review them; existing copies are not automatically merged or deleted.",
+            "ja": "一覧で現在のページに対応する記録がわかるようになり、自動保存の一時停止も表示します。同じ会話に複数のローカル記録がある場合は管理画面で確認できます。既存の記録を自動で統合・削除することはありません。",
+            "es": "La biblioteca marca el registro correspondiente a la página abierta y muestra cuándo está pausado el guardado automático. Si una conversación tiene varios registros locales, puedes revisarlos; las copias existentes no se fusionan ni eliminan automáticamente."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "优化窄侧栏与混合语言阅读",
-            "en": "Better narrow-sidebar layout and mixed-language reading"
+            "en": "Better narrow-sidebar layout and mixed-language reading",
+            "ja": "狭いサイドバーと多言語混在の表示を改善",
+            "es": "Mejor diseño en paneles estrechos y lectura de varios idiomas"
           },
           "description": {
             "zh-CN": "搜索、多选、导出和日期筛选会随侧栏宽度调整，减少文字错位；中日英等混排的标题和正文显示更一致。",
-            "en": "Search, multi-select, export, and date filters adapt to narrower sidebars, while titles and content with mixed scripts render more consistently."
+            "en": "Search, multi-select, export, and date filters adapt to narrower sidebars, while titles and content with mixed scripts render more consistently.",
+            "ja": "検索、複数選択、エクスポート、日付フィルターがサイドバーの幅に合わせて表示され、文字のずれを抑えます。日本語・中国語・英語などが混在するタイトルや本文も、より自然に表示されます。",
+            "es": "La búsqueda, la selección múltiple, la exportación y los filtros de fecha se adaptan a paneles laterales más estrechos. Los títulos y contenidos que mezclan sistemas de escritura también se muestran de forma más uniforme."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "改进 Google AI Mode 对话保存",
-            "en": "Improve Google AI Mode saving"
+            "en": "Improve Google AI Mode saving",
+            "ja": "Google AI Mode の会話保存を改善",
+            "es": "Mejor guardado de Google AI Mode"
           },
           "description": {
             "zh-CN": "根据对话内容确认本地记录，减少原网页链接变化造成的重复保存；内容确实分支时分别保存，并保留原记录。",
-            "en": "Matches local records by conversation content to reduce duplicates caused by changing source links. Distinct content branches are saved separately while the original record remains."
+            "en": "Matches local records by conversation content to reduce duplicates caused by changing source links. Distinct content branches are saved separately while the original record remains.",
+            "ja": "会話の内容からローカル記録を照合し、元ページのリンク変更による重複保存を減らしました。内容が実際に分岐した場合は、元の記録を残したまま別々に保存します。",
+            "es": "Chat Memo identifica registros locales a partir del contenido de la conversación para reducir duplicados cuando cambia el enlace de origen. Si el contenido se divide en ramas distintas, cada una se guarda por separado y se conserva el registro original."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "修复 Gemini 页内切换时的错存风险",
-            "en": "Fix save targeting when switching Gemini conversations"
+            "en": "Fix save targeting when switching Gemini conversations",
+            "ja": "Gemini の会話切り替え時の保存先を修正",
+            "es": "Corrección al cambiar entre conversaciones de Gemini"
           },
           "description": {
             "zh-CN": "修复在同一页面窗口切换 Gemini 对话时，旧对话内容可能写入新记录的问题。",
-            "en": "Fixes a case where switching Gemini conversations in the same tab could write content from the previous conversation into the new record."
+            "en": "Fixes a case where switching Gemini conversations in the same tab could write content from the previous conversation into the new record.",
+            "ja": "同じタブで Gemini の会話を切り替えたとき、直前の会話の内容が新しい記録に書き込まれる場合がある問題を修正しました。",
+            "es": "Se corrigió un caso en el que, al cambiar de conversación de Gemini dentro de la misma pestaña, el contenido de la conversación anterior podía guardarse en el registro nuevo."
           }
         }
       ]
@@ -83,44 +111,60 @@
       "version": "v1.4.3",
       "date": {
         "zh-CN": "2026年9月11日",
-        "en": "September 11, 2026"
+        "en": "September 11, 2026",
+        "ja": "2026年9月11日",
+        "es": "11 de septiembre de 2026"
       },
       "summary": {
         "zh-CN": "新增 Google AI Mode 自动保存，修复 ChatGPT 含链接消息和腾讯元宝新版回复漏记，并让删除后的跨页面状态更加一致。",
-        "en": "Adds automatic saving for Google AI Mode, fixes missed ChatGPT link messages and newer Tencent Yuanbao replies, and keeps deletion state consistent across pages."
+        "en": "Adds automatic saving for Google AI Mode, fixes missed ChatGPT link messages and newer Tencent Yuanbao replies, and keeps deletion state consistent across pages.",
+        "ja": "Google AI Mode の自動保存に対応。リンクを含む ChatGPT のメッセージや新しい Tencent Yuanbao の返信の取りこぼしを修正し、ページをまたぐ削除状態の一貫性も高めました。",
+        "es": "Añade el guardado automático de Google AI Mode, corrige mensajes con enlaces de ChatGPT y respuestas recientes de Tencent Yuanbao que no se guardaban, y mantiene coherente el estado de eliminación entre páginas."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "支持 Google AI Mode",
-            "en": "Google AI Mode support"
+            "en": "Google AI Mode support",
+            "ja": "Google AI Mode に対応",
+            "es": "Compatibilidad con Google AI Mode"
           },
           "description": {
             "zh-CN": "Google AI Mode 对话现在可以自动保存到 Chat Memo，并支持筛选、导出和返回原会话。",
-            "en": "Google AI Mode conversations can now be saved automatically in Chat Memo, filtered, exported, and reopened."
+            "en": "Google AI Mode conversations can now be saved automatically in Chat Memo, filtered, exported, and reopened.",
+            "ja": "Google AI Mode の会話を Chat Memo に自動保存できるようになりました。フィルター、エクスポート、元の会話を開く操作にも対応します。",
+            "es": "Ahora las conversaciones de Google AI Mode se pueden guardar automáticamente en Chat Memo, filtrar, exportar y volver a abrir en su página original."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "修复部分对话漏记",
-            "en": "Fix missed conversation content"
+            "en": "Fix missed conversation content",
+            "ja": "会話内容の取りこぼしを修正",
+            "es": "Corrección de contenido omitido"
           },
           "description": {
             "zh-CN": "修复 ChatGPT 含链接的用户消息以及腾讯元宝新版深度搜索回复无法完整保存的问题。",
-            "en": "Fixes missing ChatGPT user messages containing links and newer Tencent Yuanbao deep-search replies."
+            "en": "Fixes missing ChatGPT user messages containing links and newer Tencent Yuanbao deep-search replies.",
+            "ja": "リンクを含む ChatGPT のユーザーメッセージと、新しい Tencent Yuanbao のディープサーチの返信が完全に保存されない問題を修正しました。",
+            "es": "Se corrigió la omisión de mensajes del usuario con enlaces en ChatGPT y de respuestas del modo de búsqueda profunda más reciente de Tencent Yuanbao."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "删除后的状态更一致",
-            "en": "More consistent deletion state"
+            "en": "More consistent deletion state",
+            "ja": "削除後の表示をより一貫した状態に",
+            "es": "Estado más coherente después de eliminar registros"
           },
           "description": {
             "zh-CN": "删除或清空记录后，已打开的侧栏会及时返回目录，当前已打开的来源页面不会立即把记录重新建回。",
-            "en": "After deleting or clearing records, open sidebars return to the library and the currently open source page no longer immediately recreates deleted entries."
+            "en": "After deleting or clearing records, open sidebars return to the library and the currently open source page no longer immediately recreates deleted entries.",
+            "ja": "記録を削除・消去した後、開いているサイドバーは一覧に戻ります。また、現在開いている元のページから削除済みの記録がすぐに再作成されることを防ぎます。",
+            "es": "Al eliminar o vaciar registros, los paneles laterales abiertos vuelven a la biblioteca y la página de origen abierta ya no recrea de inmediato las entradas eliminadas."
           }
         }
       ]
@@ -129,55 +173,75 @@
       "version": "v1.4.0",
       "date": {
         "zh-CN": "2026年9月8日",
-        "en": "September 8, 2026"
+        "en": "September 8, 2026",
+        "ja": "2026年9月8日",
+        "es": "8 de septiembre de 2026"
       },
       "summary": {
         "zh-CN": "更稳定地保存 AI 对话，更安心地保留你的数据。全量修复 GPT、豆包等平台的保存问题。若更新后旧会话无法自动记录，请在 Chat Memo 中删除对应会话后重试即可。",
-        "en": "More reliable AI conversation capture, with better protection for your saved data. Comprehensive fixes for saving issues on ChatGPT, Doubao, and other platforms. If an existing conversation no longer saves automatically after updating, delete its record in Chat Memo and try again."
+        "en": "More reliable AI conversation capture, with better protection for your saved data. Comprehensive fixes for saving issues on ChatGPT, Doubao, and other platforms. If an existing conversation no longer saves automatically after updating, delete its record in Chat Memo and try again.",
+        "ja": "AI との会話をより安定して保存し、保存済みデータを守る仕組みを改善しました。ChatGPT、Doubao などの保存上の問題を広く修正しています。更新後に古い会話が自動保存されない場合は、Chat Memo 内の該当記録を削除してから再度お試しください。",
+        "es": "Guarda las conversaciones con IA de forma más fiable y protege mejor tus datos. Corrige problemas de guardado en ChatGPT, Doubao y otras plataformas. Si una conversación antigua deja de guardarse tras la actualización, elimina su registro de Chat Memo y vuelve a intentarlo."
       },
       "features": [
         {
           "type": "improvement",
           "title": {
             "zh-CN": "保存机制大修复",
-            "en": "Major saving fixes"
+            "en": "Major saving fixes",
+            "ja": "保存機能を大幅に修正",
+            "es": "Correcciones importantes del guardado"
           },
           "description": {
             "zh-CN": "修复豆包、ChatGPT 等平台的同步问题。过往出错、无法保存或无法继续同步的旧会话，可在 Chat Memo 中删除对应记录后重新采集。",
-            "en": "Fixed syncing issues on Doubao, ChatGPT, and other platforms. If an existing conversation previously failed to save or no longer syncs, delete its record in Chat Memo and capture it again."
+            "en": "Fixed syncing issues on Doubao, ChatGPT, and other platforms. If an existing conversation previously failed to save or no longer syncs, delete its record in Chat Memo and capture it again.",
+            "ja": "Doubao、ChatGPT などで起きていた同期の問題を修正しました。以前から保存に失敗していた、または同期が止まっている会話は、Chat Memo 内の該当記録を削除して取り込み直してください。",
+            "es": "Se corrigieron problemas de sincronización en Doubao, ChatGPT y otras plataformas. Si una conversación antigua no se guardaba o dejó de sincronizarse, elimina su registro de Chat Memo y vuelve a capturarla."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "网页删除不再同步",
-            "en": "Website deletions no longer sync"
+            "en": "Website deletions no longer sync",
+            "ja": "元の Web ページでの削除を同期しない方式に変更",
+            "es": "Las eliminaciones en la web ya no se sincronizan"
           },
           "description": {
             "zh-CN": "为提升同步稳定性，网页内手动删除的消息不再同步删除。",
-            "en": "To improve sync stability, manually deleting messages on a website no longer deletes them in Chat Memo."
+            "en": "To improve sync stability, manually deleting messages on a website no longer deletes them in Chat Memo.",
+            "ja": "同期を安定させるため、Web ページで手動削除したメッセージは Chat Memo 側では削除されなくなりました。",
+            "es": "Para mejorar la estabilidad de la sincronización, eliminar manualmente mensajes en una página web ya no los elimina de Chat Memo."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "统一自动保存",
-            "en": "Auto-save for all capture"
+            "en": "Auto-save for all capture",
+            "ja": "取り込みをすべて自動保存に統一",
+            "es": "Guardado automático para todas las capturas"
           },
           "description": {
             "zh-CN": "手动保存模式已下线，仍可在设置中暂停自动保存。",
-            "en": "Manual saving has been removed. You can still pause auto-save in Settings."
+            "en": "Manual saving has been removed. You can still pause auto-save in Settings.",
+            "ja": "手動保存モードを廃止しました。設定画面から自動保存を一時停止することは引き続き可能です。",
+            "es": "Se retiró el modo de guardado manual. Todavía puedes pausar el guardado automático en Configuración."
           }
         },
         {
           "type": "new",
           "title": {
             "zh-CN": "数据备份与升级须知",
-            "en": "Data backups and upgrade notes"
+            "en": "Data backups and upgrade notes",
+            "ja": "データのバックアップとアップグレード時の案内",
+            "es": "Copias de seguridad y notas de actualización"
           },
           "description": {
             "zh-CN": "本次升级涉及数据迁移，Chat Memo 会在迁移前自动保留本地数据快照。从 1.3.3 升级后，你可在设置 → 数据备份中随时下载升级前的数据快照，同时获取 Markdown 文档。",
-            "en": "This upgrade includes a data migration. Chat Memo automatically retains a local snapshot before migration. After upgrading from 1.3.3, you can download your pre-upgrade data snapshot and Markdown documents from Settings → Data Backup."
+            "en": "This upgrade includes a data migration. Chat Memo automatically retains a local snapshot before migration. After upgrading from 1.3.3, you can download your pre-upgrade data snapshot and Markdown documents from Settings → Data Backup.",
+            "ja": "今回の更新にはデータ移行が含まれます。移行前にはローカルのスナップショットを自動で保持します。1.3.3 から更新した後は、「設定 → データバックアップ」から更新前のスナップショットと Markdown 文書をダウンロードできます。",
+            "es": "Esta actualización incluye una migración de datos. Chat Memo guarda automáticamente una copia local antes de migrar. Tras actualizar desde la versión 1.3.3, puedes descargar esa copia y los documentos Markdown desde Configuración → Copia de seguridad de datos."
           }
         }
       ]
@@ -186,22 +250,30 @@
       "version": "v1.3.3",
       "date": {
         "zh-CN": "2026年6月16日",
-        "en": "June 16, 2026"
+        "en": "June 16, 2026",
+        "ja": "2026年6月16日",
+        "es": "16 de junio de 2026"
       },
       "summary": {
         "zh-CN": "增强本地数据持久性，进一步降低对话记录被清理的风险。",
-        "en": "Strengthened local data durability to further reduce the risk of saved conversations being cleared."
+        "en": "Strengthened local data durability to further reduce the risk of saved conversations being cleared.",
+        "ja": "ローカルデータの保持を強化し、保存済みの会話が消去されるリスクをさらに減らしました。",
+        "es": "Refuerza la conservación de los datos locales para reducir aún más el riesgo de perder conversaciones guardadas."
       },
       "features": [
         {
           "type": "improvement",
           "title": {
             "zh-CN": "数据持久性增强",
-            "en": "Stronger Data Durability"
+            "en": "Stronger Data Durability",
+            "ja": "データ保持の強化",
+            "es": "Mayor protección de los datos"
           },
           "description": {
             "zh-CN": "为本地保存的对话申请持久化存储并解除存储配额限制，使其免于在浏览器存储压力下被自动清理，已保存的对话更不易丢失。所有数据仍 100% 存储在本地。",
-            "en": "Requests persistent storage and removes storage quota limits for locally saved conversations, exempting them from automatic eviction under browser storage pressure. All data still stays 100% on your device."
+            "en": "Requests persistent storage and removes storage quota limits for locally saved conversations, exempting them from automatic eviction under browser storage pressure. All data still stays 100% on your device.",
+            "ja": "永続的なストレージを要求し、ローカルに保存した会話の容量制限を取り除きました。ブラウザのストレージ容量が逼迫したときの自動削除の対象からも除外されます。データは引き続きすべてお使いの端末に保存されます。",
+            "es": "Solicita almacenamiento persistente y elimina los límites de cuota para las conversaciones guardadas localmente, para evitar que el navegador las borre automáticamente cuando escasea el espacio. Todos los datos permanecen en tu dispositivo."
           }
         }
       ]
@@ -210,22 +282,30 @@
       "version": "v1.3.2",
       "date": {
         "zh-CN": "2026年6月16日",
-        "en": "June 16, 2026"
+        "en": "June 16, 2026",
+        "ja": "2026年6月16日",
+        "es": "16 de junio de 2026"
       },
       "summary": {
         "zh-CN": "修复豆包 AI 回复无法同步的问题。",
-        "en": "Fixed an issue where Doubao AI replies could not be synced."
+        "en": "Fixed an issue where Doubao AI replies could not be synced.",
+        "ja": "Doubao の AI 返信を同期できない問題を修正しました。",
+        "es": "Corrige un problema que impedía sincronizar las respuestas de IA en Doubao."
       },
       "features": [
         {
           "type": "fix",
           "title": {
             "zh-CN": "豆包 AI 回复同步修复",
-            "en": "Doubao AI Reply Sync Fix"
+            "en": "Doubao AI Reply Sync Fix",
+            "ja": "Doubao の AI 返信の同期を修正",
+            "es": "Corrección de respuestas de Doubao"
           },
           "description": {
             "zh-CN": "豆包前端调整了 AI 回复的页面结构，导致只能同步用户消息、AI 回复丢失。已重新适配，AI 回复恢复正常保存。",
-            "en": "Doubao changed the page structure of AI replies, causing only user messages to sync while AI replies were lost. Re-adapted so AI replies save correctly again."
+            "en": "Doubao changed the page structure of AI replies, causing only user messages to sync while AI replies were lost. Re-adapted so AI replies save correctly again.",
+            "ja": "Doubao で AI 返信のページ構造が変わり、ユーザーのメッセージだけが同期されていました。新しい構造に対応し、AI の返信も再び保存できるようにしました。",
+            "es": "Un cambio en la estructura de las respuestas de Doubao hacía que solo se guardaran los mensajes del usuario. Se adaptó la captura para volver a guardar correctamente las respuestas de la IA."
           }
         }
       ]
@@ -234,33 +314,45 @@
       "version": "v1.3.1",
       "date": {
         "zh-CN": "2026年4月13日",
-        "en": "April 13, 2026"
+        "en": "April 13, 2026",
+        "ja": "2026年4月13日",
+        "es": "13 de abril de 2026"
       },
       "summary": {
         "zh-CN": "修复豆包适配问题，并优化复制成功提示体验。",
-        "en": "Fixed Doubao adapter issues and improved copy success feedback."
+        "en": "Fixed Doubao adapter issues and improved copy success feedback.",
+        "ja": "Doubao での保存を修正し、コピー完了時のフィードバックを改善しました。",
+        "es": "Corrige problemas de compatibilidad con Doubao y mejora la confirmación después de copiar."
       },
       "features": [
         {
           "type": "fix",
           "title": {
             "zh-CN": "豆包适配器修复",
-            "en": "Doubao Adapter Fix"
+            "en": "Doubao Adapter Fix",
+            "ja": "Doubao への対応を修正",
+            "es": "Corrección de Doubao"
           },
           "description": {
             "zh-CN": "修复豆包平台前端更新移除 data-testid 属性后导致的对话无法保存问题，改用更稳定的业务语义属性重新适配",
-            "en": "Fixed conversation saving failures caused by Doubao removing the data-testid attribute in a frontend update by switching to more stable semantic business attributes"
+            "en": "Fixed conversation saving failures caused by Doubao removing the data-testid attribute in a frontend update by switching to more stable semantic business attributes",
+            "ja": "Doubao の画面更新で data-testid 属性が削除され、会話を保存できなくなっていた問題を修正しました。より安定した意味上の属性を使う方式に切り替えています。",
+            "es": "Se corrigió un fallo de guardado provocado por la eliminación del atributo data-testid en una actualización de Doubao, usando atributos semánticos más estables."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "复制体验优化",
-            "en": "Copy Experience Improvement"
+            "en": "Copy Experience Improvement",
+            "ja": "コピー時のフィードバックを改善",
+            "es": "Mejora al copiar"
           },
           "description": {
             "zh-CN": "修复部分浏览器环境下复制对话后没有成功提示的问题",
-            "en": "Fixed missing success feedback after copying conversations in some browser environments"
+            "en": "Fixed missing success feedback after copying conversations in some browser environments",
+            "ja": "一部のブラウザで会話をコピーしても成功メッセージが表示されない問題を修正しました。",
+            "es": "Se corrigió la falta de confirmación después de copiar conversaciones en algunos navegadores."
           }
         }
       ]
@@ -269,55 +361,75 @@
       "version": "v1.3.0",
       "date": {
         "zh-CN": "2026年3月22日",
-        "en": "March 22, 2026"
+        "en": "March 22, 2026",
+        "ja": "2026年3月22日",
+        "es": "22 de marzo de 2026"
       },
       "summary": {
         "zh-CN": "新增千问平台支持，修复 DeepSeek 和 Gemini 适配问题，数据加载更稳定可靠。",
-        "en": "Added Qwen platform support, fixed DeepSeek and Gemini adapter issues, improved data loading reliability."
+        "en": "Added Qwen platform support, fixed DeepSeek and Gemini adapter issues, improved data loading reliability.",
+        "ja": "Qwen に対応し、DeepSeek と Gemini の取り込みを修正。データ読み込みの安定性も高めました。",
+        "es": "Añade compatibilidad con Qwen, corrige problemas de DeepSeek y Gemini y mejora la carga de datos."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "新增千问平台支持",
-            "en": "Qwen Platform Support"
+            "en": "Qwen Platform Support",
+            "ja": "Qwen に対応",
+            "es": "Compatibilidad con Qwen"
           },
           "description": {
             "zh-CN": "支持千问（Qwen）AI 对话平台的自动保存，使用稳定的语义化选择器确保长期兼容",
-            "en": "Support automatic saving for Qwen AI chat platform, using stable semantic selectors for long-term compatibility"
+            "en": "Support automatic saving for Qwen AI chat platform, using stable semantic selectors for long-term compatibility",
+            "ja": "Qwen の AI チャットを自動保存できるようになりました。安定した意味上のセレクターを使い、画面変更に対応しやすくしています。",
+            "es": "Se añadió el guardado automático de conversaciones de Qwen mediante selectores semánticos estables para mejorar la compatibilidad a largo plazo."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "DeepSeek 适配修复",
-            "en": "DeepSeek Adapter Fix"
+            "en": "DeepSeek Adapter Fix",
+            "ja": "DeepSeek への対応を修正",
+            "es": "Corrección de DeepSeek"
           },
           "description": {
             "zh-CN": "修复 DeepSeek 页面结构更新导致的对话无法自动保存问题",
-            "en": "Fixed conversation auto-save failure caused by DeepSeek page structure update"
+            "en": "Fixed conversation auto-save failure caused by DeepSeek page structure update",
+            "ja": "DeepSeek のページ構造変更により、会話を自動保存できなくなっていた問題を修正しました。",
+            "es": "Se corrigió un fallo del guardado automático causado por un cambio en la estructura de la página de DeepSeek."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "Gemini 适配修复",
-            "en": "Gemini Adapter Fix"
+            "en": "Gemini Adapter Fix",
+            "ja": "Gemini への対応を修正",
+            "es": "Corrección de Gemini"
           },
           "description": {
             "zh-CN": "修复 Gemini 中文环境下用户消息被多提取「你说」前缀的问题",
-            "en": "Fixed user messages in Gemini Chinese environment being prefixed with extra accessibility text"
+            "en": "Fixed user messages in Gemini Chinese environment being prefixed with extra accessibility text",
+            "ja": "中国語環境の Gemini で、ユーザーメッセージの先頭にアクセシビリティ用の余分な文言が入る問題を修正しました。",
+            "es": "Se eliminó el texto de accesibilidad adicional que aparecía al principio de los mensajes del usuario en Gemini con interfaz en chino."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "数据加载稳定性增强",
-            "en": "Data Loading Reliability Improvement"
+            "en": "Data Loading Reliability Improvement",
+            "ja": "データ読み込みをより安定させました",
+            "es": "Carga de datos más fiable"
           },
           "description": {
             "zh-CN": "单条异常数据不再导致全部对话加载失败，异常对话会显示提示而非空白",
-            "en": "A single corrupted record no longer causes all conversations to fail loading; corrupted conversations show a warning instead of blank"
+            "en": "A single corrupted record no longer causes all conversations to fail loading; corrupted conversations show a warning instead of blank",
+            "ja": "1 件の破損した記録によって会話がすべて読み込めなくなることを防ぎました。破損した会話には空白画面の代わりに警告を表示します。",
+            "es": "Un solo registro dañado ya no impide cargar todas las conversaciones. En su lugar, las conversaciones afectadas muestran una advertencia."
           }
         }
       ]
@@ -326,55 +438,75 @@
       "version": "v1.2.0",
       "date": {
         "zh-CN": "2025年12月25日",
-        "en": "December 25, 2025"
+        "en": "December 25, 2025",
+        "ja": "2025年12月25日",
+        "es": "25 de diciembre de 2025"
       },
       "summary": {
         "zh-CN": "圣诞惊喜！新增 Kimi 平台支持，悬浮标签全新视觉升级，浏览器兼容性大幅提升，还有智能引导功能带你轻松上手～",
-        "en": "Christmas surprise! Added Kimi platform support, floating tag visual upgrade, major browser compatibility improvements, plus smart guidance to help you get started!"
+        "en": "Christmas surprise! Added Kimi platform support, floating tag visual upgrade, major browser compatibility improvements, plus smart guidance to help you get started!",
+        "ja": "クリスマスのアップデート。Kimi 対応、フローティングラベルのデザイン刷新、ブラウザ互換性の大幅改善に加え、使い始めるためのガイドを追加しました。",
+        "es": "Una sorpresa de fin de año: compatibilidad con Kimi, una etiqueta flotante renovada, mejoras importantes para distintos navegadores y una guía para empezar."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "新增 Kimi 平台支持",
-            "en": "Kimi Platform Support"
+            "en": "Kimi Platform Support",
+            "ja": "Kimi に対応",
+            "es": "Compatibilidad con Kimi"
           },
           "description": {
             "zh-CN": "现在可以自动保存 Kimi 的对话记录了，AI 对话平台支持更全面",
-            "en": "Now you can automatically save Kimi conversation records, with more comprehensive AI platform support"
+            "en": "Now you can automatically save Kimi conversation records, with more comprehensive AI platform support",
+            "ja": "Kimi の会話を自動保存できるようになり、対応する AI サービスがさらに増えました。",
+            "es": "Ahora puedes guardar automáticamente conversaciones de Kimi, lo que amplía la compatibilidad con plataformas de IA."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "悬浮标签全新设计",
-            "en": "Floating Tag Redesigned"
+            "en": "Floating Tag Redesigned",
+            "ja": "フローティングラベルのデザインを刷新",
+            "es": "Etiqueta flotante renovada"
           },
           "description": {
             "zh-CN": "重新设计悬浮标签视觉效果，更加精致美观，交互体验更流畅自然",
-            "en": "Redesigned floating tag visuals for a more refined look and smoother interaction experience"
+            "en": "Redesigned floating tag visuals for a more refined look and smoother interaction experience",
+            "ja": "フローティングラベルをより洗練された見た目に改め、操作時の使い心地も改善しました。",
+            "es": "Se rediseñó la etiqueta flotante para ofrecer una apariencia más cuidada y una interacción más fluida."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "浏览器兼容性大优化",
-            "en": "Major Browser Compatibility Improvement"
+            "en": "Major Browser Compatibility Improvement",
+            "ja": "ブラウザ互換性を大幅に改善",
+            "es": "Mejor compatibilidad con navegadores"
           },
           "description": {
             "zh-CN": "现在 Dia、夸克等任何浏览器中，都能正常打开本扩展的界面了",
-            "en": "Now the extension interface works properly in any browser including Dia, Quark, and more"
+            "en": "Now the extension interface works properly in any browser including Dia, Quark, and more",
+            "ja": "Dia、Quark などを含むブラウザで拡張機能の画面が正常に表示されるよう改善しました。",
+            "es": "La interfaz de la extensión ahora funciona correctamente en navegadores como Dia y Quark, entre otros."
           }
         },
         {
           "type": "new",
           "title": {
             "zh-CN": "智能使用引导",
-            "en": "Smart Usage Guide"
+            "en": "Smart Usage Guide",
+            "ja": "使い方を案内するガイドを追加",
+            "es": "Guía de uso"
           },
           "description": {
             "zh-CN": "在 Chrome、Edge 浏览器内部页面点击扩展时，显示品牌化引导弹窗，告诉你如何正确使用",
-            "en": "When clicking the extension on browser internal pages, a branded guide popup appears to help you get started"
+            "en": "When clicking the extension on browser internal pages, a branded guide popup appears to help you get started",
+            "ja": "ブラウザ内のページで拡張機能を押すと、使い始め方を案内する Chat Memo のポップアップが表示されます。",
+            "es": "Al hacer clic en la extensión desde una página interna del navegador, aparece una guía de Chat Memo para ayudarte a empezar."
           }
         }
       ]
@@ -383,44 +515,60 @@
       "version": "v1.1.2",
       "date": {
         "zh-CN": "2025年11月29日",
-        "en": "November 29, 2025"
+        "en": "November 29, 2025",
+        "ja": "2025年11月29日",
+        "es": "29 de noviembre de 2025"
       },
       "summary": {
         "zh-CN": "新增 Kimi 平台支持，修复豆包平台问题，大幅提升浏览器兼容性，让你在任何浏览器中都能流畅使用！",
-        "en": "Added Kimi platform support, fixed Doubao platform issues, and greatly improved browser compatibility for seamless use in any browser!"
+        "en": "Added Kimi platform support, fixed Doubao platform issues, and greatly improved browser compatibility for seamless use in any browser!",
+        "ja": "Kimi への対応、Doubao の修正、ブラウザ互換性の大幅改善を行いました。",
+        "es": "Añade compatibilidad con Kimi, corrige problemas de Doubao y mejora considerablemente la compatibilidad con navegadores."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "新 AI 对话平台支持",
-            "en": "New AI Platform Support"
+            "en": "New AI Platform Support",
+            "ja": "対応する AI サービスを追加",
+            "es": "Nueva plataforma de IA"
           },
           "description": {
             "zh-CN": "新增支持 Kimi 平台，现在可以自动保存 Kimi 的对话记录了",
-            "en": "Added support for Kimi platform, now you can automatically save Kimi conversation records"
+            "en": "Added support for Kimi platform, now you can automatically save Kimi conversation records",
+            "ja": "Kimi に対応し、会話を自動保存できるようになりました。",
+            "es": "Se añadió compatibilidad con Kimi para guardar automáticamente sus conversaciones."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "豆包平台修复",
-            "en": "Doubao Platform Fix"
+            "en": "Doubao Platform Fix",
+            "ja": "Doubao の問題を修正",
+            "es": "Corrección de Doubao"
           },
           "description": {
             "zh-CN": "修复了豆包平台消息保存失败的问题，确保所有对话都能可靠保存",
-            "en": "Fixed message saving failure issue on Doubao platform, ensuring all conversations are reliably saved"
+            "en": "Fixed message saving failure issue on Doubao platform, ensuring all conversations are reliably saved",
+            "ja": "Doubao でメッセージを保存できない問題を修正し、会話を安定して残せるようにしました。",
+            "es": "Se corrigió un fallo que impedía guardar mensajes de Doubao de forma fiable."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "浏览器兼容性大优化",
-            "en": "Major Browser Compatibility Improvement"
+            "en": "Major Browser Compatibility Improvement",
+            "ja": "ブラウザ互換性を大幅に改善",
+            "es": "Mejor compatibilidad con navegadores"
           },
           "description": {
             "zh-CN": "兼容性大优化：现在 Dia、夸克等任何浏览器中，都能正常打开本扩展的界面了",
-            "en": "Major compatibility optimization: Now the extension interface works properly in any browser including Dia, Quark, and more"
+            "en": "Major compatibility optimization: Now the extension interface works properly in any browser including Dia, Quark, and more",
+            "ja": "Dia、Quark などを含むブラウザで拡張機能の画面が正常に表示されるよう、互換性を改善しました。",
+            "es": "Se optimizó la interfaz de la extensión para que funcione correctamente en navegadores como Dia y Quark, entre otros."
           }
         }
       ]
@@ -429,55 +577,75 @@
       "version": "v1.1.0",
       "date": {
         "zh-CN": "2025年8月12日",
-        "en": "August 12, 2025"
+        "en": "August 12, 2025",
+        "ja": "2025年8月12日",
+        "es": "12 de agosto de 2025"
       },
       "summary": {
         "zh-CN": "新增豆包、Claude平台支持，长消息收折显示优化阅读体验，同时修复导出和对话时间相关问题",
-        "en": "Added support for Doubao and Claude platforms, optimized reading experience with long message collapsing, and fixed export and conversation timing issues"
+        "en": "Added support for Doubao and Claude platforms, optimized reading experience with long message collapsing, and fixed export and conversation timing issues",
+        "ja": "Doubao と Claude に対応。長いメッセージを折りたたんで読みやすくし、エクスポートと会話の日時に関する問題も修正しました。",
+        "es": "Añade compatibilidad con Doubao y Claude, mejora la lectura de mensajes largos y corrige problemas de exportación y fechas de conversación."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "我们支持新的 AI 平台啦",
-            "en": "We support new AI platforms"
+            "en": "We support new AI platforms",
+            "ja": "新たな AI サービスに対応",
+            "es": "Nuevas plataformas de IA"
           },
           "description": {
             "zh-CN": "现在在豆包、Claude两个主流 AI 平台，也能自动保存对话记录了",
-            "en": "Now you can automatically save conversation records in Doubao and Claude, two mainstream AI platforms"
+            "en": "Now you can automatically save conversation records in Doubao and Claude, two mainstream AI platforms",
+            "ja": "Doubao と Claude の会話も自動保存できるようになりました。",
+            "es": "Ahora puedes guardar automáticamente conversaciones de Doubao y Claude."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "长消息收折显示，优化阅读体验",
-            "en": "Long Message Collapsing, Optimized Reading Experience"
+            "en": "Long Message Collapsing, Optimized Reading Experience",
+            "ja": "長いメッセージを折りたたみ、読みやすく",
+            "es": "Mensajes largos plegables"
           },
           "description": {
             "zh-CN": "在详情页中，过长的对话将会收折显示，优化阅读体验和页面性能",
-            "en": "Long conversations in detail pages will be collapsed for better reading experience and page performance"
+            "en": "Long conversations in detail pages will be collapsed for better reading experience and page performance",
+            "ja": "詳細画面で長い会話を折りたたみ、読みやすさとページの動作を改善しました。",
+            "es": "Los mensajes largos se pueden plegar en la vista de detalles para facilitar la lectura y mejorar el rendimiento."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "优化导出功能",
-            "en": "Export Feature Optimization"
+            "en": "Export Feature Optimization",
+            "ja": "エクスポート機能を改善",
+            "es": "Mejoras de exportación"
           },
           "description": {
             "zh-CN": "优化导出相关的样式与国际化问题，提升用户体验",
-            "en": "Optimized export-related styling and internationalization issues for better user experience"
+            "en": "Optimized export-related styling and internationalization issues for better user experience",
+            "ja": "エクスポートに関する表示と多言語対応の問題を修正しました。",
+            "es": "Se mejoraron los estilos y la compatibilidad de idiomas de la función de exportación."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "对话时间戳修复",
-            "en": "Conversation Timestamp Fix"
+            "en": "Conversation Timestamp Fix",
+            "ja": "会話の日時を修正",
+            "es": "Corrección de las fechas de conversación"
           },
           "description": {
             "zh-CN": "修复重进已保存对话的源网页会导致最近对话时间变更的问题",
-            "en": "Fixed issue where re-entering saved conversation source pages would change recent conversation timestamps"
+            "en": "Fixed issue where re-entering saved conversation source pages would change recent conversation timestamps",
+            "ja": "保存済みの会話の元ページを再び開くと、会話の日時が変わってしまう問題を修正しました。",
+            "es": "Se corrigió un problema que cambiaba las fechas de las conversaciones recientes al volver a abrir sus páginas originales."
           }
         }
       ]
@@ -486,66 +654,90 @@
       "version": "v1.0.10",
       "date": {
         "zh-CN": "2025年7月24日",
-        "en": "July 24, 2025"
+        "en": "July 24, 2025",
+        "ja": "2025年7月24日",
+        "es": "24 de julio de 2025"
       },
       "summary": {
         "zh-CN": "新增筛选与多选导出功能，优化悬浮标签体验，并解决了多个重要问题，提升插件稳定性和国际化支持！",
-        "en": "Added filtering and multi-select export features, optimized floating tag experience, and resolved several important issues to improve plugin stability and internationalization support!"
+        "en": "Added filtering and multi-select export features, optimized floating tag experience, and resolved several important issues to improve plugin stability and internationalization support!",
+        "ja": "フィルターと複数選択によるエクスポートを追加。フローティングラベルの操作を改善し、安定性と多言語対応に関する問題も修正しました。",
+        "es": "Añade filtros y exportación de varias conversaciones, mejora la etiqueta flotante y corrige problemas de estabilidad y compatibilidad de idiomas."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "筛选与多选导出功能",
-            "en": "Filtering and Multi-select Export Feature"
+            "en": "Filtering and Multi-select Export Feature",
+            "ja": "フィルターと複数選択によるエクスポート",
+            "es": "Filtros y exportación múltiple"
           },
           "description": {
             "zh-CN": "现在可以按平台、时间范围筛选对话；并且按需多选对话导出",
-            "en": "Now you can filter conversations by platform and time range; and multi-select conversations for export as needed"
+            "en": "Now you can filter conversations by platform and time range; and multi-select conversations for export as needed",
+            "ja": "プラットフォームや期間で会話を絞り込み、必要な会話を複数選んでエクスポートできるようになりました。",
+            "es": "Ahora puedes filtrar conversaciones por plataforma y período, seleccionar varias y exportarlas según necesites."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "悬浮标签贴边隐藏",
-            "en": "Floating Tag Edge Auto-hide"
+            "en": "Floating Tag Edge Auto-hide",
+            "ja": "画面端でフローティングラベルを半分隠す機能",
+            "es": "La etiqueta flotante se oculta en los bordes"
           },
           "description": {
             "zh-CN": "当拖拽悬浮标签接近屏幕边缘时，会显示视觉引导提示，松手后标签会贴边半隐藏",
-            "en": "When dragging the floating tag near screen edges, visual guidance prompts appear, and the tag will semi-hide at the edge after release"
+            "en": "When dragging the floating tag near screen edges, visual guidance prompts appear, and the tag will semi-hide at the edge after release",
+            "ja": "ラベルを画面端へドラッグすると案内が表示され、離した後は端に半分隠れるようになりました。",
+            "es": "Al arrastrarla hacia un borde de la pantalla, aparecen indicaciones visuales. Al soltarla, queda parcialmente oculta."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "界面显示稳定性提升",
-            "en": "UI Display Stability Fix"
+            "en": "UI Display Stability Fix",
+            "ja": "画面表示をより安定させました",
+            "es": "Visualización más estable"
           },
           "description": {
             "zh-CN": "解决图标在国际网络环境较差时无法显示的问题，提升插件稳定性",
-            "en": "Fixed icon display issues in poor international network environments, improving plugin stability"
+            "en": "Fixed icon display issues in poor international network environments, improving plugin stability",
+            "ja": "国際ネットワークの接続状態が悪い環境でアイコンが表示されない問題を修正しました。",
+            "es": "Se corrigieron problemas de visualización de iconos en redes internacionales con poca conectividad."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "导出文件名乱码修复",
-            "en": "Export Filename Encoding Fix"
+            "en": "Export Filename Encoding Fix",
+            "ja": "エクスポートファイル名の文字化けを修正",
+            "es": "Corrección de nombres de archivo exportados"
           },
           "description": {
             "zh-CN": "扩展导出文件的字符支持，新增日文平假名、片假名、韩文字符支持，修复日文用户导出 zip 文件时的文件名乱码问题",
-            "en": "Extended character support for exported files, added support for Japanese Hiragana, Katakana, and Korean characters, fixed filename encoding issues when Japanese users export zip files"
+            "en": "Extended character support for exported files, added support for Japanese Hiragana, Katakana, and Korean characters, fixed filename encoding issues when Japanese users export zip files",
+            "ja": "エクスポートするファイル名で使える文字を増やし、日本語のひらがな・カタカナと韓国語に対応しました。日本語ユーザーが ZIP をエクスポートした際のファイル名の文字化けも修正しました。",
+            "es": "Se amplió la compatibilidad de caracteres de los archivos exportados para incluir hiragana, katakana y coreano, y se corrigió la codificación de nombres de ZIP al exportar en japonés."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "手动保存模式优化",
-            "en": "Manual Save Mode Fix"
+            "en": "Manual Save Mode Fix",
+            "ja": "手動保存モードを修正",
+            "es": "Corrección del modo de guardado manual"
           },
           "description": {
             "zh-CN": "避免手动保存模式下，刷新页面会触发自动保存",
-            "en": "Prevent automatic saving from being triggered when refreshing the page in manual save mode"
+            "en": "Prevent automatic saving from being triggered when refreshing the page in manual save mode",
+            "ja": "手動保存モードでページを再読み込みしたときに、自動保存が始まらないよう修正しました。",
+            "es": "Se evitó que actualizar la página activara el guardado automático mientras estaba seleccionado el modo manual."
           }
         }
       ]
@@ -554,44 +746,60 @@
       "version": "v1.0.9",
       "date": {
         "zh-CN": "2025年7月6日",
-        "en": "July 6, 2025"
+        "en": "July 6, 2025",
+        "ja": "2025年7月6日",
+        "es": "6 de julio de 2025"
       },
       "summary": {
         "zh-CN": "优化了记录管理体验，现在可以直接在列表中修改标题，同时增强了数据持久化能力，让你的聊天记录更安全！",
-        "en": "Optimized record management experience. You can now edit titles directly in the list, and enhanced data persistence to keep your chat records safer!"
+        "en": "Optimized record management experience. You can now edit titles directly in the list, and enhanced data persistence to keep your chat records safer!",
+        "ja": "記録を管理しやすくしました。一覧からタイトルを直接編集できるようになり、会話の記録を守るためにデータ保持も強化しました。",
+        "es": "Mejora la gestión de registros: ahora puedes editar títulos directamente en la lista y contar con una mayor protección de los datos guardados."
       },
       "features": [
         {
           "type": "improvement",
           "title": {
             "zh-CN": "列表直接编辑",
-            "en": "Direct List Editing"
+            "en": "Direct List Editing",
+            "ja": "一覧から直接編集",
+            "es": "Editar títulos desde la lista"
           },
           "description": {
             "zh-CN": "现在可以在记录列表上直接修改标题了",
-            "en": "You can now edit titles directly in the record list"
+            "en": "You can now edit titles directly in the record list",
+            "ja": "記録の一覧でタイトルを直接編集できるようになりました。",
+            "es": "Ahora puedes cambiar los títulos directamente en la lista de conversaciones."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "交互优化",
-            "en": "Interaction Optimization"
+            "en": "Interaction Optimization",
+            "ja": "操作性を改善",
+            "es": "Mejoras de interacción"
           },
           "description": {
             "zh-CN": "优化了记录卡片和详情页的交互",
-            "en": "Optimized interactions for record cards and detail pages"
+            "en": "Optimized interactions for record cards and detail pages",
+            "ja": "記録カードと詳細画面の操作を改善しました。",
+            "es": "Se mejoraron las interacciones de las tarjetas de registro y las páginas de detalles."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "数据持久化增强",
-            "en": "Enhanced Data Persistence"
+            "en": "Enhanced Data Persistence",
+            "ja": "データ保持を強化",
+            "es": "Mayor protección de los datos"
           },
           "description": {
             "zh-CN": "数据持久化增强: 防止数据被浏览器自动清理",
-            "en": "Enhanced data persistence: prevents data from being automatically cleared by the browser"
+            "en": "Enhanced data persistence: prevents data from being automatically cleared by the browser",
+            "ja": "ブラウザによって保存データが自動的に消去されにくいよう、データ保持の仕組みを強化しました。",
+            "es": "Se reforzó la persistencia para evitar que el navegador borre los datos automáticamente."
           }
         }
       ]
@@ -600,22 +808,30 @@
       "version": "v1.0.8",
       "date": {
         "zh-CN": "2025年7月3日",
-        "en": "July 3, 2025"
+        "en": "July 3, 2025",
+        "ja": "2025年7月3日",
+        "es": "3 de julio de 2025"
       },
       "summary": {
         "zh-CN": "感谢用户 @James 的建议，你要的合并导出聊天记录为单一文件的功能来了，方便大家与 AI 平台对话交互 🥰",
-        "en": "Thanks to user @James' suggestion, the feature to merge and export chat records into a single file is here, making it convenient for everyone to interact with AI platforms 🥰"
+        "en": "Thanks to user @James' suggestion, the feature to merge and export chat records into a single file is here, making it convenient for everyone to interact with AI platforms 🥰",
+        "ja": "@James さんの提案を受け、会話記録を 1 つのファイルにまとめてエクスポートできるようになりました。AI サービスとのやり取りにも便利です 🥰",
+        "es": "Gracias a la sugerencia de @James, ya puedes combinar tus conversaciones y exportarlas en un solo archivo para usarlas más fácilmente con otras plataformas de IA 🥰"
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "导出功能",
-            "en": "Export Feature"
+            "en": "Export Feature",
+            "ja": "エクスポート機能",
+            "es": "Exportación en un solo archivo"
           },
           "description": {
             "zh-CN": "新增「合并为一个文档」导出的功能，方便与 AI 平台对话",
-            "en": "Added 'merge into one document' export feature for convenient AI platform conversations"
+            "en": "Added 'merge into one document' export feature for convenient AI platform conversations",
+            "ja": "会話を 1 つの文書にまとめてエクスポートする機能を追加しました。AI サービスにまとめて渡す際に便利です。",
+            "es": "Se añadió la opción de combinar conversaciones en un solo documento al exportarlas."
           }
         }
       ]
@@ -624,33 +840,45 @@
       "version": "v1.0.7",
       "date": {
         "zh-CN": "2025年7月2日",
-        "en": "July 2, 2025"
+        "en": "July 2, 2025",
+        "ja": "2025年7月2日",
+        "es": "2 de julio de 2025"
       },
       "summary": {
         "zh-CN": "文案优化和 Gemini 平台功能增强，再也不怕多用户状态下，Gemini 的对话记录无法保存了！感谢用户 @William、LUCIFER 的反馈 🙌",
-        "en": "Copy optimization and Gemini platform enhancements. No more worries about Gemini conversation records not being saved in multi-user scenarios! Thanks to users @William and LUCIFER for their feedback 🙌"
+        "en": "Floating-label wording and Gemini platform enhancements. No more worries about Gemini conversation records not being saved in multi-user scenarios! Thanks to users @William and LUCIFER for their feedback 🙌",
+        "ja": "フローティングラベルの文言を見直し、Gemini への対応を改善しました。複数ユーザーで Gemini を使う場合でも会話を保存しやすくなりました。フィードバックを寄せてくださった @William さんと LUCIFER さんに感謝します 🙌",
+        "es": "Ajustes en el texto de la etiqueta flotante y mejoras de compatibilidad con Gemini. Las conversaciones de Gemini también se guardan en situaciones con varias cuentas. Gracias a @William y LUCIFER por sus comentarios 🙌"
       },
       "features": [
         {
           "type": "improvement",
           "title": {
             "zh-CN": "文案优化",
-            "en": "Copy Optimization"
+            "en": "Floating Label Wording",
+            "ja": "フローティングラベルの文言を改善",
+            "es": "Mejora del texto de la etiqueta"
           },
           "description": {
             "zh-CN": "修正悬浮标签「自动记忆中」文案为「自动记忆」，防止误解",
-            "en": "Fixed floating label text from 'Auto Memorizing' to 'Auto Memory' to prevent misunderstanding"
+            "en": "Fixed floating label text from 'Auto Memorizing' to 'Auto Memory' to prevent misunderstanding",
+            "ja": "誤解を招かないよう、フローティングラベルの文言を「Auto Memorizing」から「Auto Memory」に変更しました。",
+            "es": "Se cambió «Auto Memorizing» por «Auto Memory» en la etiqueta flotante para evitar confusiones."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "Gemini 平台增强",
-            "en": "Gemini Platform Enhancement"
+            "en": "Gemini Platform Enhancement",
+            "ja": "Gemini への対応を拡張",
+            "es": "Mayor compatibilidad con Gemini"
           },
           "description": {
             "zh-CN": "新增对 `/*/*/app/*` 和 `/*/*/gem/*/*` URL 格式的支持",
-            "en": "Added support for `/*/*/app/*` and `/*/*/gem/*/*` URL formats"
+            "en": "Added support for `/*/*/app/*` and `/*/*/gem/*/*` URL formats",
+            "ja": "`/*/*/app/*` と `/*/*/gem/*/*` の URL 形式に対応しました。",
+            "es": "Se añadió compatibilidad con los formatos de URL `/*/*/app/*` y `/*/*/gem/*/*`."
           }
         }
       ]
@@ -659,22 +887,30 @@
       "version": "v1.0.6",
       "date": {
         "zh-CN": "2025年7月1日",
-        "en": "July 1, 2025"
+        "en": "July 1, 2025",
+        "ja": "2025年7月1日",
+        "es": "1 de julio de 2025"
       },
       "summary": {
         "zh-CN": "增加首次安装引导功能，方便你们快速上手～",
-        "en": "Added first-time installation guide feature to help you get started quickly~"
+        "en": "Added first-time installation guide feature to help you get started quickly~",
+        "ja": "初回インストール時のガイドを追加し、使い始めやすくしました。",
+        "es": "Añade una guía de primera instalación para ayudarte a empezar."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "安装引导",
-            "en": "Installation Guide"
+            "en": "Installation Guide",
+            "ja": "インストールガイド",
+            "es": "Guía de instalación"
           },
           "description": {
             "zh-CN": "增加了首次下载安装时，弹出引导网页的功能",
-            "en": "Added feature to show guide webpage when first downloading and installing"
+            "en": "Added feature to show guide webpage when first downloading and installing",
+            "ja": "初めてダウンロード・インストールした際に、使い方を案内する Web ページを表示するようにしました。",
+            "es": "Se añadió una página de guía que aparece al descargar e instalar la extensión por primera vez."
           }
         }
       ]
@@ -683,66 +919,90 @@
       "version": "v1.0.5",
       "date": {
         "zh-CN": "2025年6月30日",
-        "en": "June 30, 2025"
+        "en": "June 30, 2025",
+        "ja": "2025年6月30日",
+        "es": "30 de junio de 2025"
       },
       "summary": {
         "zh-CN": "Chat Memo 的第一个对外公开版本，祝大家使用愉快！",
-        "en": "Chat Memo's first public release version, hope everyone enjoys using it!"
+        "en": "Chat Memo's first public release version, hope everyone enjoys using it!",
+        "ja": "Chat Memo の最初の公開バージョンです。ぜひ使ってみてください！",
+        "es": "¡Primera versión pública de Chat Memo! Esperamos que disfrutes usándola."
       },
       "features": [
         {
           "type": "new",
           "title": {
             "zh-CN": "关键词搜索功能",
-            "en": "Keyword Search Feature"
+            "en": "Keyword Search Feature",
+            "ja": "キーワード検索",
+            "es": "Búsqueda por palabras clave"
           },
           "description": {
             "zh-CN": "新增了强大的关键词搜索功能，可以快速在所有对话记录中查找内容",
-            "en": "Added powerful keyword search functionality to quickly find content across all conversation records"
+            "en": "Added powerful keyword search functionality to quickly find content across all conversation records",
+            "ja": "すべての会話記録を横断して、内容をすばやく見つけられるキーワード検索を追加しました。",
+            "es": "Se añadió una búsqueda por palabras clave para encontrar contenido en todas tus conversaciones."
           }
         },
         {
           "type": "fix",
           "title": {
             "zh-CN": "Gemini 平台修复",
-            "en": "Gemini Platform Fix"
+            "en": "Gemini Platform Fix",
+            "ja": "Gemini の問題を修正",
+            "es": "Corrección de Gemini"
           },
           "description": {
             "zh-CN": "修复了 Gemini 平台的问题，确保刷新页面后不会丢失消息记录",
-            "en": "Fixed Gemini platform issues, ensuring message records won't be lost after page refresh"
+            "en": "Fixed Gemini platform issues, ensuring message records won't be lost after page refresh",
+            "ja": "ページを再読み込みした後に Gemini のメッセージ記録が失われる問題を修正しました。",
+            "es": "Se corrigieron problemas de Gemini para evitar que se pierdan mensajes al actualizar la página."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "品牌更名",
-            "en": "Brand Rename"
+            "en": "Brand Rename",
+            "ja": "製品名を変更",
+            "es": "Cambio de nombre"
           },
           "description": {
             "zh-CN": "产品名称正式更新为 \"Chat Memo\"，以更好地反映其核心价值",
-            "en": "Product name officially updated to \"Chat Memo\" to better reflect its core value"
+            "en": "Product name officially updated to \"Chat Memo\" to better reflect its core value",
+            "ja": "製品の中心的な価値が伝わるよう、正式名称を「Chat Memo」に変更しました。",
+            "es": "El producto pasó a llamarse oficialmente «Chat Memo» para reflejar mejor su propósito."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "官方网站入口",
-            "en": "Official Website Entry"
+            "en": "Official Website Entry",
+            "ja": "公式サイトへの入口を追加",
+            "es": "Acceso al sitio oficial"
           },
           "description": {
             "zh-CN": "增加了官方网站入口",
-            "en": "Added official website entry"
+            "en": "Added official website entry",
+            "ja": "公式サイトにアクセスできる入口を追加しました。",
+            "es": "Se añadió un enlace al sitio oficial."
           }
         },
         {
           "type": "improvement",
           "title": {
             "zh-CN": "界面UI优化",
-            "en": "UI Optimization"
+            "en": "UI Optimization",
+            "ja": "画面表示を改善",
+            "es": "Mejoras de interfaz"
           },
           "description": {
             "zh-CN": "优化了界面 UI 细节",
-            "en": "Optimized UI details"
+            "en": "Optimized UI details",
+            "ja": "画面の細かなデザインを整えました。",
+            "es": "Se ajustaron detalles de la interfaz."
           }
         }
       ]
