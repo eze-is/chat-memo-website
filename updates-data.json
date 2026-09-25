@@ -3,14 +3,25 @@
     {
       "version": "v1.5.0",
       "date": {
-        "zh-CN": "2026年9月24日",
-        "en": "September 24, 2026"
+        "zh-CN": "2026年9月25日",
+        "en": "September 25, 2026"
       },
       "summary": {
-        "zh-CN": "新增按平台控制自动保存，并改进当前会话识别、重复记录管理与 Google AI Mode 的保存归属。",
-        "en": "Adds per-platform auto-save controls and improves current-conversation identification, duplicate management, and Google AI Mode save targeting."
+        "zh-CN": "新增日语和西班牙语界面、按平台控制自动保存，并改进窄侧栏布局与对话保存。",
+        "en": "Adds Japanese and Spanish interfaces and per-platform auto-save controls, with better narrow-sidebar layouts and conversation saving."
       },
       "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "新增日语和西班牙语界面",
+            "en": "Japanese and Spanish interfaces"
+          },
+          "description": {
+            "zh-CN": "Chrome 界面语言为日语或西班牙语时，插件会自动显示对应语言。已保存的对话原文保持不变；未支持的界面语言继续回退英文。",
+            "en": "When Chrome's interface language is Japanese or Spanish, Chat Memo displays its interface in that language. Saved conversation text stays unchanged; unsupported interface languages fall back to English."
+          }
+        },
         {
           "type": "new",
           "title": {
@@ -31,6 +42,17 @@
           "description": {
             "zh-CN": "列表标出当前网页对应的记录，暂停时显示「自动保存已暂停」。若发现同一对话有多份本地记录，可进入管理；已有副本不会自动合并或删除。",
             "en": "The library marks the record matching the current page and shows when auto-save is paused. If multiple local records match a conversation, you can review them; existing copies are not automatically merged or deleted."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "优化窄侧栏与混合语言阅读",
+            "en": "Better narrow-sidebar layout and mixed-language reading"
+          },
+          "description": {
+            "zh-CN": "搜索、多选、导出和日期筛选会随侧栏宽度调整，减少文字错位；中日英等混排的标题和正文显示更一致。",
+            "en": "Search, multi-select, export, and date filters adapt to narrower sidebars, while titles and content with mixed scripts render more consistently."
           }
         },
         {
