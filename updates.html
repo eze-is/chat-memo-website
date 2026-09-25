@@ -410,8 +410,8 @@
         // 语言检测函数
         function detectLanguage() {
             const browserLang = navigator.language || navigator.userLanguage;
-            // 默认使用中文，只有明确是英文环境时才使用英文
-            return browserLang.startsWith('en') ? 'en' : 'zh-CN';
+            // 默认使用英文，只有明确检测到中文时才使用中文
+            return browserLang.startsWith('zh') ? 'zh-CN' : 'en';
         }
         
         // 应用翻译
