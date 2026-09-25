@@ -336,7 +336,7 @@
           "description": {
             "zh-CN": "修复豆包平台前端更新移除 data-testid 属性后导致的对话无法保存问题，改用更稳定的业务语义属性重新适配",
             "en": "Fixed conversation saving failures caused by Doubao removing the data-testid attribute in a frontend update by switching to more stable semantic business attributes",
-            "ja": "Doubao の画面更新で data-testid 属性が削除され、会話を保存できなくなっていた問題を修正しました。より安定した意味上の属性を使う方式に切り替えています。",
+            "ja": "Doubao の画面更新で data-testid 属性が削除され、会話を保存できなくなっていた問題を修正しました。画面変更の影響を受けにくい属性に切り替えています。",
             "es": "Se corrigió un fallo de guardado provocado por la eliminación del atributo data-testid en una actualización de Doubao, usando atributos semánticos más estables."
           }
         },

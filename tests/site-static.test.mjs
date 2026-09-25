@@ -64,6 +64,7 @@ test('12 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
             assert.equal(textOf(title), catalog.meta[page].title, file);
             const description = find(document, (node) => node.tagName === 'meta' && attribute(node, 'name') === 'description');
             assert.equal(attribute(description, 'content'), catalog.meta[page].description, file);
+            assert.equal(find(document, (node) => node.tagName === 'meta' && attribute(node, 'name') === 'keywords'), null, `${file} obsolete keywords`);
             const canonicalLink = find(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'canonical');
             assert.equal(attribute(canonicalLink, 'href'), canonical, file);
             for (const name of ['og:url', 'twitter:url']) {
