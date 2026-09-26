@@ -50,12 +50,21 @@ function textFromMarkup(markup) {
     return textOf(parseFragment(markup));
 }
 
+function assertNavigationScript(document, file) {
+    const scripts = all(document, (node) => node.tagName === 'script');
+    const navScripts = scripts.filter((node) => attribute(node, 'src') === '/site-nav.js');
+    assert.equal(navScripts.length, 1, `${file} single navigation script`);
+    const initIndex = scripts.findIndex((node) => textOf(node).includes('SiteNav.init()'));
+    assert.ok(initIndex > scripts.indexOf(navScripts[0]), `${file} navigation initializes after script load`);
+}
+
 test('12 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返语言链接', () => {
     for (const page of Object.keys(pages)) {
         for (const locale of locales) {
             const file = path.join(root, locale, pages[page]);
             const html = fs.readFileSync(file, 'utf8');
             const document = parse(html);
+            assertNavigationScript(document, file);
             const catalog = catalogs[locale];
             const canonical = `${origin}${route(locale, page)}`;
             const htmlElement = find(document, (node) => node.tagName === 'html');
@@ -89,11 +98,26 @@ test('12 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
             assert.ok(find(document, (node) => attribute(node, 'id') === 'navbar-container')?.childNodes?.length, `${file} navbar`);
             assert.ok(find(document, (node) => attribute(node, 'id') === 'footer-container')?.childNodes?.length, `${file} footer`);
             assert.doesNotMatch(html, /(?:src|href|poster)="resource\//, `${file} relative asset`);
-            for (const select of all(document, (node) => node.tagName === 'select' && attribute(node, 'data-site-locale-select') !== undefined)) {
-                const selected = all(select, (node) => node.tagName === 'option' && attribute(node, 'selected') !== undefined);
-                assert.equal(selected.length, 1, `${file} selected locale count`);
-                assert.equal(attribute(selected[0], 'value'), locale, `${file} selected locale`);
-            }
+            const triggers = all(document, (node) => node.tagName === 'button' && attribute(node, 'data-site-locale-trigger') !== undefined);
+            assert.equal(triggers.length, 1, `${file} single language control`);
+            const trigger = triggers[0];
+            assert.equal(attribute(trigger, 'aria-label'), catalog.common['language-label'], `${file} language label`);
+            assert.equal(attribute(trigger, 'aria-expanded'), 'false', `${file} menu initially collapsed`);
+            assert.ok(find(trigger, (node) => node.tagName === 'svg' && attribute(node, 'aria-hidden') === 'true'), `${file} decorative language icon`);
+            const panels = all(document, (node) => attribute(node, 'data-site-locale-options') !== undefined);
+            assert.equal(panels.length, 1, `${file} single language menu`);
+            const panel = panels[0];
+            assert.equal(attribute(trigger, 'aria-controls'), attribute(panel, 'id'), `${file} menu association`);
+            assert.ok(attribute(panel, 'hidden') !== undefined, `${file} menu initially hidden`);
+            const mobileTrigger = find(document, (node) => attribute(node, 'id') === 'mobile-menu-button');
+            assert.equal(attribute(mobileTrigger, 'aria-controls'), 'mobile-menu', `${file} mobile menu association`);
+            assert.equal(attribute(mobileTrigger, 'aria-expanded'), 'false', `${file} mobile menu initially collapsed`);
+            const options = all(panel, (node) => node.tagName === 'button' && attribute(node, 'data-site-locale-option') !== undefined);
+            assert.deepEqual(options.map((node) => attribute(node, 'data-site-locale-option')), ['zh-CN', 'en', 'ja', 'es'], `${file} language choices`);
+            const selected = options.filter((node) => attribute(node, 'aria-current') === 'true');
+            assert.equal(selected.length, 1, `${file} selected locale count`);
+            assert.equal(attribute(selected[0], 'data-site-locale-option'), locale, `${file} selected locale`);
+            assert.equal(all(document, (node) => node.tagName === 'select' && attribute(node, 'data-site-locale-select') !== undefined).length, 0, `${file} native picker retired`);
             for (const link of all(document, (node) => node.tagName === 'a' && attribute(node, 'title') === 'WeChat')) {
                 assert.equal(attribute(link, 'href'), '#', `${file} WeChat placeholder`);
             }
@@ -132,11 +156,20 @@ test('sitemap 只列 12 个 canonical，未知路由有真实 404 文件', () =>
 test('中立入口指向稳定英文地址；静态正文不依赖脚本成功才可见', () => {
     for (const [page, file] of Object.entries(pages)) {
         const document = parse(fs.readFileSync(path.join(root, file), 'utf8'));
+        assertNavigationScript(document, file);
         const canonical = find(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'canonical');
         assert.equal(attribute(canonical, 'href'), `${origin}${route('en', page)}`);
         if (page === 'home') continue;
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         assert.doesNotMatch(html, /\.js \.(content|updates)-section/);
         assert.match(html, /\.intro-running \.(content|updates)-section/);
+    }
+});
+
+test('三页先启动语言加载并立即绑定导航，再等待词包完成', () => {
+    for (const [page, file] of Object.entries(pages)) {
+        const html = fs.readFileSync(path.join(root, file), 'utf8');
+        const startup = new RegExp(`const\\s+i18nReady\\s*=\\s*SiteI18n\\.init\\('${page}'\\);\\s*SiteNav\\.init\\(\\);\\s*await\\s+i18nReady;`);
+        assert.match(html, startup, file);
     }
 });

@@ -96,19 +96,10 @@
         });
     }
 
-    function bindSelectors() {
-        document.querySelectorAll('[data-site-locale-select]').forEach((select) => {
-            select.value = locale;
-            if (select.dataset.siteLocaleBound === 'true') return;
-            select.dataset.siteLocaleBound = 'true';
-            select.addEventListener('change', (event) => {
-                try {
-                    choose(event.target.value);
-                } catch (error) {
-                    console.error('切换官网语言失败:', error);
-                    event.target.value = locale;
-                }
-            });
+    function updateLocaleSelection() {
+        document.querySelectorAll('[data-site-locale-option]').forEach((option) => {
+            if (option.dataset.siteLocaleOption === locale) option.setAttribute('aria-current', 'true');
+            else option.removeAttribute('aria-current');
         });
     }
 
@@ -130,7 +121,7 @@
             if (Object.hasOwn(dictionary, key)) element.setAttribute('aria-label', dictionary[key]);
         });
         updateInternalLinks();
-        bindSelectors();
+        updateLocaleSelection();
     }
 
     function choose(candidate) {
@@ -170,7 +161,7 @@
             // 静态页面仍可阅读；词包异常不应阻断导航和更新记录加载。
             console.error('官网英文语言文件加载失败，保留静态页面:', error);
             locale = requestedLocale;
-            bindSelectors();
+            updateLocaleSelection();
             return locale;
         }
         try {
@@ -180,7 +171,7 @@
             // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
             console.error('官网语言加载失败，保留静态页面:', error);
             locale = requestedLocale;
-            bindSelectors();
+            updateLocaleSelection();
             return locale;
         }
         apply();

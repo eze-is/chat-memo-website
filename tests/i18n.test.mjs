@@ -13,6 +13,24 @@ const catalogs = Object.fromEntries(locales.map((locale) => [
     JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'))
 ]));
 
+function createLocaleOptionsDocument() {
+    const options = Object.fromEntries(locales.map((locale) => {
+        const attributes = new Map();
+        return [locale, {
+            dataset: { siteLocaleOption: locale },
+            setAttribute(name, value) { attributes.set(name, String(value)); },
+            getAttribute(name) { return attributes.get(name) || null; },
+            removeAttribute(name) { attributes.delete(name); }
+        }];
+    }));
+    const document = {
+        documentElement: { lang: '', dataset: {} },
+        querySelectorAll: (selector) => selector === '[data-site-locale-option]' ? Object.values(options) : [],
+        title: ''
+    };
+    return { document, options };
+}
+
 test('四语页面词条和元信息与英文基准完整对齐', () => {
     for (const locale of locales) {
         const catalog = catalogs[locale];
@@ -58,7 +76,7 @@ test('全部历史更新四语完整，英文是唯一缺译兜底', () => {
     }
 });
 
-async function createRuntime({ url, languages, saved, fetchCatalog, storageUnavailable = false, page = 'home' }) {
+async function createRuntime({ url, languages, saved, fetchCatalog, storageUnavailable = false, page = 'home', withLocaleOptions = false }) {
     const storage = new Map(saved ? [['chat-memo-lang', saved]] : []);
     let writes = 0;
     const location = {
@@ -81,10 +99,10 @@ async function createRuntime({ url, languages, saved, fetchCatalog, storageUnava
         },
         history: { replaceState: (_, __, next) => { location.href = new URL(next, location.href).href; } }
     };
-    const fakeDocument = {
+    const localeUi = withLocaleOptions ? createLocaleOptionsDocument() : null;
+    const fakeDocument = localeUi?.document || {
         documentElement: { lang: '', dataset: {} },
         querySelectorAll: () => [],
-        querySelector: () => null,
         title: ''
     };
     const context = {
@@ -101,7 +119,7 @@ async function createRuntime({ url, languages, saved, fetchCatalog, storageUnava
     };
     vm.runInNewContext(fs.readFileSync(path.join(root, 'site-i18n.js'), 'utf8'), context);
     await fakeWindow.SiteI18n.init(page);
-    return { runtime: fakeWindow.SiteI18n, location, storage, getWrites: () => writes, document: fakeDocument };
+    return { runtime: fakeWindow.SiteI18n, location, storage, getWrites: () => writes, document: fakeDocument, localeUi };
 }
 
 test('分享链接优先于保存偏好，自动检测不写入偏好，手选才持久化', async () => {
@@ -152,6 +170,17 @@ test('手动切换直接导航到静态语言页，不依赖切换前的词包�
     context.runtime.choose('ja');
     assert.equal(context.location.href, 'https://chatmemo.ai/ja/updates?ref=header#latest');
     assert.equal(context.storage.get('chat-memo-lang'), 'ja');
+});
+
+test('运行时只标记当前语言选项，不接管导航菜单交互', async () => {
+    const context = await createRuntime({ url: 'https://chatmemo.ai/en/updates', languages: ['en'], page: 'updates', withLocaleOptions: true });
+    const { options } = context.localeUi;
+    assert.equal(options.en.getAttribute('aria-current'), 'true');
+    assert.equal(options.es.getAttribute('aria-current'), null);
+    options.es.setAttribute('aria-current', 'true');
+    context.runtime.apply();
+    assert.equal(options.en.getAttribute('aria-current'), 'true');
+    assert.equal(options.es.getAttribute('aria-current'), null);
 });
 
 test('英文词包失败时语言初始化不阻断静态页面', async () => {

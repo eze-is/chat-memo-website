@@ -16,6 +16,7 @@ Chat Memo 产品家族的公开官网，生产地址 `https://chatmemo.ai`。
 | 页面结构 / 四语静态页生成 | `index.html`、`welcome.html`、`updates.html`、`scripts/build-localized-pages.mjs` |
 | 线上资源 | `resource/` |
 | 官网多语言规则 / 翻译入口 | `doc/I18N.md`、`site-i18n.js`、`locales/{zh-CN,en,ja,es}.json` |
+| 顶部导航菜单交互 | `components/navbar.html`、`site-nav.js` |
 | 更新数据 | `updates-data.json` |
 | 浏览器插件正式发版 / 官网版本记录 | `../browser-extension/.agent/skills/browser-extension-release/SKILL.md` |
 | 更新海报与宣传 Markdown（仅显式要求宣传时） | `.agent/skills/chatmemo-release-marketing/SKILL.md` |

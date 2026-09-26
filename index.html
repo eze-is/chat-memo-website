@@ -100,6 +100,7 @@
 
     <!-- Google Analytics 4 -->
     <script src="/site-i18n.js"></script>
+    <script src="/site-nav.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -201,7 +202,9 @@
             // 加载导航组件
             await loadNavbar();
 
-            await SiteI18n.init('home');
+            const i18nReady = SiteI18n.init('home');
+            SiteNav.init();
+            await i18nReady;
 
             // 启动用户数量动画
             const userCountElement = document.getElementById('user-count');
@@ -212,39 +215,6 @@
             }
 
 
-
-            // 移动端菜单控制
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function () {
-                    mobileMenu.classList.toggle('hidden');
-
-                    // 更新按钮图标
-                    const svg = mobileMenuButton.querySelector('svg');
-                    const path = svg.querySelector('path');
-
-                    if (mobileMenu.classList.contains('hidden')) {
-                        // 显示汉堡菜单图标
-                        path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-                    } else {
-                        // 显示关闭图标
-                        path.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-                    }
-                });
-
-                // 使用事件委托处理移动端导航链接点击
-                mobileMenu.addEventListener('click', function (e) {
-                    const link = e.target.closest('a[href^="#"]');
-                    if (link) {
-                        mobileMenu.classList.add('hidden');
-                        const svg = mobileMenuButton.querySelector('svg');
-                        const path = svg.querySelector('path');
-                        path.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-                    }
-                });
-            }
 
             // 事件委托优化 - 使用单个事件监听器处理所有点击事件
             document.addEventListener('click', function (e) {
@@ -324,18 +294,40 @@
                 <a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-updates">Updates</a>
                 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-feedback">Feedback</a>
             </nav>
-            <div class="flex items-center gap-4">
-                <select data-site-locale-select="" aria-label="Language" data-aria-label-key="language-label" class="hidden lg:block w-28 h-10 rounded-lg border border-gray-300 bg-white px-2 text-sm font-medium text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="zh-CN">简体中文</option>
-                    <option value="en" selected="">English</option>
-                    <option value="ja">日本語</option>
-                    <option value="es">Español</option>
-                </select>
+            <div class="flex items-center gap-3">
+                <div data-site-locale-menu="" class="relative shrink-0">
+                    <button type="button" data-site-locale-trigger="" aria-label="Language" data-aria-label-key="language-label" aria-expanded="false" aria-controls="site-locale-options" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
+                        <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                             Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                        <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="m5 8 6 6"></path>
+                            <path d="m4 14 6-6 2-3"></path>
+                            <path d="M2 5h12"></path>
+                            <path d="M7 2h1"></path>
+                            <path d="m22 22-5-10-5 10"></path>
+                            <path d="M14 18h6"></path>
+                        </svg>
+                    </button>
+                    <div id="site-locale-options" data-site-locale-options="" hidden="" class="absolute right-0 top-full z-[60] mt-2 w-40 rounded-xl border border-gray-200 bg-white p-1.5 shadow-xl shadow-gray-900/10">
+                        <button type="button" data-site-locale-option="zh-CN" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>简体中文</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="en" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700" aria-current="true">
+                            <span>English</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="ja" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>日本語</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="es" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>Español</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                    </div>
+                </div>
                 <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
                     <span class="text-center" data-key="nav-chrome">Add to Chrome for Free</span>
                 </a>
-                <button id="mobile-menu-button" aria-label="Menu" data-aria-label-key="nav-menu" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 transition">
-                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button type="button" id="mobile-menu-button" aria-label="Menu" data-aria-label-key="nav-menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
+                    <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
@@ -348,12 +340,6 @@
                 <a href="/en/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-guide">Getting Started</a>
                 <a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">Updates</a>
                 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">Feedback</a>
-                <select data-site-locale-select="" aria-label="Language" data-aria-label-key="language-label" class="w-full text-gray-600 py-3 px-4 rounded-lg bg-white min-h-[48px] border border-gray-300">
-                    <option value="zh-CN">简体中文</option>
-                    <option value="en" selected="">English</option>
-                    <option value="ja">日本語</option>
-                    <option value="es">Español</option>
-                </select>
                 <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
                     <span data-key="nav-chrome-mobile">Add to Chrome for Free</span>
                 </a>
@@ -1001,6 +987,8 @@
             initVideoLazyLoading();
         }
     </script>
+
+
 
 
 

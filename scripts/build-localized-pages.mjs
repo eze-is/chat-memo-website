@@ -204,17 +204,9 @@ function localizeAttributesAndText(document, page, locale, dictionary) {
                 if (!Object.hasOwn(dictionary, labelKey)) throw new Error(`Missing ${locale}.${page}.${labelKey}`);
                 setAttr(node, 'aria-label', dictionary[labelKey]);
             }
-            if (node.tagName === 'select' && attr(node, 'data-site-locale-select') !== undefined) {
-                let matched = false;
-                visit(node, (option) => {
-                    if (option.tagName !== 'option') return;
-                    removeAttr(option, 'selected');
-                    if (attr(option, 'value') === locale) {
-                        setAttr(option, 'selected', '');
-                        matched = true;
-                    }
-                });
-                if (!matched) throw new Error(`Missing locale option ${locale}`);
+            if (node.tagName === 'button' && attr(node, 'data-site-locale-option') !== undefined) {
+                if (attr(node, 'data-site-locale-option') === locale) setAttr(node, 'aria-current', 'true');
+                else removeAttr(node, 'aria-current');
             }
             for (const name of ['href', 'src', 'poster', 'content']) {
                 const value = attr(node, name);
