@@ -1,6 +1,53 @@
 {
   "updates": [
     {
+      "version": "v1.5.3",
+      "date": {
+        "zh-CN": "2026年10月19日",
+        "en": "October 19, 2026",
+        "ja": "2026年10月19日",
+        "es": "19 de octubre de 2026"
+      },
+      "summary": {
+        "zh-CN": "适配 Claude 网页改版，恢复对话保存，并支持保存 Claude Code 网页版的对话。",
+        "en": "Restores saving after Claude's website redesign and adds support for Claude Code on the web.",
+        "ja": "Claude のウェブサイト刷新後に保存できなくなっていた会話の保存を復旧し、ウェブ版 Claude Code に対応しました。",
+        "es": "Restablece el guardado tras el rediseño del sitio web de Claude y agrega compatibilidad con Claude Code en la web."
+      },
+      "features": [
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "恢复 Claude 对话保存",
+            "en": "Restore Claude saving",
+            "ja": "Claude の会話保存を復旧",
+            "es": "Se restablece el guardado de Claude"
+          },
+          "description": {
+            "zh-CN": "Claude 网页近期改版后，对话无法保存。现已适配新版页面。",
+            "en": "Conversations stopped saving after Claude's recent website redesign. Chat Memo now supports the new layout.",
+            "ja": "Claude のウェブサイトが最近刷新されたあと、会話が保存されなくなっていました。新しい画面に対応しました。",
+            "es": "Las conversaciones dejaron de guardarse tras el reciente rediseño del sitio web de Claude. Chat Memo ya es compatible con el nuevo diseño."
+          }
+        },
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "支持 Claude Code 网页版",
+            "en": "Claude Code on the web support",
+            "ja": "ウェブ版 Claude Code に対応",
+            "es": "Compatibilidad con Claude Code en la web"
+          },
+          "description": {
+            "zh-CN": "claude.ai/code 上的会话现在也会自动保存。只保存你的提问和 Claude 的文字回复，不保存工具调用和代码改动过程。",
+            "en": "Sessions on claude.ai/code are now saved automatically. Only your prompts and Claude's text replies are saved, not tool calls or code changes.",
+            "ja": "claude.ai/code でのセッションも自動的に保存されるようになりました。保存されるのは入力したメッセージと Claude のテキスト返信のみで、ツールの使用やコードの変更内容は保存されません。",
+            "es": "Las sesiones de claude.ai/code ahora se guardan automáticamente. Solo se guardan tus mensajes y las respuestas de texto de Claude, no el uso de herramientas ni los cambios de código."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.5.2",
       "date": {
         "zh-CN": "2026年9月30日",
