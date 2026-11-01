@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-11-01",
+  "value": {
+    "title": "换个 AI、换个窗口，也能接着聊",
+    "actionLabel": "查看 Pro 的全部能力",
+    "example": {
+      "readerId": "claude-code",
+      "question": "新版首页怎么设计，之前讨论了什么",
+      "before": {
+        "label": "没开通",
+        "reply": "我看不到你之前在别的 AI 的对话。能再和我说一遍吗？",
+        "footnote": "你得回去翻、再复制过来"
+      },
+      "after": {
+        "label": "开通 Pro 后",
+        "hits": [
+          {
+            "source": "codex",
+            "title": "新版首页的讨论"
+          },
+          {
+            "source": "gemini",
+            "title": "同类产品的首页设计"
+          }
+        ],
+        "reply": [
+          {
+            "kind": "text",
+            "text": "你昨天在 Codex 里定了：首页保留"
+          },
+          {
+            "kind": "strong",
+            "text": "搜索 + 动态"
+          },
+          {
+            "kind": "text",
+            "text": "，快速了解最新状态。"
+          },
+          {
+            "kind": "break"
+          },
+          {
+            "kind": "text",
+            "text": "上个月还和 Gemini 聊过同类产品的首页，觉得 Notion 设计很棒。"
+          }
+        ]
+      }
+    }
+  },
+  "plans": {
+    "title": "Chat Memo Pro",
+    "free": {
+      "label": "免费",
+      "description": "存下各家 AI 的对话，搜得到"
+    },
+    "pro": {
+      "label": "Pro",
+      "description": "打通你的 AI，互通上下文"
+    },
+    "features": [
+      {
+        "id": "save",
+        "label": "存下各家 AI 的对话",
+        "icon": "save",
+        "free": "available",
+        "pro": "available"
+      },
+      {
+        "id": "search",
+        "label": "关键词搜索",
+        "icon": "search",
+        "free": "available",
+        "pro": "available"
+      },
+      {
+        "id": "read",
+        "label": "跨 AI、跨会话接续对话",
+        "icon": "read",
+        "free": "unavailable",
+        "pro": "available"
+      },
+      {
+        "id": "ask",
+        "label": "AI 问答",
+        "icon": "ask",
+        "free": "unavailable",
+        "pro": "planned"
+      },
+      {
+        "id": "memory",
+        "label": "定制记忆",
+        "icon": "memory",
+        "free": "unavailable",
+        "pro": "planned"
+      }
+    ]
+  }
+}
