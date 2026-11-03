@@ -20,11 +20,11 @@ const text = node => {
 const normalized = value => value.replace(/\s+/g, ' ').trim();
 const specs = [['privacy', '2026-11-03.10'], ['terms', '2026-11-03.11']];
 
-test('公开和固定版本页完整包含同一份静态正文，不依赖脚本加载', () => {
+test('两份阅读页完整包含已确认的静态正文，不依赖脚本加载', () => {
     for (const [key, version] of specs) {
         const source = readFileSync(join(root, `desktop/legal/versions/zh-CN/${version}/${key}.md`), 'utf8');
         const expected = normalized(source.split('\n').filter(line => !line.startsWith('# ') && !line.startsWith('版本：') && !line.startsWith('生效日期：')).map(line => line.replace(/^- /, '')).join(' '));
-        for (const path of [`desktop/${key}.html`, `desktop/legal/versions/zh-CN/${version}/${key}.html`]) {
+        for (const path of [`desktop/${key}.html`]) {
             const html = readFileSync(join(root, path), 'utf8');
             const document = parse(html);
             const body = all(document, node => (attr(node, 'class') || '').split(' ').includes('document-body'))[0];
@@ -39,9 +39,11 @@ test('公开和固定版本页完整包含同一份静态正文，不依赖脚�
     }
 });
 
-test('公开阅读页的目录、固定版本、原文及本地样式均有实际目标', () => {
-    for (const name of ['privacy.html', 'terms.html', 'legal/index.html']) {
+test('阅读页仅保留正文、官网品牌链接与联系邮箱', () => {
+    for (const name of ['privacy.html', 'terms.html']) {
         const document = parse(readFileSync(join(root, 'desktop', name), 'utf8'));
+        assert.deepEqual(all(document, node => node.tagName === 'a').map(node => attr(node, 'href')), ['#main', '/', 'mailto:eze@chatmemo.ai']);
+        assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
         const ids = new Set(all(document, node => attr(node, 'id')).map(node => attr(node, 'id')));
         for (const link of all(document, node => node.tagName === 'a' || (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet'))) {
             const href = attr(link, 'href');

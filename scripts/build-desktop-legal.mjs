@@ -47,7 +47,7 @@ function readDocument(spec) {
     return { ...spec, sourcePath, versionLabel: version, effective, body, sections };
 }
 
-function frame({ title, path, content, active = '' }) {
+function frame({ title, path, content }) {
     return `<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -63,43 +63,26 @@ function frame({ title, path, content, active = '' }) {
 <body>
     <a class="skip-link" href="#main">跳到正文</a>
     <header class="site-header">
-        <a class="brand" href="/"><img src="/resource/icons/logo.png" width="28" height="28" alt="">Chat Memo</a>
-        <nav aria-label="桌面版法律文档">${documents.map(doc => `<a href="/desktop/${doc.key}"${active === doc.key ? ' aria-current="page"' : ''}>${doc.title}</a>`).join('')}</nav>
+        <a class="brand" href="/"><img src="/resource/icons/logo.png" width="32" height="32" alt="">Chat Memo</a>
     </header>
     <main id="main">${content}</main>
-    <footer><a href="/desktop/legal/">法律文档与版本</a><a href="/">返回官网</a></footer>
 </body>
 </html>
 `;
 }
 
-function documentPage(doc, archived) {
-    const path = archived ? doc.sourcePath.replace(/\.md$/, '') : `/desktop/${doc.key}`;
-    const archive = doc.sourcePath.replace(/\.md$/, '');
-    return frame({ title: doc.title, path, active: doc.key, content: `
+function documentPage(doc) {
+    return frame({ title: doc.title, path: `/desktop/${doc.key}`, content: `
         <article data-document="${doc.key}" data-source-sha256="${doc.sha256}">
             <header class="document-header">
                 <h1>${doc.title}</h1>
-                <p class="scope">Chat Memo 桌面版 · 简体中文</p>
                 <p>版本：${escape(doc.versionLabel)}<br>生效日期：${escape(doc.effective)}</p>
-                <p class="version-links">${archived ? `<a href="/desktop/${doc.key}">查看当前审阅稿</a>` : `<a href="${archive}">本版本固定链接</a>`}<a href="${doc.sourcePath}" download>下载原文</a></p>
             </header>
-            <nav class="contents" aria-label="文档章节">${doc.sections.map(section => `<a href="#${section.id}">${escape(section.title)}</a>`).join('')}</nav>
             <div class="document-body">${doc.body}</div>
         </article>` });
 }
 
-const parsed = documents.map(readDocument);
-const outputs = new Map();
-for (const doc of parsed) {
-    outputs.set(`desktop/${doc.key}.html`, documentPage(doc, false));
-    outputs.set(doc.sourcePath.slice(1).replace(/\.md$/, '.html'), documentPage(doc, true));
-}
-outputs.set('desktop/legal/index.html', frame({ title: '法律文档与版本', path: '/desktop/legal/', content: `
-    <h1>法律文档与版本</h1>
-    <p>以下文档适用于 Chat Memo 桌面版及相关服务，不替代浏览器插件等其他产品的说明。</p>
-    <p class="draft-note">当前公开的是中文审阅稿，尚未正式生效。阅读这些页面不表示接受正式协议或新的信息处理授权。</p>
-    ${parsed.map(doc => `<section class="document-entry"><h2><a href="/desktop/${doc.key}">${doc.title}</a></h2><p>${escape(doc.versionLabel)}</p><p><a href="${doc.sourcePath.replace(/\.md$/, '')}">查看固定版本</a> · <a href="${doc.sourcePath}" download>下载原文</a></p></section>`).join('\n')}` }));
+const outputs = new Map(documents.map(readDocument).map(doc => [`desktop/${doc.key}.html`, documentPage(doc)]));
 
 let mismatch = false;
 for (const [name, content] of outputs) {
