@@ -25,7 +25,7 @@ function parsePage(path) { return parse(readFileSync(join(root, path), 'utf8'));
 
 test('中英正文及中立入口首个HTML完整可读，语言和正式版本信息准确', () => {
     for (const locale of locales) for (const key of keys) {
-        const source = readFileSync(join(root, `desktop/legal/versions/${locale}/2026-11-04.2-published/${key}.md`), 'utf8');
+        const source = readFileSync(join(root, `desktop/legal/versions/${locale}/2026-11-04.3-published/${key}.md`), 'utf8');
         const expected = normalized(source.split('\n').filter(line => !/^(# |版本：|生效日期：|Version: |Effective date: )/.test(line)).map(line => line.replace(/^- /, '')).join(' '));
         const paths = [`${locale}/desktop/${key}.html`, ...(locale === 'en' ? [`desktop/${key}.html`] : [])];
         for (const path of paths) {
@@ -39,7 +39,7 @@ test('中英正文及中立入口首个HTML完整可读，语言和正式版本�
             assert.doesNotMatch(text(document), /Draft|not yet in effect|本稿供审阅/, path);
             const metadata = all(document, node => attr(node, 'class') === 'document-header')[0];
             assert.doesNotMatch(text(metadata), /生效日期|Effective date|zh-CN|Draft/);
-            assert.ok(text(metadata).includes(locale === 'en' ? 'Version: 2026-11-04.2' : '版本：2026-11-04.2'));
+            assert.ok(text(metadata).includes(locale === 'en' ? 'Version: 2026-11-04.3' : '版本：2026-11-04.3'));
             const scripts = all(document, node => node.tagName === 'script');
             assert.deepEqual(scripts.map(node => attr(node, 'src')?.split('?')[0]), ['/site-i18n.js', '/site-nav.js', undefined]);
             assert.equal(text(scripts[2]), `SiteI18n.init('desktop/${key}'); SiteNav.init();`);
@@ -82,7 +82,7 @@ test('任一语言同版本正文变化时拒绝覆盖生成', () => {
             cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
             cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
             cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
-            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.2-published/privacy.md`), '\n发生变更\n');
+            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.3-published/privacy.md`), '\n发生变更\n');
             const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
             assert.notEqual(result.status, 0);
             assert.match(result.stderr, /发布新版本，不覆盖旧稿/);

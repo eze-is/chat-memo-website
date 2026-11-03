@@ -24,10 +24,10 @@ const locales = {
 };
 // 发布后不修改旧原文；修订时新增版本并切换对应指针。
 const documents = [
-    { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.2', sha256: 'b175df1ad96b55f565c1cf9f492732dbd911282e513f09e76d7cc15410b0b388' },
-    { key: 'terms', locale: 'zh-CN', version: '2026-11-04.2', sha256: '7f7d7afadfb15f2225d5918756d5c96842a1b0457345ebaeee45bd2e87d58d6d' },
-    { key: 'privacy', locale: 'en', version: '2026-11-04.2', sha256: '05a64ad3c33a9fa9a0c6b6e5373971eae24e2aa8e64efeb91870b4cdeef86ec7' },
-    { key: 'terms', locale: 'en', version: '2026-11-04.2', sha256: '8258415bce2146ccc8e32ee3ef5789ad70dc9c34b228b6e1f5d7e9fc69d6e43a' },
+    { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.3', sha256: 'b0fb979ee3afd8758841f972fe77d4e0a366efe0c5639108f8e7bfc98539ab42' },
+    { key: 'terms', locale: 'zh-CN', version: '2026-11-04.3', sha256: '229b2bc632b4d583b282577416d78bf31d669670c739aebf830be5eae4a4e009' },
+    { key: 'privacy', locale: 'en', version: '2026-11-04.3', sha256: '206702d2a8808eb5b6c130c6c4c4b67565b43494aa42babb0155150b31c9d22b' },
+    { key: 'terms', locale: 'en', version: '2026-11-04.3', sha256: '7f1b077167808efe457e9cacc6bc76cb6cc4587643ce8b7f075ff620f1e60da5' },
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
