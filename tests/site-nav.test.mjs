@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-function createNavigation() {
+function createNavigation({ mobile = true } = {}) {
     const document = {
         activeElement: null,
         listeners: new Map(),
@@ -44,7 +44,7 @@ function createNavigation() {
                 existing.push(listener);
                 listeners.set(type, existing);
             },
-            fire(type, event = {}) { listeners.get(type)?.forEach((listener) => listener({ target: node, ...event })); },
+            fire(type, event = {}) { listeners.get(type)?.forEach((listener) => listener({ target: node, preventDefault() {}, ...event })); },
             contains(target) {
                 for (let current = target; current; current = current.parentNode) {
                     if (current === node) return true;
@@ -83,11 +83,11 @@ function createNavigation() {
     }
 
     const header = element();
-    const mobileTrigger = element({ tagName: 'button', id: 'mobile-menu-button', parent: header });
-    mobileTrigger.setAttribute('aria-expanded', 'false');
-    const mobileIcon = element({ tagName: 'path', parent: mobileTrigger });
-    const mobilePanel = element({ id: 'mobile-menu', classes: ['hidden'], parent: header });
-    const mobileLink = element({ tagName: 'a', parent: mobilePanel });
+    const mobileTrigger = mobile ? element({ tagName: 'button', id: 'mobile-menu-button', parent: header }) : null;
+    mobileTrigger?.setAttribute('aria-expanded', 'false');
+    const mobileIcon = mobile ? element({ tagName: 'path', parent: mobileTrigger }) : null;
+    const mobilePanel = mobile ? element({ id: 'mobile-menu', classes: ['hidden'], parent: header }) : null;
+    const mobileLink = mobile ? element({ tagName: 'a', parent: mobilePanel }) : null;
     const localeMenu = element({ dataset: { siteLocaleMenu: '' }, parent: header });
     const localeTrigger = element({ tagName: 'button', dataset: { siteLocaleTrigger: '' }, parent: localeMenu });
     localeTrigger.setAttribute('aria-expanded', 'false');
@@ -181,4 +181,24 @@ test('Escape、外部点击及焦点移出关闭弹层，语言选项交给 Site
     ui.localeOptions.ja.fire('click');
     assert.deepEqual(ui.choices, ['es']);
     assert.equal(ui.localePanel.hidden, true, '切换失败时也关闭弹层');
+});
+
+
+test('法律页仅有语言菜单时复用开合、Escape与选择，不依赖移动导航', () => {
+    const ui = createNavigation({ mobile: false });
+    ui.init();
+    ui.init();
+    ui.localeTrigger.fire('click');
+    assert.equal(ui.localePanel.hidden, false);
+    ui.header.fire('keydown', { key: 'Escape' });
+    assert.equal(ui.localePanel.hidden, true);
+    assert.equal(ui.document.activeElement, ui.localeTrigger);
+    ui.localeTrigger.fire('click');
+    let prevented = false;
+    ui.localeOptions.en.fire('click', { preventDefault() { prevented = true; } });
+    assert.equal(prevented, true);
+    assert.deepEqual(ui.choices, ['en']);
+    ui.document.fire('click', { target: ui.outside });
+    assert.equal(ui.localePanel.hidden, true);
+    ui.header.fire('focusout', { relatedTarget: ui.outside });
 });

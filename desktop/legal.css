@@ -11,13 +11,21 @@ body { margin: 0; font-size: 16px; line-height: 1.8; overflow-wrap: anywhere; }
 a { color: #2563eb; text-underline-offset: 4px; }
 a:hover { color: #1d4ed8; }
 a:focus-visible { outline: 2px solid #3b82f6; outline-offset: 5px; }
-.site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; padding: 16px 24px; border-bottom: 1px solid #e5e7eb; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; padding: 16px 24px; border-bottom: 1px solid #e5e7eb; }
 .brand { display: inline-flex; align-items: center; gap: 12px; color: #111827; font-size: 20px; font-weight: 700; text-decoration: none; }
 .brand img { display: block; }
-.language-links { display: flex; gap: 20px; font-size: 14px; }
-.language-links a { color: #4b5563; text-decoration: none; }
-.language-links a:hover { color: #111827; text-decoration: underline; }
-.language-links a[aria-current="true"] { color: #111827; font-weight: 600; }
+.language-menu { position: relative; flex-shrink: 0; }
+.language-trigger { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border: 1px solid #d1d5db; border-radius: 8px; background: #fff; color: #4b5563; cursor: pointer; }
+.language-trigger:hover { background: #f9fafb; color: #111827; }
+.language-trigger[aria-expanded="true"] { border-color: #93c5fd; background: #eff6ff; color: #1d4ed8; }
+.language-trigger:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
+.language-options { position: absolute; right: 0; top: calc(100% + 8px); z-index: 60; width: 160px; padding: 6px; border: 1px solid #e5e7eb; border-radius: 12px; background: #fff; box-shadow: 0 16px 24px rgb(17 24 39 / 10%); }
+.language-options[hidden] { display: none; }
+.language-options a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; padding: 6px 12px; border-radius: 8px; color: #374151; font-size: 14px; font-weight: 500; text-decoration: none; }
+.language-options a:hover { background: #f9fafb; color: #111827; }
+.language-options a[aria-current="true"] { background: #eff6ff; color: #1d4ed8; }
+.language-options a svg { opacity: 0; }
+.language-options a[aria-current="true"] svg { opacity: 1; }
 main { width: min(100% - 48px, 768px); margin-inline: auto; padding-block: 48px 64px; }
 h1 { margin: 0 0 16px; color: #111827; font-size: 36px; line-height: 1.3; font-weight: 700; }
 h2 { margin: 0 0 16px; color: #111827; font-size: 24px; line-height: 1.5; font-weight: 700; }

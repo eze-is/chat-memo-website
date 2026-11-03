@@ -4,29 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Terms of Service · Chat Memo Desktop</title>
-    <meta name="description" content="Chat Memo Desktop · Terms of Service. Draft for review; not yet in effect.">
-    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="Chat Memo Desktop · Terms of Service.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://chatmemo.ai/en/desktop/terms">
     <link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/desktop/terms">
     <link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/desktop/terms">
     <link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/desktop/terms">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/desktop/legal.css">
+    <link rel="stylesheet" href="/desktop/legal.css?v=e1baab57cd2b">
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
+    <div id="navbar-container"><header class="site-header">
         <a class="brand" href="/en/"><img src="/resource/icons/logo.png" width="32" height="32" alt="">Chat Memo</a>
-        <nav class="language-links" aria-label="Language"><a href="/zh-CN/desktop/terms" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN">简体中文</a><a href="/en/desktop/terms" lang="en" hreflang="en" data-site-locale-option="en" aria-current="true">English</a></nav>
-    </header>
+        <div class="language-menu" data-site-locale-menu>
+            <button class="language-trigger" type="button" data-site-locale-trigger aria-label="Language" aria-expanded="false" aria-controls="site-locale-options">
+                <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                     Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                <svg width="20" height="20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+            </button>
+            <div id="site-locale-options" class="language-options" data-site-locale-options hidden>
+                <a href="/zh-CN/desktop/terms" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN"><span>简体中文</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a><a href="/en/desktop/terms" lang="en" hreflang="en" data-site-locale-option="en" aria-current="true"><span>English</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a>
+            </div>
+        </div>
+    </header></div>
     <main id="main">
-        <article data-document="terms" data-source-sha256="38d64d93bd1c21567d9e8c3310e96630610100d9647f82065a60cd69844a5738">
+        <article data-document="terms" data-source-sha256="1998922078e39b2da07634af9b8096e4cad71e3fbb1243612f0a6613b4d549b3">
             <header class="document-header">
                 <h1>Terms of Service</h1>
-                <p>Version: Draft · en · 2026-11-04.1<br>Effective date: To be announced on formal publication</p>
+                <p>Version: 2026-11-04.1</p>
             </header>
-            <div class="document-body"><p>This draft is provided for review and is not yet in effect. Signing in under the current arrangements or reading this draft does not constitute acceptance of the final terms.</p>
-<section aria-labelledby="section-1"><h2 id="section-1">1. Service and use</h2>
+            <div class="document-body"><section aria-labelledby="section-1"><h2 id="section-1">1. Service and use</h2>
 <p>These terms are between you and 最小提示科技工作室, the operator of Chat Memo (referred to as “we”, “us” or “our”), and apply to the desktop app and related services. You may install and use Chat Memo under these terms. If guardian consent is required by law, you must obtain it first.</p>
 <p>Chat Memo lets you save, read and search AI conversations, and access them through AI integrations. Saving, reading and searching are currently free. Pro provides AI integration features, as described in the product information. Remote integrations require the desktop app to be available and connected to the internet.</p>
 </section>
@@ -53,7 +61,8 @@
 </section></div>
         </article>
     </main>
-    <script src="/site-i18n.js"></script>
-    <script>SiteI18n.init('desktop/terms');</script>
+    <script src="/site-i18n.js?v=d558c023f687"></script>
+    <script src="/site-nav.js?v=692435df12f7"></script>
+    <script>SiteI18n.init('desktop/terms'); SiteNav.init();</script>
 </body>
 </html>

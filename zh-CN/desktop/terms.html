@@ -4,29 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>用户协议 · Chat Memo Desktop</title>
-    <meta name="description" content="Chat Memo Desktop · 用户协议. 中文审阅稿，尚未正式生效。">
-    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="Chat Memo Desktop · 用户协议.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://chatmemo.ai/zh-CN/desktop/terms">
     <link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/desktop/terms">
     <link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/desktop/terms">
     <link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/desktop/terms">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/desktop/legal.css">
+    <link rel="stylesheet" href="/desktop/legal.css?v=e1baab57cd2b">
 </head>
 <body>
     <a class="skip-link" href="#main">跳到正文</a>
-    <header class="site-header">
+    <div id="navbar-container"><header class="site-header">
         <a class="brand" href="/zh-CN/"><img src="/resource/icons/logo.png" width="32" height="32" alt="">Chat Memo</a>
-        <nav class="language-links" aria-label="语言"><a href="/zh-CN/desktop/terms" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN" aria-current="true">简体中文</a><a href="/en/desktop/terms" lang="en" hreflang="en" data-site-locale-option="en">English</a></nav>
-    </header>
+        <div class="language-menu" data-site-locale-menu>
+            <button class="language-trigger" type="button" data-site-locale-trigger aria-label="语言" aria-expanded="false" aria-controls="site-locale-options">
+                <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                     Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                <svg width="20" height="20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+            </button>
+            <div id="site-locale-options" class="language-options" data-site-locale-options hidden>
+                <a href="/zh-CN/desktop/terms" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN" aria-current="true"><span>简体中文</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a><a href="/en/desktop/terms" lang="en" hreflang="en" data-site-locale-option="en"><span>English</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a>
+            </div>
+        </div>
+    </header></div>
     <main id="main">
-        <article data-document="terms" data-source-sha256="2f40b83c43a19979ef237942b6bccdb7ff638e6e6ba2980a22c160b5f02f980d">
+        <article data-document="terms" data-source-sha256="3aa859566df00be376f498d65041ab6450147b125af9fbf16013104912ba25a1">
             <header class="document-header">
                 <h1>用户协议</h1>
-                <p>版本：Draft · zh-CN · 2026-11-04.1<br>生效日期：正式发布时公布</p>
+                <p>版本：2026-11-04.1</p>
             </header>
-            <div class="document-body"><p>本稿供审阅，尚未正式生效。现有登录或阅读本稿不视为接受正式协议。</p>
-<section aria-labelledby="section-1"><h2 id="section-1">一、服务与使用</h2>
+            <div class="document-body"><section aria-labelledby="section-1"><h2 id="section-1">一、服务与使用</h2>
 <p>本协议由您与 Chat Memo 的运营者最小提示科技工作室（以下简称“我们”）订立，适用于桌面应用及相关服务。您可依本协议安装和使用 Chat Memo；依法需要监护人同意的，应先取得同意。</p>
 <p>Chat Memo 提供 AI 对话的保存、阅读、搜索和互通。目前保存、阅读和搜索免费，Pro 提供相应互通能力，具体以产品说明为准。远程互通需要桌面应用及网络连接可用。</p>
 </section>
@@ -53,7 +61,8 @@
 </section></div>
         </article>
     </main>
-    <script src="/site-i18n.js"></script>
-    <script>SiteI18n.init('desktop/terms');</script>
+    <script src="/site-i18n.js?v=d558c023f687"></script>
+    <script src="/site-nav.js?v=692435df12f7"></script>
+    <script>SiteI18n.init('desktop/terms'); SiteNav.init();</script>
 </body>
 </html>

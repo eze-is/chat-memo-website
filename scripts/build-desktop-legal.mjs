@@ -14,20 +14,20 @@ vm.runInNewContext(readFileSync(resolve(root, 'site-i18n.js'), 'utf8'), routeCon
 const { pathFor } = routeContext.window.SiteI18n;
 const locales = {
     'zh-CN': {
-        name: '简体中文', versionLabel: '版本：', effectiveLabel: '生效日期：', languageLabel: '语言',
-        skip: '跳到正文', description: '中文审阅稿，尚未正式生效。', titles: { privacy: '隐私政策', terms: '用户协议' },
+        name: '简体中文', versionLabel: '版本：', languageLabel: '语言',
+        skip: '跳到正文', titles: { privacy: '隐私政策', terms: '用户协议' },
     },
     en: {
-        name: 'English', versionLabel: 'Version: ', effectiveLabel: 'Effective date: ', languageLabel: 'Language',
-        skip: 'Skip to content', description: 'Draft for review; not yet in effect.', titles: { privacy: 'Privacy Policy', terms: 'Terms of Service' },
+        name: 'English', versionLabel: 'Version: ', languageLabel: 'Language',
+        skip: 'Skip to content', titles: { privacy: 'Privacy Policy', terms: 'Terms of Service' },
     },
 };
 // 发布后不修改旧原文；修订时新增版本并切换对应指针。
 const documents = [
-    { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.1', sha256: 'e24cb30d55053339f6c98439854efab178595c3122ece512528d3306e45bf947' },
-    { key: 'terms', locale: 'zh-CN', version: '2026-11-04.1', sha256: '2f40b83c43a19979ef237942b6bccdb7ff638e6e6ba2980a22c160b5f02f980d' },
-    { key: 'privacy', locale: 'en', version: '2026-11-04.1', sha256: '7c34f217ac8502f51a5af78028dd06d523f807ec5a4f91509afa16e488671696' },
-    { key: 'terms', locale: 'en', version: '2026-11-04.1', sha256: '38d64d93bd1c21567d9e8c3310e96630610100d9647f82065a60cd69844a5738' },
+    { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.1', sha256: '933a67a51585e15899351f57ebddec700b7b23e6cf4048a257c80e13d142dd8a' },
+    { key: 'terms', locale: 'zh-CN', version: '2026-11-04.1', sha256: '3aa859566df00be376f498d65041ab6450147b125af9fbf16013104912ba25a1' },
+    { key: 'privacy', locale: 'en', version: '2026-11-04.1', sha256: 'c0abb279299d89d996ad932ad92de6d7fea8ca0ba590fd139858efb47a34dc1f' },
+    { key: 'terms', locale: 'en', version: '2026-11-04.1', sha256: '1998922078e39b2da07634af9b8096e4cad71e3fbb1243612f0a6613b4d549b3' },
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
@@ -36,16 +36,15 @@ const inline = value => escape(value).replace(/\beze@chatmemo\.ai\b/g, '<!--emai
 function readDocument(spec) {
     const copy = locales[spec.locale];
     const title = copy.titles[spec.key];
-    const sourcePath = `desktop/legal/versions/${spec.locale}/${spec.version}/${spec.key}.md`;
+    const sourcePath = `desktop/legal/versions/${spec.locale}/${spec.version}-published/${spec.key}.md`;
     const source = readFileSync(resolve(root, sourcePath), 'utf8');
     const sha256 = createHash('sha256').update(source).digest('hex');
     if (sha256 !== spec.sha256) throw new Error(`版本正文发生变化：${sourcePath}。请发布新版本，不覆盖旧稿。`);
     const lines = source.trim().split(/\r?\n/);
     if (lines.shift() !== `# ${title}`) throw new Error(`标题不一致：${sourcePath}`);
     const version = lines.find(line => line.startsWith(copy.versionLabel))?.slice(copy.versionLabel.length);
-    const effective = lines.find(line => line.startsWith(copy.effectiveLabel))?.slice(copy.effectiveLabel.length);
-    if (version !== `Draft · ${spec.locale} · ${spec.version}` || !effective) throw new Error(`版本元信息不完整：${sourcePath}`);
-    const blocks = lines.filter(line => !line.startsWith(copy.versionLabel) && !line.startsWith(copy.effectiveLabel)).join('\n').trim().split(/\n\s*\n/);
+    if (version !== spec.version) throw new Error(`版本元信息不完整：${sourcePath}`);
+    const blocks = lines.filter(line => !line.startsWith(copy.versionLabel)).join('\n').trim().split(/\n\s*\n/);
     let sectionCount = 0;
     const body = blocks.map(block => {
         if (/^(?:[一二三四五六七八九十]+、|\d+\. )[^\n]+$/.test(block)) {
@@ -58,8 +57,10 @@ function readDocument(spec) {
         return `<p>${inline(block.replaceAll('\n', ' '))}</p>`;
     }).join('\n') + (sectionCount ? '\n</section>' : '');
     if (sectionCount !== 5) throw new Error(`法律文档应有五部分：${sourcePath}`);
-    return { ...spec, copy, title, versionLabel: version, effective, body };
+    return { ...spec, copy, title, versionLabel: version, body };
 }
+
+const asset = name => `${name}?v=${createHash('sha256').update(readFileSync(resolve(root, `.${name}`))).digest('hex').slice(0, 12)}`;
 
 function documentPage(doc) {
     const { copy, locale, key } = doc;
@@ -71,31 +72,41 @@ function documentPage(doc) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escape(doc.title)} · Chat Memo Desktop</title>
-    <meta name="description" content="Chat Memo Desktop · ${escape(doc.title)}. ${copy.description}">
-    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="Chat Memo Desktop · ${escape(doc.title)}.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="${origin}${canonical}">
     ${Object.keys(locales).map(other => `<link rel="alternate" hreflang="${other}" href="${origin}${pathFor(other, page)}">`).join('\n    ')}
     <link rel="alternate" hreflang="x-default" href="${origin}/${page}">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/desktop/legal.css">
+    <link rel="stylesheet" href="${asset('/desktop/legal.css')}">
 </head>
 <body>
     <a class="skip-link" href="#main">${copy.skip}</a>
-    <header class="site-header">
+    <div id="navbar-container"><header class="site-header">
         <a class="brand" href="${pathFor(locale, 'home')}"><img src="/resource/icons/logo.png" width="32" height="32" alt="">Chat Memo</a>
-        <nav class="language-links" aria-label="${copy.languageLabel}">${Object.entries(locales).map(([other, label]) => `<a href="${pathFor(other, page)}" lang="${other}" hreflang="${other}" data-site-locale-option="${other}"${other === locale ? ' aria-current="true"' : ''}>${label.name}</a>`).join('')}</nav>
-    </header>
+        <div class="language-menu" data-site-locale-menu>
+            <button class="language-trigger" type="button" data-site-locale-trigger aria-label="${copy.languageLabel}" aria-expanded="false" aria-controls="site-locale-options">
+                <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                     Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                <svg width="20" height="20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+            </button>
+            <div id="site-locale-options" class="language-options" data-site-locale-options hidden>
+                ${Object.entries(locales).map(([other, label]) => `<a href="${pathFor(other, page)}" lang="${other}" hreflang="${other}" data-site-locale-option="${other}"${other === locale ? ' aria-current="true"' : ''}><span>${label.name}</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a>`).join('')}
+            </div>
+        </div>
+    </header></div>
     <main id="main">
         <article data-document="${key}" data-source-sha256="${doc.sha256}">
             <header class="document-header">
                 <h1>${doc.title}</h1>
-                <p>${copy.versionLabel}${escape(doc.versionLabel)}<br>${copy.effectiveLabel}${escape(doc.effective)}</p>
+                <p>${copy.versionLabel}${escape(doc.versionLabel)}</p>
             </header>
             <div class="document-body">${doc.body}</div>
         </article>
     </main>
-    <script src="/site-i18n.js"></script>
-    <script>SiteI18n.init('${page}');</script>
+    <script src="${asset('/site-i18n.js')}"></script>
+    <script src="${asset('/site-nav.js')}"></script>
+    <script>SiteI18n.init('${page}'); SiteNav.init();</script>
 </body>
 </html>
 `;

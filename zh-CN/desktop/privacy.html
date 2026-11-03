@@ -4,29 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>隐私政策 · Chat Memo Desktop</title>
-    <meta name="description" content="Chat Memo Desktop · 隐私政策. 中文审阅稿，尚未正式生效。">
-    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="Chat Memo Desktop · 隐私政策.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://chatmemo.ai/zh-CN/desktop/privacy">
     <link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/desktop/privacy">
     <link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/desktop/privacy">
     <link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/desktop/privacy">
     <link rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/desktop/legal.css">
+    <link rel="stylesheet" href="/desktop/legal.css?v=e1baab57cd2b">
 </head>
 <body>
     <a class="skip-link" href="#main">跳到正文</a>
-    <header class="site-header">
+    <div id="navbar-container"><header class="site-header">
         <a class="brand" href="/zh-CN/"><img src="/resource/icons/logo.png" width="32" height="32" alt="">Chat Memo</a>
-        <nav class="language-links" aria-label="语言"><a href="/zh-CN/desktop/privacy" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN" aria-current="true">简体中文</a><a href="/en/desktop/privacy" lang="en" hreflang="en" data-site-locale-option="en">English</a></nav>
-    </header>
+        <div class="language-menu" data-site-locale-menu>
+            <button class="language-trigger" type="button" data-site-locale-trigger aria-label="语言" aria-expanded="false" aria-controls="site-locale-options">
+                <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                     Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                <svg width="20" height="20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+            </button>
+            <div id="site-locale-options" class="language-options" data-site-locale-options hidden>
+                <a href="/zh-CN/desktop/privacy" lang="zh-CN" hreflang="zh-CN" data-site-locale-option="zh-CN" aria-current="true"><span>简体中文</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a><a href="/en/desktop/privacy" lang="en" hreflang="en" data-site-locale-option="en"><span>English</span><svg width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg></a>
+            </div>
+        </div>
+    </header></div>
     <main id="main">
-        <article data-document="privacy" data-source-sha256="e24cb30d55053339f6c98439854efab178595c3122ece512528d3306e45bf947">
+        <article data-document="privacy" data-source-sha256="933a67a51585e15899351f57ebddec700b7b23e6cf4048a257c80e13d142dd8a">
             <header class="document-header">
                 <h1>隐私政策</h1>
-                <p>版本：Draft · zh-CN · 2026-11-04.1<br>生效日期：正式发布时公布</p>
+                <p>版本：2026-11-04.1</p>
             </header>
-            <div class="document-body"><p>本稿供审阅，尚未正式生效。阅读本稿不表示您已同意新的信息处理或授权。</p>
-<p>本政策适用于最小提示科技工作室（以下简称“我们”）提供的 Chat Memo 桌面应用及其账号、连接和互通服务。浏览器插件自身的采集规则另有说明；本政策包括它与桌面应用之间的资料传递。</p>
+            <div class="document-body"><p>本政策适用于最小提示科技工作室（以下简称“我们”）提供的 Chat Memo 桌面应用及其账号、连接和互通服务。浏览器插件自身的采集规则另有说明；本政策包括它与桌面应用之间的资料传递。</p>
 <section aria-labelledby="section-1"><h2 id="section-1">一、我们处理的信息</h2>
 <p>应用会在本机识别可用的对话来源；关闭保存不会停止来源识别。</p>
 <p>您选择保存的对话、图片和相关互通记录保存在设备上，用于阅读、搜索和 AI 互通。关闭保存或退出登录不会自动删除已有副本。</p>
@@ -52,7 +60,8 @@
 </section></div>
         </article>
     </main>
-    <script src="/site-i18n.js"></script>
-    <script>SiteI18n.init('desktop/privacy');</script>
+    <script src="/site-i18n.js?v=d558c023f687"></script>
+    <script src="/site-nav.js?v=692435df12f7"></script>
+    <script>SiteI18n.init('desktop/privacy'); SiteNav.init();</script>
 </body>
 </html>

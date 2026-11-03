@@ -167,12 +167,6 @@
             // 法律正文由已审阅的双语静态页拥有，不加载营销词包或覆盖正文。
             locale = requestedLocale;
             updateLocaleSelection();
-            document.querySelectorAll('[data-site-locale-option]').forEach(option => {
-                option.addEventListener('click', event => {
-                    event.preventDefault();
-                    choose(option.dataset.siteLocaleOption);
-                });
-            });
             return locale;
         }
         try {

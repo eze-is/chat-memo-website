@@ -23,9 +23,9 @@ const locales = ['zh-CN', 'en'];
 
 function parsePage(path) { return parse(readFileSync(join(root, path), 'utf8')); }
 
-test('中英正文及中立入口首个HTML完整可读，语言和审阅状态准确', () => {
+test('中英正文及中立入口首个HTML完整可读，语言和正式版本信息准确', () => {
     for (const locale of locales) for (const key of keys) {
-        const source = readFileSync(join(root, `desktop/legal/versions/${locale}/2026-11-04.1/${key}.md`), 'utf8');
+        const source = readFileSync(join(root, `desktop/legal/versions/${locale}/2026-11-04.1-published/${key}.md`), 'utf8');
         const expected = normalized(source.split('\n').filter(line => !/^(# |版本：|生效日期：|Version: |Effective date: )/.test(line)).map(line => line.replace(/^- /, '')).join(' '));
         const paths = [`${locale}/desktop/${key}.html`, ...(locale === 'en' ? [`desktop/${key}.html`] : [])];
         for (const path of paths) {
@@ -35,11 +35,14 @@ test('中英正文及中立入口首个HTML完整可读，语言和审阅状态�
             assert.equal(all(document, node => node.tagName === 'h1').length, 1, path);
             assert.equal(all(document, node => node.tagName === 'h2').length, 5, path);
             assert.equal(attr(all(document, node => node.tagName === 'html')[0], 'lang'), locale);
-            assert.equal(attr(all(document, node => node.tagName === 'meta' && attr(node, 'name') === 'robots')[0], 'content'), 'noindex, follow');
-            assert.ok(text(document).includes(locale === 'en' ? 'not yet in effect' : '尚未正式生效'), path);
+            assert.equal(attr(all(document, node => node.tagName === 'meta' && attr(node, 'name') === 'robots')[0], 'content'), 'index, follow');
+            assert.doesNotMatch(text(document), /Draft|not yet in effect|本稿供审阅/, path);
+            const metadata = all(document, node => attr(node, 'class') === 'document-header')[0];
+            assert.doesNotMatch(text(metadata), /生效日期|Effective date|zh-CN|Draft/);
+            assert.ok(text(metadata).includes(locale === 'en' ? 'Version: 2026-11-04.1' : '版本：2026-11-04.1'));
             const scripts = all(document, node => node.tagName === 'script');
-            assert.deepEqual(scripts.map(node => attr(node, 'src')), ['/site-i18n.js', undefined]);
-            assert.equal(text(scripts[1]), `SiteI18n.init('desktop/${key}');`);
+            assert.deepEqual(scripts.map(node => attr(node, 'src')?.split('?')[0]), ['/site-i18n.js', '/site-nav.js', undefined]);
+            assert.equal(text(scripts[2]), `SiteI18n.init('desktop/${key}'); SiteNav.init();`);
             if (locale === 'en') assert.doesNotMatch(text(document).replaceAll('最小提示科技工作室', '').replaceAll('简体中文', ''), /[\u4e00-\u9fff]/, path);
         }
     }
@@ -51,6 +54,11 @@ test('中英互链及canonical指向同一文档，不提供未翻译语言或�
         const links = all(document, node => node.tagName === 'a');
         assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai']);
         assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
+        const trigger = all(document, node => attr(node, 'data-site-locale-trigger') !== undefined)[0];
+        assert.equal(attr(trigger, 'aria-expanded'), 'false');
+        assert.ok(all(document, node => node.tagName === 'svg').length > 0);
+        const panel = all(document, node => attr(node, 'id') === attr(trigger, 'aria-controls'))[0];
+        assert.notEqual(attr(panel, 'hidden'), undefined);
         const languageLinks = links.filter(node => attr(node, 'data-site-locale-option'));
         assert.equal(languageLinks.filter(node => attr(node, 'aria-current') === 'true').length, 1);
         assert.equal(attr(languageLinks.find(node => attr(node, 'aria-current') === 'true'), 'lang'), locale);
@@ -62,7 +70,7 @@ test('中英互链及canonical指向同一文档，不提供未翻译语言或�
         ]);
         for (const target of languageLinks.map(node => attr(node, 'href'))) assert.ok(existsSync(join(root, `${target}.html`)), target);
         const stylesheets = all(document, node => node.tagName === 'link' && attr(node, 'rel') === 'stylesheet');
-        assert.deepEqual(stylesheets.map(node => attr(node, 'href')), ['/desktop/legal.css']);
+        assert.deepEqual(stylesheets.map(node => attr(node, 'href')?.split('?')[0]), ['/desktop/legal.css']);
     }
 });
 
@@ -74,7 +82,7 @@ test('任一语言同版本正文变化时拒绝覆盖生成', () => {
             cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
             cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
             cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
-            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.1/privacy.md`), '\n发生变更\n');
+            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.1-published/privacy.md`), '\n发生变更\n');
             const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
             assert.notEqual(result.status, 0);
             assert.match(result.stderr, /发布新版本，不覆盖旧稿/);
