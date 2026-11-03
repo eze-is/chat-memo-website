@@ -11,7 +11,7 @@ const check = process.argv.includes('--check');
 // 发布新稿时添加新的版本文件并切换指针；不修改已发布版本。
 const documents = [
     { key: 'privacy', title: '隐私政策', version: '2026-11-03.10', sha256: '18d9fd86b20f771f19d1202105f806eb12efef5b5b280f251e7bfecca46d86e2' },
-    { key: 'terms', title: '用户协议', version: '2026-11-03.11', sha256: 'e6e5eadd119ccda5ce4135f2df5a175faacc3e470fbafcd4d08c14a9ad299627' },
+    { key: 'terms', title: '用户协议', version: '2026-11-04.1', sha256: '2f40b83c43a19979ef237942b6bccdb7ff638e6e6ba2980a22c160b5f02f980d' },
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');

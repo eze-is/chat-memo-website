@@ -18,7 +18,7 @@ const text = node => {
     return ['p', 'h2', 'li'].includes(node.tagName) ? `${value}\n` : value;
 };
 const normalized = value => value.replace(/\s+/g, ' ').trim();
-const specs = [['privacy', '2026-11-03.10'], ['terms', '2026-11-03.11']];
+const specs = [['privacy', '2026-11-03.10'], ['terms', '2026-11-04.1']];
 
 test('两份阅读页完整包含已确认的静态正文，不依赖脚本加载', () => {
     for (const [key, version] of specs) {
