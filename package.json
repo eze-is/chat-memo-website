@@ -4,6 +4,8 @@
   "scripts": {
     "build:i18n": "node scripts/build-localized-pages.mjs",
     "check:i18n": "node scripts/build-localized-pages.mjs --check",
+    "build:legal": "node scripts/build-desktop-legal.mjs",
+    "check:legal": "node scripts/build-desktop-legal.mjs --check",
     "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
