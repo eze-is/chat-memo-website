@@ -15,7 +15,7 @@ const documents = [
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-const inline = value => escape(value).replace(/\beze@chatmemo\.ai\b/g, '<a href="mailto:eze@chatmemo.ai">eze@chatmemo.ai</a>');
+const inline = value => escape(value).replace(/\beze@chatmemo\.ai\b/g, '<!--email_off--><a href="mailto:eze@chatmemo.ai">eze@chatmemo.ai</a><!--/email_off-->');
 
 function readDocument(spec) {
     const sourcePath = `/desktop/legal/versions/zh-CN/${spec.version}/${spec.key}.md`;
