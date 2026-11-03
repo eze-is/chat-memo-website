@@ -18,7 +18,7 @@ const text = node => {
     return ['p', 'h2', 'li'].includes(node.tagName) ? `${value}\n` : value;
 };
 const normalized = value => value.replace(/\s+/g, ' ').trim();
-const specs = [['privacy', '2026-11-03.10'], ['terms', '2026-11-04.1']];
+const specs = [['privacy', '2026-11-04.1'], ['terms', '2026-11-04.1']];
 
 test('两份阅读页完整包含已确认的静态正文，不依赖脚本加载', () => {
     for (const [key, version] of specs) {
@@ -64,7 +64,7 @@ test('同一版本的正文被修改时拒绝覆盖生成，要求增加版本',
         mkdirSync(join(temporary, 'scripts'));
         cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
         cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
-        appendFileSync(join(temporary, 'desktop/legal/versions/zh-CN/2026-11-03.10/privacy.md'), '\n发生变更\n');
+        appendFileSync(join(temporary, 'desktop/legal/versions/zh-CN/2026-11-04.1/privacy.md'), '\n发生变更\n');
         const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
         assert.notEqual(result.status, 0);
         assert.match(result.stderr, /发布新版本，不覆盖旧稿/);

@@ -10,7 +10,7 @@ const origin = 'https://chatmemo.ai';
 const check = process.argv.includes('--check');
 // 发布新稿时添加新的版本文件并切换指针；不修改已发布版本。
 const documents = [
-    { key: 'privacy', title: '隐私政策', version: '2026-11-03.10', sha256: '18d9fd86b20f771f19d1202105f806eb12efef5b5b280f251e7bfecca46d86e2' },
+    { key: 'privacy', title: '隐私政策', version: '2026-11-04.1', sha256: 'e24cb30d55053339f6c98439854efab178595c3122ece512528d3306e45bf947' },
     { key: 'terms', title: '用户协议', version: '2026-11-04.1', sha256: '2f40b83c43a19979ef237942b6bccdb7ff638e6e6ba2980a22c160b5f02f980d' },
 ];
 
