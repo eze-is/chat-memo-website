@@ -7,7 +7,13 @@
     let page = null;
     let locale = 'en';
 
+    function localesFor(pageName) {
+        return pageName?.startsWith('desktop/') ? ['zh-CN', 'en'] : supportedLocales;
+    }
+
     function routeInfo(pathname) {
+        const legal = pathname.match(/^\/(?:(zh-CN|en)\/)?(desktop\/(?:privacy|terms))(?:\.html)?\/?$/);
+        if (legal) return { locale: legal[1] || null, page: legal[2] };
         const localized = pathname.match(/^\/(zh-CN|en|ja|es)(?:\/(welcome|updates)(?:\.html)?)?\/?$/);
         if (localized) return { locale: localized[1], page: localized[2] || 'home' };
         const base = pathname.match(/^\/(welcome|updates)(?:\.html)?\/?$/);
@@ -17,7 +23,8 @@
     }
 
     function pathFor(targetLocale, targetPage) {
-        const prefix = `/${targetLocale}`;
+        const availableLocale = localesFor(targetPage).includes(targetLocale) ? targetLocale : 'en';
+        const prefix = `/${availableLocale}`;
         return targetPage === 'home' ? `${prefix}/` : `${prefix}/${targetPage}`;
     }
 
@@ -34,9 +41,10 @@
     function detectInitialLocale() {
         const url = new URL(window.location.href);
         const route = routeInfo(url.pathname);
-        if (route?.locale) return route.locale;
+        const available = candidate => localesFor(page || route?.page).includes(candidate) ? candidate : 'en';
+        if (route?.locale) return available(route.locale);
         const linkedLocale = normalize(url.searchParams.get('lang'));
-        if (linkedLocale) return linkedLocale;
+        if (linkedLocale) return available(linkedLocale);
 
         let savedLocale = null;
         try {
@@ -44,12 +52,12 @@
         } catch (error) {
             console.warn('官网语言偏好不可读取，使用浏览器语言:', error);
         }
-        if (savedLocale) return savedLocale;
+        if (savedLocale) return available(savedLocale);
 
         const browserLocales = navigator.languages?.length
             ? navigator.languages
             : [navigator.language || navigator.userLanguage];
-        return browserLocales.map(normalize).find(Boolean) || 'en';
+        return available(browserLocales.map(normalize).find(Boolean) || 'en');
     }
 
     function isCanonicalPath(pageName) {
@@ -126,7 +134,7 @@
 
     function choose(candidate) {
         const nextLocale = normalize(candidate);
-        if (!nextLocale || !supportedLocales.includes(nextLocale)) throw new Error(`Unsupported locale: ${candidate}`);
+        if (!nextLocale || !localesFor(page).includes(nextLocale)) throw new Error(`Unsupported locale: ${candidate}`);
         try {
             window.localStorage.setItem('chat-memo-lang', nextLocale);
         } catch (error) {
@@ -140,7 +148,7 @@
     }
 
     async function init(pageName) {
-        if (!['home', 'welcome', 'updates'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
+        if (!['home', 'welcome', 'updates', 'desktop/privacy', 'desktop/terms'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
         page = pageName;
         const requestedLocale = detectInitialLocale();
         const url = new URL(window.location.href);
@@ -154,6 +162,18 @@
         if (url.searchParams.has('lang')) {
             url.searchParams.delete('lang');
             window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        }
+        if (page.startsWith('desktop/')) {
+            // 法律正文由已审阅的双语静态页拥有，不加载营销词包或覆盖正文。
+            locale = requestedLocale;
+            updateLocaleSelection();
+            document.querySelectorAll('[data-site-locale-option]').forEach(option => {
+                option.addEventListener('click', event => {
+                    event.preventDefault();
+                    choose(option.dataset.siteLocaleOption);
+                });
+            });
+            return locale;
         }
         try {
             await loadCatalog('en');

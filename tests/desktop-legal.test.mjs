@@ -18,56 +18,67 @@ const text = node => {
     return ['p', 'h2', 'li'].includes(node.tagName) ? `${value}\n` : value;
 };
 const normalized = value => value.replace(/\s+/g, ' ').trim();
-const specs = [['privacy', '2026-11-04.1'], ['terms', '2026-11-04.1']];
+const keys = ['privacy', 'terms'];
+const locales = ['zh-CN', 'en'];
 
-test('两份阅读页完整包含已确认的静态正文，不依赖脚本加载', () => {
-    for (const [key, version] of specs) {
-        const source = readFileSync(join(root, `desktop/legal/versions/zh-CN/${version}/${key}.md`), 'utf8');
-        const expected = normalized(source.split('\n').filter(line => !line.startsWith('# ') && !line.startsWith('版本：') && !line.startsWith('生效日期：')).map(line => line.replace(/^- /, '')).join(' '));
-        for (const path of [`desktop/${key}.html`]) {
-            const html = readFileSync(join(root, path), 'utf8');
-            const document = parse(html);
-            const body = all(document, node => (attr(node, 'class') || '').split(' ').includes('document-body'))[0];
+function parsePage(path) { return parse(readFileSync(join(root, path), 'utf8')); }
+
+test('中英正文及中立入口首个HTML完整可读，语言和审阅状态准确', () => {
+    for (const locale of locales) for (const key of keys) {
+        const source = readFileSync(join(root, `desktop/legal/versions/${locale}/2026-11-04.1/${key}.md`), 'utf8');
+        const expected = normalized(source.split('\n').filter(line => !/^(# |版本：|生效日期：|Version: |Effective date: )/.test(line)).map(line => line.replace(/^- /, '')).join(' '));
+        const paths = [`${locale}/desktop/${key}.html`, ...(locale === 'en' ? [`desktop/${key}.html`] : [])];
+        for (const path of paths) {
+            const document = parsePage(path);
+            const body = all(document, node => attr(node, 'class') === 'document-body')[0];
             assert.equal(normalized(text(body)), expected, path);
             assert.equal(all(document, node => node.tagName === 'h1').length, 1, path);
             assert.equal(all(document, node => node.tagName === 'h2').length, 5, path);
-            assert.equal(all(document, node => node.tagName === 'script').length, 0, path);
-            assert.equal(attr(all(document, node => node.tagName === 'html')[0], 'lang'), 'zh-CN');
+            assert.equal(attr(all(document, node => node.tagName === 'html')[0], 'lang'), locale);
             assert.equal(attr(all(document, node => node.tagName === 'meta' && attr(node, 'name') === 'robots')[0], 'content'), 'noindex, follow');
-            assert.ok(text(document).includes('尚未正式生效'), path);
+            assert.ok(text(document).includes(locale === 'en' ? 'not yet in effect' : '尚未正式生效'), path);
+            const scripts = all(document, node => node.tagName === 'script');
+            assert.deepEqual(scripts.map(node => attr(node, 'src')), ['/site-i18n.js', undefined]);
+            assert.equal(text(scripts[1]), `SiteI18n.init('desktop/${key}');`);
+            if (locale === 'en') assert.doesNotMatch(text(document).replaceAll('最小提示科技工作室', '').replaceAll('简体中文', ''), /[\u4e00-\u9fff]/, path);
         }
     }
 });
 
-test('阅读页仅保留正文、官网品牌链接与联系邮箱', () => {
-    for (const name of ['privacy.html', 'terms.html']) {
-        const document = parse(readFileSync(join(root, 'desktop', name), 'utf8'));
-        assert.deepEqual(all(document, node => node.tagName === 'a').map(node => attr(node, 'href')), ['#main', '/', 'mailto:eze@chatmemo.ai']);
+test('中英互链及canonical指向同一文档，不提供未翻译语言或额外下载入口', () => {
+    for (const locale of locales) for (const key of keys) {
+        const document = parsePage(`${locale}/desktop/${key}.html`);
+        const links = all(document, node => node.tagName === 'a');
+        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai']);
         assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
-        const ids = new Set(all(document, node => attr(node, 'id')).map(node => attr(node, 'id')));
-        for (const link of all(document, node => node.tagName === 'a' || (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet'))) {
-            const href = attr(link, 'href');
-            if (href.startsWith('#')) assert.ok(ids.has(href.slice(1)), href);
-            else if (href.startsWith('/desktop/')) {
-                const base = join(root, href);
-                assert.ok([base, `${base}.html`, join(base, 'index.html')].some(existsSync), href);
-            }
-        }
+        const languageLinks = links.filter(node => attr(node, 'data-site-locale-option'));
+        assert.equal(languageLinks.filter(node => attr(node, 'aria-current') === 'true').length, 1);
+        assert.equal(attr(languageLinks.find(node => attr(node, 'aria-current') === 'true'), 'lang'), locale);
+        const canonical = all(document, node => node.tagName === 'link' && attr(node, 'rel') === 'canonical')[0];
+        assert.equal(attr(canonical, 'href'), `https://chatmemo.ai/${locale}/desktop/${key}`);
+        const alternates = all(document, node => node.tagName === 'link' && attr(node, 'rel') === 'alternate');
+        assert.deepEqual(alternates.map(node => [attr(node, 'hreflang'), attr(node, 'href')]), [
+            ['zh-CN', `https://chatmemo.ai/zh-CN/desktop/${key}`], ['en', `https://chatmemo.ai/en/desktop/${key}`], ['x-default', `https://chatmemo.ai/desktop/${key}`],
+        ]);
+        for (const target of languageLinks.map(node => attr(node, 'href'))) assert.ok(existsSync(join(root, `${target}.html`)), target);
         const stylesheets = all(document, node => node.tagName === 'link' && attr(node, 'rel') === 'stylesheet');
         assert.deepEqual(stylesheets.map(node => attr(node, 'href')), ['/desktop/legal.css']);
     }
 });
 
-test('同一版本的正文被修改时拒绝覆盖生成，要求增加版本', () => {
-    const temporary = mkdtempSync(join(tmpdir(), 'chatmemo-legal-'));
-    try {
-        mkdirSync(join(temporary, 'scripts'));
-        cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
-        cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
-        appendFileSync(join(temporary, 'desktop/legal/versions/zh-CN/2026-11-04.1/privacy.md'), '\n发生变更\n');
-        const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
-        assert.notEqual(result.status, 0);
-        assert.match(result.stderr, /发布新版本，不覆盖旧稿/);
-        assert.equal(existsSync(join(temporary, 'desktop/privacy.html')), false);
-    } finally { rmSync(temporary, { recursive: true, force: true }); }
+test('任一语言同版本正文变化时拒绝覆盖生成', () => {
+    for (const locale of locales) {
+        const temporary = mkdtempSync(join(tmpdir(), 'chatmemo-legal-'));
+        try {
+            mkdirSync(join(temporary, 'scripts'));
+            cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
+            cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
+            cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
+            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.1/privacy.md`), '\n发生变更\n');
+            const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
+            assert.notEqual(result.status, 0);
+            assert.match(result.stderr, /发布新版本，不覆盖旧稿/);
+            assert.equal(existsSync(join(temporary, 'desktop/privacy.html')), false);
+        } finally { rmSync(temporary, { recursive: true, force: true }); }
+    }
 });

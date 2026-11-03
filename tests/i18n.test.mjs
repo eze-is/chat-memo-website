@@ -213,3 +213,31 @@ test('三个页面内联脚本保持语法有效', () => {
         }
     }
 });
+
+test('法律页沿用官网语言优先级，仅提供中英文，其他语言落到英文', async () => {
+    const cases = [
+        { url: 'https://chatmemo.ai/desktop/privacy', languages: ['zh-CN'], saved: 'en', expected: 'en' },
+        { url: 'https://chatmemo.ai/desktop/privacy', languages: ['zh-CN'], expected: 'zh-CN' },
+        { url: 'https://chatmemo.ai/desktop/privacy?lang=zh', languages: ['en'], saved: 'en', expected: 'zh-CN' },
+        { url: 'https://chatmemo.ai/desktop/privacy', languages: ['ja-JP'], expected: 'en' },
+        { url: 'https://chatmemo.ai/desktop/privacy', languages: ['zh-CN'], saved: 'es', expected: 'en' },
+        { url: 'https://chatmemo.ai/en/desktop/privacy', languages: ['zh-CN'], saved: 'zh-CN', expected: 'en' },
+    ];
+    for (const item of cases) {
+        const context = await createRuntime({ ...item, page: 'desktop/privacy', fetchCatalog: () => { throw new Error('法律正文不应加载营销词包'); } });
+        assert.equal(context.location.href, `https://chatmemo.ai/${item.expected}/desktop/privacy`);
+        assert.equal(context.getWrites(), 0);
+    }
+});
+
+test('法律页手动切换保留文档与查询片段，保存同一官网偏好且不读取词包', async () => {
+    let reads = 0;
+    const context = await createRuntime({ url: 'https://chatmemo.ai/en/desktop/terms?ref=app#section-4', languages: ['en'], page: 'desktop/terms', fetchCatalog: () => { reads += 1; throw new Error('不应读取'); } });
+    assert.equal(context.runtime.getLocale(), 'en');
+    context.runtime.choose('zh-CN');
+    assert.equal(context.location.href, 'https://chatmemo.ai/zh-CN/desktop/terms?ref=app#section-4');
+    assert.equal(context.storage.get('chat-memo-lang'), 'zh-CN');
+    assert.equal(reads, 0);
+    assert.equal(context.runtime.pathFor('ja', 'desktop/terms'), '/en/desktop/terms');
+    assert.throws(() => context.runtime.choose('ja'), /Unsupported locale/);
+});
