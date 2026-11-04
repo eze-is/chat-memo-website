@@ -3,10 +3,10 @@
     {
       "version": "v2.0.0",
       "date": {
-        "zh-CN": "2026年11月4日",
-        "en": "November 4, 2026",
-        "ja": "2026年11月4日",
-        "es": "4 de noviembre de 2026"
+        "zh-CN": "2026年11月5日",
+        "en": "November 5, 2026",
+        "ja": "2026年11月5日",
+        "es": "5 de noviembre de 2026"
       },
       "summary": {
         "zh-CN": "全新界面，连接 Chat Memo 桌面端，换个 AI 也能继续聊。",
@@ -54,10 +54,10 @@
             "es": "Guardado más fiable"
           },
           "description": {
-            "zh-CN": "修复并优化对话保存、成功提示和升级恢复。新采集仅保存提问和正式回答。",
-            "en": "Fixes and improvements to chat saving, save confirmations, and recovery after interrupted upgrades. Newly captured chats include only your messages and AI response text.",
-            "ja": "会話の保存、保存完了の表示、中断したアップグレードの再開を改善しました。新たに保存するのは、ユーザーの発言と AI の回答本文のみです。",
-            "es": "Correcciones y mejoras en el guardado, su confirmación y la recuperación de actualizaciones interrumpidas. Las nuevas capturas solo incluyen tus mensajes y el texto de las respuestas de la IA."
+            "zh-CN": "修复并优化对话保存、成功提示、升级恢复和桌面端下载。新采集仅保存提问和正式回答。",
+            "en": "Fixes and improvements to chat saving, save confirmations, recovery after interrupted upgrades, and desktop downloads. Newly captured chats include only your messages and AI response text.",
+            "ja": "会話の保存、保存完了の表示、中断したアップグレードの再開、デスクトップ版のダウンロードを改善しました。新たに保存するのは、ユーザーの発言と AI の回答本文のみです。",
+            "es": "Correcciones y mejoras en el guardado, su confirmación, la recuperación de actualizaciones interrumpidas y la descarga de la aplicación de escritorio. Las nuevas capturas solo incluyen tus mensajes y el texto de las respuestas de la IA."
           }
         },
         {
