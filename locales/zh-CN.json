@@ -11,7 +11,7 @@
     "nav-menu": "菜单",
     "footer-copyright": "© Chat Memo by 一泽Eze. All rights reserved.",
     "footer-chrome": "Chrome 插件",
-    "footer-guide": "使用指南",
+    "footer-guide": "插件使用指南",
     "footer-feedback": "反馈建议",
     "footer-wechat-text": "Chat Memo 作者公众号",
     "wechat-qr-alt": "一泽 Eze 的微信二维码",
@@ -22,7 +22,7 @@
     "footer-pricing": "定价",
     "footer-group-product": "产品",
     "footer-group-support": "支持",
-    "footer-group-legal": "法律"
+    "footer-group-docs": "文档"
   },
   "home": {
     "dropdown-chrome": "Chrome 商店",

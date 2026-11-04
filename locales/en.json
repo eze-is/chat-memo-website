@@ -11,7 +11,7 @@
     "nav-menu": "Menu",
     "footer-copyright": "© Chat Memo by Eze. All rights reserved.",
     "footer-chrome": "Chrome Extension",
-    "footer-guide": "User Guide",
+    "footer-guide": "Extension Guide",
     "footer-feedback": "Feedback",
     "footer-wechat-text": "Chat Memo Author WeChat",
     "wechat-qr-alt": "Eze's WeChat QR code",
@@ -22,7 +22,7 @@
     "footer-pricing": "Pricing",
     "footer-group-product": "Product",
     "footer-group-support": "Support",
-    "footer-group-legal": "Legal"
+    "footer-group-docs": "Documents"
   },
   "home": {
     "dropdown-chrome": "Chrome Store",
