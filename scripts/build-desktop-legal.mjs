@@ -25,9 +25,9 @@ const locales = {
 // 发布后不修改旧原文；修订时新增版本并切换对应指针。
 const documents = [
     { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.3', sha256: 'b0fb979ee3afd8758841f972fe77d4e0a366efe0c5639108f8e7bfc98539ab42' },
-    { key: 'terms', locale: 'zh-CN', version: '2026-11-04.3', sha256: '229b2bc632b4d583b282577416d78bf31d669670c739aebf830be5eae4a4e009' },
+    { key: 'terms', locale: 'zh-CN', version: '2026-11-05.1', sha256: 'ee67e09b785ffe50b993c9ebc3bde96a7d85f78cf0b5dff863a3d0e1eef430e5' },
     { key: 'privacy', locale: 'en', version: '2026-11-04.3', sha256: '206702d2a8808eb5b6c130c6c4c4b67565b43494aa42babb0155150b31c9d22b' },
-    { key: 'terms', locale: 'en', version: '2026-11-04.3', sha256: '7f1b077167808efe457e9cacc6bc76cb6cc4587643ce8b7f075ff620f1e60da5' },
+    { key: 'terms', locale: 'en', version: '2026-11-05.1', sha256: '6ebb8b2f90149e305a4db94ffa03039a5db72d41079baff4d9c81f1d464238f2' },
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
