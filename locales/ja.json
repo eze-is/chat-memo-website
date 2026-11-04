@@ -158,7 +158,7 @@
     "faq1-q": "以前の会話も保存できますか？",
     "faq1-a": "はい。対象の会話を開くと保存が始まります。Gemini では読み込み方式の都合上、20 件以上のメッセージがある会話は過去のメッセージを手動で読み込む必要があります。",
     "faq2-q": "ほかの AI サービスやスマートフォンの会話も保存できますか？",
-    "faq2-a": "Chat Memo は現在、ChatGPT、Gemini、Claude、DeepSeek、Google AI Mode、Doubao、Kimi、Qwen、Tencent Yuanbao の Web 版の会話に対応しています。<br>スマートフォンアプリ、デスクトップアプリ、コーディングツール内の会話は自動保存できません。<br>ご要望は <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">フィードバック</a>からお寄せください。",
+    "faq2-a": "Chat Memo は現在、ChatGPT、Gemini、Claude、DeepSeek、Doubao、Kimi、Qwen、Tencent Yuanbao の Web 版の会話に対応しています。<br>スマートフォンアプリ、デスクトップアプリ、コーディングツール内の会話は自動保存できません。<br>ご要望は <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">フィードバック</a>からお寄せください。",
     "faq3-q": "会話の自動保存が突然止まったら？",
     "faq3-a": "Web ページと拡張機能の連携がうまく始まらなかった可能性があります。まずページを再読み込みしてください。解決しない場合は、<a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">フィードバック</a>からご連絡ください。",
     "faq4-q": "Quark、Dia、Arc でサイドバーを開けない場合は？",

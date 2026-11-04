@@ -140,7 +140,7 @@
     "faq1-q": "使用 Chat Memo ，能保存之前的聊天记录吗？",
     "faq1-a": "可以，只要手动点开对应聊天记录，就可以触发保存（Gemini 由于特殊加载机制，超过 20 条消息的对话，需要手动加载历史消息）",
     "faq2-q": "支持其他 AI 平台的聊天记录吗？支持保存手机端的 AI 对话吗？",
-    "faq2-a": "Chat Memo 目前支持 ChatGPT、Gemini、Claude、DeepSeek、Google AI Mode、豆包、Kimi、通义千问和腾讯元宝的网页端对话。<br>手机 App、桌面客户端及 Coding 工具内的对话暂不支持自动保存。<br>如有需求，欢迎通过 <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">反馈</a> 告诉我们。",
+    "faq2-a": "Chat Memo 目前支持 ChatGPT、Gemini、Claude、DeepSeek、豆包、Kimi、通义千问和腾讯元宝的网页端对话。<br>手机 App、桌面客户端及 Coding 工具内的对话暂不支持自动保存。<br>如有需求，欢迎通过 <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">反馈</a> 告诉我们。",
     "faq3-q": "突然有页面的聊天记录不会自动保存了怎么办？",
     "faq3-a": "可能是网页和插件之间初始化失败，重新刷新一次网页即可。如还有问题，请通过 <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">Feedback</a> 联系作者排查。",
     "faq4-q": "夸克、Dia、Arc 无法打开侧边栏？",

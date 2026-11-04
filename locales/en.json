@@ -140,7 +140,7 @@
     "faq1-q": "Can Chat Memo save previous chat records?",
     "faq1-a": "Yes, as long as you manually open the corresponding chat record, it will trigger saving (For Gemini, due to its special loading mechanism, conversations with more than 20 messages need to manually load historical messages)",
     "faq2-q": "Does it support chat records from other AI platforms? Does it support saving mobile AI conversations?",
-    "faq2-a": "Chat Memo supports web conversations on ChatGPT, Gemini, Claude, DeepSeek, Google AI Mode, Doubao, Kimi, Qwen, and Tencent Yuanbao.<br>It does not capture conversations inside mobile apps, desktop apps, or coding tools.<br>For requests, use <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">Feedback</a>.",
+    "faq2-a": "Chat Memo supports web conversations on ChatGPT, Gemini, Claude, DeepSeek, Doubao, Kimi, Qwen, and Tencent Yuanbao.<br>It does not capture conversations inside mobile apps, desktop apps, or coding tools.<br>For requests, use <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">Feedback</a>.",
     "faq3-q": "What to do if a page's chat records suddenly stop auto-saving?",
     "faq3-a": "It may be due to initialization failure between the webpage and plugin. Simply refresh the webpage once. If the problem persists, please contact the author for troubleshooting through <a href=\"/feedback\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">Feedback</a>.",
     "faq4-q": "Quark, Dia, Arc cannot open the sidebar?",
