@@ -170,6 +170,9 @@ test('四页先启动语言加载并立即绑定导航，再等待词包完成',
     for (const [page, file] of Object.entries(pages)) {
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         const startup = new RegExp(`const\\s+i18nReady\\s*=\\s*SiteI18n\\.init\\('${page}'\\);\\s*SiteNav\\.init\\(\\);\\s*await\\s+i18nReady;`);
-        assert.match(html, startup, file);
+        if (page === 'pricing') {
+            assert.ok(html.indexOf('ChatMemoPricing.init()') < html.indexOf('await i18nReady'), '报价不等待运行时词包');
+            assert.match(html, /SiteNav\.init\(\);[\s\S]*if \(SiteI18n\.isCanonicalPath\('pricing'\)\) ChatMemoPricing\.init\(\);/);
+        } else assert.match(html, startup, file);
     }
 });

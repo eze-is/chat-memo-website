@@ -25,7 +25,8 @@ test('定价从公共金额和交付状态派生，未来权益不混入已售�
     assert.match(html, /CNY 123\.45/);
     assert.match(html, /US\$67\.89/);
     assert.match(html, /test\.1/);
-    assert.match(html, /Continue conversations[^<]+<\/th><td>.*Not included<\/td><td>.*Included/);
+    assert.match(html, /class="plan-gain"/);
+    assert.equal((html.match(/Continue conversations/g) || []).length, 1);
     assert.doesNotMatch(html, /AI Ask|feature-ask|planned/);
     input.offer.prices[0].amount = 22222;
     assert.match(pricingMarkup(input, copy, 'en'), /CNY 222\.22/);
@@ -72,11 +73,14 @@ test('定价四语稳定路由和中立入口交给既有语言路由解析', ()
         assert.equal(route.locale, locale); assert.equal(route.page, 'pricing');
         assert.equal(context.window.SiteI18n.pathFor(locale, 'pricing'), `/${locale}/pricing`);
         const html = fs.readFileSync(path.join(root, locale, 'pricing.html'), 'utf8');
-        assert.match(html, /<table data-catalog-version=/);
+        assert.match(html, /data-catalog-version=/);
+        assert.match(html, /data-price-market="cn" hidden/);
+        assert.match(html, /data-price-market="global" hidden/);
+        assert.doesNotMatch(html, /Mainland China|中国大陆|中国本土|China continental/);
         assert.match(html, /US\$[0-9]/);
         assert.match(html, /CNY [0-9]/);
         assert.doesNotMatch(html, /fetch\([^)]*api\.chatmemo/);
-        assert.doesNotMatch(html, /awaiting confirmation|待确认|確認中|pendiente de confirmación/);
+        assert.doesNotMatch(JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8')).pricing['refund-description'], /awaiting confirmation|待确认|確認中|pendiente de confirmación/);
         assert.ok(html.includes(copy['refund-description']) || locale !== 'en');
     }
     assert.equal(context.window.SiteI18n.routeInfo('/pricing.html').page, 'pricing');

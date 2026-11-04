@@ -184,7 +184,7 @@
     }
   },
   "pricing": {
-    "pricing-title": "定价",
+    "pricing-title": "选择适合你的方案",
     "pricing-intro": "免费保存、阅读和搜索 AI 对话。开通 Pro，让不同 AI 接着聊。",
     "comparison": "套餐对比",
     "free": "免费版",
@@ -192,9 +192,6 @@
     "free-description": "对话保存在你的设备上。",
     "pro-description": "跨 AI 互通上下文。",
     "per-year": "／年",
-    "mainland": "中国大陆",
-    "included": "包含",
-    "not-included": "不包含",
     "feature-save": "保存 AI 对话",
     "feature-save-desktop": "备份电脑端 AI 对话",
     "feature-save-web": "备份网页端 AI 对话",
@@ -202,10 +199,15 @@
     "feature-read": "跨 AI、跨会话接续对话",
     "billing-title": "计费与有效期",
     "billing-description": "当前 Pro 按年销售，一次付费获得一年使用权，不自动续费。具体起止时间可在账号中查看。",
-    "market-description": "中国大陆价格适用于该市场符合条件的购买，其他地区适用美元价格。付款前请确认适用价格、税费及应付总额。",
+    "market-description": "付款前请在购买页面确认价格、税费及使用期限。",
     "availability-description": "当前尚未开放线上付款。开放购买后，可在桌面应用中查看购买方案。",
     "refund-title": "退款",
     "refund-description": "目前暂不支持退款，法律另有规定的除外。",
-    "contact-label": "收费或退款问题，请联系"
+    "contact-label": "收费或退款问题，请联系",
+    "early-bird": "早鸟价",
+    "price-loading": "正在读取价格…",
+    "price-error": "暂时无法读取价格。",
+    "price-retry": "重试",
+    "price-noscript": "请启用 JavaScript 查看适用价格。"
   }
 }

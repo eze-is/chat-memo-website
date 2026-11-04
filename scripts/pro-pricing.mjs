@@ -32,21 +32,35 @@ export async function loadCatalog() {
 
 export function pricingMarkup(catalog, copy, locale) {
     validateCatalog(catalog);
-    const price = market => {
-        const value = catalog.offer.prices.find(value => value.market === market);
-        const number = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(value.amount / 100);
-        return `${value.currency === 'CNY' ? 'CNY ' : 'US$'}${number}`;
-    };
     const t = key => {
         if (!copy[key]) throw new Error(`Missing pricing translation: ${locale}.${key}`);
         return escape(copy[key]);
     };
-    const features = catalog.plans.features.filter(feature => feature.free === 'available' || feature.pro === 'available');
-    const status = (value, plan) => `<span class="mobile-plan-label">${plan}: </span>${t(value === 'available' ? 'included' : 'not-included')}`;
-    return `<table data-catalog-version="${escape(catalog.contentVersion)}">
-        <caption class="sr-only">${t('comparison')}</caption>
-        <thead><tr><td></td><th scope="col"><h2>${t('free')}</h2><p class="plan-price">${t('free-price')}</p><p>${t('free-description')}</p></th>
-        <th scope="col"><h2>Pro</h2><p class="plan-price">${price('global')}<span>${t('per-year')}</span></p><p>${t('mainland')}: <span class="local-price">${price('cn')}${t('per-year')}</span></p><p>${t('pro-description')}</p></th></tr></thead>
-        <tbody>${features.map(feature => `<tr><th scope="row">${t(`feature-${feature.id}`)}</th><td>${status(feature.free, t('free'))}</td><td>${status(feature.pro, 'Pro')}</td></tr>`).join('')}</tbody>
-    </table>`;
+    const price = market => {
+        const value = catalog.offer.prices.find(value => value.market === market);
+        const number = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(value.amount / 100);
+        return `<span class="price-amount">${value.currency === 'CNY' ? 'CNY ' : 'US$'}${number}</span><span class="price-period">${t('per-year')}</span>`;
+    };
+    const cn = catalog.offer.prices.find(value => value.market === 'cn');
+    const mark = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>';
+    const features = pro => catalog.plans.features.filter(feature => (pro ? feature.pro : feature.free) === 'available')
+        .map(feature => `<li${pro && feature.free !== 'available' ? ' class="plan-gain"' : ''}>${mark}<span>${t(`feature-${feature.id}`)}</span></li>`).join('');
+    return `<div class="plan-comparison" role="group" aria-label="${t('comparison')}" data-catalog-version="${escape(catalog.contentVersion)}">
+        <article class="plan-card plan-free" aria-labelledby="free-plan-title">
+            <h2 id="free-plan-title">${t('free')}</h2><p class="plan-description">${t('free-description')}</p>
+            <div class="plan-price"><span class="price-amount">${t('free-price')}</span></div>
+            <ul class="plan-features">${features(false)}</ul>
+        </article>
+        <article class="plan-card plan-pro" aria-labelledby="pro-plan-title">
+            <h2 id="pro-plan-title">Pro</h2><p class="plan-description">${t('pro-description')}</p>
+            <div class="region-price" data-region-price aria-live="polite" aria-busy="true">
+                <p class="price-status" data-price-loading data-key="price-loading">${t('price-loading')}</p>
+                <div data-price-market="cn" hidden>${cn.standardAmount > cn.amount ? `<p class="early-bird">${t('early-bird')}</p>` : ''}<div class="plan-price">${price('cn')}</div></div>
+                <div data-price-market="global" hidden><div class="plan-price">${price('global')}</div></div>
+                <div class="price-failure" data-price-error hidden><p data-key="price-error">${t('price-error')}</p><button type="button" data-price-retry data-key="price-retry">${t('price-retry')}</button></div>
+                <noscript><style>[data-price-loading] { display: none !important; }</style><p class="price-status">${t('price-noscript')}</p></noscript>
+            </div>
+            <ul class="plan-features">${features(true)}</ul>
+        </article>
+    </div>`;
 }

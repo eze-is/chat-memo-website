@@ -258,7 +258,7 @@ function render(page, locale) {
         visit(document, node => {
             for (const name of ['src', 'href']) {
                 const value = attr(node, name)?.split('?')[0];
-                if (!['/site-i18n.js', '/site-nav.js', '/pricing.css'].includes(value)) continue;
+                if (!['/site-i18n.js', '/site-nav.js', '/pricing.css', '/pricing-region.js'].includes(value)) continue;
                 const hash = createHash('sha256').update(fs.readFileSync(path.join(root, value))).digest('hex').slice(0, 12);
                 setAttr(node, name, `${value}?v=${hash}`);
             }

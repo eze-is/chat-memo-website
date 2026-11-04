@@ -184,7 +184,7 @@
     }
   },
   "pricing": {
-    "pricing-title": "Pricing",
+    "pricing-title": "Choose your plan",
     "pricing-intro": "Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI.",
     "comparison": "Compare plans",
     "free": "Free",
@@ -192,9 +192,6 @@
     "free-description": "Keep your conversations on your device.",
     "pro-description": "Carry context across AI apps.",
     "per-year": " / year",
-    "mainland": "Mainland China",
-    "included": "Included",
-    "not-included": "Not included",
     "feature-save": "Save AI conversations",
     "feature-save-desktop": "Save conversations from desktop AI apps",
     "feature-save-web": "Save conversations from AI websites",
@@ -202,10 +199,15 @@
     "feature-read": "Continue conversations across AI apps and chats",
     "billing-title": "Billing and access",
     "billing-description": "The current Pro plan is a one-time payment for one year of access, with no automatic renewal. Your account shows the exact access dates.",
-    "market-description": "Mainland China pricing applies to eligible purchases in that market; USD pricing applies elsewhere. Confirm the applicable price, any taxes and the total before paying.",
+    "market-description": "Confirm the price, any taxes and your access dates on the payment page before paying.",
     "availability-description": "Online payments are not yet available. When purchasing opens, you’ll be able to view the offer in the desktop app.",
     "refund-title": "Refunds",
     "refund-description": "We currently do not offer refunds, except where required by law.",
-    "contact-label": "For billing or refund questions, email"
+    "contact-label": "For billing or refund questions, email",
+    "early-bird": "Early bird",
+    "price-loading": "Loading price…",
+    "price-error": "Price is temporarily unavailable.",
+    "price-retry": "Retry",
+    "price-noscript": "Enable JavaScript to see the applicable price."
   }
 }

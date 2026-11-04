@@ -184,7 +184,7 @@
     "no-updates-desc": "更新履歴を準備中です。もうしばらくお待ちください"
   },
   "pricing": {
-    "pricing-title": "料金",
+    "pricing-title": "プランを選ぶ",
     "pricing-intro": "AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。",
     "comparison": "プラン比較",
     "free": "無料プラン",
@@ -192,9 +192,6 @@
     "free-description": "会話はお使いの端末に保存。",
     "pro-description": "AI アプリ間で文脈を引き継ぐ。",
     "per-year": "／年",
-    "mainland": "中国本土",
-    "included": "利用可能",
-    "not-included": "対象外",
     "feature-save": "AI との会話を保存",
     "feature-save-desktop": "デスクトップ AI アプリの会話を保存",
     "feature-save-web": "AI ウェブサイトの会話を保存",
@@ -202,10 +199,15 @@
     "feature-read": "別の AI やチャットで会話を続ける",
     "billing-title": "お支払いと利用期間",
     "billing-description": "現在の Pro プランは、1 回のお支払いで 1 年間利用できます。自動更新はありません。正確な利用期間はアカウントで確認できます。",
-    "market-description": "中国本土向けの価格は、同市場で条件を満たす購入に適用されます。その他の地域では米ドル価格が適用されます。お支払い前に、適用価格・税金・合計金額をご確認ください。",
+    "market-description": "お支払い前に、購入ページで価格・税金・利用期間をご確認ください。",
     "availability-description": "現在、オンラインでのお支払いは受け付けていません。販売開始後、デスクトップアプリで購入プランを確認できます。",
     "refund-title": "返金",
     "refund-description": "現在、返金は受け付けていません。ただし、適用法令により返金が必要な場合を除きます。",
-    "contact-label": "料金や返金に関するお問い合わせ先："
+    "contact-label": "料金や返金に関するお問い合わせ先：",
+    "early-bird": "早期特別価格",
+    "price-loading": "料金を確認中…",
+    "price-error": "料金を取得できませんでした。",
+    "price-retry": "再試行",
+    "price-noscript": "適用される料金を表示するには、JavaScript を有効にしてください。"
   }
 }
