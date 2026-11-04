@@ -108,7 +108,6 @@ function documentPage(doc) {
     </main>
     <footer class="legal-footer"><nav aria-label="${locale === 'en' ? 'Footer' : '页脚'}">
         ${footerLinks.map(([target, label]) => `<a href="${pathFor(locale, target)}">${escape(common[label])}</a>`).join('')}
-        <a href="https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">${escape(common['footer-privacy'])}</a>
     </nav></footer>
     <script src="${asset('/site-i18n.js')}"></script>
     <script src="${asset('/site-nav.js')}"></script>

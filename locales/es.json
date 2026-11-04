@@ -31,14 +31,16 @@
     "footer-chrome": "Extensión para Chrome",
     "footer-guide": "Guía de uso",
     "footer-feedback": "Enviar comentarios",
-    "footer-privacy": "Privacidad de la extensión",
     "footer-wechat-text": "WeChat del creador de Chat Memo",
     "wechat-qr-alt": "Código QR de WeChat de Eze",
     "nav-pricing": "Precios",
     "footer-terms": "Términos del servicio",
-    "footer-desktop-privacy": "Privacidad de la app de escritorio",
+    "footer-desktop-privacy": "Política de privacidad",
     "skip-content": "Saltar al contenido",
-    "footer-pricing": "Precios"
+    "footer-pricing": "Precios",
+    "footer-group-product": "Producto",
+    "footer-group-support": "Ayuda",
+    "footer-group-legal": "Legal"
   },
   "home": {
     "dropdown-chrome": "Chrome Web Store",

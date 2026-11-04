@@ -52,7 +52,7 @@ test('中英互链及canonical指向同一文档，不提供未翻译语言或�
     for (const locale of locales) for (const key of keys) {
         const document = parsePage(`${locale}/desktop/${key}.html`);
         const links = all(document, node => node.tagName === 'a');
-        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai', `/${locale}/pricing`, `/${locale}/desktop/terms`, `/${locale}/desktop/privacy`, 'https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md']);
+        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai', `/${locale}/pricing`, `/${locale}/desktop/terms`, `/${locale}/desktop/privacy`]);
         assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
         const trigger = all(document, node => attr(node, 'data-site-locale-trigger') !== undefined)[0];
         assert.equal(attr(trigger, 'aria-expanded'), 'false');

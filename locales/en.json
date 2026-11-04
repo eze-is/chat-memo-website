@@ -13,14 +13,16 @@
     "footer-chrome": "Chrome Extension",
     "footer-guide": "User Guide",
     "footer-feedback": "Feedback",
-    "footer-privacy": "Extension Privacy Policy",
     "footer-wechat-text": "Chat Memo Author WeChat",
     "wechat-qr-alt": "Eze's WeChat QR code",
     "nav-pricing": "Pricing",
     "footer-terms": "Terms of Service",
-    "footer-desktop-privacy": "Desktop Privacy Policy",
+    "footer-desktop-privacy": "Privacy Policy",
     "skip-content": "Skip to content",
-    "footer-pricing": "Pricing"
+    "footer-pricing": "Pricing",
+    "footer-group-product": "Product",
+    "footer-group-support": "Support",
+    "footer-group-legal": "Legal"
   },
   "home": {
     "dropdown-chrome": "Chrome Store",

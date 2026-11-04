@@ -66,7 +66,7 @@
 
 ## 生产部署
 
-桌面版独立法律页面位于 `/{en|zh-CN}/desktop/{privacy|terms}`，原 `/desktop/privacy`、`/desktop/terms` 按官网语言规则导航，并提供英文静态兜底。当前中英文正式版本均为 `2026-11-04.3`；维护和验证见 [桌面版法律文档](doc/DESKTOP-LEGAL.md)。正文更新后运行 `npm run build:legal`，提交前运行 `npm run check:legal`。这些页面不替换浏览器插件的旧政策。全站页脚分别提供桌面版协议／隐私和插件隐私入口；独立定价页为`/{locale}/pricing`，详见[定价内容来源](doc/PRO-PRESENTATION.md)。
+桌面版独立法律页面位于 `/{en|zh-CN}/desktop/{privacy|terms}`，原 `/desktop/privacy`、`/desktop/terms` 按官网语言规则导航，并提供英文静态兜底。当前中英文正式版本均为 `2026-11-04.3`；维护和验证见 [桌面版法律文档](doc/DESKTOP-LEGAL.md)。正文更新后运行 `npm run build:legal`，提交前运行 `npm run check:legal`。这些页面不替换浏览器插件的旧政策。全站页脚提供用户协议和隐私政策入口，均指向桌面版法律页面；独立定价页为`/{locale}/pricing`，详见[定价内容来源](doc/PRO-PRESENTATION.md)。
 
 - Cloudflare Pages 连接 `eze-is/chat-memo-website`，从 `main` 分支根目录直接发布；Pages 无构建命令，预生成的四语 HTML 随源码提交。
 - `main` 是 Production 分支；其他分支和 Pull Request 只生成 Preview 部署。

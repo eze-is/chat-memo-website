@@ -53,7 +53,7 @@ test('所有现行营销页、法律页和404的静态页脚均可直接打开�
             for (const href of [`/${legalLocale}/desktop/terms`, `/${legalLocale}/desktop/privacy`, `/${locale}/pricing`]) {
                 assert.ok(footer.includes(`href="${href}"`), `${locale}/${name}: ${href}`);
             }
-            assert.match(footer, /https:\/\/github.com\/eze-is\/Chat-Memo\/blob\/main\/PRIVACY_POLICY\.md/);
+            assert.doesNotMatch(footer, /https:\/\/github.com\/eze-is\/Chat-Memo\/blob\/main\/PRIVACY_POLICY\.md/);
         }
     }
     for (const locale of ['en', 'zh-CN']) for (const name of ['privacy', 'terms']) {

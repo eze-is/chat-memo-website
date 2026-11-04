@@ -31,14 +31,16 @@
     "footer-chrome": "Chrome 拡張機能",
     "footer-guide": "使い方ガイド",
     "footer-feedback": "フィードバック",
-    "footer-privacy": "拡張機能のプライバシーポリシー",
     "footer-wechat-text": "Chat Memo 作者の WeChat",
     "wechat-qr-alt": "Eze の WeChat QR コード",
     "nav-pricing": "料金",
     "footer-terms": "利用規約",
-    "footer-desktop-privacy": "デスクトップ版のプライバシーポリシー",
+    "footer-desktop-privacy": "プライバシーポリシー",
     "skip-content": "本文へスキップ",
-    "footer-pricing": "料金"
+    "footer-pricing": "料金",
+    "footer-group-product": "製品",
+    "footer-group-support": "サポート",
+    "footer-group-legal": "規約・ポリシー"
   },
   "home": {
     "dropdown-chrome": "Chrome ウェブストア",

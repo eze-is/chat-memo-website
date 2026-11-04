@@ -13,14 +13,16 @@
     "footer-chrome": "Chrome 插件",
     "footer-guide": "使用指南",
     "footer-feedback": "反馈建议",
-    "footer-privacy": "插件隐私政策",
     "footer-wechat-text": "Chat Memo 作者公众号",
     "wechat-qr-alt": "一泽 Eze 的微信二维码",
     "nav-pricing": "定价",
     "footer-terms": "用户协议",
-    "footer-desktop-privacy": "桌面版隐私政策",
+    "footer-desktop-privacy": "隐私政策",
     "skip-content": "跳到正文",
-    "footer-pricing": "定价"
+    "footer-pricing": "定价",
+    "footer-group-product": "产品",
+    "footer-group-support": "支持",
+    "footer-group-legal": "法律"
   },
   "home": {
     "dropdown-chrome": "Chrome 商店",
