@@ -10,6 +10,20 @@
     <link rel="stylesheet" href="/pricing.css?v=83dec7eea8a0">
     <script src="/site-i18n.js?v=7cf8a6d26227"></script>
     <script src="/site-nav.js?v=692435df12f7"></script>
+    <!-- GA4只记录规范语言定价页；中立跳转与URL中的凭证不进入统计。 -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
+    <script data-pricing-page-view="">
+        (() => {
+            if (!SiteI18n.isCanonicalPath('pricing') || window.__chatmemoPricingPageView) return;
+            window.__chatmemoPricingPageView = true;
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+            const pageLocation = window.location.origin + window.location.pathname;
+            gtag('js', new Date());
+            gtag('config', 'G-C4C06BSVNL', { send_page_view: false, page_location: pageLocation, page_referrer: '' });
+            gtag('event', 'page_view', { page_location: pageLocation, page_referrer: '' });
+        })();
+    </script>
 <meta name="language" content="es"><meta property="og:url" content="https://chatmemo.ai/es/pricing"><meta property="og:title" content="Precios · Chat Memo"><meta property="og:description" content="Guarda, lee y busca tus conversaciones con IA gratis. Con Pro, puedes continuar una conversación en otra IA."><meta property="og:locale" content="es_ES"><meta property="twitter:url" content="https://chatmemo.ai/es/pricing"><meta property="twitter:title" content="Precios · Chat Memo"><meta property="twitter:description" content="Guarda, lee y busca tus conversaciones con IA gratis. Con Pro, puedes continuar una conversación en otra IA."><script src="/pricing-region.js?v=c69983c07220"></script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"></head>
 <body>
     <a href="#main" class="skip-link" data-key="skip-content">Saltar al contenido</a>
