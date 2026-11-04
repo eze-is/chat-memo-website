@@ -119,7 +119,7 @@
             if (target.hostname === 'chromewebstore.google.com' && target.pathname.startsWith('/detail/')) {
                 eventName = 'add_to_chrome';
                 eventCategory = 'conversion';
-            } else if (target.pathname === '/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd') {
+            } else if (target.origin === window.location.origin && target.pathname === '/feedback') {
                 eventName = 'feedback_click';
             } else if (target.origin === window.location.origin && (target.pathname !== window.location.pathname || target.hash.length > 1)) {
                 eventName = 'navigation_click';
@@ -293,7 +293,7 @@
                 <a href="/zh-CN/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-guide">入门指南</a>
                 <a href="/zh-CN/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-updates">更新日志</a>
                 <a href="/zh-CN/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-pricing">定价</a>
-                <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-feedback">反馈</a>
+                <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-feedback">反馈</a>
             </nav>
             <div class="flex items-center gap-3">
                 <div data-site-locale-menu="" class="relative shrink-0">
@@ -341,7 +341,7 @@
                 <a href="/zh-CN/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-guide">入门指南</a>
                 <a href="/zh-CN/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">更新日志</a>
                 <a href="/zh-CN/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-pricing">定价</a>
-                <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">反馈</a>
+                <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">反馈</a>
                 <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
                     <span data-key="nav-chrome-mobile">免费添加至 Chrome</span>
                 </a>
@@ -384,7 +384,7 @@
                             </a>
                         </div>
                     </div>
-                    <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto border-2 border-gray-800 hover:bg-gray-800 text-gray-800 hover:text-white font-bold py-3 px-6 rounded-lg text-lg transition flex items-center justify-center min-h-[52px]">
+                    <a href="/feedback" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto border-2 border-gray-800 hover:bg-gray-800 text-gray-800 hover:text-white font-bold py-3 px-6 rounded-lg text-lg transition flex items-center justify-center min-h-[52px]">
                         <span class="text-center" data-key="hero-pro-btn">参与 Pro 功能共建</span>
                     </a>
                 </div>
@@ -629,7 +629,7 @@
                     <hr class="border-gray-200 my-8">
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900" data-key="faq3-q">未来会支持哪些新平台？</h3>
-                        <p class="text-gray-600 mt-2" data-key="faq3-a">Claude 已经支持。当前支持的平台可在插件的「平台配置」中查看；如果希望增加其他 AI 平台，欢迎通过<a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">「我有建议」</a>告诉我们，用户需求会帮助我们安排优先级。</p>
+                        <p class="text-gray-600 mt-2" data-key="faq3-a">Claude 已经支持。当前支持的平台可在插件的「平台配置」中查看；如果希望增加其他 AI 平台，欢迎通过<a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">「我有建议」</a>告诉我们，用户需求会帮助我们安排优先级。</p>
                     </div>
                 </div>
             </div>
@@ -667,7 +667,7 @@
                 <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
                     <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-chrome">Chrome 插件</a>
                     <a href="/zh-CN/welcome" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-guide">使用指南</a>
-                    <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-feedback">反馈建议</a>
+                    <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-feedback">反馈建议</a>
                     <a href="/zh-CN/pricing" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-pricing">定价</a>
                     <a href="/zh-CN/desktop/terms" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-terms">用户协议</a>
                     <a href="/zh-CN/desktop/privacy" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-desktop-privacy">桌面版隐私政策</a>
