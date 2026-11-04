@@ -12,6 +12,10 @@
     "updates": {
       "title": "Novedades de Chat Memo: funciones, mejoras y correcciones",
       "description": "Conoce las nuevas funciones, mejoras y correcciones de Chat Memo, la extensión para guardar y organizar tus conversaciones con IA."
+    },
+    "pricing": {
+      "title": "Precios · Chat Memo",
+      "description": "Guarda, lee y busca tus conversaciones con IA gratis. Con Pro, puedes continuar una conversación en otra IA."
     }
   },
   "common": {
@@ -27,9 +31,14 @@
     "footer-chrome": "Extensión para Chrome",
     "footer-guide": "Guía de uso",
     "footer-feedback": "Enviar comentarios",
-    "footer-privacy": "Política de privacidad",
+    "footer-privacy": "Privacidad de la extensión",
     "footer-wechat-text": "WeChat del creador de Chat Memo",
-    "wechat-qr-alt": "Código QR de WeChat de Eze"
+    "wechat-qr-alt": "Código QR de WeChat de Eze",
+    "nav-pricing": "Precios",
+    "footer-terms": "Términos del servicio",
+    "footer-desktop-privacy": "Privacidad de la app de escritorio",
+    "skip-content": "Saltar al contenido",
+    "footer-pricing": "Precios"
   },
   "home": {
     "dropdown-chrome": "Chrome Web Store",
@@ -105,7 +114,7 @@
     "faq1-q": "¿Mis datos están seguros?",
     "faq1-a": "Tus conversaciones se guardan de forma local en tu computadora. No accedemos a ellas ni analizamos su contenido. Tus datos son tuyos.",
     "faq2-q": "¿Chat Memo es gratis?",
-    "faq2-a": "Sí. Las funciones locales principales serán gratuitas siempre. En el futuro podríamos ofrecer servicios adicionales de pago, como sincronización cifrada en la nube y análisis con IA.",
+    "faq2-a": "Guardar, leer y buscar por palabras clave es gratis. Pro permite continuar conversaciones entre distintas IA. Consulta los planes, precios y condiciones de pago en la <a href=\"/pricing\" class=\"text-blue-600 underline\">página de precios</a>.",
     "faq3-q": "¿Qué otras plataformas se admitirán en el futuro?",
     "faq3-a": "Claude ya es compatible. Puedes consultar todas las plataformas disponibles en la configuración de plataformas de la extensión. Si quieres que añadamos otro servicio de IA, cuéntanoslo en <a href=\"https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">Comentarios</a>; tus sugerencias nos ayudan a establecer prioridades.",
     "cta-title": "Empieza a construir tu memoria con IA",
@@ -173,5 +182,30 @@
     "reload-btn": "Volver a cargar",
     "no-updates": "Todavía no hay novedades",
     "no-updates-desc": "Estamos preparando el historial de actualizaciones. Vuelve pronto."
+  },
+  "pricing": {
+    "pricing-title": "Precios",
+    "pricing-intro": "Guarda, lee y busca tus conversaciones con IA gratis. Con Pro, puedes continuar una conversación en otra IA.",
+    "comparison": "Comparar planes",
+    "free": "Gratis",
+    "free-price": "Gratis",
+    "free-description": "Tus conversaciones se guardan en tu dispositivo.",
+    "pro-description": "Lleva el contexto de una IA a otra.",
+    "per-year": " / año",
+    "mainland": "China continental",
+    "included": "Incluido",
+    "not-included": "No incluido",
+    "feature-save": "Guardar conversaciones con IA",
+    "feature-save-desktop": "Guardar conversaciones de apps de IA de escritorio",
+    "feature-save-web": "Guardar conversaciones de sitios web de IA",
+    "feature-search": "Búsqueda por palabras clave",
+    "feature-read": "Continuar conversaciones entre distintas IA y chats",
+    "billing-title": "Facturación y vigencia",
+    "billing-description": "El plan Pro actual se paga una sola vez por un año de acceso, sin renovación automática. Puedes consultar las fechas exactas en tu cuenta.",
+    "market-description": "El precio para China continental se aplica a las compras que cumplan los requisitos de ese mercado. En las demás regiones se aplica el precio en dólares estadounidenses. Confirma el precio aplicable, los impuestos y el importe total antes de pagar.",
+    "availability-description": "Los pagos en línea aún no están disponibles. Cuando se habiliten las compras, podrás consultar la oferta en la app de escritorio.",
+    "refund-title": "Reembolsos",
+    "refund-description": "Una vez activado Pro, no ofrecemos reembolsos por cambio de opinión, salvo que lo exija la ley aplicable, se haya realizado un cobro duplicado o no prestemos el servicio según lo acordado.",
+    "contact-label": "Para consultas sobre pagos o reembolsos, escribe a"
   }
 }

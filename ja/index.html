@@ -96,7 +96,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Chat Memo","url":"https://chatmemo.ai/","description":"Chat Memo は、ChatGPT、Gemini、DeepSeek、Claude などの会話を自動保存し、端末内でまとめて管理・検索できる Chrome 拡張機能です。","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://chatmemo.ai/?q={search_term_string}"},"query-input":"required name=search_term_string"},"inLanguage":["en","zh-CN","ja","es"]}</script>
 
     <!-- FAQ Schema -->
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"データは安全ですか？","acceptedAnswer":{"@type":"Answer","text":"現在、会話データはお使いのパソコン内に保存されます。私たちが会話内容にアクセスしたり、分析したりすることはありません。あなたのデータは、あなたのものです。"}},{"@type":"Question","name":"Chat Memo は無料ですか？","acceptedAnswer":{"@type":"Answer","text":"はい。ローカルで使う基本機能はずっと無料です。将来的には、暗号化したクラウド同期や AI による洞察など、提供にコストがかかる機能を有料でご案内する予定です。"}},{"@type":"Question","name":"今後はどのプラットフォームに対応しますか？","acceptedAnswer":{"@type":"Answer","text":"Claude にはすでに対応しています。現在対応しているサービスは、拡張機能の「プラットフォーム設定」で確認できます。ほかの AI サービスへの対応を希望する場合は、フィードバックからお知らせください。寄せられた要望を開発の優先順位に反映します。"}}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"データは安全ですか？","acceptedAnswer":{"@type":"Answer","text":"現在、会話データはお使いのパソコン内に保存されます。私たちが会話内容にアクセスしたり、分析したりすることはありません。あなたのデータは、あなたのものです。"}},{"@type":"Question","name":"Chat Memo は無料ですか？","acceptedAnswer":{"@type":"Answer","text":"会話の保存・閲覧・キーワード検索は無料です。Pro では、別の AI でも会話を続けられます。現在のプラン・価格・お支払い条件は料金ページをご覧ください。"}},{"@type":"Question","name":"今後はどのプラットフォームに対応しますか？","acceptedAnswer":{"@type":"Answer","text":"Claude にはすでに対応しています。現在対応しているサービスは、拡張機能の「プラットフォーム設定」で確認できます。ほかの AI サービスへの対応を希望する場合は、フィードバックからお知らせください。寄せられた要望を開発の優先順位に反映します。"}}]}</script>
 
     <!-- Google Analytics 4 -->
     <script src="/site-i18n.js"></script>
@@ -292,6 +292,7 @@
                 <a href="/ja/" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-overview">概要</a>
                 <a href="/ja/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-guide">はじめに</a>
                 <a href="/ja/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-updates">更新履歴</a>
+                <a href="/ja/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-pricing">料金</a>
                 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-feedback">フィードバック</a>
             </nav>
             <div class="flex items-center gap-3">
@@ -339,6 +340,7 @@
                 <a href="/ja/" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-overview">概要</a>
                 <a href="/ja/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-guide">はじめに</a>
                 <a href="/ja/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">更新履歴</a>
+                <a href="/ja/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-pricing">料金</a>
                 <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">フィードバック</a>
                 <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
                     <span data-key="nav-chrome-mobile">Chrome に無料で追加</span>
@@ -622,7 +624,7 @@
                     <hr class="border-gray-200 my-8">
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900" data-key="faq2-q">Chat Memo は無料ですか？</h3>
-                        <p class="text-gray-600 mt-2" data-key="faq2-a">はい。ローカルで使う基本機能はずっと無料です。将来的には、暗号化したクラウド同期や AI による洞察など、提供にコストがかかる機能を有料でご案内する予定です。</p>
+                        <p class="text-gray-600 mt-2" data-key="faq2-a">会話の保存・閲覧・キーワード検索は無料です。Pro では、別の AI でも会話を続けられます。現在のプラン・価格・お支払い条件は<a href="/ja/pricing" class="text-blue-600 underline">料金ページ</a>をご覧ください。</p>
                     </div>
                     <hr class="border-gray-200 my-8">
                     <div>
@@ -649,7 +651,7 @@
     <div id="footer-container"><!-- Shared footer component -->
 <footer class="bg-white border-t border-gray-100">
     <div class="container mx-auto px-6 py-8">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
             <!-- 左侧：Logo、产品信息和版权 -->
             <div class="flex flex-col space-y-3">
                 <div class="flex items-center space-x-3">
@@ -660,13 +662,16 @@
             </div>
 
             <!-- 右侧：导航链接和社交媒体 -->
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="flex flex-col xl:flex-row items-start xl:items-center gap-6">
                 <!-- 导航链接 -->
-                <div class="flex flex-wrap items-center gap-6 text-sm">
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
                     <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-chrome">Chrome 拡張機能</a>
                     <a href="/ja/welcome" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-guide">使い方ガイド</a>
                     <a href="https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-feedback">フィードバック</a>
-                    <a href="https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-privacy">プライバシーポリシー</a>
+                    <a href="/ja/pricing" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-pricing">料金</a>
+                    <a href="/en/desktop/terms" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-terms">利用規約</a>
+                    <a href="/en/desktop/privacy" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-desktop-privacy">デスクトップ版のプライバシーポリシー</a>
+                    <a href="https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-privacy">拡張機能のプライバシーポリシー</a>
                 </div>
 
                 <!-- 社交媒体链接 -->

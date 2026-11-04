@@ -14,9 +14,9 @@
     function routeInfo(pathname) {
         const legal = pathname.match(/^\/(?:(zh-CN|en)\/)?(desktop\/(?:privacy|terms))(?:\.html)?\/?$/);
         if (legal) return { locale: legal[1] || null, page: legal[2] };
-        const localized = pathname.match(/^\/(zh-CN|en|ja|es)(?:\/(welcome|updates)(?:\.html)?)?\/?$/);
+        const localized = pathname.match(/^\/(zh-CN|en|ja|es)(?:\/(welcome|updates|pricing)(?:\.html)?)?\/?$/);
         if (localized) return { locale: localized[1], page: localized[2] || 'home' };
-        const base = pathname.match(/^\/(welcome|updates)(?:\.html)?\/?$/);
+        const base = pathname.match(/^\/(welcome|updates|pricing)(?:\.html)?\/?$/);
         if (base) return { locale: null, page: base[1] };
         if (pathname === '/') return { locale: null, page: 'home' };
         return null;
@@ -148,7 +148,7 @@
     }
 
     async function init(pageName) {
-        if (!['home', 'welcome', 'updates', 'desktop/privacy', 'desktop/terms'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
+        if (!['home', 'welcome', 'updates', 'pricing', 'desktop/privacy', 'desktop/terms'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
         page = pageName;
         const requestedLocale = detectInitialLocale();
         const url = new URL(window.location.href);

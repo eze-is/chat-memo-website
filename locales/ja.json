@@ -12,6 +12,10 @@
     "updates": {
       "title": "Chat Memo の更新履歴｜新機能と改善",
       "description": "Chat Memo の新機能、改善、不具合修正をまとめた更新履歴です。"
+    },
+    "pricing": {
+      "title": "料金 · Chat Memo",
+      "description": "AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"
     }
   },
   "common": {
@@ -27,9 +31,14 @@
     "footer-chrome": "Chrome 拡張機能",
     "footer-guide": "使い方ガイド",
     "footer-feedback": "フィードバック",
-    "footer-privacy": "プライバシーポリシー",
+    "footer-privacy": "拡張機能のプライバシーポリシー",
     "footer-wechat-text": "Chat Memo 作者の WeChat",
-    "wechat-qr-alt": "Eze の WeChat QR コード"
+    "wechat-qr-alt": "Eze の WeChat QR コード",
+    "nav-pricing": "料金",
+    "footer-terms": "利用規約",
+    "footer-desktop-privacy": "デスクトップ版のプライバシーポリシー",
+    "skip-content": "本文へスキップ",
+    "footer-pricing": "料金"
   },
   "home": {
     "dropdown-chrome": "Chrome ウェブストア",
@@ -105,7 +114,7 @@
     "faq1-q": "データは安全ですか？",
     "faq1-a": "現在、会話データはお使いのパソコン内に保存されます。私たちが会話内容にアクセスしたり、分析したりすることはありません。あなたのデータは、あなたのものです。",
     "faq2-q": "Chat Memo は無料ですか？",
-    "faq2-a": "はい。ローカルで使う基本機能はずっと無料です。将来的には、暗号化したクラウド同期や AI による洞察など、提供にコストがかかる機能を有料でご案内する予定です。",
+    "faq2-a": "会話の保存・閲覧・キーワード検索は無料です。Pro では、別の AI でも会話を続けられます。現在のプラン・価格・お支払い条件は<a href=\"/pricing\" class=\"text-blue-600 underline\">料金ページ</a>をご覧ください。",
     "faq3-q": "今後はどのプラットフォームに対応しますか？",
     "faq3-a": "Claude にはすでに対応しています。現在対応しているサービスは、拡張機能の「プラットフォーム設定」で確認できます。ほかの AI サービスへの対応を希望する場合は、<a href=\"https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">フィードバック</a>からお知らせください。寄せられた要望を開発の優先順位に反映します。",
     "cta-title": "AI との会話を、自分の記憶資産に",
@@ -173,5 +182,30 @@
     "reload-btn": "再読み込み",
     "no-updates": "更新履歴はまだありません",
     "no-updates-desc": "更新履歴を準備中です。もうしばらくお待ちください"
+  },
+  "pricing": {
+    "pricing-title": "料金",
+    "pricing-intro": "AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。",
+    "comparison": "プラン比較",
+    "free": "無料プラン",
+    "free-price": "無料",
+    "free-description": "会話はお使いの端末に保存。",
+    "pro-description": "AI アプリ間で文脈を引き継ぐ。",
+    "per-year": "／年",
+    "mainland": "中国本土",
+    "included": "利用可能",
+    "not-included": "対象外",
+    "feature-save": "AI との会話を保存",
+    "feature-save-desktop": "デスクトップ AI アプリの会話を保存",
+    "feature-save-web": "AI ウェブサイトの会話を保存",
+    "feature-search": "キーワード検索",
+    "feature-read": "別の AI やチャットで会話を続ける",
+    "billing-title": "お支払いと利用期間",
+    "billing-description": "現在の Pro プランは、1 回のお支払いで 1 年間利用できます。自動更新はありません。正確な利用期間はアカウントで確認できます。",
+    "market-description": "中国本土向けの価格は、同市場で条件を満たす購入に適用されます。その他の地域では米ドル価格が適用されます。お支払い前に、適用価格・税金・合計金額をご確認ください。",
+    "availability-description": "現在、オンラインでのお支払いは受け付けていません。販売開始後、デスクトップアプリで購入プランを確認できます。",
+    "refund-title": "返金",
+    "refund-description": "Pro の有効化後は、お客様都合による返金は受け付けません。ただし、適用法令で定められた場合、二重請求があった場合、またはChat Memo が契約どおりにサービスを提供できなかった場合は除きます。",
+    "contact-label": "料金や返金に関するお問い合わせ先："
   }
 }

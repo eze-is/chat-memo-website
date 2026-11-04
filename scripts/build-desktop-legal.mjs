@@ -66,6 +66,8 @@ function documentPage(doc) {
     const { copy, locale, key } = doc;
     const page = `desktop/${key}`;
     const canonical = pathFor(locale, page);
+    const common = JSON.parse(readFileSync(resolve(root, `locales/${locale}.json`), 'utf8')).common;
+    const footerLinks = [['pricing', 'footer-pricing'], ['desktop/terms', 'footer-terms'], ['desktop/privacy', 'footer-desktop-privacy']];
     return `<!doctype html>
 <html lang="${locale}" data-lang="${locale}">
 <head>
@@ -104,6 +106,10 @@ function documentPage(doc) {
             <div class="document-body">${doc.body}</div>
         </article>
     </main>
+    <footer class="legal-footer"><nav aria-label="${locale === 'en' ? 'Footer' : '页脚'}">
+        ${footerLinks.map(([target, label]) => `<a href="${pathFor(locale, target)}">${escape(common[label])}</a>`).join('')}
+        <a href="https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">${escape(common['footer-privacy'])}</a>
+    </nav></footer>
     <script src="${asset('/site-i18n.js')}"></script>
     <script src="${asset('/site-nav.js')}"></script>
     <script>SiteI18n.init('${page}'); SiteNav.init();</script>

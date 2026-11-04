@@ -52,7 +52,7 @@ test('中英互链及canonical指向同一文档，不提供未翻译语言或�
     for (const locale of locales) for (const key of keys) {
         const document = parsePage(`${locale}/desktop/${key}.html`);
         const links = all(document, node => node.tagName === 'a');
-        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai']);
+        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai', `/${locale}/pricing`, `/${locale}/desktop/terms`, `/${locale}/desktop/privacy`, 'https://github.com/eze-is/Chat-Memo/blob/main/PRIVACY_POLICY.md']);
         assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
         const trigger = all(document, node => attr(node, 'data-site-locale-trigger') !== undefined)[0];
         assert.equal(attr(trigger, 'aria-expanded'), 'false');
@@ -80,6 +80,7 @@ test('任一语言同版本正文变化时拒绝覆盖生成', () => {
         try {
             mkdirSync(join(temporary, 'scripts'));
             cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
+            cpSync(join(root, 'locales'), join(temporary, 'locales'), { recursive: true });
             cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
             cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
             appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.3-published/privacy.md`), '\n发生变更\n');

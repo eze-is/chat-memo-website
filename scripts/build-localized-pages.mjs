@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 // 页面结构只维护在根部 HTML；词条和版本数据是内容源，本脚本生成可直接部署的静态语言页。
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serialize } from 'parse5';
+import { loadCatalog, pricingMarkup } from './pro-pricing.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const { render: renderUpdates } = require(path.join(root, 'updates-renderer.js'));
 const locales = ['en', 'zh-CN', 'ja', 'es'];
-const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html' };
+const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html' };
 const origin = 'https://chatmemo.ai';
 const check = process.argv.includes('--check');
 const catalogs = Object.fromEntries(locales.map((locale) => [
@@ -31,6 +33,8 @@ const routeContext = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'site-i18n.js'), 'utf8'), routeContext);
 const { pathFor, routeInfo } = routeContext.window.SiteI18n;
 const expected = new Map();
+// 生成前读取并校验线上销售事实；失败时不写出半套页面。
+const proCatalog = await loadCatalog();
 
 function visit(node, callback) {
     callback(node);
@@ -240,12 +244,25 @@ function render(page, locale) {
     setAttr(htmlElement, 'data-lang', locale);
     setHtml(byId(document, 'navbar-container'), components.navbar);
     setHtml(byId(document, 'footer-container'), components.footer);
+    if (page === 'pricing') {
+        setHtml(byId(document, 'pricing-comparison'), pricingMarkup(proCatalog, catalogs[locale].pricing, locale));
+    }
     if (page === 'updates') {
         const container = byId(document, 'updates-container');
         setHtml(container, renderUpdates(updates, locale, dictionary));
         setAttr(container, 'data-rendered-locale', locale);
         removeClass(container, 'hidden');
         addClass(byId(document, 'loading-state'), 'hidden');
+    }
+    if (page === 'pricing') {
+        visit(document, node => {
+            for (const name of ['src', 'href']) {
+                const value = attr(node, name)?.split('?')[0];
+                if (!['/site-i18n.js', '/site-nav.js', '/pricing.css'].includes(value)) continue;
+                const hash = createHash('sha256').update(fs.readFileSync(path.join(root, value))).digest('hex').slice(0, 12);
+                setAttr(node, name, `${value}?v=${hash}`);
+            }
+        });
     }
     localizeAttributesAndText(document, page, locale, dictionary);
     updateHead(document, page, locale, dictionary);

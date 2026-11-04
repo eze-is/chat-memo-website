@@ -13,9 +13,14 @@
     "footer-chrome": "Chrome 插件",
     "footer-guide": "使用指南",
     "footer-feedback": "反馈建议",
-    "footer-privacy": "隐私政策",
+    "footer-privacy": "插件隐私政策",
     "footer-wechat-text": "Chat Memo 作者公众号",
-    "wechat-qr-alt": "一泽 Eze 的微信二维码"
+    "wechat-qr-alt": "一泽 Eze 的微信二维码",
+    "nav-pricing": "定价",
+    "footer-terms": "用户协议",
+    "footer-desktop-privacy": "桌面版隐私政策",
+    "skip-content": "跳到正文",
+    "footer-pricing": "定价"
   },
   "home": {
     "dropdown-chrome": "Chrome 商店",
@@ -91,7 +96,7 @@
     "faq1-q": "我的数据安全吗？",
     "faq1-a": "绝对安全。所有数据默认存储在您的电脑中，我们绝不触碰或分析您的任何对话内容。您的数据只属于您。",
     "faq2-q": "Chat Memo 是免费的吗？",
-    "faq2-a": "是的，核心本地功能永久免费。我们未来会为有更高需求的用户，提供如云端加密同步、AI 洞察等需要服务成本的付费增值服务。",
+    "faq2-a": "保存、阅读和关键词搜索免费，Pro 提供跨 AI 接续对话能力。当前套餐、价格和计费规则请查看<a href=\"/pricing\" class=\"text-blue-600 underline\">定价页</a>。",
     "faq3-q": "未来会支持哪些新平台？",
     "faq3-a": "Claude 已经支持。当前支持的平台可在插件的「平台配置」中查看；如果希望增加其他 AI 平台，欢迎通过<a href=\"https://zkv549gmz8.feishu.cn/share/base/form/shrcnQRBNhLNtVBWSClmb9EKNyd\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 font-medium\">「我有建议」</a>告诉我们，用户需求会帮助我们安排优先级。",
     "cta-title": "开始沉淀你的 AI 记忆资产",
@@ -172,6 +177,35 @@
     "updates": {
       "title": "Chat Memo 更新日志 - 产品功能更新与改进记录",
       "description": "Chat Memo 产品更新日志，记录所有功能更新、改进和修复。了解最新的AI对话管理工具功能和优化。"
+    },
+    "pricing": {
+      "title": "定价 · Chat Memo",
+      "description": "免费保存、阅读和搜索 AI 对话。开通 Pro，让不同 AI 接着聊。"
     }
+  },
+  "pricing": {
+    "pricing-title": "定价",
+    "pricing-intro": "免费保存、阅读和搜索 AI 对话。开通 Pro，让不同 AI 接着聊。",
+    "comparison": "套餐对比",
+    "free": "免费版",
+    "free-price": "免费",
+    "free-description": "对话保存在你的设备上。",
+    "pro-description": "跨 AI 互通上下文。",
+    "per-year": "／年",
+    "mainland": "中国大陆",
+    "included": "包含",
+    "not-included": "不包含",
+    "feature-save": "保存 AI 对话",
+    "feature-save-desktop": "备份电脑端 AI 对话",
+    "feature-save-web": "备份网页端 AI 对话",
+    "feature-search": "关键词搜索",
+    "feature-read": "跨 AI、跨会话接续对话",
+    "billing-title": "计费与有效期",
+    "billing-description": "当前 Pro 按年销售，一次付费获得一年使用权，不自动续费。具体起止时间可在账号中查看。",
+    "market-description": "中国大陆价格适用于该市场符合条件的购买，其他地区适用美元价格。付款前请确认适用价格、税费及应付总额。",
+    "availability-description": "当前尚未开放线上付款。开放购买后，可在桌面应用中查看购买方案。",
+    "refund-title": "退款",
+    "refund-description": "除适用法律另有规定、重复扣款或我们未按约提供服务外，已开通的 Pro 不支持无理由退款。",
+    "contact-label": "收费或退款问题，请联系"
   }
 }
