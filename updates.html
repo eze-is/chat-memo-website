@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="9002f0e43155"><head>
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="b7e3f9492fc8"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Memo Updates - Product Improvements</title>
@@ -38,6 +38,8 @@
     <!-- Google Analytics 4 -->
     <script src="/site-i18n.js?v=4212728fb83d"></script>
     <script src="/site-nav.js"></script>
+    <link rel="stylesheet" href="/download-notice.css?v=8d855b68e76b">
+    <script src="/download-notice.js?v=4a97b4fe0ca4" defer=""></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -314,9 +316,9 @@
                         </button>
                     </div>
                 </div>
-                <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
+                <button type="button" data-desktop-release-pending="" aria-haspopup="dialog" aria-controls="desktop-release-dialog" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
                     <span class="text-center" data-key="nav-desktop">Download Chat Memo</span>
-                </a>
+                </button>
                 <button type="button" id="mobile-menu-button" aria-label="Menu" data-aria-label-key="nav-menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
                     <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -332,13 +334,23 @@
                 <a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">Updates</a>
                 <a href="/en/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-pricing">Pricing</a>
                 <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">Feedback</a>
-                <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
+                <button type="button" data-desktop-release-pending="" aria-haspopup="dialog" aria-controls="desktop-release-dialog" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
                     <span data-key="nav-desktop-mobile">Download Chat Memo</span>
-                </a>
+                </button>
             </nav>
         </div>
     </div>
 </header>
+
+<dialog id="desktop-release-dialog" class="download-notice" aria-labelledby="desktop-release-title" aria-describedby="desktop-release-description">
+    <button type="button" class="download-notice-close" data-download-notice-close="" aria-label="Close" data-aria-label-key="desktop-release-close">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+    </button>
+    <img class="download-notice-logo" src="/resource/icons/logo.png" alt="" width="44" height="44">
+    <h2 id="desktop-release-title" data-key="desktop-release-title">The official release is almost here</h2>
+    <p id="desktop-release-description" data-key="desktop-release-notice">The official release is coming today or tomorrow. Please wait a little longer.</p>
+    <button type="button" class="download-notice-confirm" data-download-notice-close="" autofocus="" data-key="desktop-release-confirm">Got it</button>
+</dialog>
 </div>
 
     <main>

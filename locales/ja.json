@@ -19,6 +19,10 @@
     }
   },
   "common": {
+    "desktop-release-title": "正式版はまもなく公開",
+    "desktop-release-confirm": "わかりました",
+    "desktop-release-close": "閉じる",
+    "desktop-release-notice": "正式版は今日または明日公開予定です。もうしばらくお待ちください。",
     "nav-overview": "概要",
     "nav-guide": "はじめに",
     "nav-updates": "更新履歴",

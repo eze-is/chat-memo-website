@@ -1,6 +1,10 @@
 {
   "locale": "en",
   "common": {
+    "desktop-release-title": "The official release is almost here",
+    "desktop-release-confirm": "Got it",
+    "desktop-release-close": "Close",
+    "desktop-release-notice": "The official release is coming today or tomorrow. Please wait a little longer.",
     "nav-overview": "Overview",
     "nav-guide": "Getting Started",
     "nav-updates": "Updates",

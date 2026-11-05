@@ -196,17 +196,35 @@ test('四语首页的按钮资源随实际内容换版本，首屏与页尾共�
     }
 });
 
-test('官网各语言页面的App下载入口使用已登记的website来源', () => {
+test('正式发布前，官网各语言页面的App下载入口只显示等待提示', () => {
     let count = 0;
     for (const filename of [...Object.values(pages), ...locales.flatMap(locale => Object.values(pages).map(file => `${locale}/${file}`))]) {
         const document = parse(fs.readFileSync(path.join(root, filename), 'utf8'));
         for (const link of all(document, node => node.tagName === 'a' && attribute(node, 'href'))) {
             const url = new URL(attribute(link, 'href'), origin);
-            if (url.origin !== origin || !/^\/desktop\/download(?:\/(?:mac|win))?$/.test(url.pathname)) continue;
-            assert.equal(url.searchParams.get('link'), 'website', filename);
-            assert.deepEqual([...url.searchParams.keys()], ['link'], filename);
+            assert.ok(url.origin !== origin || !/^\/desktop\/download(?:\/(?:mac|win))?$/.test(url.pathname), filename);
+        }
+        const locale = filename.includes('/') ? filename.split('/')[0] : 'en';
+        const catalog = JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'));
+        const dialog = find(document, node => attribute(node, 'id') === 'desktop-release-dialog');
+        assert.equal(dialog?.tagName, 'dialog', filename);
+        const notice = find(dialog, node => attribute(node, 'data-key') === 'desktop-release-notice');
+        assert.equal(textOf(notice), catalog.common['desktop-release-notice'], filename);
+        assert.equal(attribute(dialog, 'aria-describedby'), attribute(notice, 'id'), filename);
+        for (const asset of ['/download-notice.css', '/download-notice.js']) {
+            const hash = createHash('sha256').update(fs.readFileSync(path.join(root, asset))).digest('hex').slice(0, 12);
+            assert.ok(find(document, node => ['src', 'href'].some(name => attribute(node, name) === `${asset}?v=${hash}`)), `${filename} ${asset}`);
+        }
+        const buttons = all(document, node => attribute(node, 'data-desktop-release-pending') !== undefined);
+        assert.equal(buttons.length, filename.endsWith('index.html') ? 4 : 2, filename);
+        for (const button of buttons) {
+            assert.equal(button.tagName, 'button', filename);
+            assert.equal(attribute(button, 'type'), 'button', filename);
+            assert.equal(attribute(button, 'href'), undefined, filename);
+            assert.equal(attribute(button, 'onclick'), undefined, filename);
+            assert.equal(attribute(button, 'aria-controls'), attribute(dialog, 'id'), filename);
             count++;
         }
     }
-    assert.ok(count >= 40, '覆盖导航桌面／手机入口，以及首屏／页尾入口');
+    assert.equal(count, 50, '覆盖导航桌面／手机入口，以及首屏／页尾入口');
 });

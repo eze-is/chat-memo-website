@@ -19,6 +19,10 @@
     }
   },
   "common": {
+    "desktop-release-title": "La versión oficial llegará pronto",
+    "desktop-release-confirm": "Entendido",
+    "desktop-release-close": "Cerrar",
+    "desktop-release-notice": "La versión oficial se publicará hoy o mañana. Espera un poco más, por favor.",
     "nav-overview": "Inicio",
     "nav-guide": "Primeros pasos",
     "nav-updates": "Novedades",

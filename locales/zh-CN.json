@@ -1,6 +1,10 @@
 {
   "locale": "zh-CN",
   "common": {
+    "desktop-release-title": "正式版即将发布",
+    "desktop-release-confirm": "知道了",
+    "desktop-release-close": "关闭",
+    "desktop-release-notice": "正式产品将在今明两天发布，请稍作等待。",
     "nav-overview": "概览",
     "nav-guide": "入门指南",
     "nav-updates": "更新日志",
