@@ -203,7 +203,7 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
         for (const link of all(document, node => node.tagName === 'a' && attribute(node, 'href'))) {
             const url = new URL(attribute(link, 'href'), origin);
             if (url.origin !== origin || !/^\/desktop\/download(?:\/(?:mac|win))?$/.test(url.pathname)) continue;
-            assert.equal(url.pathname, '/desktop/download/mac', filename);
+            assert.equal(url.pathname, '/desktop/download', filename);
             assert.equal(url.searchParams.get('link'), 'website', filename);
             assert.deepEqual([...url.searchParams.keys()], ['link'], filename);
             count++;
