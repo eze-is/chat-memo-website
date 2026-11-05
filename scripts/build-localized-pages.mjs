@@ -262,7 +262,7 @@ function render(page, locale) {
             : page === 'home'
                 ? ['/site-i18n.js', '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css']
                 : ['/site-i18n.js'];
-        assets.push('/download-notice.css', '/download-notice.js');
+        assets.push('/site-download-notice.css', '/site-download-notice.js');
         visit(document, node => {
             for (const name of ['src', 'href']) {
                 const value = attr(node, name)?.split('?')[0];

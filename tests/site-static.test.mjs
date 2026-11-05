@@ -211,7 +211,7 @@ test('正式发布前，官网各语言页面的App下载入口只显示等待�
         const notice = find(dialog, node => attribute(node, 'data-key') === 'desktop-release-notice');
         assert.equal(textOf(notice), catalog.common['desktop-release-notice'], filename);
         assert.equal(attribute(dialog, 'aria-describedby'), attribute(notice, 'id'), filename);
-        for (const asset of ['/download-notice.css', '/download-notice.js']) {
+        for (const asset of ['/site-download-notice.css', '/site-download-notice.js']) {
             const hash = createHash('sha256').update(fs.readFileSync(path.join(root, asset))).digest('hex').slice(0, 12);
             assert.ok(find(document, node => ['src', 'href'].some(name => attribute(node, name) === `${asset}?v=${hash}`)), `${filename} ${asset}`);
         }
