@@ -1,0 +1,36 @@
+/* 自动生成：node devtools/download-effects/build.mjs。颜色、动画与减少动态规则由 App 源码拥有。 */
+/* App: product/v1.css */
+.v1-try-sweep { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(90% 120% at 6% 50%, rgba(129, 140, 248, 0.1), rgba(192, 132, 252, 0.05) 28%, transparent 52%); }
+.v1-try-sweep::before { content: ''; position: absolute; top: -40%; left: -30%; width: 60%; height: 180%;
+  background: linear-gradient(105deg, transparent, rgba(147, 197, 253, 0.22), rgba(216, 180, 254, 0.15), transparent);
+  filter: blur(24px); transform: skewX(-12deg); animation: v1-try-sweep 9s ease-in-out infinite; }
+@keyframes v1-try-sweep {
+  0% { transform: translateX(-40%) skewX(-12deg); opacity: 0; }
+  18% { opacity: 1; }
+  55% { opacity: 1; }
+  78% { opacity: 0; }
+  100% { transform: translateX(320%) skewX(-12deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .v1-try-sweep::before { animation: none; opacity: .5; } }
+/* 用户确认的轻玻璃流光基准：颜色只提供光泽，不铺成渐变色块。 */
+.glass-flow { position: relative; isolation: isolate; overflow: hidden; background: rgb(255 255 255 / var(--glass-flow-base, 40%)); box-shadow: var(--mac-glass-edge); -webkit-backdrop-filter: var(--mac-glass-blur); backdrop-filter: var(--mac-glass-blur); }
+.glass-flow > :not(.v1-try-sweep) { position: relative; z-index: 1; }
+.glass-flow > .v1-try-sweep { background: radial-gradient(70% 180% at 8% 100%, rgb(147 197 253 / calc(10% * var(--glass-flow-light-strength, 1))), transparent 70%), radial-gradient(65% 180% at 85% 0%, rgb(196 181 253 / calc(8% * var(--glass-flow-light-strength, 1))), transparent 70%); }
+.glass-flow > .v1-try-sweep::before { background: linear-gradient(105deg, transparent, rgb(147 197 253 / calc(16% * var(--glass-flow-light-strength, 1))), rgb(216 180 254 / calc(12% * var(--glass-flow-light-strength, 1))), rgb(255 255 255 / 45%), transparent); filter: blur(var(--glass-flow-sweep-blur, 12px)); }
+/* 可点击玻璃悬停时轻压暗，暗层位于流光之上、文字之下。 */
+button.glass-flow::after { content: ''; position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: transparent; pointer-events: none; transition: background-color 140ms ease; }
+@media (hover: hover) { button.glass-flow:not(:disabled):hover::after { background: rgb(0 0 0 / 3%); } }
+@media (prefers-reduced-motion: reduce) { button.glass-flow::after { transition: none; } }
+@media (prefers-reduced-transparency: reduce) { .glass-flow { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+
+/* App: product/continue-conversation-dialog.css */
+.continue-copy > .continue-copy-edge { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.continue-copy-edge rect { x: .75px; y: .75px; width: calc(100% - 1.5px); height: calc(100% - 1.5px); rx: 17.25px; fill: none; stroke-linecap: round;
+  stroke-dasharray: var(--edge-length) calc(1000px - var(--edge-length)); stroke-dashoffset: var(--edge-length); }
+.continue-copy-edge-glow { --edge-length: 100px; stroke: rgb(147 197 253 / 12%); stroke-width: 4px; filter: blur(2px); }
+.continue-copy-edge-trail { stroke-width: .8px; }
+.continue-copy-edge-head { --edge-length: 8px; stroke: rgb(255 255 255 / 85%); stroke-width: 1.1px; }
+@media (prefers-reduced-motion: no-preference) { .continue-copy-edge rect { animation: continue-copy-edge-lap 6.4s linear infinite; } }
+@keyframes continue-copy-edge-lap { from { stroke-dashoffset: var(--edge-length); } to { stroke-dashoffset: calc(var(--edge-length) - 1000px); } }
+@media (prefers-reduced-motion: reduce) { .continue-copy-edge { display: none; } }

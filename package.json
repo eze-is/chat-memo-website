@@ -2,6 +2,8 @@
   "name": "chat-memo-website",
   "private": true,
   "scripts": {
+    "build:hero": "node devtools/hero-desktop/build.mjs",
+    "check:hero": "node devtools/hero-desktop/check.mjs",
     "build:i18n": "node scripts/build-localized-pages.mjs",
     "check:i18n": "node scripts/build-localized-pages.mjs --check",
     "build:legal": "node scripts/build-desktop-legal.mjs",

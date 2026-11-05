@@ -76,7 +76,7 @@ test('全部历史更新四语完整，英文是唯一缺译兜底', () => {
     }
 });
 
-async function createRuntime({ url, languages, saved, fetchCatalog, storageUnavailable = false, page = 'home', withLocaleOptions = false }) {
+async function createRuntime({ url, languages, saved, fetchCatalog, storageUnavailable = false, page = 'home', withLocaleOptions = false, catalogVersion }) {
     const storage = new Map(saved ? [['chat-memo-lang', saved]] : []);
     let writes = 0;
     const location = {
@@ -105,6 +105,7 @@ async function createRuntime({ url, languages, saved, fetchCatalog, storageUnava
         querySelectorAll: () => [],
         title: ''
     };
+    if (catalogVersion) fakeDocument.documentElement.dataset.catalogVersion = catalogVersion;
     const context = {
         window: fakeWindow,
         document: fakeDocument,
@@ -168,7 +169,7 @@ test('手动切换直接导航到静态语言页，不依赖切换前的词包�
         }
     });
     context.runtime.choose('ja');
-    assert.equal(context.location.href, 'https://chatmemo.ai/ja/updates?ref=header#latest');
+    assert.equal(context.location.href, 'https://chatmemo.ai/ja/updates?ref=header');
     assert.equal(context.storage.get('chat-memo-lang'), 'ja');
 });
 
@@ -240,4 +241,29 @@ test('法律页手动切换保留文档与查询片段，保存同一官网偏�
     assert.equal(reads, 0);
     assert.equal(context.runtime.pathFor('ja', 'desktop/terms'), '/en/desktop/terms');
     assert.throws(() => context.runtime.choose('ja'), /Unsupported locale/);
+});
+
+// 旧词包不能在初始化后把新版静态正文覆盖回旧文案。
+test('首页按生成页面的内容版本读取英文与当前词包，避开旧URL缓存', async () => {
+    const requests = [];
+    const context = await createRuntime({
+        url: 'https://chatmemo.ai/zh-CN/', languages: ['zh-CN'], catalogVersion: 'current-copy',
+        fetchCatalog: async (resource) => {
+            requests.push(resource);
+            const locale = new URL(resource, 'https://chatmemo.ai').pathname.match(/locales\/(.+)\.json$/)[1];
+            return { ok: true, json: async () => catalogs[locale] };
+        }
+    });
+    assert.deepEqual(requests, ['/locales/en.json?v=current-copy', '/locales/zh-CN.json?v=current-copy']);
+    assert.match(context.runtime.t('cta-desc'), /电脑或浏览器/);
+});
+
+test('营销页切换语言去掉页内锚点，保留页面、查询参数与语言偏好', async () => {
+    for (const page of ['home', 'welcome', 'updates', 'pricing']) {
+        const suffix = page === 'home' ? '/' : `/${page}`;
+        const context = await createRuntime({ url: `https://chatmemo.ai/ja${suffix}?ref=preview#cta`, languages: ['ja'], page });
+        context.runtime.choose('en');
+        assert.equal(context.location.href, `https://chatmemo.ai/en${suffix}?ref=preview`);
+        assert.equal(context.storage.get('chat-memo-lang'), 'en');
+    }
 });

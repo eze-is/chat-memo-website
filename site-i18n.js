@@ -66,7 +66,9 @@
 
     async function loadCatalog(targetLocale) {
         if (!catalogCache.has(targetLocale)) {
-            const response = await fetch(`/locales/${targetLocale}.json`);
+            const version = document.documentElement.dataset.catalogVersion;
+            const suffix = version ? `?v=${encodeURIComponent(version)}` : '';
+            const response = await fetch(`/locales/${targetLocale}.json${suffix}`);
             if (!response.ok) throw new Error(`Cannot load website locale ${targetLocale}: ${response.status}`);
             const catalog = await response.json();
             if (catalog.locale !== targetLocale) throw new Error(`Website locale mismatch: ${targetLocale}`);
@@ -144,6 +146,8 @@
         const url = new URL(window.location.href);
         url.pathname = pathFor(nextLocale, page);
         url.searchParams.delete('lang');
+        // 营销页换语言从顶部阅读；法律文档保留当前条款位置。
+        if (!page.startsWith('desktop/')) url.hash = '';
         window.location.assign(`${url.pathname}${url.search}${url.hash}`);
     }
 

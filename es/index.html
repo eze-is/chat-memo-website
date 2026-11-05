@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es" class="scroll-smooth" data-lang="es"><head>
+<!DOCTYPE html><html lang="es" class="scroll-smooth" data-lang="es" data-catalog-version="74d84134fa80"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Memo: guarda y busca tus conversaciones con IA</title>
@@ -48,9 +48,13 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="manifest" href="/manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/resource/download-effects.css?v=93affb5629d0">
+    <link rel="stylesheet" href="/hero-preview.css?v=ed2008b7fdbf">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/resource/icons/logo.png" as="image">
@@ -99,7 +103,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Mis datos están seguros?","acceptedAnswer":{"@type":"Answer","text":"Tus conversaciones se guardan de forma local en tu computadora. No accedemos a ellas ni analizamos su contenido. Tus datos son tuyos."}},{"@type":"Question","name":"¿Chat Memo es gratis?","acceptedAnswer":{"@type":"Answer","text":"Guardar, leer y buscar por palabras clave es gratis. Pro permite continuar conversaciones entre distintas IA. Consulta los planes, precios y condiciones de pago en la página de precios."}},{"@type":"Question","name":"¿Qué otras plataformas se admitirán en el futuro?","acceptedAnswer":{"@type":"Answer","text":"Claude ya es compatible. Puedes consultar todas las plataformas disponibles en la configuración de plataformas de la extensión. Si quieres que añadamos otro servicio de IA, cuéntanoslo en Comentarios; tus sugerencias nos ayudan a establecer prioridades."}}]}</script>
 
     <!-- Google Analytics 4 -->
-    <script src="/site-i18n.js"></script>
+    <script src="/site-i18n.js?v=4212728fb83d"></script>
     <script src="/site-nav.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
     <script>
@@ -272,8 +276,16 @@
 
     <style>
         body {
-            font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+            font-weight: 400;
         }
+        body .font-medium { font-weight: 500; }
+        body .font-semibold, body .font-bold { font-weight: 600; }
+        body .font-extrabold { font-weight: 700; }
+        body strong, body b { font-weight: 500; }
+        #cta > div > a { font-weight: 500; }
+        #hero h1 { font-weight: 600; letter-spacing: -.02em; line-height: 1.2; text-wrap: balance; }
+
     </style>
 <link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"></head>
 
@@ -324,8 +336,8 @@
                         </button>
                     </div>
                 </div>
-                <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
-                    <span class="text-center" data-key="nav-chrome">Agregar gratis a Chrome</span>
+                <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
+                    <span class="text-center" data-key="nav-desktop">Descargar Chat Memo</span>
                 </a>
                 <button type="button" id="mobile-menu-button" aria-label="Menú" data-aria-label-key="nav-menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
                     <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -342,8 +354,8 @@
                 <a href="/es/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">Novedades</a>
                 <a href="/es/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-pricing">Precios</a>
                 <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">Comentarios</a>
-                <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
-                    <span data-key="nav-chrome-mobile">Agregar gratis a Chrome</span>
+                <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
+                    <span data-key="nav-desktop-mobile">Descargar Chat Memo</span>
                 </a>
             </nav>
         </div>
@@ -351,50 +363,63 @@
 </header>
 </div>
 
+    <script src="/hero-preview.js?v=be435af2f10f" defer=""></script>
+
     <main>
         <section id="hero" class="pt-40 pb-24 text-center">
             <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-6" data-key="hero-title">Que tus ideas no se pierdan<br>al cerrar una conversación con IA</h1>
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed" data-key="hero-subtitle">Chat Memo reúne tus conversaciones de ChatGPT, Gemini, DeepSeek, Claude y otras plataformas en un espacio privado donde puedes encontrarlas cuando las necesites.</p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-2 max-w-md sm:max-w-none mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-[1.1] mb-6" data-key="hero-title">Guarda tus chats. Continúa con otra IA.</h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed" data-key="hero-subtitle">Chat Memo guarda en tiempo real tus chats de ChatGPT, Claude, DeepSeek y más en una memoria personal y privada. Búscalos y retoma el hilo con otra IA cuando quieras.</p>
+                <div class="hero-actions">
+                    <div class="hero-action-primary">
+                    <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="hero-download-primary glass-flow" id="hero-desktop-download-btn">
+                        <span class="v1-try-sweep" aria-hidden="true"></span>
+                        <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                        <span class="text-center" data-key="hero-desktop-btn">Descargar Chat Memo</span>
+                    </a>
+                    </div>
+                    <div class="hero-action-secondary">
                     <!-- 下载按钮下拉菜单 -->
                     <div class="relative download-dropdown w-full sm:w-auto group">
-                        <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg text-lg transition flex items-center justify-center gap-2 shadow-lg hover:shadow-blue-500/30 min-h-[52px] group-hover:rounded-b-none transition-all duration-200" id="hero-download-btn">
+                        <button type="button" class="hero-extension-trigger" id="hero-download-btn" aria-expanded="false" aria-controls="hero-extension-menu">
                             <img src="/resource/icons/chrome_icon.png" alt="" class="w-5 h-5 flex-shrink-0">
-                            <span class="text-center" data-key="hero-chrome-btn">Agregar gratis a Chrome</span>
-                            <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-center" data-key="hero-chrome-btn">Instalar extensión</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
-                        </a>
+                        </button>
                         <!-- 下拉菜单 -->
-                        <div class="absolute top-full left-0 mt-0 w-full sm:w-64 bg-white rounded-b-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden transform origin-top scale-95 group-hover:scale-100 text-left">
-                            <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 transition border-b border-gray-100">
+                        <div class="hero-extension-menu" id="hero-extension-menu" hidden="">
+                            <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer">
                                 <img src="/resource/icons/chrome_icon.png" alt="Chrome" class="w-6 h-6 flex-shrink-0">
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-bold text-gray-900 text-sm truncate" data-key="dropdown-chrome">Chrome Web Store</p>
-                                    <p class="text-xs text-gray-500 mt-0.5 truncate" data-key="dropdown-chrome-desc">Fuente oficial, versión más reciente</p>
+                                    <p data-key="dropdown-chrome">Chrome Web Store</p>
+                                    <p data-key="dropdown-chrome-desc">Fuente oficial, versión más reciente</p>
                                 </div>
                             </a>
-                            <a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 px-5 py-4 hover:bg-gray-50 transition">
+                            <a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer">
                                 <img src="/resource/icons/edge_icon.png" alt="Edge" class="w-6 h-6 flex-shrink-0">
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-bold text-gray-900 text-sm truncate" data-key="dropdown-edge">Tienda de Edge</p>
-                                    <p class="text-xs text-gray-500 mt-0.5 truncate" data-key="dropdown-edge-desc">Recomendado para quienes usan Edge</p>
+                                    <p data-key="dropdown-edge">Tienda de Edge</p>
+                                    <p data-key="dropdown-edge-desc">Recomendado para quienes usan Edge</p>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <a href="/feedback" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto border-2 border-gray-800 hover:bg-gray-800 text-gray-800 hover:text-white font-bold py-3 px-6 rounded-lg text-lg transition flex items-center justify-center min-h-[52px]">
-                        <span class="text-center" data-key="hero-pro-btn">Ayúdanos a crear las funciones Pro</span>
-                    </a>
+                    </div>
                 </div>
                 <p class="text-sm text-gray-500 mt-4" data-key="hero-user-count">Únete a <span id="user-count" class="font-semibold text-blue-600 transition-all duration-300">20000+</span> personas que ya trabajan con IA 🚀</p>
 
-                <div class="mt-16 max-w-4xl mx-auto border border-gray-200 rounded-xl shadow-2xl shadow-gray-200/50 p-2">
-                    <video class="rounded-lg w-full h-auto" data-autoplay="true" muted="" loop="" playsinline="" poster="/resource/images/video_cover.jpg" preload="none">
-                        <source src="/resource/videos/video.mp4" type="video/mp4">
-                        <img src="/resource/images/video_cover.jpg" alt="" class="rounded-lg">
-                    </video>
+                <div class="hero-product-preview mt-16 mx-auto" data-hero-preview="" data-preview="desktop">
+                    <div class="hero-product-layer" data-preview-desktop="">
+                        <img src="/resource/hero-desktop/poster.png" alt="Chat Memo" width="1120" height="720" loading="lazy" decoding="async">
+                        <iframe data-src="/resource/hero-desktop/index.html?v=20261105-records" title="Chat Memo" tabindex="0"></iframe>
+                    </div>
+                    <div class="hero-product-layer" data-preview-plugin="" aria-hidden="true">
+                        <video muted="" loop="" playsinline="" poster="/resource/images/video_cover.jpg" preload="none">
+                            <source src="/resource/videos/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
 
                 <!-- Chrome Store 评分与认证 -->
@@ -638,11 +663,45 @@
         <section id="cta" class="py-24 text-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight" data-key="cta-title">Empieza a construir tu memoria con IA</h2>
-                <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed" data-key="cta-desc">Agregar Chat Memo a tu navegador es gratis y toma solo unos segundos. Empieza a guardar tus conversaciones con IA y conviértelas en conocimiento duradero.</p>
-                <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-lg text-xl transition inline-flex items-center justify-center gap-3 shadow-lg hover:shadow-blue-500/30 transform hover:scale-105 min-h-[60px] whitespace-nowrap">
-                    <img src="/resource/icons/chrome_icon.png" alt="Chrome" class="w-6 h-6 flex-shrink-0">
-                    <span class="text-center" data-key="cta-btn">Agregar gratis a Chrome</span>
-                </a>
+                <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed" data-key="cta-desc">Agregar Chat Memo a tu ordenador o navegador es gratis y toma solo unos segundos. Empieza a guardar tus conversaciones con IA y conviértelas en conocimiento duradero.</p>
+                <div class="hero-actions">
+                    <div class="hero-action-primary">
+                    <a href="https://chatmemo.ai/desktop/download?link=website" target="_blank" rel="noopener noreferrer" class="hero-download-primary glass-flow" id="cta-desktop-download-btn">
+                        <span class="v1-try-sweep" aria-hidden="true"></span>
+                        <svg aria-hidden="true" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
+                        <span class="text-center" data-key="hero-desktop-btn">Descargar Chat Memo</span>
+                    </a>
+                    </div>
+                    <div class="hero-action-secondary">
+                    <!-- 下载按钮下拉菜单 -->
+                    <div class="relative download-dropdown w-full sm:w-auto group">
+                        <button type="button" class="hero-extension-trigger" id="cta-download-btn" aria-expanded="false" aria-controls="cta-extension-menu">
+                            <img src="/resource/icons/chrome_icon.png" alt="" class="w-5 h-5 flex-shrink-0">
+                            <span class="text-center" data-key="hero-chrome-btn">Instalar extensión</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <!-- 下拉菜单 -->
+                        <div class="hero-extension-menu" id="cta-extension-menu" hidden="">
+                            <a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer">
+                                <img src="/resource/icons/chrome_icon.png" alt="Chrome" class="w-6 h-6 flex-shrink-0">
+                                <div class="flex-1 min-w-0">
+                                    <p data-key="dropdown-chrome">Chrome Web Store</p>
+                                    <p data-key="dropdown-chrome-desc">Fuente oficial, versión más reciente</p>
+                                </div>
+                            </a>
+                            <a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer">
+                                <img src="/resource/icons/edge_icon.png" alt="Edge" class="w-6 h-6 flex-shrink-0">
+                                <div class="flex-1 min-w-0">
+                                    <p data-key="dropdown-edge">Tienda de Edge</p>
+                                    <p data-key="dropdown-edge-desc">Recomendado para quienes usan Edge</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -997,6 +1056,8 @@
             initVideoLazyLoading();
         }
     </script>
+
+
 
 
 

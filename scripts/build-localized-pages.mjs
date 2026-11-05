@@ -242,6 +242,8 @@ function render(page, locale) {
     visit(document, (node) => { if (node.tagName === 'html') htmlElement = node; });
     setAttr(htmlElement, 'lang', locale);
     setAttr(htmlElement, 'data-lang', locale);
+    // 所有营销页的静态正文与运行时词包使用同一内容版本，包含购买状态等固定说明。
+    setAttr(htmlElement, 'data-catalog-version', createHash('sha256').update(JSON.stringify(catalogs)).digest('hex').slice(0, 12));
     setHtml(byId(document, 'navbar-container'), components.navbar);
     setHtml(byId(document, 'footer-container'), components.footer);
     if (page === 'pricing') {
@@ -254,11 +256,16 @@ function render(page, locale) {
         removeClass(container, 'hidden');
         addClass(byId(document, 'loading-state'), 'hidden');
     }
-    if (page === 'pricing') {
+    {
+        const assets = page === 'pricing'
+            ? ['/site-i18n.js', '/site-nav.js', '/pricing.css', '/pricing-region.js']
+            : page === 'home'
+                ? ['/site-i18n.js', '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css']
+                : ['/site-i18n.js'];
         visit(document, node => {
             for (const name of ['src', 'href']) {
                 const value = attr(node, name)?.split('?')[0];
-                if (!['/site-i18n.js', '/site-nav.js', '/pricing.css', '/pricing-region.js'].includes(value)) continue;
+                if (!assets.includes(value)) continue;
                 const hash = createHash('sha256').update(fs.readFileSync(path.join(root, value))).digest('hex').slice(0, 12);
                 setAttr(node, name, `${value}?v=${hash}`);
             }

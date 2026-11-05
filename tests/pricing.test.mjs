@@ -80,8 +80,9 @@ test('定价四语稳定路由和中立入口交给既有语言路由解析', ()
         assert.match(html, /US\$[0-9]/);
         assert.match(html, /CNY [0-9]/);
         assert.doesNotMatch(html, /fetch\([^)]*api\.chatmemo/);
-        assert.doesNotMatch(JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8')).pricing['refund-description'], /awaiting confirmation|待确认|確認中|pendiente de confirmación/);
-        assert.ok(html.includes(copy['refund-description']) || locale !== 'en');
+        const pricing = JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8')).pricing;
+        assert.doesNotMatch(html, /data-key="(?:refund-title|refund-description|contact-label)"|aria-labelledby="refund-title"/);
+        assert.ok(html.includes(pricing['availability-description']));
     }
     assert.equal(context.window.SiteI18n.routeInfo('/pricing.html').page, 'pricing');
 });

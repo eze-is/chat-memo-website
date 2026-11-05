@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
@@ -69,6 +70,7 @@ test('16 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
             const canonical = `${origin}${route(locale, page)}`;
             const htmlElement = find(document, (node) => node.tagName === 'html');
             assert.equal(attribute(htmlElement, 'lang'), locale, file);
+            assert.match(attribute(htmlElement, 'data-catalog-version'), /^[a-f0-9]{12}$/, `${file} versioned translations`);
             const title = find(document, (node) => node.tagName === 'title');
             assert.equal(textOf(title), catalog.meta[page].title, file);
             const description = find(document, (node) => node.tagName === 'meta' && attribute(node, 'name') === 'description');
@@ -175,4 +177,36 @@ test('四页先启动语言加载并立即绑定导航，再等待词包完成',
             assert.match(html, /SiteNav\.init\(\);[\s\S]*if \(SiteI18n\.isCanonicalPath\('pricing'\)\) ChatMemoPricing\.init\(\);/);
         } else assert.match(html, startup, file);
     }
+});
+
+test('四语首页的按钮资源随实际内容换版本，首屏与页尾共用App表面流光', () => {
+    for (const locale of locales) {
+        const document = parse(fs.readFileSync(path.join(root, locale, 'index.html'), 'utf8'));
+        const html = find(document, node => node.tagName === 'html');
+        assert.match(attribute(html, 'data-catalog-version'), /^[a-f0-9]{12}$/);
+        for (const asset of ['/site-i18n.js', '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css']) {
+            const hash = createHash('sha256').update(fs.readFileSync(path.join(root, asset))).digest('hex').slice(0, 12);
+            assert.ok(find(document, node => ['src', 'href'].some(name => attribute(node, name) === `${asset}?v=${hash}`)), `${locale} ${asset}`);
+        }
+        for (const id of ['hero-desktop-download-btn', 'cta-desktop-download-btn']) {
+            const button = find(document, node => attribute(node, 'id') === id);
+            assert.match(attribute(button, 'class'), /glass-flow/);
+            assert.ok(find(button, node => attribute(node, 'class') === 'v1-try-sweep'));
+        }
+    }
+});
+
+test('官网各语言页面的App下载入口使用已登记的website来源', () => {
+    let count = 0;
+    for (const filename of [...Object.values(pages), ...locales.flatMap(locale => Object.values(pages).map(file => `${locale}/${file}`))]) {
+        const document = parse(fs.readFileSync(path.join(root, filename), 'utf8'));
+        for (const link of all(document, node => node.tagName === 'a' && attribute(node, 'href'))) {
+            const url = new URL(attribute(link, 'href'), origin);
+            if (url.origin !== origin || !/^\/desktop\/download(?:\/(?:mac|win))?$/.test(url.pathname)) continue;
+            assert.equal(url.searchParams.get('link'), 'website', filename);
+            assert.deepEqual([...url.searchParams.keys()], ['link'], filename);
+            count++;
+        }
+    }
+    assert.ok(count >= 40, '覆盖导航桌面／手机入口，以及首屏／页尾入口');
 });
