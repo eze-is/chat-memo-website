@@ -168,8 +168,8 @@
   },
   "meta": {
     "home": {
-      "title": "Chat Memo - AI对话管理工具 | 自动保存ChatGPT/DeepSeek/Gemini/Claude聊天记录",
-      "description": "Chat Memo是专业的AI对话管理工具，支持ChatGPT、DeepSeek、Gemini等平台的聊天记录自动保存、本地存储和智能搜索，构建你的个人AI知识库，保护隐私安全。"
+      "title": "Chat Memo - 实时备份，跨 AI 互通上下文",
+      "description": "实时备份与集中管理你的 AI 对话，在不同 AI 间延续上下文。支持 ChatGPT、Claude、Gemini、DeepSeek 等。"
     },
     "welcome": {
       "title": "欢迎使用 Chat Memo - AI对话管理工具快速入门指南",

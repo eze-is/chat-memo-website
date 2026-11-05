@@ -131,6 +131,12 @@ function escapeAttr(value) {
 function updateHead(document, page, locale, dictionary) {
     const metadata = { ...catalogs.en.meta[page], ...catalogs[locale].meta[page] };
     const canonical = `${origin}${pathFor(locale, page)}`;
+    // 根地址跟随英文静态页；中文使用中文卡片，其他语言暂复用英文图。
+    const imageLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
+    const shareImage = `${origin}/resource/social/chatmemo-context-20261105-${imageLocale}.png`;
+    const shareImageAlt = imageLocale === 'zh-CN'
+        ? 'Chat Memo：实时备份，跨 AI 互通上下文。Claude Code 对话与换个 AI 继续聊入口。'
+        : 'Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI.';
     let title = null;
     let canonicalLink = null;
     const head = byIdHead(document);
@@ -145,10 +151,18 @@ function updateHead(document, page, locale, dictionary) {
         description: metadata.description,
         language: locale,
         'og:url': canonical,
+        'og:image': shareImage,
+        'og:image:width': '1200',
+        'og:image:height': '630',
+        'og:image:type': 'image/png',
+        'og:image:alt': shareImageAlt,
         'og:title': metadata.title,
         'og:description': metadata.description,
         'og:locale': { en: 'en_US', 'zh-CN': 'zh_CN', ja: 'ja_JP', es: 'es_ES' }[locale],
         'twitter:url': canonical,
+        'twitter:card': 'summary_large_image',
+        'twitter:image': shareImage,
+        'twitter:image:alt': shareImageAlt,
         'twitter:title': metadata.title,
         'twitter:description': metadata.description
     })) setMeta(document, key, value);

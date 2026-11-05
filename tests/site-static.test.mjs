@@ -211,3 +211,32 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
     }
     assert.ok(count >= 40, '覆盖导航桌面／手机入口，以及首屏／页尾入口');
 });
+
+test('分享入口提供可抓取的横版产品图，不再放大 favicon', () => {
+    for (const locale of locales) {
+        const imageLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
+        const imagePath = `/resource/social/chatmemo-context-20261105-${imageLocale}.png`;
+        const png = fs.readFileSync(path.join(root, imagePath));
+        assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+        assert.equal(png.readUInt32BE(16), 1200);
+        assert.equal(png.readUInt32BE(20), 630);
+        assert.ok(png.length < 5_000_000, '分享图片应小于 5 MB');
+        for (const file of Object.values(pages)) {
+            for (const prefix of locale === 'en' ? ['', 'en'] : [locale]) {
+                const document = parse(fs.readFileSync(path.join(root, prefix, file), 'utf8'));
+                const meta = key => all(document, node => node.tagName === 'meta' && (attribute(node, 'name') === key || attribute(node, 'property') === key));
+                for (const key of ['og:image', 'twitter:image']) {
+                    assert.equal(meta(key).length, 1, `${prefix}/${file} ${key}`);
+                    assert.equal(attribute(meta(key)[0], 'content'), origin + imagePath);
+                }
+                assert.equal(attribute(meta('twitter:card')[0], 'content'), 'summary_large_image');
+                assert.equal(attribute(meta('og:image:width')[0], 'content'), '1200');
+                assert.equal(attribute(meta('og:image:height')[0], 'content'), '630');
+                assert.equal(attribute(meta('og:image:type')[0], 'content'), 'image/png');
+                for (const key of ['og:image:alt', 'twitter:image:alt']) assert.ok(attribute(meta(key)[0], 'content').includes('Claude Code'));
+                const icon = find(document, node => node.tagName === 'link' && attribute(node, 'rel') === 'icon');
+                assert.ok(icon && !attribute(icon, 'href').includes('/social/'));
+            }
+        }
+    }
+});

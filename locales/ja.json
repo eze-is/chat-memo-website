@@ -2,8 +2,8 @@
   "locale": "ja",
   "meta": {
     "home": {
-      "title": "Chat Memo｜AI との会話を自動保存・検索",
-      "description": "Chat Memo は、ChatGPT、Gemini、DeepSeek、Claude などの会話を自動保存し、端末内でまとめて管理・検索できる Chrome 拡張機能です。"
+      "title": "Chat Memo｜リアルタイム保存、AI をまたいで文脈を共有",
+      "description": "AI との会話をリアルタイムに保存して一元管理。ChatGPT、Claude、Gemini、DeepSeek など、別の AI でも文脈を引き継いで会話を続けられます。"
     },
     "welcome": {
       "title": "Chat Memo へようこそ｜使い方ガイド",

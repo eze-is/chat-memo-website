@@ -1,0 +1,8 @@
+/* 静态分享构图：独立复用真实玻璃组件，不移动 React 管理的节点或修改 App。 */
+.social-product{position:relative;width:1120px;height:720px}
+.social-product .v1-detail-head{min-height:86px;padding-right:300px!important}
+.social-product .v1-chats-detail .memory-prompt.is-compact{display:none}
+.social-product > .social-continue{position:absolute;right:24px;top:94px;min-height:40px;padding:9px 14px;font-size:13px;gap:8px;--glass-flow-base:68%;z-index:5}
+.social-product > .social-continue .memory-prompt-ais img{width:16px;height:16px}
+/* 静态图片保留玻璃原有底色；不截流光中间帧。 */
+.social-product .v1-try-sweep::before{animation:none}

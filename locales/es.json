@@ -2,8 +2,8 @@
   "locale": "es",
   "meta": {
     "home": {
-      "title": "Chat Memo: guarda y busca tus conversaciones con IA",
-      "description": "Chat Memo guarda automáticamente tus conversaciones de ChatGPT, DeepSeek, Gemini, Claude y otras plataformas en tu dispositivo. Organízalas y vuelve a encontrarlas cuando las necesites."
+      "title": "Chat Memo - Copias en tiempo real. Contexto entre IAs.",
+      "description": "Guarda y organiza tus conversaciones con IA en tiempo real. Continúa con el mismo contexto en ChatGPT, Claude, Gemini, DeepSeek y más."
     },
     "welcome": {
       "title": "Bienvenido a Chat Memo: guía de inicio rápido",
