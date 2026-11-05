@@ -3,17 +3,17 @@ import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const { init, marketFromTrace } = createRequire(import.meta.url)('../pricing-region.js');
 
-function view() {
+function view(language = 'en') {
     const loading = { hidden: false }, error = { hidden: true };
     const offers = ['cn', 'global'].map(market => ({ dataset: { priceMarket: market }, hidden: true }));
     const retry = { addEventListener(_event, handler) { this.click = handler; } };
     const root = { dataset: {}, attributes: {}, setAttribute(key, value) { this.attributes[key] = value; },
         querySelector(selector) { return { '[data-price-loading]': loading, '[data-price-error]': error, '[data-price-retry]': retry }[selector]; },
         querySelectorAll() { return offers; } };
-    return { document: { querySelector: () => root }, root, loading, error, offers, retry };
+    return { document: { documentElement: { lang: language }, querySelector: () => root }, root, loading, error, offers, retry };
 }
 
-test('网络国家决定唯一报价，不把边缘机房当作访客地区', () => {
+test('非中文界面按网络国家选价，不把边缘机房当作访客地区', () => {
     assert.equal(marketFromTrace('colo=NRT\nloc=CN\n'), 'cn');
     assert.equal(marketFromTrace('colo=HKG\nloc=JP\n'), 'global');
     for (const value of ['loc=XX', 'loc=ZZ', 'loc=T1', 'colo=CN', 'loc=CN\nloc=US', '<html>error</html>']) {
@@ -50,4 +50,24 @@ test('识别失败保持无报价并明确反馈，用户重试可以恢复且�
     await ui.retry.click();
     assert.equal(calls, 2); assert.equal(ui.error.hidden, true);
     assert.deepEqual(ui.offers.filter(offer => !offer.hidden).map(offer => offer.dataset.priceMarket), ['cn']);
+});
+
+test('中文界面或CN出口显示人民币，其他已识别地区的非中文界面显示美元', () => {
+    for (const [language, trace, expected] of [
+        ['zh-CN', 'loc=CN', 'cn'], ['zh-CN', 'loc=JP', 'cn'], ['zh-CN', '', 'cn'],
+        ['zh-CN', 'loc=XX', 'cn'], ['zh-TW', 'loc=US', 'cn'],
+        ['en', 'loc=CN', 'cn'], ['ja', 'loc=CN', 'cn'], ['es', 'loc=CN', 'cn'],
+        ['en', 'loc=US', 'global'], ['ja', 'loc=JP', 'global'], ['es', 'loc=ES', 'global']
+    ]) assert.equal(marketFromTrace(trace, language), expected, `${language}/${trace}`);
+});
+
+test('中文静态页面立即只显示人民币，不依赖地区请求成功', async () => {
+    const ui = view('zh-CN'); let calls = 0;
+    await init(ui.document, async () => { calls++; throw new Error('Network unavailable'); });
+    assert.equal(calls, 0);
+    assert.equal(ui.root.dataset.market, 'cn');
+    assert.deepEqual(ui.offers.filter(offer => !offer.hidden).map(offer => offer.dataset.priceMarket), ['cn']);
+    assert.equal(ui.error.hidden, true);
+    assert.equal(ui.loading.hidden, true);
+    assert.equal(ui.root.attributes['aria-busy'], 'false');
 });

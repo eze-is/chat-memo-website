@@ -1,7 +1,9 @@
-// 地区只决定当前网页展示哪一档公开价格，不产生账号地区或购买资格。
+// 界面语言与出口地区只决定公开报价，与 App 同规则，不产生账号地区或购买资格。
 (function () {
     'use strict';
-    function marketFromTrace(trace) {
+    function isChinese(language) { return typeof language === 'string' && /^zh(?:-|$)/i.test(language); }
+    function marketFromTrace(trace, language) {
+        if (isChinese(language)) return 'cn';
         const countries = trace.split(/\r?\n/).filter(line => line.startsWith('loc='));
         if (countries.length !== 1) throw new Error('Country unavailable');
         const country = countries[0].slice(4).trim();
@@ -24,12 +26,17 @@
             offers.forEach(offer => { offer.hidden = true; });
             root.setAttribute('aria-busy', 'true');
             try {
-                // 仅消费Cloudflare现有同源端点的loc；不保存、记录或转发完整trace和IP。
-                const response = await request('/cdn-cgi/trace', {
-                    cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(6000)
-                });
-                if (!response.ok) throw new Error('Country request failed');
-                const market = marketFromTrace(await response.text());
+                const language = document.documentElement.lang;
+                let trace = '';
+                // 中文界面已确定人民币报价；其他语言仅消费Cloudflare的loc，不保存IP或trace。
+                if (!isChinese(language)) {
+                    const response = await request('/cdn-cgi/trace', {
+                        cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(6000)
+                    });
+                    if (!response.ok) throw new Error('Country request failed');
+                    trace = await response.text();
+                }
+                const market = marketFromTrace(trace, language);
                 offers.forEach(offer => { offer.hidden = offer.dataset.priceMarket !== market; });
                 root.dataset.market = market;
             } catch {
