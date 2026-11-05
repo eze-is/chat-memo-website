@@ -19,8 +19,8 @@ Chat Memo 产品家族的公开官网，生产地址 `https://chatmemo.ai`。
 | 顶部导航菜单交互 | `components/navbar.html`、`site-nav.js` |
 | Hero 桌面端／插件切换与三 Tab 展示 | `hero-preview.js`、`hero-preview.css`、`devtools/hero-desktop/`；构建／行为与边界见 `doc/HERO-PRODUCT-PREVIEW.md` |
 | 更新数据 | `updates-data.json` |
-| 定价页及 Desktop Pro 公共展示配置归属 | 由 API 仓 `services/api/public-config/pro-presentation.v1.json` 统一维护；官网价格和交付状态由`scripts/pro-pricing.mjs`读取生产目录生成；页面`pricing.html`，地区显示由`pricing-region.js`消费本站Cloudflare trace，不维护第二份配置，见 `doc/PRO-PRESENTATION.md` |
-| 固定跳转地址（如商店“支持网址”使用的 `/feedback` → 反馈表单） | `_redirects` |
+| 定价页及 Desktop Pro 公共展示配置归属 | 价格、中文功能和交付状态由`scripts/pro-pricing.mjs`读取API生产公共目录；方案翻译／图标消费App导出的`resource/pro-plan-presentation.json`，同步入口`devtools/export-pro-plan-presentation.mjs`；页面`pricing.html`，选价由`pricing-region.js`按页面语言／Cloudflare出口判断；归属及构建见`doc/PRO-PRESENTATION.md` |
+| 固定跳转地址（如商店“支持网址”使用的 `/feedback` → 反馈表单） | `_redirects` 唯一维护反馈目标；2026-11-04 已停用 Cloudflare 域名层旧 `feedback` 单一重定向（规则 ID `12b01bfa5a734b2eb1c147931982d9fa`），避免其精确匹配 `/feedback/` 的旧 301 覆盖 Pages 配置 |
 | 桌面版隐私政策／用户协议与静态页生成 | `doc/DESKTOP-LEGAL.md`、`desktop/legal/versions/{zh-CN,en}/`、`scripts/build-desktop-legal.mjs`；`/desktop/privacy`及`/desktop/terms`不替换插件旧政策 |
 | 浏览器插件正式发版 / 官网版本记录 | `../browser-extension/.agent/skills/browser-extension-release/SKILL.md` |
 | 更新海报与宣传 Markdown（仅显式要求宣传时） | `.agent/skills/chatmemo-release-marketing/SKILL.md` |

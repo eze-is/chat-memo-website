@@ -9,6 +9,7 @@ const root = dirname(fileURLToPath(import.meta.url))
 const desktop = resolve(root, '../../../desktop')
 const require = createRequire(resolve(desktop, 'package.json'))
 execFileSync(process.execPath, [resolve(root, '../download-effects/build.mjs')], { stdio: 'inherit' })
+execFileSync(process.execPath, [resolve(root, '../export-pro-plan-presentation.mjs')], { stdio: 'inherit' })
 execFileSync('uv', ['run', '--with', 'fonttools', '--with', 'brotli', 'python', resolve(root, 'subset-font.py')], { stdio: 'inherit' })
 const { build } = await import(require.resolve('vite'))
 const react = (await import(require.resolve('@vitejs/plugin-react'))).default

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "icons": "src/renderer/src/product/v1.tsx#PLAN_ICONS",
+    "copy": "src/shared/pro-plan-copy.json",
+    "iconHash": "a3210e04e624b52dc2f4c81e40bd9a8467b51433acae916ae08abe7a0cb51a7c",
+    "copyHash": "9106c19152ef9474d7c9bfa2e84d9da91f49566ac6fefb0789236b3a514b3954"
+  },
+  "icons": {
+    "save": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-down-to-line\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12 17V3\"></path><path d=\"m6 11 6 6 6-6\"></path><path d=\"M19 21H5\"></path></svg>",
+    "search": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-search\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m21 21-4.34-4.34\"></path><circle cx=\"11\" cy=\"11\" r=\"8\"></circle></svg>",
+    "read": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-up-from-line\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m18 9-6-6-6 6\"></path><path d=\"M12 3v14\"></path><path d=\"M5 21h14\"></path></svg>",
+    "ask": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-message-square-text\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z\"></path><path d=\"M7 11h10\"></path><path d=\"M7 15h6\"></path><path d=\"M7 7h8\"></path></svg>",
+    "memory": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-notebook-pen\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4\"></path><path d=\"M2 6h4\"></path><path d=\"M2 10h4\"></path><path d=\"M2 14h4\"></path><path d=\"M2 18h4\"></path><path d=\"M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z\"></path></svg>"
+  },
+  "check": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-check\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M20 6 9 17l-5-5\"></path></svg>",
+  "copy": {
+    "zh-CN": {
+      "comparison": "免费与 Pro 能力对比",
+      "current": "当前",
+      "available": "有",
+      "planned": "计划中",
+      "unavailable": "没有"
+    },
+    "en": {
+      "title": "Chat Memo Pro",
+      "free": {
+        "label": "Free",
+        "description": "Save and search your AI conversations"
+      },
+      "pro": {
+        "label": "Pro",
+        "description": "Connect your AI apps and share context"
+      },
+      "features": {
+        "save": "Back up desktop AI conversations",
+        "save-web": "Back up web AI conversations",
+        "search": "Keyword search",
+        "read": "Continue conversations across AIs",
+        "ask": "AI Ask",
+        "memory": "Custom memory"
+      },
+      "comparison": "Compare Free and Pro",
+      "current": "Current",
+      "available": "Available",
+      "planned": "Planned",
+      "unavailable": "Unavailable"
+    },
+    "ja": {
+      "title": "Chat Memo Pro",
+      "free": {
+        "label": "無料",
+        "description": "AI との会話を保存・検索"
+      },
+      "pro": {
+        "label": "Pro",
+        "description": "AI アプリをつなぎ、コンテキストを共有"
+      },
+      "features": {
+        "save": "パソコンの AI 会話をバックアップ",
+        "save-web": "ブラウザの AI 会話をバックアップ",
+        "search": "キーワード検索",
+        "read": "AI や会話をまたいで続きを話す",
+        "ask": "AI 質問応答",
+        "memory": "カスタムメモリ"
+      },
+      "comparison": "無料と Pro の機能比較",
+      "current": "現在",
+      "available": "利用可能",
+      "planned": "計画中",
+      "unavailable": "利用不可"
+    },
+    "es": {
+      "title": "Chat Memo Pro",
+      "free": {
+        "label": "Gratis",
+        "description": "Guarda y busca tus conversaciones con IA"
+      },
+      "pro": {
+        "label": "Pro",
+        "description": "Conecta tus aplicaciones de IA y comparte contexto"
+      },
+      "features": {
+        "save": "Guardar conversaciones de IA del ordenador",
+        "save-web": "Guardar conversaciones de IA de la web",
+        "search": "Búsqueda por palabras clave",
+        "read": "Continuar conversaciones entre aplicaciones de IA",
+        "ask": "Preguntas y respuestas con IA",
+        "memory": "Memoria personalizada"
+      },
+      "comparison": "Comparar Gratis y Pro",
+      "current": "Actual",
+      "available": "Disponible",
+      "planned": "En preparación",
+      "unavailable": "No disponible"
+    }
+  }
+}

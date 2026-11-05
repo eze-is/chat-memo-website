@@ -10,6 +10,7 @@ characters = 'Chat Memo Pro CNY US$0123456789.,/:—✓©'
 for locale in ['en', 'zh-CN', 'ja', 'es']:
     catalog = json.loads((root / 'locales' / f'{locale}.json').read_text())
     characters += ''.join(catalog['common'].values()) + ''.join(catalog['pricing'].values())
+    characters += (root / locale / 'pricing.html').read_text()
 options = subset.Options()
 options.flavor = 'woff2'
 options.hinting = False

@@ -24,19 +24,23 @@ body { margin: 0; color: var(--pricing-ink); background: #fff; font: 400 16px/1.
 .plan-description { margin: 6px 0 0; min-height: 26px; color: var(--pricing-muted); font-size: 15px; line-height: 1.7; }
 .plan-price, .region-price { min-height: 98px; margin-top: 18px; }
 .plan-price { display: flex; flex-wrap: wrap; align-items: baseline; align-content: center; gap: 0 8px; font-variant-numeric: tabular-nums; }
-.region-price .plan-price { margin-top: 0; min-height: 62px; }
+.region-price .plan-price { margin-top: 0; min-height: 98px; }
 .price-amount { font-size: 44px; font-weight: 500; line-height: 1.35; letter-spacing: -1px; white-space: nowrap; }
 .price-period { font-size: 15px; color: var(--pricing-muted); white-space: nowrap; }
-.early-bird { margin: 0; font-size: 14px; color: var(--pricing-brand); line-height: 26px; }
-.region-price [data-price-market="global"] { padding-top: 26px; }
+.early-bird { display: inline-flex; align-self: center; margin-left: 3px; padding: 2px 8px; border: 1px solid rgb(81 99 203 / 24%); border-radius: 999px; background: rgb(81 99 203 / 5%); font-size: 13px; font-weight: 400; color: var(--pricing-brand); line-height: 20px; white-space: nowrap; }
 .price-status { padding-top: 28px; margin: 0; font-size: 15px; color: var(--pricing-muted); }
 .price-failure { font-size: 14px; color: var(--pricing-muted); }
 .price-failure p { margin: 0 0 4px; }
 .price-failure button { border: 0; padding: 4px 0; background: transparent; font: inherit; color: var(--pricing-brand); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .plan-features { list-style: none; display: grid; gap: 16px; margin: 20px 0 0; padding: 24px 0 0; border-top: 1px solid rgb(0 0 0 / 7%); }
-.plan-features li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 16px; color: var(--pricing-secondary); }
-.plan-features svg { margin-top: 5px; }
+.plan-features li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 16px; color: var(--pricing-secondary); }
+.plan-features svg { display: block; }
+.plan-status-check { color: var(--pricing-secondary); }
+.plan-pro .plan-status-check, .plan-pro .plan-features li:not(.plan-draft):not(.plan-off) > svg { color: var(--pricing-brand); }
+.plan-status-off, .plan-features .plan-off { color: var(--pricing-muted); }
 .plan-features .plan-gain { color: var(--pricing-brand); font-weight: 500; }
+.plan-features .plan-draft { color: var(--pricing-muted); }
+.plan-draft-label { justify-self: end; display: inline-flex; padding: 0 6px; border: 1px solid rgb(0 0 0 / 12%); border-radius: 999px; color: var(--pricing-muted); font-size: 12px; line-height: 1.6; font-weight: 400; white-space: nowrap; }
 .purchase-notes { margin: 38px 6px 0; }
 .purchase-details { min-width: 0; font-size: 15px; line-height: 1.8; color: var(--pricing-secondary); }
 .purchase-details h2 { margin: 0 0 12px; color: var(--pricing-ink); font-size: 17px; font-weight: 500; }
@@ -58,9 +62,11 @@ body { margin: 0; color: var(--pricing-ink); background: #fff; font: 400 16px/1.
     .plan-comparison { grid-template-columns: 1fr; gap: 18px; }
     .plan-card { padding: 26px; }
     .plan-description { min-height: 0; }
-    .plan-price, .region-price { min-height: 82px; }
+    .plan-price, .region-price, .region-price .plan-price { min-height: 82px; }
     .plan-features { margin-top: 12px; padding-top: 20px; gap: 13px; }
     .purchase-notes { margin: 30px 4px 0; }
 }
 @media (prefers-reduced-transparency: reduce) { .plan-pro { background: #fff; backdrop-filter: none; } }
 @media (forced-colors: active) { .plan-card { border: 1px solid CanvasText; } }
+
+@media (max-width: 359px) { .price-amount { font-size: 36px; } .early-bird { padding-inline: 6px; font-size: 12px; } }
