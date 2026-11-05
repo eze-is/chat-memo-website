@@ -1,6 +1,6 @@
 # 官网社交分享封面
 
-用户确认的 1200×630 分享封面源码与匿名产品截图。线上 PNG 位于 `resource/social/chatmemo-context-20261105-{zh-CN,en}.png`，由 `scripts/build-localized-pages.mjs` 统一接入 OG／Twitter 标签。根地址和英文／日文／西班牙文页面用英文图，中文页面用中文图。新设计应使用新文件名，避免图片 URL 缓存复用。favicon 继续使用品牌 Logo。
+用户确认的 1200×630 分享封面源码与匿名产品截图。线上 PNG 位于 `resource/social/chatmemo-context-20261105-v2-zh-CN.png`（中文）与 `resource/social/chatmemo-context-20261105-en.png`（英文），由 `scripts/build-localized-pages.mjs` 统一接入 OG／Twitter 标签。根地址和英文／日文／西班牙文页面用英文图，中文页面用中文图。新设计应使用新文件名，避免图片 URL 缓存复用。favicon 继续使用品牌 Logo。
 
 封面保留品牌、用户指定的「实时备份，跨 AI 互通上下文」、八个来源标识、真实产品组件的局部。用户进一步指定：展示电脑端 AI 对话，露出一句完整用户输入，在详情页头右侧使用原有玻璃「换个 AI 继续聊」按钮。
 
@@ -17,3 +17,5 @@ CHATMEMO_DESKTOP_DIR=/absolute/path/to/desktop node devtools/social-card/rendere
 `index.html` 以中文为默认；`?lang=en` 用英文文案和截图。以 1200×630、DPR 1 导出，核对 PNG 实际尺寸与图片资源完整，再更新带新版本文件名的线上 PNG。截图必须在同一浏览器调用内设置 viewport：跨调用的宿主窗口尺寸可能恢复。
 
 2026-11-05：已检查中英画面，用户提问完整可见、Claude Code 无浏览器插件来源标签、记录导航高亮、右上玻璃入口正常。构建和本地网页检查不代表 X 已重新抓取；上线后分别核对 Cloudflare 部署 commit、正式 HTML/PNG 与 X 缓存。
+
+中文对齐修订：保留整句「实时备份，跨 AI 互通上下文」为一行，品牌、标题与来源标识使用同一 grid 容器居中，层间距均为44px。1200px画布的三层中心实测均为600px；下方产品截图及其位置不变。英文构图保持原版。中文采用新图片 URL，旧图保留以支持已有缓存引用。

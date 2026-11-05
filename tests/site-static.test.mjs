@@ -215,7 +215,7 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
 test('分享入口提供可抓取的横版产品图，不再放大 favicon', () => {
     for (const locale of locales) {
         const imageLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
-        const imagePath = `/resource/social/chatmemo-context-20261105-${imageLocale}.png`;
+        const imagePath = `/resource/social/chatmemo-context-20261105${imageLocale === 'zh-CN' ? '-v2' : ''}-${imageLocale}.png`;
         const png = fs.readFileSync(path.join(root, imagePath));
         assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
         assert.equal(png.readUInt32BE(16), 1200);
