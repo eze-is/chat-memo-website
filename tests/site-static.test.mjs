@@ -212,7 +212,13 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
     assert.ok(count >= 40, '覆盖导航桌面／手机入口，以及首屏／页尾入口');
 });
 
-test('分享入口提供可抓取的横版产品图，不再放大 favicon', () => {
+test('通用方形缩略图与 Twitter 横版产品图分开提供', () => {
+    const squarePath = '/resource/social/chatmemo-brand-square-20261106.png';
+    const square = fs.readFileSync(path.join(root, squarePath));
+    assert.equal(square.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+    assert.equal(square.readUInt32BE(16), 512);
+    assert.equal(square.readUInt32BE(20), 512);
+    assert.ok(square.length < 1_000_000);
     for (const locale of locales) {
         const imageLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
         const imagePath = `/resource/social/chatmemo-context-20261105${imageLocale === 'zh-CN' ? '-v3' : '-v2'}-${imageLocale}.png`;
@@ -227,13 +233,14 @@ test('分享入口提供可抓取的横版产品图，不再放大 favicon', () 
                 const meta = key => all(document, node => node.tagName === 'meta' && (attribute(node, 'name') === key || attribute(node, 'property') === key));
                 for (const key of ['og:image', 'twitter:image']) {
                     assert.equal(meta(key).length, 1, `${prefix}/${file} ${key}`);
-                    assert.equal(attribute(meta(key)[0], 'content'), origin + imagePath);
+                    assert.equal(attribute(meta(key)[0], 'content'), origin + (key === 'og:image' ? squarePath : imagePath));
                 }
                 assert.equal(attribute(meta('twitter:card')[0], 'content'), 'summary_large_image');
-                assert.equal(attribute(meta('og:image:width')[0], 'content'), '1200');
-                assert.equal(attribute(meta('og:image:height')[0], 'content'), '630');
+                assert.equal(attribute(meta('og:image:width')[0], 'content'), '512');
+                assert.equal(attribute(meta('og:image:height')[0], 'content'), '512');
                 assert.equal(attribute(meta('og:image:type')[0], 'content'), 'image/png');
-                for (const key of ['og:image:alt', 'twitter:image:alt']) assert.ok(attribute(meta(key)[0], 'content').includes('Claude Code'));
+                assert.equal(attribute(meta('og:image:alt')[0], 'content'), 'Chat Memo');
+                assert.ok(attribute(meta('twitter:image:alt')[0], 'content').includes('Claude Code'));
                 const icon = find(document, node => node.tagName === 'link' && attribute(node, 'rel') === 'icon');
                 assert.ok(icon && !attribute(icon, 'href').includes('/social/'));
             }
