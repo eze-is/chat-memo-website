@@ -2,6 +2,21 @@
 (function () {
     'use strict';
 
+    // 网关按 UTC+8 轮换摘要。短期浏览器标识跨过午夜，避免已打开的页面失去去重。
+    function prepareDownloadVisit() {
+        if (!globalThis.navigator?.locks || !globalThis.crypto?.randomUUID) return;
+        void navigator.locks.request('chatmemo-download-visit', () => {
+            if (/(?:^|;\s*)cm_download_visit=[^;]+/.test(document.cookie)) return;
+            const day = 86_400_000, offset = 8 * 3_600_000;
+            const expires = new Date((Math.floor((Date.now() + offset) / day) + 2) * day - offset);
+            document.cookie = 'cm_download_visit=' + crypto.randomUUID() + '; Expires=' + expires.toUTCString() + '; Path=/; Secure; SameSite=Lax';
+        }).catch(() => {});
+    }
+    prepareDownloadVisit();
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') prepareDownloadVisit();
+    });
+
     function init() {
         const header = document.querySelector('#navbar-container header');
         if (!header || header.dataset.siteNavBound === 'true') return;

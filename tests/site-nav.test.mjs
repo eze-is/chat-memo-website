@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-function createNavigation({ mobile = true } = {}) {
+function createNavigation({ mobile = true, browser = {} } = {}) {
     const document = {
         activeElement: null,
         listeners: new Map(),
@@ -101,7 +101,7 @@ function createNavigation({ mobile = true } = {}) {
     let failChoice = false;
     const window = { SiteI18n: { choose(locale) { if (failChoice) throw new Error('bad locale'); choices.push(locale); } } };
     vm.runInNewContext(fs.readFileSync(path.join(root, 'site-nav.js'), 'utf8'), {
-        window, document, console: { error: () => {} }
+        window, document, console: { error: () => {} }, ...browser
     });
     return {
         init: window.SiteNav.init,
@@ -201,4 +201,19 @@ test('法律页仅有语言菜单时复用开合、Escape与选择，不依赖�
     ui.document.fire('click', { target: ui.outside });
     assert.equal(ui.localePanel.hidden, true);
     ui.header.fire('focusout', { relatedTarget: ui.outside });
+});
+
+test('官网匿名标识在 UTC+8 午夜到期，单日内重新打开页面沿用已有标识', async () => {
+    const now = Date.parse('2026-11-02T10:00:00+08:00');
+    let created = 0;
+    const h = createNavigation({ browser: {
+        Date: class extends Date { static now() { return now; } },
+        navigator: { locks: { async request(_name, prepare) { prepare(); } } },
+        crypto: { randomUUID() { created++; return 'c0369794-2b46-4178-9f31-cac23dd9f267'; } }
+    } });
+    const expiry = /Expires=([^;]+);/.exec(h.document.cookie)?.[1];
+    assert.equal(Date.parse(expiry), Date.parse('2026-11-04T00:00:00+08:00'));
+    h.document.visibilityState = 'visible';
+    h.document.fire('visibilitychange');
+    assert.equal(created, 1);
 });
