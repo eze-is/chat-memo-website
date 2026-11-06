@@ -138,7 +138,7 @@ function updateHead(document, page, locale, dictionary) {
         ? 'Chat Memo：实时备份，跨 AI 互通上下文。Claude Code 对话与换个 AI 继续聊入口。'
         : 'Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI.';
     // 通用缩略图单独设计为方形，避免横版产品图在小卡片中被裁切。
-    const squareImage = `${origin}/resource/social/chatmemo-brand-square-20261106.png`;
+    const squareImage = `${origin}/resource/social/chatmemo-brand-square-20261106-v2.png`;
     let title = null;
     let canonicalLink = null;
     const head = byIdHead(document);
@@ -154,8 +154,8 @@ function updateHead(document, page, locale, dictionary) {
         language: locale,
         'og:url': canonical,
         'og:image': squareImage,
-        'og:image:width': '512',
-        'og:image:height': '512',
+        'og:image:width': '1024',
+        'og:image:height': '1024',
         'og:image:type': 'image/png',
         'og:image:alt': 'Chat Memo',
         'og:title': metadata.title,

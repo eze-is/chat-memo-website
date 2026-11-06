@@ -213,11 +213,11 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
 });
 
 test('通用方形缩略图与 Twitter 横版产品图分开提供', () => {
-    const squarePath = '/resource/social/chatmemo-brand-square-20261106.png';
+    const squarePath = '/resource/social/chatmemo-brand-square-20261106-v2.png';
     const square = fs.readFileSync(path.join(root, squarePath));
     assert.equal(square.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-    assert.equal(square.readUInt32BE(16), 512);
-    assert.equal(square.readUInt32BE(20), 512);
+    assert.equal(square.readUInt32BE(16), 1024);
+    assert.equal(square.readUInt32BE(20), 1024);
     assert.ok(square.length < 1_000_000);
     for (const locale of locales) {
         const imageLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
@@ -236,8 +236,8 @@ test('通用方形缩略图与 Twitter 横版产品图分开提供', () => {
                     assert.equal(attribute(meta(key)[0], 'content'), origin + (key === 'og:image' ? squarePath : imagePath));
                 }
                 assert.equal(attribute(meta('twitter:card')[0], 'content'), 'summary_large_image');
-                assert.equal(attribute(meta('og:image:width')[0], 'content'), '512');
-                assert.equal(attribute(meta('og:image:height')[0], 'content'), '512');
+                assert.equal(attribute(meta('og:image:width')[0], 'content'), '1024');
+                assert.equal(attribute(meta('og:image:height')[0], 'content'), '1024');
                 assert.equal(attribute(meta('og:image:type')[0], 'content'), 'image/png');
                 assert.equal(attribute(meta('og:image:alt')[0], 'content'), 'Chat Memo');
                 assert.ok(attribute(meta('twitter:image:alt')[0], 'content').includes('Claude Code'));

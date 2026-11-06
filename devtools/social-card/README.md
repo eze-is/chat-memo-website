@@ -2,10 +2,10 @@
 
 当前分两类分享素材，由 `scripts/build-localized-pages.mjs` 统一生成标签：
 
-- 通用 Open Graph：`resource/social/chatmemo-brand-square-20261106.png`，512×512，仅保留品牌标识与名称，避免小方卡裁切横版产品画面。各语言共用品牌图，标题与摘要仍按页面语言生成。
+- 通用 Open Graph：`resource/social/chatmemo-brand-square-20261106-v2.png`，1024×1024，仅保留品牌标识与名称，避免小方卡裁切横版产品画面。各语言共用品牌图，标题与摘要仍按页面语言生成。
 - Twitter：继续使用1200×630横版产品图，中文 `chatmemo-context-20261105-v3-zh-CN.png`，其他语言 `chatmemo-context-20261105-v2-en.png`，显式设置 `twitter:image` 与 `summary_large_image`。
 
-方图源码是 `square.html`。静态服务下以512×512、DPR 1打开，等待字体和图片加载后导出到上述PNG。该文件是分享资产，favicon沿用原有图标。更换内容时使用新的图片URL。通用OG配置不等同于微信JS-SDK接入，也不保证各客户端刷新缓存；微信、浏览器系统分享与Twitter实机显示分别验收。
+当前方图来源是家族宣传资产 `ChatMemo/assets/brand-and-marketing/channels/social/2026-11-06-brand-card-native/square-reviewed.html`，对应 `square-reviewed.png`。白底，原 Logo 与字标居中，左下／右上使用同色同强度的轻微模糊 Logo。以512×512布局、2倍导出得到1024×1024；已目视复核64px、96px与256px效果。这里的 `square.html` 仅保留为第一版历史源，不用于重建当前方图。该文件是分享资产，favicon沿用原有图标。更换内容时使用新的图片URL。通用OG配置不等同于微信JS-SDK接入，也不保证各客户端刷新缓存；微信、浏览器系统分享与Twitter实机显示分别验收。
 
 封面保留品牌、用户指定的「实时备份，跨 AI 互通上下文」、八个来源标识、真实产品组件的局部。用户进一步指定：展示电脑端 AI 对话，露出一句完整用户输入，在详情页头右侧使用原有玻璃「换个 AI 继续聊」按钮。
 
