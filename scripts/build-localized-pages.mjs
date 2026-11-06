@@ -273,11 +273,9 @@ function render(page, locale) {
         addClass(byId(document, 'loading-state'), 'hidden');
     }
     {
-        const assets = page === 'pricing'
-            ? ['/site-i18n.js', '/site-nav.js', '/pricing.css', '/pricing-region.js']
-            : page === 'home'
-                ? ['/site-i18n.js', '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css']
-                : ['/site-i18n.js'];
+        const assets = ['/site-i18n.js', '/site-nav.js'];
+        if (page === 'pricing') assets.push('/pricing.css', '/pricing-region.js');
+        if (page === 'home') assets.push('/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css');
         visit(document, node => {
             for (const name of ['src', 'href']) {
                 const value = attr(node, name)?.split('?')[0];
