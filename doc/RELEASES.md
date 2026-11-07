@@ -23,6 +23,14 @@ App 更新包及 `/desktop/download`、`/desktop/updates` 下载服务的发布�
 
 ## 页面运行内容发布回执
 
+### [f0251fb] — 2026-11-07 13:49:35 UTC+8：Desktop 1.0.7 四语说明
+
+- 产品公开依据：[Desktop v1.0.7](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.7)，实际公开时间 2026-11-07 13:48:27（UTC+8）；本官网版本与 App 包版本、发布时间分别记录。
+- 官网源码：`f0251fb2c739058027f5569969d687766835fb0a`；Pages production deployment `c798ce06-fd19-402b-9554-18685e57b3d2` 于 2026-11-07 13:49:35（UTC+8）成功。
+- 范围仅为 `desktopUpdates` 新条目及五份生成更新页。五项中文逐字取自 Desktop `releases/1.0.7.json`，英／日／西语经独立审阅；旧桌面与插件条目逐项比对保持。未修改定价、宣传资源或下载链接。
+- 55 项测试、i18n 生成一致性及 diff 检查通过。正式浏览器回读四语版本、实际日期和五项内容，并通过页面 DOM 点击事件核对双 Tab 切换与返回；Desktop 共两条记录，插件保留 20 条且最新仍为 v2.0.0。Ego 跨导航的指针点击有未触发情况，本轮不将 DOM 事件验收称为物理键鼠验收；此次官网验收也不替代 App 安装／升级或插件商店验收。
+- 本机回执：`/tmp/chatmemo-website-107-content-deployment.json`、`/tmp/chatmemo-website-107-browser-readback.json`。本文及 Changelog 的后续记录提交仅追加发布事实，页面运行内容仍为上述 SHA；文档提交对应的 Pages deployment 由下方项目部署列表核对，不反复修改本文以记录自身部署。
+
 ### [2ba8d11] — 2026-11-07 13:02:16 UTC+8：双 Tab 更新记录
 
 - 环境：production；Pages 项目 `chat-memo-website`，生产分支 `main`。
@@ -30,7 +38,7 @@ App 更新包及 `/desktop/download`、`/desktop/updates` 下载服务的发布�
 - Deployment：`b892a5ff-f609-4833-aa11-0ac0ccdce48c`，2026-11-07 13:02:16（UTC+8）部署成功。2026-11-07 本轮流程检查通过 Cloudflare 只读管理接口再次核对 canonical production 与源码匹配。
 - 既有验收：55 项测试、i18n / 法律生成检查，四语及窄宽屏、Tab / 键盘 / 历史导航与无 JavaScript 正文检查。原基线证据入口为 Desktop 仓 `docs/tasks/RELEASE-1.0.7-BASELINE.md`；本机回执 `~/Documents/Eze/Archive/Projects/ChatMemo/source-baseline-20261107/final-verification.json`。
 - 本轮新增检查仅确认 Git 与云端部署身份；直接 HTTP 读取遇 403，未重复浏览器页面验收，不据此宣称页面异常或新增页面验收通过。
-- 当前官网源码仍展示 Desktop 1.0.6；1.0.7 尚未加入。浏览器插件记录保留原内容，不将这次官网部署视为新的插件发布。
+- 该版本官网展示 Desktop 1.0.6；当时 1.0.7 尚未加入。浏览器插件记录保留原内容，不将这次官网部署视为新的插件发布。
 
 客服邮件及法律文档的此前生产版本为 `7b1fe56`，Pages deployment `a1918413-3948-4059-8858-ef1fa18d5cd9`，实际成功时间为 2026-11-07 11:04:17（UTC+8）；详细证据见 [DESKTOP-LEGAL.md](DESKTOP-LEGAL.md#2026-11-07正式客服邮件迁移)。
 
