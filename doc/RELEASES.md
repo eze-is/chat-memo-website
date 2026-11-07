@@ -29,6 +29,14 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [f55491a] — 2026-11-07 20:03:28 UTC+8 · 手机原型触控纠正
+
+- 生产分支 `main` 的运行内容源码为 `f55491a64dad28896bb602b76cb3e486eb33fbf4`。Cloudflare Pages production deployment `a5d55394-8558-47c4-9df7-efb83182bc8b` 于 2026-11-07 20:03:28（UTC+8）成功。四语首页、Hero 脚本与样式、演示入口和构建 JS／CSS 共 9 项正式资源与提交逐字节一致。Cloudflare Web Analytics 自动注入仍关闭。
+- 真机反馈证明前两次浏览器模拟的结论不完整。桌面窗口缩到 390px 后，原型 Tab 约为 11×11 CSS px，续聊入口约 78×13 CSS px。Android Chrome 会显示胶囊按下反馈，但轻微触摸位移可能取消最终 click。旧编排在选页确认前就记录“用户已固定”，因此还会停止自动轮换。
+- 本版撤下首页演示下方额外增加的三个可见 Tab。在原型窗口内原控件位置增加透明触控层，三个 Tab 连续区域为 132×44 CSS px，续聊入口高度为 44 CSS px。手机 `touchstart` 直接进入原选页或对比命令，触摸层不产生第二组可见导航。轮播只在正式选页回调完成后固定。
+- 正式站浏览器验证通过普通动态设置下首页自动轮到记录、三个 Tab 和续聊入口触摸、3px 横向加 4px 纵向位移后的选页，以及减少动态时停播但手动选页可用。59 项测试、四语与法律静态页一致性和 Hero 源码检查通过。
+- 当前机器没有连接 Android 设备。上述触摸证据来自 Android Chrome 触摸模拟，正式 Android Chrome 真机是否恢复由用户设备复核，当前不记为真机通过。本机证据为 `/tmp/chatmemo-mobile-correction-production.json` 和 `/tmp/chatmemo-mobile-correction.png`。
+
 ### [298a4dc] — 2026-11-07 19:48:06 UTC+8 · 记录页续聊按钮
 
 - 生产分支 `main` 的运行内容源码为 `298a4dc8151c33b81badc14d4108498dc6ad6189`。Cloudflare Pages production deployment `13af8cc0-308b-4fa5-9ccb-da6f6aab91de` 于 2026-11-07 19:48:06（UTC+8）成功。正式域名回读的四语首页、Hero 脚本和样式、演示入口及其 JS、CSS 和字体共 10 项均与提交逐字节一致。Cloudflare Web Analytics 自动注入仍关闭。
@@ -36,12 +44,14 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 - 正式站冷缓存 390×844 触摸模拟使用下行 1.6 Mbps 和 150 ms 请求延迟。导航后约 1.4 秒可先点选 Tab，约 7.7 秒后演示已应用选择。该计时来自单次浏览器模拟。
 - 正式站回归验证默认轮播、两段功能视频的播放与离屏暂停、桌面插件视频及切回演示、中英文各一个地区报价和带官网来源参数的 Mac／Windows 下载入口。手机覆盖使用浏览器模拟。
 - 本机证据见 `/tmp/chatmemo-mobile-tabs.OsySwn/` 的 `production-cta.json`、`production-regression.json`、`production-http.json` 和 `cta-deployment.json`。
+- 2026-11-07 后续 Android Chrome 真机反馈显示续聊入口仍无法可靠点击；本条只保留当时浏览器模拟事实，纠正见 `f55491a`。
 
 ### [1aa6b3c] — 2026-11-07 19:42:52 UTC+8 · 手机演示 Tab 触控修复
 
 - 生产分支 `main` 的运行内容源码为 `1aa6b3ce2cf075edebb9f3ca0e8ac8a1c03fb4ef`。Cloudflare Pages production deployment `827fd0a3-e2c0-4e0b-b7f4-860697c81bd6` 于 2026-11-07 19:42:52（UTC+8）成功。
 - 发布前 59 项测试、四语与法律静态页一致性和 Hero 源码检查通过。正式站 390×844 Android Chrome 触摸模拟核对三个新按钮，触控区各高 44 CSS px。暂停演示脚本请求时连续点两个 Tab，恢复请求后打开最后所选页。自动能力对比弹窗打开时可切到「连接」。1440px 下窗口内导航仍可点击。
 - 本机证据见 `/tmp/chatmemo-mobile-tabs.OsySwn/` 的 `production-tabs.json` 和 `runtime-deployment.json`。
+- 2026-11-07 后续 Android Chrome 真机反馈显示窗口内 Tab 仍无法可靠点击，且额外可见 Tab 偏离原型；本条只保留当时发布事实，纠正见 `f55491a`。
 
 ### [df2a6c2] — 2026-11-07 15:46:37 UTC+8：官网样式及首页演示提速
 
