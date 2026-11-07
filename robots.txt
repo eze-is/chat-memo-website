@@ -1,13 +1,10 @@
+# Public pages are open to search engines and AI crawlers.
+# A named agent uses only its own group, so each group repeats Allow.
+Sitemap: https://chatmemo.ai/sitemap.xml
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://chatmemo.ai/sitemap.xml
-
-# Crawl-delay for polite crawling
-Crawl-delay: 1
-
-# Allow all search engines to index the site
 User-agent: Googlebot
 Allow: /
 
@@ -15,4 +12,43 @@ User-agent: Bingbot
 Allow: /
 
 User-agent: Baiduspider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
 Allow: /

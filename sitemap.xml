@@ -1,19 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url><loc>https://chatmemo.ai/en/</loc></url>
-    <url><loc>https://chatmemo.ai/zh-CN/</loc></url>
-    <url><loc>https://chatmemo.ai/ja/</loc></url>
-    <url><loc>https://chatmemo.ai/es/</loc></url>
-    <url><loc>https://chatmemo.ai/en/welcome</loc></url>
-    <url><loc>https://chatmemo.ai/zh-CN/welcome</loc></url>
-    <url><loc>https://chatmemo.ai/ja/welcome</loc></url>
-    <url><loc>https://chatmemo.ai/es/welcome</loc></url>
-    <url><loc>https://chatmemo.ai/en/updates</loc></url>
-    <url><loc>https://chatmemo.ai/zh-CN/updates</loc></url>
-    <url><loc>https://chatmemo.ai/ja/updates</loc></url>
-    <url><loc>https://chatmemo.ai/es/updates</loc></url>
-    <url><loc>https://chatmemo.ai/en/pricing</loc></url>
-    <url><loc>https://chatmemo.ai/zh-CN/pricing</loc></url>
-    <url><loc>https://chatmemo.ai/ja/pricing</loc></url>
-    <url><loc>https://chatmemo.ai/es/pricing</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://chatmemo.ai/en/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/zh-CN/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/ja/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/es/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/en/welcome</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/zh-CN/welcome</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/ja/welcome</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/es/welcome</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/en/updates</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/zh-CN/updates</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/ja/updates</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/es/updates</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/en/pricing</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/zh-CN/pricing</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/ja/pricing</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"/>
+    </url>
+    <url>
+        <loc>https://chatmemo.ai/es/pricing</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"/>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"/>
+    </url>
 </urlset>

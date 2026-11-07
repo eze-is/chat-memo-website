@@ -15,6 +15,40 @@ const { render: renderUpdates } = require(path.join(root, 'updates-renderer.js')
 const locales = ['en', 'zh-CN', 'ja', 'es'];
 const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html' };
 const origin = 'https://chatmemo.ai';
+// 桌面安装包只提供 Windows 与 macOS；浏览器插件入口是 Chrome 与 Edge。
+const operatingSystem = 'Windows, macOS';
+const browserRequirements = 'Chrome, Microsoft Edge';
+// 这些短语只写入中英首页 JSON-LD，不进入可见正文，也不写入 meta description。
+const homeSoftwareCopy = {
+    en: {
+        featureList: [
+            'Auto-save AI chats',
+            'Back up ChatGPT, Claude, Gemini, DeepSeek conversations',
+            'Export AI chat history',
+            'Continue a conversation in another AI'
+        ],
+        keywords: [
+            'Auto-save AI chats',
+            'Back up ChatGPT, Claude, Gemini, DeepSeek conversations',
+            'Export AI chat history',
+            'Continue a conversation in another AI'
+        ]
+    },
+    'zh-CN': {
+        featureList: [
+            '自动保存 AI 聊天记录',
+            '备份 ChatGPT、Claude、Gemini、DeepSeek 对话',
+            '导出 AI 聊天记录',
+            '换个 AI 接着聊'
+        ],
+        keywords: [
+            '自动保存 AI 聊天记录',
+            '备份 AI 聊天记录',
+            '导出 AI 聊天记录',
+            '换个 AI 接着聊'
+        ]
+    }
+};
 const check = process.argv.includes('--check');
 const catalogs = Object.fromEntries(locales.map((locale) => [
     locale,
@@ -169,6 +203,10 @@ function updateHead(document, page, locale, dictionary) {
         'twitter:description': metadata.description
     })) setMeta(document, key, value);
 
+    // 放在重写 hreflang 之前，避免脚本落在语言链接之后、下次生成又被挪到前面。
+    if (page === 'home' && !jsonLdScripts(head).some((node) => readJsonLd(node)['@type'] === 'Organization')) {
+        appendMarkup(head, '<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization"}</script>');
+    }
     head.childNodes = head.childNodes.filter((node) => {
         if (node.tagName === 'link' && attr(node, 'rel') === 'alternate' && attr(node, 'hreflang')) return false;
         if (node.tagName === 'meta' && attr(node, 'property') === 'og:locale:alternate') return false;
@@ -184,26 +222,72 @@ function updateHead(document, page, locale, dictionary) {
     const defaultPath = page === 'home' ? '/' : `/${page}`;
     appendMarkup(head, `<link rel="alternate" hreflang="x-default" href="${origin}${defaultPath}">`);
 
+    for (const node of jsonLdScripts(head)) {
+        writeJsonLd(node, localizedJsonLd(readJsonLd(node), page, locale, dictionary, metadata, canonical));
+    }
+}
+
+function jsonLdScripts(head) {
+    const scripts = [];
     visit(head, (node) => {
-        if (node.tagName !== 'script' || attr(node, 'type') !== 'application/ld+json') return;
-        const raw = node.childNodes?.map((child) => child.value || '').join('') || '';
-        const data = JSON.parse(raw);
-        if (data['@type'] === 'SoftwareApplication') {
-            data.description = metadata.description;
-            data.url = canonical;
-            data.featureList = [1, 2, 3, 4].map((number) => textFromMarkup(dictionary[`feature${number}-title`]));
-        } else if (data['@type'] === 'WebSite') {
-            data.description = metadata.description;
-            data.inLanguage = locales;
-        } else if (data['@type'] === 'FAQPage') {
-            data.mainEntity = [1, 2, 3].map((number) => ({
-                '@type': 'Question',
-                name: textFromMarkup(dictionary[`faq${number}-q`]),
-                acceptedAnswer: { '@type': 'Answer', text: textFromMarkup(dictionary[`faq${number}-a`]) }
-            }));
-        }
-        setText(node, JSON.stringify(data).replaceAll('<', '\\u003c'));
+        if (node.tagName === 'script' && attr(node, 'type') === 'application/ld+json') scripts.push(node);
     });
+    return scripts;
+}
+
+function readJsonLd(node) {
+    return JSON.parse(node.childNodes?.map((child) => child.value || '').join('') || '');
+}
+
+function writeJsonLd(node, data) {
+    setText(node, JSON.stringify(data).replaceAll('<', '\\u003c'));
+}
+
+function localizedJsonLd(data, page, locale, dictionary, metadata, canonical) {
+    if (data['@type'] === 'SoftwareApplication') {
+        data.name = 'Chat Memo';
+        data.description = metadata.description;
+        data.url = canonical;
+        data.applicationCategory = 'ProductivityApplication';
+        data.operatingSystem = operatingSystem;
+        data.browserRequirements = browserRequirements;
+        delete data.offers;
+        delete data.aggregateRating;
+        delete data.review;
+        delete data.interactionStatistic;
+        data.publisher = { '@id': `${origin}/#organization` };
+        const copy = page === 'home' ? homeSoftwareCopy[locale] : null;
+        if (copy) {
+            data.featureList = copy.featureList;
+            data.keywords = copy.keywords;
+        } else {
+            data.featureList = [1, 2, 3, 4].map((number) => textFromMarkup(dictionary[`feature${number}-title`]));
+            delete data.keywords;
+        }
+    } else if (data['@type'] === 'WebSite') {
+        data.name = 'Chat Memo';
+        data.description = metadata.description;
+        data.url = canonical;
+        data.inLanguage = locales;
+        data.publisher = { '@id': `${origin}/#organization` };
+        delete data.potentialAction;
+    } else if (data['@type'] === 'Organization') {
+        data['@id'] = `${origin}/#organization`;
+        data.name = 'Chat Memo';
+        data.url = origin;
+        data.description = metadata.description;
+        data.logo = {
+            '@type': 'ImageObject',
+            url: `${origin}/resource/icons/logo.png`
+        };
+    } else if (data['@type'] === 'FAQPage') {
+        data.mainEntity = [1, 2, 3].map((number) => ({
+            '@type': 'Question',
+            name: textFromMarkup(dictionary[`faq${number}-q`]),
+            acceptedAnswer: { '@type': 'Answer', text: textFromMarkup(dictionary[`faq${number}-a`]) }
+        }));
+    }
+    return data;
 }
 
 function localizeAttributesAndText(document, page, locale, dictionary) {
@@ -292,8 +376,13 @@ function render(page, locale) {
 }
 
 function sitemap() {
-    const urls = Object.keys(pages).flatMap((page) => locales.map((locale) => `    <url><loc>${origin}${pathFor(locale, page)}</loc></url>`));
-    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
+    const urls = Object.keys(pages).flatMap((page) => locales.map((locale) => {
+        const alternates = locales.map((alternate) => `        <xhtml:link rel="alternate" hreflang="${alternate}" href="${origin}${pathFor(alternate, page)}"/>`);
+        const defaultPath = page === 'home' ? '/' : `/${page}`;
+        alternates.push(`        <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${defaultPath}"/>`);
+        return `    <url>\n        <loc>${origin}${pathFor(locale, page)}</loc>\n${alternates.join('\n')}\n    </url>`;
+    }));
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
 for (const page of Object.keys(pages)) {

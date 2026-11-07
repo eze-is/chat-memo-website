@@ -168,8 +168,8 @@
   },
   "meta": {
     "home": {
-      "title": "Chat Memo - 实时备份，跨 AI 互通上下文",
-      "description": "实时备份与集中管理你的 AI 对话，在不同 AI 间延续上下文。支持 ChatGPT、Claude、Gemini、DeepSeek 等。"
+      "title": "Chat Memo - 实时备份所有 AI 对话，换个 AI 也能接着聊",
+      "description": "实时备份你在网页和电脑上的 AI 对话，包括 ChatGPT、Claude、Gemini、DeepSeek、豆包，以及 Claude Code、Codex 等。连上 Chat Memo，打通 AI 之间的对话记忆，换到任何一个 AI，它都知道你聊过什么、接下来怎么聊。"
     },
     "welcome": {
       "title": "欢迎使用 Chat Memo - AI对话管理工具快速入门指南",
