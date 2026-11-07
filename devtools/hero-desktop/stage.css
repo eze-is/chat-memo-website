@@ -2,8 +2,9 @@ html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; back
 .hero-product-canvas { position: absolute; top: 0; transform-origin: top left; }
 /* 原生窗控属于 macOS，浏览器中仅补回三个静态圆点，产品界面仍由正式组件绘制。 */
 .desktop-native-window-controls { background: radial-gradient(circle at 6px 6px, #ff6059 0 5px, transparent 5.5px), radial-gradient(circle at 26px 6px, #ffbd2e 0 5px, transparent 5.5px), radial-gradient(circle at 46px 6px, #28c840 0 5px, transparent 5.5px); }
-/* 官网页只开放顶部三个Tab；各页的具体动作由短场景演出，避免进入统计和付费流程。 */
+/* 官网开放三个 Tab 和记录页的对比入口；其余动作由短场景演出。 */
 .hero-product-canvas .v1-scroll, .hero-product-canvas .v1-gear-pills, .hero-product-canvas .v1-help, .hero-product-canvas .v1-header-status, .hero-product-canvas .v1-brand-wrap { pointer-events: none; }
+.hero-product-canvas .memory-prompt.is-compact { pointer-events: auto; }
 /* 原生 dialog 在顶层，不继承画布变换；让它与整个1120×720产品窗口等比缩放。 */
 .hero-product-canvas .v1-window-modal { width: var(--hero-width); height: var(--hero-height); transform: scale(var(--hero-scale)); transform-origin: top left; }
 html[data-scene="chats-4"] .memory-prompt.is-compact { animation: hero-cta-press 350ms ease-in-out; }

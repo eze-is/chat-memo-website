@@ -32,35 +32,49 @@ function Projection(): React.JSX.Element {
   const [savingEnabled, setSavingEnabled] = useState(false)
   const outsideFocus = useRef<HTMLElement | null>(null)
   const [scene, setScene] = useState<{ tab: 'home' | 'chats' | 'connect'; step: number; run: number }>({ tab: 'home', step: 0, run: 0 })
-  const clock = useRef({ tab: 'home' as 'home' | 'chats' | 'connect', elapsed: 0, previous: 0, playing: false, frame: 0, step: 0, run: 0, pinned: false })
+  const clock = useRef({ tab: 'home' as 'home' | 'chats' | 'connect', elapsed: 0, previous: 0, playing: false, frame: 0, step: 0, run: 0, pinned: false, inspecting: false, comparisonSeen: false })
   const english = locale === 'en'
   const virtualWidth = 1120, virtualHeight = 720
   const scale = Math.min(viewport.width / virtualWidth, viewport.height / virtualHeight)
+  function openComparison(manual: boolean): void {
+    clock.current.inspecting = manual
+    clock.current.comparisonSeen = true
+    const active = parent !== window ? parent.document.activeElement : null
+    outsideFocus.current = !manual && active !== frameElement ? active as HTMLElement | null : null
+    setComparisonOpen(true)
+  }
+  function closeComparison(): void {
+    clock.current.inspecting = false
+    setComparisonOpen(false)
+  }
   function changeTab(tab: Tab): void {
     if (!tabs.includes(tab as typeof tabs[number])) return
     const state = clock.current
+    closeComparison()
+    state.comparisonSeen = false
     state.tab = tab as typeof tabs[number]; state.elapsed = 0; state.previous = 0; state.step = 0; state.run++
     setScene({ tab: state.tab, step: 0, run: state.run })
     parent.postMessage({ type: 'chatmemo:hero:tab', tab: state.tab }, location.origin)
   }
   function userClick(event: MouseEvent): void {
+    const target = event.target as Element
     // 让编排走正式的一键开启动作，用户点击其他深层控件仍会被拦住。
-    if (!event.isTrusted && clock.current.tab === 'connect' && clock.current.step === 1 && (event.target as Element).closest('.v1-allon button')) return
-    if ((event.target as Element).closest('.v1-brow .v1-pills:not(.v1-gear-pills) button')) {
+    if (!event.isTrusted && clock.current.tab === 'connect' && clock.current.step === 1 && target.closest('.v1-allon button')) return
+    if (target.closest('.v1-brow .v1-pills:not(.v1-gear-pills) button')) {
       if (event.isTrusted) clock.current.pinned = true
-    } else {
-      event.preventDefault(); event.stopPropagation()
-      // 只允许编排触发这一层能力对比；真实用户仍只选三个Tab，不进入价格或付款。
-      if (!event.isTrusted && clock.current.tab === 'chats' && clock.current.step === 5 && (event.target as Element).closest('.memory-prompt.is-compact')) {
-        outsideFocus.current = parent !== window && parent.document.activeElement !== frameElement ? parent.document.activeElement as HTMLElement : null
-        setComparisonOpen(true)
-      }
-      if ((event.target as Element).closest('.v1-sheet-x')) setComparisonOpen(false)
+      return
     }
+    if (target.closest('.v1-sheet-x')) return
+    event.preventDefault(); event.stopPropagation()
+    // 演示入口只打开对比弹窗，拦住正式组件的方案与付费路径。
+    if (event.isTrusted && clock.current.tab === 'chats' && target.closest('.memory-prompt.is-compact')) openComparison(true)
   }
   useEffect(() => {
     // 原生弹窗会聚焦标题；自动演示不能抢走官网其他位置的焦点。
-    if (!comparisonOpen || !outsideFocus.current) return
+    if (!comparisonOpen) return
+    const action = document.querySelector<HTMLButtonElement>('.v1-value-cta')
+    if (action) action.tabIndex = -1
+    if (!outsideFocus.current) return
     ;(frameElement as HTMLElement | null)?.blur()
     outsideFocus.current.focus({ preventScroll: true })
   }, [comparisonOpen])
@@ -70,10 +84,11 @@ function Projection(): React.JSX.Element {
     function tick(now: number): void {
       state.frame = 0
       if (!state.playing || reduced.matches || document.hidden) { state.previous = 0; return }
+      if (state.inspecting) { state.previous = 0; state.frame = requestAnimationFrame(tick); return }
       if (state.previous) state.elapsed += now - state.previous
       state.previous = now
       if (state.elapsed >= duration[state.tab]) {
-        if (state.pinned) { state.elapsed %= duration[state.tab]; state.run++; state.step = -1 }
+        if (state.pinned) { state.elapsed %= duration[state.tab]; state.run++; state.step = -1; state.comparisonSeen = false }
         else navButtons()[(tabs.indexOf(state.tab) + 1) % tabs.length]?.click()
       }
       const step = stepAt(state.tab, state.elapsed)
@@ -105,7 +120,7 @@ function Projection(): React.JSX.Element {
   useEffect(() => {
     document.documentElement.dataset.scene = `${scene.tab}-${scene.step}`
     document.documentElement.dataset.manual = String(clock.current.pinned)
-    if (scene.tab !== 'chats' || scene.step !== 5) setComparisonOpen(false)
+    if (!clock.current.inspecting && (scene.tab !== 'chats' || scene.step !== 5)) setComparisonOpen(false)
     if (scene.tab === 'connect' && scene.step === 0) setSavingEnabled(false)
     const scroll = document.querySelector<HTMLElement>('.v1-scroll')
     if (scene.step === 0) scroll?.scrollTo({ top: 0 })
@@ -116,7 +131,7 @@ function Projection(): React.JSX.Element {
         Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, query)
         input.dispatchEvent(new Event('input', { bubbles: true }))
       }
-      if (scene.step === 5) document.querySelector<HTMLButtonElement>('.memory-prompt.is-compact')?.click()
+      if (scene.step === 5 && !clock.current.comparisonSeen) openComparison(false)
     }
     if (scene.tab === 'connect' && scene.step === 1) document.querySelector<HTMLButtonElement>('.v1-allon button')?.click()
     if (scene.tab === 'connect' && scene.step === 2 && scroll) {
@@ -124,14 +139,14 @@ function Projection(): React.JSX.Element {
       if (web) scroll.scrollTo({ top: web.getBoundingClientRect().top - scroll.getBoundingClientRect().top + scroll.scrollTop - 16, behavior: reduced.matches ? 'instant' : 'smooth' })
     }
     // 对比弹窗也只展示，能力／付款按钮不开放；右上角关闭仍可用。
-    for (const element of document.querySelectorAll<HTMLElement>('.v1-scroll button, .v1-scroll input, .v1-scroll a, .v1-gear-pills button, .v1-help, .v1-refresh, .v1-pro-wrap button, .v1-pro-wrap [tabindex]')) element.tabIndex = -1
+    for (const element of document.querySelectorAll<HTMLElement>('.v1-scroll button:not(.memory-prompt.is-compact), .v1-scroll input, .v1-scroll a, .v1-gear-pills button, .v1-help, .v1-refresh')) element.tabIndex = -1
     for (const input of document.querySelectorAll<HTMLInputElement>('.v1-scroll input')) input.readOnly = true
   }, [scene, english])
   const conn = { ...connection, local: Object.fromEntries(Object.entries(connection.local).map(([id, value]) => [id, { ...value, save: scene.tab !== 'connect' || scene.step > 0 && savingEnabled }])) }
   return <div className="hero-product-canvas" onClickCapture={userClick} style={{ width: virtualWidth, height: virtualHeight, transform: `scale(${scale})`, left: (viewport.width - virtualWidth * scale) / 2, '--hero-scale': scale, '--hero-width': `${virtualWidth}px`, '--hero-height': `${virtualHeight}px` } as CSSProperties}>
     <div className="desktop-viewport"><V1Window data={fixture(english, scene.tab !== 'home' || scene.step >= 1, scene.tab !== 'home' || scene.step >= 2)} conn={conn} actions={{ ...actions, enableAllSaving: () => setSavingEnabled(true) }} settingsActions={settingsActions}
       refresh={{ updatedAt: Date.UTC(2026, 10, 5, 6, 40), now: Date.UTC(2026, 10, 5, 6, 41), busy: false, read: noop }}
-      modelConfiguration={comparisonOpen ? <ProSheet onClose={() => setComparisonOpen(false)} /> : undefined}
+      modelConfiguration={comparisonOpen ? <ProSheet onClose={closeComparison} /> : undefined}
       onConnectionPresence={noop} onTab={changeTab} nPill="apple-lens" width={virtualWidth} height={virtualHeight} initialTab="home" guide={null} tryOnce={null} recentActivityLayout="content" /></div>
   </div>
 }
