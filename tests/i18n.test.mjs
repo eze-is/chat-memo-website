@@ -194,6 +194,25 @@ test('英文词包失败时语言初始化不阻断静态页面', async () => {
     assert.equal(context.getWrites(), 0);
 });
 
+test('当前语言先失败时仍等英文兜底可用，再启动依赖词包的交互', async () => {
+    let resolveEnglish;
+    const english = new Promise(resolve => { resolveEnglish = resolve; });
+    let initialized = false;
+    const runtime = createRuntime({
+        url: 'https://chatmemo.ai/zh-CN/',
+        languages: ['zh-CN'],
+        fetchCatalog: async resource => {
+            if (resource === '/locales/en.json') return english;
+            throw new Error('当前词包加载失败');
+        }
+    }).then(result => { initialized = true; return result; });
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(initialized, false);
+    resolveEnglish({ ok: true, json: async () => catalogs.en });
+    const context = await runtime;
+    assert.equal(context.runtime.t('weekly-report-title'), catalogs.en.home['weekly-report-title']);
+});
+
 test('浏览器禁用本地存储时仍可按浏览器语言显示和手动切换', async () => {
     const context = await createRuntime({
         url: 'https://chatmemo.ai/ja/',
@@ -244,17 +263,22 @@ test('法律页手动切换保留文档与查询片段，保存同一官网偏�
 });
 
 // 旧词包不能在初始化后把新版静态正文覆盖回旧文案。
-test('首页按生成页面的内容版本读取英文与当前词包，避开旧URL缓存', async () => {
+test('首页并行读取同一内容版本的英文与当前词包', async () => {
     const requests = [];
-    const context = await createRuntime({
+    let releaseEnglish;
+    const english = new Promise(resolve => { releaseEnglish = resolve; });
+    const initializing = createRuntime({
         url: 'https://chatmemo.ai/zh-CN/', languages: ['zh-CN'], catalogVersion: 'current-copy',
         fetchCatalog: async (resource) => {
             requests.push(resource);
             const locale = new URL(resource, 'https://chatmemo.ai').pathname.match(/locales\/(.+)\.json$/)[1];
+            if (locale === 'en') await english;
             return { ok: true, json: async () => catalogs[locale] };
         }
     });
     assert.deepEqual(requests, ['/locales/en.json?v=current-copy', '/locales/zh-CN.json?v=current-copy']);
+    releaseEnglish();
+    const context = await initializing;
     assert.match(context.runtime.t('cta-desc'), /电脑或浏览器/);
 });
 

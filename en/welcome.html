@@ -30,13 +30,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=c04c41c44595">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
 
-    <script src="/site-i18n.js?v=d7f1109b3353"></script><script src="/site-nav.js?v=c8cb8e3efe80"></script>
+    <script src="/site-i18n.js?v=385cb81880a3"></script><script src="/site-nav.js?v=c8cb8e3efe80"></script>
 
     <style>
         body {
@@ -179,7 +179,7 @@
     const afterLoad = () => setTimeout(start, 0);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad, { once: true });
-})();</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
+})();</script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -541,7 +541,7 @@
                             </a>
                             <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
                                 <div class="bg-white rounded-xl shadow-xl border border-gray-100 p-6 backdrop-blur-sm flex flex-col items-center">
-                                    <img src="/resource/images/author-wechat.png" alt="Eze's WeChat QR code" data-alt-key="wechat-qr-alt" class="w-40 h-40 rounded-lg mb-4">
+                                    <img src="/resource/images/author-wechat.png" alt="Eze's WeChat QR code" data-alt-key="wechat-qr-alt" class="w-40 h-40 rounded-lg mb-4" loading="lazy" decoding="async" fetchpriority="low">
                                     <p class="text-sm text-gray-700 text-center whitespace-nowrap font-medium" data-key="footer-wechat-text">Chat Memo Author WeChat</p>
                                 </div>
                             </div>

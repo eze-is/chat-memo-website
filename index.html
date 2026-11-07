@@ -179,22 +179,22 @@
             updateLocaleSelection();
             return locale;
         }
+        locale = requestedLocale;
+        const english = loadCatalog('en');
+        // 两份词包同时请求。即使当前语言先失败，也要等英文兜底可用再完成初始化。
+        const active = locale === 'en' ? null : loadCatalog(locale).then(
+            () => ({ ok: true }),
+            error => ({ ok: false, error })
+        );
         try {
-            await loadCatalog('en');
-        } catch (error) {
-            // 静态页面仍可阅读；词包异常不应阻断导航和更新记录加载。
-            console.error('官网英文语言文件加载失败，保留静态页面:', error);
-            locale = requestedLocale;
-            updateLocaleSelection();
-            return locale;
-        }
-        try {
-            await loadCatalog(requestedLocale);
-            locale = requestedLocale;
+            await english;
+            if (active) {
+                const result = await active;
+                if (!result.ok) throw result.error;
+            }
         } catch (error) {
             // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
             console.error('官网语言加载失败，保留静态页面:', error);
-            locale = requestedLocale;
             updateLocaleSelection();
             return locale;
         }
@@ -252,18 +252,18 @@ SiteI18n.redirectToCanonical("home");</script>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <link rel="manifest" href="/manifest.json">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=c04c41c44595">
+    <noscript><style>video[data-autoplay][data-poster]{display:none}</style></noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resource/download-effects.css?v=93affb5629d0">
-    <link rel="stylesheet" href="/hero-preview.css?v=ed2008b7fdbf">
+    <link rel="stylesheet" href="/hero-preview.css?v=06eb66b783da">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/resource/icons/logo.png" as="image">
-    <link rel="preload" href="/resource/videos/video.mp4" as="video" type="video/mp4">
 
     <!-- Custom Styles -->
     <style>
@@ -291,7 +291,6 @@ SiteI18n.redirectToCanonical("home");</script>
             background: #94a3b8;
         }
     </style>
-    <link rel="preload" href="/resource/images/video_cover.jpg" as="image">
 
     <!-- DNS Prefetch for External Resources -->
     <link rel="dns-prefetch" href="//chromewebstore.google.com">
@@ -483,7 +482,7 @@ SiteI18n.redirectToCanonical("home");</script>
         #hero h1 { font-weight: 600; letter-spacing: -.02em; line-height: 1.2; text-wrap: balance; }
 
     </style>
-<meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://chatmemo.ai/#organization","name":"Chat Memo","url":"https://chatmemo.ai","description":"Auto-save your AI chats on the web and desktop, from ChatGPT, Claude, Gemini and DeepSeek to Claude Code and Codex. Connect Chat Memo, and any AI knows what you've discussed and where to pick up.","logo":{"@type":"ImageObject","url":"https://chatmemo.ai/resource/icons/logo.png"}}</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"></head>
+<meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://chatmemo.ai/#organization","name":"Chat Memo","url":"https://chatmemo.ai","description":"Auto-save your AI chats on the web and desktop, from ChatGPT, Claude, Gemini and DeepSeek to Claude Code and Codex. Connect Chat Memo, and any AI knows what you've discussed and where to pick up.","logo":{"@type":"ImageObject","url":"https://chatmemo.ai/resource/icons/logo.png"}}</script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"></head>
 
 <body class="bg-white text-gray-800 antialiased">
 
@@ -559,7 +558,7 @@ SiteI18n.redirectToCanonical("home");</script>
 </header>
 </div>
 
-    <script src="/hero-preview.js?v=be435af2f10f" defer=""></script>
+    <script src="/hero-preview.js?v=e11f2b5db966" defer=""></script>
 
     <main>
         <section id="hero" class="pt-40 pb-24 text-center">
@@ -594,7 +593,7 @@ SiteI18n.redirectToCanonical("home");</script>
                                 </div>
                             </a>
                             <a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer">
-                                <img src="/resource/icons/edge_icon.png" alt="Edge" class="w-6 h-6 flex-shrink-0">
+                                <img src="/resource/icons/edge_icon_96.webp" alt="Edge" class="w-6 h-6 flex-shrink-0" loading="lazy" decoding="async" fetchpriority="low">
                                 <div class="flex-1 min-w-0">
                                     <p data-key="dropdown-edge">Edge Store</p>
                                     <p data-key="dropdown-edge-desc">Recommended for Edge users</p>
@@ -608,12 +607,13 @@ SiteI18n.redirectToCanonical("home");</script>
 
                 <div class="hero-product-preview mt-16 mx-auto" data-hero-preview="" data-preview="desktop">
                     <div class="hero-product-layer" data-preview-desktop="">
-                        <img src="/resource/hero-desktop/poster.webp" alt="Chat Memo" width="1120" height="720" loading="lazy" decoding="async">
-                        <iframe data-src="/resource/hero-desktop/?v=20261107-lossless" title="Chat Memo" tabindex="0"></iframe>
+                        <img src="/resource/hero-desktop/poster.webp" alt="Chat Memo" width="1120" height="720" fetchpriority="high" decoding="async">
+                        <iframe data-src="/resource/hero-desktop/?v=20261107-priority" title="Chat Memo" tabindex="0"></iframe>
                     </div>
                     <div class="hero-product-layer" data-preview-plugin="" aria-hidden="true">
-                        <video muted="" loop="" playsinline="" poster="/resource/images/video_cover.jpg" preload="none">
-                            <source src="/resource/videos/video.mp4" type="video/mp4">
+                        <img data-plugin-poster="" data-src="/resource/images/video_cover.jpg" alt="">
+                        <video muted="" loop="" playsinline="" preload="none">
+                            <source src="/resource/videos/video.mp4?v=aa0663cc4526" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -675,14 +675,14 @@ SiteI18n.redirectToCanonical("home");</script>
                     <p class="text-sm text-gray-400" data-key="ai-platforms-text">Seamlessly integrate with your favorite AI assistants</p>
                 </div>
                 <div class="flex flex-wrap justify-center items-center gap-5 sm:gap-8 max-w-3xl mx-auto">
-                    <img src="/resource/icons/chatgpt_icon.png" alt="ChatGPT" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/gemini_icon.png" alt="Gemini" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/claude-icon.png" alt="Claude" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/deepseek_icon.png" alt="DeepSeek" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/doubao-icon.png" alt="Doubao" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/yuanbao_icon.png" alt="Tencent Yuanbao" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/kimi-icon.png" alt="Kimi" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                    <img src="/resource/icons/qianwen-icon.png" alt="Qwen" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300">
+                    <img src="/resource/icons/chatgpt_icon.png" alt="ChatGPT" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/gemini_icon.png" alt="Gemini" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/claude-icon.png" alt="Claude" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/deepseek_icon.png" alt="DeepSeek" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/doubao-icon.png" alt="Doubao" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/yuanbao_icon.png" alt="Tencent Yuanbao" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/kimi-icon.png" alt="Kimi" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
+                    <img src="/resource/icons/qianwen-icon.png" alt="Qwen" class="h-12 w-12 opacity-70 hover:opacity-100 transition-opacity duration-300" loading="lazy" decoding="async" fetchpriority="low">
                     <div class="h-12 w-12 border-2 border-dashed border-gray-300 rounded-full flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300">
                         <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -702,7 +702,7 @@ SiteI18n.redirectToCanonical("home");</script>
                 <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div class="md:w-1/2">
                         <div class="bg-white p-2 border border-gray-200 rounded-xl shadow-lg">
-                            <img src="/resource/images/frame_1.png" alt="" class="rounded-lg">
+                            <img src="/resource/images/frame_1.png" alt="" class="rounded-lg w-full h-auto" width="1503" height="1110" loading="lazy" decoding="async" fetchpriority="low">
                         </div>
                     </div>
                     <div class="md:w-1/2">
@@ -715,10 +715,10 @@ SiteI18n.redirectToCanonical("home");</script>
                 <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div class="md:w-1/2 md:order-last">
                         <div class="bg-white p-2 border border-gray-200 rounded-xl shadow-lg">
-                            <video class="rounded-lg w-full h-auto" data-autoplay="true" muted="" loop="" playsinline="" poster="/resource/images/frame_2_cover.jpg" preload="none">
-                                <source src="/resource/videos/frame_2_demo.mp4" type="video/mp4">
-                                <img src="/resource/images/frame_2_cover.jpg" alt="" class="rounded-lg">
+                            <video class="rounded-lg w-full h-auto" data-autoplay="true" muted="" loop="" playsinline="" data-poster="/resource/images/frame_2_cover.jpg" width="3250" height="2086" preload="none">
+                                <source src="/resource/videos/frame_2_demo.mp4?v=8f3799c516ee" type="video/mp4">
                             </video>
+                            <noscript><img src="/resource/images/frame_2_cover.jpg" alt="" width="3250" height="2086" loading="lazy" class="rounded-lg w-full h-auto"></noscript>
                         </div>
                     </div>
                     <div class="md:w-1/2">
@@ -731,10 +731,10 @@ SiteI18n.redirectToCanonical("home");</script>
                 <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div class="md:w-1/2">
                         <div class="bg-white p-2 border border-gray-200 rounded-xl shadow-lg">
-                            <video class="rounded-lg w-full h-auto" data-autoplay="true" muted="" loop="" playsinline="" poster="/resource/images/frame_3_cover.jpg" preload="none">
-                                <source src="/resource/videos/frame_3_demo.mp4" type="video/mp4">
-                                <img src="/resource/images/frame_3_cover.jpg" alt="" class="rounded-lg">
+                            <video class="rounded-lg w-full h-auto" data-autoplay="true" muted="" loop="" playsinline="" data-poster="/resource/images/frame_3_cover.jpg" width="1504" height="1110" preload="none">
+                                <source src="/resource/videos/frame_3_demo.mp4?v=7353c6de3446" type="video/mp4">
                             </video>
+                            <noscript><img src="/resource/images/frame_3_cover.jpg" alt="" width="1504" height="1110" loading="lazy" class="rounded-lg w-full h-auto"></noscript>
                         </div>
                     </div>
                     <div class="md:w-1/2">
@@ -751,7 +751,7 @@ SiteI18n.redirectToCanonical("home");</script>
                 <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                     <div class="md:w-1/2 md:order-last">
                         <div class="bg-white p-2 border border-gray-200 rounded-xl shadow-lg">
-                            <img src="/resource/images/frame_4.png" alt="" class="rounded-lg">
+                            <img src="/resource/images/frame_4.png" alt="" class="rounded-lg w-full h-auto" width="1408" height="768" loading="lazy" decoding="async" fetchpriority="low">
                         </div>
                     </div>
                     <div class="md:w-1/2">
@@ -818,7 +818,7 @@ SiteI18n.redirectToCanonical("home");</script>
                 </div>
                 <div class="bg-white rounded-2xl p-8 md:p-12 border border-gray-100 shadow-lg flex flex-col md:flex-row items-center gap-12">
                     <div class="flex-shrink-0 text-center">
-                        <img src="/resource/images/avatar.jpg" alt="Eze" class="rounded-full h-40 w-40 mx-auto ring-4 ring-white shadow-md">
+                        <img src="/resource/images/avatar.jpg" alt="Eze" class="rounded-full h-40 w-40 mx-auto ring-4 ring-white shadow-md" loading="lazy" decoding="async" fetchpriority="low">
                         <h4 class="font-bold text-lg mt-4 text-gray-900" data-key="vision-author">Eze</h4>
                         <p class="text-gray-500" data-key="vision-role">Developer &amp; Prompt Engineer</p>
                     </div>
@@ -888,7 +888,7 @@ SiteI18n.redirectToCanonical("home");</script>
                                 </div>
                             </a>
                             <a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer">
-                                <img src="/resource/icons/edge_icon.png" alt="Edge" class="w-6 h-6 flex-shrink-0">
+                                <img src="/resource/icons/edge_icon_96.webp" alt="Edge" class="w-6 h-6 flex-shrink-0" loading="lazy" decoding="async" fetchpriority="low">
                                 <div class="flex-1 min-w-0">
                                     <p data-key="dropdown-edge">Edge Store</p>
                                     <p data-key="dropdown-edge-desc">Recommended for Edge users</p>
@@ -1175,82 +1175,28 @@ SiteI18n.redirectToCanonical("home");</script>
             }
         });
 
-        // 视频懒加载优化 - 交叉观察器实现
-        function initVideoLazyLoading() {
-            // 检查浏览器是否支持 Intersection Observer
+        // 功能视频接近视口时才请求封面和视频；离开视口暂停播放。
+        function initFeatureVideos() {
+            const videos = document.querySelectorAll('video[data-autoplay="true"]');
+            function play(video) {
+                if (!video.hasAttribute('poster')) video.poster = video.dataset.poster;
+                video.preload = 'metadata';
+                video.play()?.catch(error => console.info('功能视频无法自动播放:', error));
+            }
             if (!('IntersectionObserver' in window)) {
-                // 不支持的情况下，直接播放所有视频（降级处理）
-                const videos = document.querySelectorAll('video[data-autoplay="true"]');
-                videos.forEach(video => {
-                    video.setAttribute('autoplay', 'true');
-                    video.play().catch(e => console.log('视频播放失败:', e));
-                });
+                videos.forEach(play);
                 return;
             }
-
-            // 创建交叉观察器配置
-            const observerOptions = {
-                root: null, // 使用视口作为根
-                rootMargin: '50px', // 提前50px开始加载
-                threshold: 0.25 // 当视频25%可见时触发
-            };
-
-            // 创建观察器回调函数
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-
-                    if (entry.isIntersecting) {
-                        // 视频进入视口，开始播放
-                        if (video.getAttribute('data-autoplay') === 'true') {
-                            // 设置preload为metadata以开始加载
-                            video.setAttribute('preload', 'metadata');
-
-                            // 尝试播放视频
-                            const playPromise = video.play();
-                            if (playPromise !== undefined) {
-                                playPromise
-                                    .then(() => {
-                                        console.log('视频开始播放:', video.src || video.querySelector('source')?.src);
-                                    })
-                                    .catch(error => {
-                                        console.log('视频自动播放被阻止:', error);
-                                        // 播放失败时显示播放按钮（可选）
-                                    });
-                            }
-                        }
-                    } else {
-                        // 视频离开视口，暂停播放以节省资源
-                        if (!video.paused) {
-                            video.pause();
-                            console.log('视频已暂停（离开视口）:', video.src || video.querySelector('source')?.src);
-                        }
-                    }
-                });
-            };
-
-            // 创建观察器实例
-            const videoObserver = new IntersectionObserver(observerCallback, observerOptions);
-
-            // 观察所有带有data-autoplay属性的视频
-            const videos = document.querySelectorAll('video[data-autoplay="true"]');
-            videos.forEach(video => {
-                videoObserver.observe(video);
-                console.log('开始观察视频:', video.src || video.querySelector('source')?.src);
-            });
-
-            console.log(`视频懒加载已初始化，共观察 ${videos.length} 个视频`);
+            const observer = new IntersectionObserver(entries => {
+                for (const { target, isIntersecting } of entries) {
+                    if (isIntersecting) play(target);
+                    else target.pause();
+                }
+            }, { rootMargin: '50px', threshold: 0.25 });
+            videos.forEach(video => observer.observe(video));
         }
 
-        // 页面加载完成后初始化视频懒加载
-        document.addEventListener('DOMContentLoaded', initVideoLazyLoading);
-
-        // 如果DOMContentLoaded已经触发，立即初始化
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initVideoLazyLoading);
-        } else {
-            initVideoLazyLoading();
-        }
+        document.addEventListener('DOMContentLoaded', initFeatureVideos, { once: true });
     </script>
 
 

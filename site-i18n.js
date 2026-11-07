@@ -178,22 +178,22 @@
             updateLocaleSelection();
             return locale;
         }
+        locale = requestedLocale;
+        const english = loadCatalog('en');
+        // 两份词包同时请求。即使当前语言先失败，也要等英文兜底可用再完成初始化。
+        const active = locale === 'en' ? null : loadCatalog(locale).then(
+            () => ({ ok: true }),
+            error => ({ ok: false, error })
+        );
         try {
-            await loadCatalog('en');
-        } catch (error) {
-            // 静态页面仍可阅读；词包异常不应阻断导航和更新记录加载。
-            console.error('官网英文语言文件加载失败，保留静态页面:', error);
-            locale = requestedLocale;
-            updateLocaleSelection();
-            return locale;
-        }
-        try {
-            await loadCatalog(requestedLocale);
-            locale = requestedLocale;
+            await english;
+            if (active) {
+                const result = await active;
+                if (!result.ok) throw result.error;
+            }
         } catch (error) {
             // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
             console.error('官网语言加载失败，保留静态页面:', error);
-            locale = requestedLocale;
             updateLocaleSelection();
             return locale;
         }

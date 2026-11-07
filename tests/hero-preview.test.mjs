@@ -14,7 +14,7 @@ class Element {
   focus() { this.focused = true }
 }
 function harness(locale = 'zh-CN') {
-  const root = new Element(), frame = new Element(), video = new Element(), desktop = new Element(), plugin = new Element(), trigger = new Element(), menu = new Element(), desktopLayer = new Element(), pluginLayer = new Element()
+  const root = new Element(), frame = new Element(), video = new Element(), desktop = new Element(), plugin = new Element(), trigger = new Element(), menu = new Element(), desktopLayer = new Element(), pluginLayer = new Element(), pluginPoster = new Element()
   const doc = new Element(), win = new Element(), reduced = new Element()
   doc.documentElement = { lang: locale }; doc.hidden = false; reduced.matches = false
   plugin.children = [trigger, menu]
@@ -23,13 +23,15 @@ function harness(locale = 'zh-CN') {
   plugin.querySelector = selector => ({ '.hero-extension-trigger': trigger, '.hero-extension-menu': menu }[selector])
   cta.querySelector = selector => ({ '.hero-extension-trigger': ctaTrigger, '.hero-extension-menu': ctaMenu }[selector])
   doc.querySelectorAll = () => [plugin, cta]
-  root.querySelector = selector => ({ iframe: frame, video, '[data-preview-desktop]': desktopLayer, '[data-preview-plugin]': pluginLayer }[selector])
+  root.querySelector = selector => ({ iframe: frame, video, '[data-preview-desktop]': desktopLayer, '[data-preview-plugin]': pluginLayer, '[data-plugin-poster]': pluginPoster }[selector])
   doc.querySelector = selector => ({ '[data-hero-preview]': root, '.hero-action-secondary .download-dropdown': plugin }[selector])
   doc.getElementById = id => ({ 'hero-desktop-download-btn': desktop, 'hero-download-btn': trigger, 'hero-extension-menu': menu }[id])
   const messages = []
   frame.contentWindow = { postMessage: message => messages.push(message) }
   frame.dataset.src = '/resource/hero-desktop/index.html'
   Object.defineProperty(frame, 'src', { get: () => frame.attributes.get('src'), set: value => frame.attributes.set('src', value) })
+  pluginPoster.dataset.src = '/resource/images/video_cover.jpg'
+  Object.defineProperty(pluginPoster, 'src', { get: () => pluginPoster.attributes.get('src'), set: value => pluginPoster.attributes.set('src', value) })
   video.paused = true; video.playCount = 0
   video.pause = () => { video.paused = true }
   video.play = () => { video.playCount++; video.paused = false; return Promise.resolve() }
@@ -37,7 +39,7 @@ function harness(locale = 'zh-CN') {
   class Observer { constructor(callback) { this.callback = callback; observer = this } observe() {} disconnect() { this.disconnected = true } fire(ratio) { this.callback([{ intersectionRatio: ratio }]) } }
   vm.runInNewContext(source, { document: doc, location: { href: 'https://chatmemo.ai/zh-CN/', origin: 'https://chatmemo.ai' }, URL, matchMedia: () => reduced, IntersectionObserver: Observer, addEventListener: win.addEventListener.bind(win) })
   const ready = event => win.fire('message', { origin: 'https://chatmemo.ai', source: frame.contentWindow, data: { type: 'chatmemo:hero:ready' }, ...event })
-  return { root, frame, video, desktop, plugin, trigger, menu, cta, ctaTrigger, ctaMenu, doc, win, reduced, messages, observer, ready }
+  return { root, frame, video, desktop, plugin, trigger, menu, cta, ctaTrigger, ctaMenu, doc, win, reduced, messages, observer, ready, pluginPoster }
 }
 test('默认桌面端，进入可见区域才加载；只接受自己frame的就绪消息', () => {
   const h = harness()
@@ -50,8 +52,13 @@ test('默认桌面端，进入可见区域才加载；只接受自己frame的就
 })
 test('悬停或键盘聚焦切换预览；下载点击没有被脚本接管', () => {
   const h = harness(); h.observer.fire(1); h.ready()
+  assert.equal(h.pluginPoster.src, undefined)
   h.plugin.fire('pointerenter', { pointerType: 'mouse' })
   assert.equal(h.root.dataset.preview, 'plugin'); assert.equal(h.video.paused, false); assert.equal(h.messages.at(-1).playing, false)
+  assert.equal(h.pluginPoster.src, '/resource/images/video_cover.jpg')
+  assert.equal(h.root.dataset.pluginReady, undefined)
+  h.pluginPoster.fire('load')
+  assert.equal(h.root.dataset.pluginReady, 'true')
   h.desktop.fire('focus')
   assert.equal(h.root.dataset.preview, 'desktop'); assert.equal(h.video.paused, true); assert.equal(h.messages.at(-1).playing, true)
   assert.equal(h.desktop.listeners.has('click'), false)

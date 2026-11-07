@@ -179,22 +179,22 @@
             updateLocaleSelection();
             return locale;
         }
+        locale = requestedLocale;
+        const english = loadCatalog('en');
+        // 两份词包同时请求。即使当前语言先失败，也要等英文兜底可用再完成初始化。
+        const active = locale === 'en' ? null : loadCatalog(locale).then(
+            () => ({ ok: true }),
+            error => ({ ok: false, error })
+        );
         try {
-            await loadCatalog('en');
-        } catch (error) {
-            // 静态页面仍可阅读；词包异常不应阻断导航和更新记录加载。
-            console.error('官网英文语言文件加载失败，保留静态页面:', error);
-            locale = requestedLocale;
-            updateLocaleSelection();
-            return locale;
-        }
-        try {
-            await loadCatalog(requestedLocale);
-            locale = requestedLocale;
+            await english;
+            if (active) {
+                const result = await active;
+                if (!result.ok) throw result.error;
+            }
         } catch (error) {
             // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
             console.error('官网语言加载失败，保留静态页面:', error);
-            locale = requestedLocale;
             updateLocaleSelection();
             return locale;
         }
@@ -235,7 +235,7 @@ SiteI18n.redirectToCanonical("welcome");</script>
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=c04c41c44595">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -319,7 +319,7 @@ SiteI18n.redirectToCanonical("welcome");</script>
             border-radius: 9999px;
         }
     </style>
-<meta name="language" content="en"><meta property="og:locale" content="en_US"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
+<meta name="language" content="en"><meta property="og:locale" content="en_US"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -681,7 +681,7 @@ SiteI18n.redirectToCanonical("welcome");</script>
                             </a>
                             <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
                                 <div class="bg-white rounded-xl shadow-xl border border-gray-100 p-6 backdrop-blur-sm flex flex-col items-center">
-                                    <img src="/resource/images/author-wechat.png" alt="Eze's WeChat QR code" data-alt-key="wechat-qr-alt" class="w-40 h-40 rounded-lg mb-4">
+                                    <img src="/resource/images/author-wechat.png" alt="Eze's WeChat QR code" data-alt-key="wechat-qr-alt" class="w-40 h-40 rounded-lg mb-4" loading="lazy" decoding="async" fetchpriority="low">
                                     <p class="text-sm text-gray-700 text-center whitespace-nowrap font-medium" data-key="footer-wechat-text">Chat Memo Author WeChat</p>
                                 </div>
                             </div>

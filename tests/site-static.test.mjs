@@ -60,11 +60,16 @@ function assertNavigationScript(document, file) {
 }
 
 test('16 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返语言链接', () => {
+    const utilities = fs.readFileSync(path.join(root, 'resource/marketing-utilities.css'));
+    const version = createHash('sha256').update(utilities).digest('hex').slice(0, 12);
     for (const page of Object.keys(pages)) {
         for (const locale of locales) {
             const file = path.join(root, locale, pages[page]);
             const html = fs.readFileSync(file, 'utf8');
             const document = parse(html);
+            assert.doesNotMatch(html, /cdn\.tailwindcss\.com/, file);
+            assert.ok(find(document, node => node.tagName === 'link' && attribute(node, 'rel') === 'stylesheet'
+                && attribute(node, 'href') === `/resource/marketing-utilities.css?v=${version}`), file);
             assertNavigationScript(document, file);
             const catalog = catalogs[locale];
             const canonical = `${origin}${route(locale, page)}`;

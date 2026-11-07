@@ -5,6 +5,7 @@
     if (!root) return;
     const frame = root.querySelector('iframe');
     const video = root.querySelector('video');
+    const pluginPoster = root.querySelector('[data-plugin-poster]');
     const desktop = document.getElementById('hero-desktop-download-btn');
     const plugin = document.querySelector('.hero-action-secondary .download-dropdown');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,6 +37,9 @@
         root.querySelector('[data-preview-desktop]').setAttribute('aria-hidden', String(selected !== 'desktop'));
         root.querySelector('[data-preview-plugin]').setAttribute('aria-hidden', String(selected !== 'plugin'));
         if (visible) loadDesktop();
+        if (selected === 'plugin' && !pluginPoster.hasAttribute('src')) {
+            pluginPoster.src = pluginPoster.dataset.src;
+        }
         if (ready) frame.contentWindow.postMessage({ type: 'chatmemo:hero:playback', playing: active && selected === 'desktop' }, location.origin);
         const request = ++playRequest;
         if (active && selected === 'plugin' && !hovering) {
@@ -52,6 +56,11 @@
     plugin.addEventListener('focusin', () => select('plugin'));
     root.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') { hovering = true; sync(); } });
     root.addEventListener('pointerleave', () => { hovering = false; sync(); });
+    pluginPoster.addEventListener('load', () => { root.dataset.pluginReady = 'true'; });
+    video.addEventListener('playing', () => {
+        root.dataset.pluginReady = 'true';
+        root.dataset.pluginPlaying = 'true';
+    });
     addEventListener('message', event => {
         if (event.origin !== location.origin || event.source !== frame.contentWindow || event.data?.type !== 'chatmemo:hero:ready') return;
         ready = true; root.dataset.desktopReady = 'true'; sync();

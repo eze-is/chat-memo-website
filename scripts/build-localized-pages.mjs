@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serialize } from 'parse5';
 import { loadCatalog, pricingMarkup } from './pro-pricing.mjs';
 import { i18nSource, earlyLanguageScript, analyticsScript } from './site-entry.mjs';
+import { marketingStyles } from './marketing-styles.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -328,6 +329,8 @@ function render(page, locale, neutral = false) {
     const document = parse(source[page]);
     const head = byIdHead(document);
     head.childNodes = head.childNodes.filter(node => !(
+        (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' &&
+            attr(node, 'href')?.split('?')[0] === '/resource/marketing-utilities.css') ||
         node.tagName === 'script' && (
             attr(node, 'data-early-language-route') !== undefined ||
             attr(node, 'data-site-analytics') !== undefined ||
@@ -342,6 +345,8 @@ function render(page, locale, neutral = false) {
         head.childNodes.splice(nav, 0, ...parseFragment('<script src="/site-i18n.js"></script>').childNodes);
         appendMarkup(head, analyticsScript(page));
     }
+    // 旧 CDN 将工具类插在 head 末尾，保持它与手写样式的覆盖顺序。
+    appendMarkup(head, '<link rel="stylesheet" href="/resource/marketing-utilities.css">');
     const catalog = catalogs[locale];
     const dictionary = translated(catalog, page);
     let htmlElement = null;
@@ -363,7 +368,10 @@ function render(page, locale, neutral = false) {
     {
         const assets = ['/site-i18n.js', '/site-nav.js'];
         if (page === 'pricing') assets.push('/pricing.css', '/pricing-region.js');
-        if (page === 'home') assets.push('/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css');
+        if (page === 'home') assets.push(
+            '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css',
+            '/resource/videos/video.mp4', '/resource/videos/frame_2_demo.mp4', '/resource/videos/frame_3_demo.mp4'
+        );
         visit(document, node => {
             for (const name of ['src', 'href']) {
                 const value = attr(node, name)?.split('?')[0];
@@ -396,6 +404,16 @@ for (const page of Object.keys(pages)) {
         if (locale === 'en') expected.set(path.join(root, pages[page]), render(page, locale, true));
     }
 }
+const utilityCss = await marketingStyles(
+    [...expected.values()],
+    ['site-nav.js', 'hero-preview.js'].map(file => fs.readFileSync(path.join(root, file), 'utf8'))
+);
+const utilityPath = '/resource/marketing-utilities.css';
+const utilityVersion = createHash('sha256').update(utilityCss).digest('hex').slice(0, 12);
+for (const [file, html] of expected) {
+    expected.set(file, html.replace(/href="\/resource\/marketing-utilities\.css(?:\?v=[a-f0-9]+)?"/g, `href="${utilityPath}?v=${utilityVersion}"`));
+}
+expected.set(path.join(root, utilityPath), utilityCss);
 expected.set(path.join(root, 'sitemap.xml'), sitemap());
 
 let stale = false;

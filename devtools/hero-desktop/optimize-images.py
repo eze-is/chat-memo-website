@@ -28,7 +28,7 @@ def lossless_webp(source):
 
 root = Path(sys.argv[1])
 poster = root / 'poster.png'
-poster_data = lossless_webp(poster)
+poster_data = lossless_webp(poster) if poster.exists() else (root / 'poster.webp').read_bytes()
 assets = root / 'assets'
 index = root / 'index.html'
 # 当前演示只有一个入口 JS 和 CSS；未来若切分为多个块，须在 Vite 中处理跨块引用。
@@ -45,6 +45,15 @@ for source in sorted(assets.glob('*.png')):
         outputs[target] = data
 
 html = index.read_text()
+css = next(source for source in entry_assets if source.suffix == '.css').read_text()
+font = re.search(r"""url\(["']?(/resource/hero-desktop/assets/MiSans-hero-[\w-]+\.woff2)["']?\)""", css)
+if not font or not (assets / Path(font[1]).name).is_file():
+    raise ValueError('找不到演示首帧使用的 MiSans 字体')
+html = re.sub(r'<link data-hero-font-preload[^>]*>', '', html)
+html = html.replace('<script type="module"', (
+    f'<link data-hero-font-preload rel="preload" href="{font[1]}" '
+    'as="font" type="font/woff2" crossorigin><script type="module"'
+), 1)
 for source in entry_assets:
     original = source.read_text()
     if source.name not in html:
@@ -65,5 +74,5 @@ for target, data in outputs.items():
 index.write_text(html)
 for name in references:
     (assets / name).unlink()
-poster.unlink()
+poster.unlink(missing_ok=True)
 print(f'Hero 无损海报 {len(poster_data):,} B，更新 {len(outputs)} 项资源引用。')

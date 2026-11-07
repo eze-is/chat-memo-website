@@ -179,22 +179,22 @@
             updateLocaleSelection();
             return locale;
         }
+        locale = requestedLocale;
+        const english = loadCatalog('en');
+        // 两份词包同时请求。即使当前语言先失败，也要等英文兜底可用再完成初始化。
+        const active = locale === 'en' ? null : loadCatalog(locale).then(
+            () => ({ ok: true }),
+            error => ({ ok: false, error })
+        );
         try {
-            await loadCatalog('en');
-        } catch (error) {
-            // 静态页面仍可阅读；词包异常不应阻断导航和更新记录加载。
-            console.error('官网英文语言文件加载失败，保留静态页面:', error);
-            locale = requestedLocale;
-            updateLocaleSelection();
-            return locale;
-        }
-        try {
-            await loadCatalog(requestedLocale);
-            locale = requestedLocale;
+            await english;
+            if (active) {
+                const result = await active;
+                if (!result.ok) throw result.error;
+            }
         } catch (error) {
             // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
             console.error('官网语言加载失败，保留静态页面:', error);
-            locale = requestedLocale;
             updateLocaleSelection();
             return locale;
         }
@@ -211,11 +211,11 @@ SiteI18n.redirectToCanonical("pricing");</script>
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://chatmemo.ai/en/pricing">
     <link rel="icon" href="/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=c04c41c44595">
     <link rel="stylesheet" href="/pricing.css?v=1861a021d8ea">
 
     <script src="/site-nav.js?v=c8cb8e3efe80"></script>
-<meta name="language" content="en"><meta property="og:url" content="https://chatmemo.ai/en/pricing"><meta property="og:title" content="Pricing · Chat Memo"><meta property="og:description" content="Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI."><meta property="og:locale" content="en_US"><meta property="twitter:url" content="https://chatmemo.ai/en/pricing"><meta property="twitter:title" content="Pricing · Chat Memo"><meta property="twitter:description" content="Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI."><script src="/pricing-region.js?v=776b1a7de66e"></script><meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"></head>
+<meta name="language" content="en"><meta property="og:url" content="https://chatmemo.ai/en/pricing"><meta property="og:title" content="Pricing · Chat Memo"><meta property="og:description" content="Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI."><meta property="og:locale" content="en_US"><meta property="twitter:url" content="https://chatmemo.ai/en/pricing"><meta property="twitter:title" content="Pricing · Chat Memo"><meta property="twitter:description" content="Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI."><script src="/pricing-region.js?v=776b1a7de66e"></script><meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"></head>
 <body>
     <a href="#main" class="skip-link" data-key="skip-content">Skip to content</a>
     <div id="navbar-container"><!-- Navigation Component -->
