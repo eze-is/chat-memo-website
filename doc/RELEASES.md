@@ -29,6 +29,14 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [15eaa80] — 2026-11-07 20:38:11 UTC+8 · 桌面演示玻璃 Tab 顺滑化
+
+- 生产分支 `main` 的运行内容源码为 `15eaa80c1b58442429c1937384e0b1d611b5d8a2`。Cloudflare Pages production deployment `ddd5c982-51fe-48a9-8ab3-b85a5bf4f20c` 于 2026-11-07 20:38:11（UTC+8）成功。四语首页、Hero 入口及新 JS／CSS 共 7 项正式资源与提交逐字节一致，嵌入入口使用 `20261107-desktop-direct-render` 版本参数。
+- 原因是官网先把正式 `1120×720` Desktop 组件投射为完整画布，再在桌面 iframe 内整体缩放；玻璃 Tab 因而在带模糊的缩放合成层内移动。当前 640px 及以上 iframe 直接以实际宽高渲染，不再给画布和弹窗增加变换；窄屏仍缩放完整桌面窗口，不修改正式 Desktop 组件、玻璃材质和三 Tab 交互。
+- 正式站 1440px 浏览器中，Hero iframe 为 `1022×656`，画布 `transform` 为 `none`；首页、记录、连接连续切换，文档与正文均无横向溢出。390×844 触摸模拟中，画布仍按 `0.302778` 缩放，原型内 Tab 透明触控层为 `132×44` CSS px；三次触摸事件均命中并依次切到首页、记录和连接。
+- 发布前 Hero 源码与 14 个来源／42 条对话 fixture 检查通过；官网 59 项测试、四语生成一致性、6 个法律静态页面及 Hero 资源闭包检查通过。构建在隔离工作区读取 Desktop 已提交 `HEAD`，未带入 Desktop 工作区的其他在途改动。
+- 触摸证据来自 Ego Lite 的 Android Chrome 触摸模拟，不替代 Android 真机验收；自动化浏览器的帧调度也不作为真实设备达到固定帧率的证明。本机回执为 `/tmp/chatmemo-pill-production-deployments.json`、`/tmp/chatmemo-pill-production-browser.json`、`/tmp/chatmemo-pill-production-mobile-final.json`、`/tmp/chatmemo-pill-prod-assets.MnsprV/` 及对应桌面／手机截图。
+
 ### [f55491a] — 2026-11-07 20:03:28 UTC+8 · 手机原型触控纠正
 
 - 生产分支 `main` 的运行内容源码为 `f55491a64dad28896bb602b76cb3e486eb33fbf4`。Cloudflare Pages production deployment `a5d55394-8558-47c4-9df7-efb83182bc8b` 于 2026-11-07 20:03:28（UTC+8）成功。四语首页、Hero 脚本与样式、演示入口和构建 JS／CSS 共 9 项正式资源与提交逐字节一致。Cloudflare Web Analytics 自动注入仍关闭。
