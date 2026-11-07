@@ -293,6 +293,11 @@ test('中立入口指向稳定英文地址；静态正文不依赖脚本成功�
     for (const [page, file] of Object.entries(pages)) {
         const document = parse(fs.readFileSync(path.join(root, file), 'utf8'));
         assertNavigationScript(document, file);
+        const head = find(document, node => node.tagName === 'head');
+        const firstAfterCharset = head.childNodes.filter(node => node.tagName)[1];
+        assert.equal(firstAfterCharset.tagName, 'script', file);
+        assert.notEqual(attribute(firstAfterCharset, 'data-early-language-route'), undefined, file);
+        assert.ok(firstAfterCharset.childNodes[0].value.includes(`SiteI18n.redirectToCanonical("${page}");`), file);
         const canonical = find(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'canonical');
         assert.equal(attribute(canonical, 'href'), `${origin}${route('en', page)}`);
         if (page === 'home' || page === 'pricing') continue;

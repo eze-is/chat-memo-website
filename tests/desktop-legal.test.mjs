@@ -17,6 +17,7 @@ const text = node => {
     const value = (node.childNodes || []).map(text).join('');
     return ['p', 'h2', 'li'].includes(node.tagName) ? `${value}\n` : value;
 };
+const visibleText = node => node.tagName === 'script' ? '' : node.nodeName === '#text' ? node.value : (node.childNodes || []).map(visibleText).join('');
 const normalized = value => value.replace(/\s+/g, ' ').trim();
 const keys = ['privacy', 'terms'];
 const versions = { privacy: '2026-11-07.1', terms: '2026-11-07.1' };
@@ -42,9 +43,13 @@ test('中英正文及中立入口首个HTML完整可读，语言和正式版本�
             assert.doesNotMatch(text(metadata), /生效日期|Effective date|zh-CN|Draft/);
             assert.ok(text(metadata).includes(`${locale === 'en' ? 'Version: ' : '版本：'}${versions[key]}`));
             const scripts = all(document, node => node.tagName === 'script');
-            assert.deepEqual(scripts.map(node => attr(node, 'src')?.split('?')[0]), ['/site-i18n.js', '/site-nav.js', undefined]);
+            const neutral = path.startsWith('desktop/');
+            assert.deepEqual(scripts.map(node => attr(node, 'src')?.split('?')[0]), neutral
+                ? [undefined, '/site-nav.js', undefined]
+                : ['/site-i18n.js', '/site-nav.js', undefined]);
             assert.equal(text(scripts[2]), `SiteI18n.init('desktop/${key}'); SiteNav.init();`);
-            if (locale === 'en') assert.doesNotMatch(text(document).replaceAll('简体中文', ''), /[\u4e00-\u9fff]/, path);
+            if (neutral) assert.match(text(scripts[0]), new RegExp(`SiteI18n.redirectToCanonical\\("desktop/${key}"\\);`));
+            if (locale === 'en') assert.doesNotMatch(visibleText(document).replaceAll('简体中文', ''), /[\u4e00-\u9fff]/, path);
         }
     }
 });
@@ -82,7 +87,9 @@ test('任一语言同版本正文变化时拒绝覆盖生成', () => {
             mkdirSync(join(temporary, 'scripts'));
             cpSync(join(root, 'scripts/build-desktop-legal.mjs'), join(temporary, 'scripts/build-desktop-legal.mjs'));
             cpSync(join(root, 'locales'), join(temporary, 'locales'), { recursive: true });
-            cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
+            for (const file of ['scripts/site-entry.mjs', 'site-i18n.js', 'site-analytics.js']) {
+                cpSync(join(root, file), join(temporary, file));
+            }
             cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
             appendFileSync(join(temporary, `desktop/legal/versions/${locale}/${versions.privacy}-published/privacy.md`), '\n发生变更\n');
             const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });

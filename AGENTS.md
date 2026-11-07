@@ -18,6 +18,7 @@ Chat Memo 产品家族的公开官网，生产地址 `https://chatmemo.ai`。
 | 线上资源 | `resource/` |
 | 官网多语言规则 / 翻译入口 | `doc/I18N.md`、`site-i18n.js`、`locales/{zh-CN,en,ja,es}.json` |
 | 顶部导航菜单交互 | `components/navbar.html`、`site-nav.js` |
+| 官网统计加载及发布切换 | `site-analytics.js`、`scripts/site-entry.mjs`、`doc/RELEASES.md` |
 | Hero 桌面端／插件切换与三 Tab 展示 | `hero-preview.js`、`hero-preview.css`、`devtools/hero-desktop/`；构建／行为与边界见 `doc/HERO-PRODUCT-PREVIEW.md` |
 | 官网工程变更 / 独立部署流程与实际回执 | `CHANGELOG.md`、`doc/RELEASES.md` |
 | 产品更新数据 / 桌面与插件条目来源 | `updates-data.json`、`doc/RELEASES.md` 的“三类记录” |

@@ -5,12 +5,13 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
+import { i18nSource, earlyLanguageScript } from './site-entry.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://chatmemo.ai';
 const check = process.argv.includes('--check');
 const routeContext = { window: {} };
-vm.runInNewContext(readFileSync(resolve(root, 'site-i18n.js'), 'utf8'), routeContext);
+vm.runInNewContext(i18nSource, routeContext);
 const { pathFor } = routeContext.window.SiteI18n;
 const locales = {
     'zh-CN': {
@@ -62,7 +63,7 @@ function readDocument(spec) {
 
 const asset = name => `${name}?v=${createHash('sha256').update(readFileSync(resolve(root, `.${name}`))).digest('hex').slice(0, 12)}`;
 
-function documentPage(doc) {
+function documentPage(doc, neutral = false) {
     const { copy, locale, key } = doc;
     const page = `desktop/${key}`;
     const canonical = pathFor(locale, page);
@@ -71,7 +72,7 @@ function documentPage(doc) {
     return `<!doctype html>
 <html lang="${locale}" data-lang="${locale}">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">${neutral ? `\n    ${earlyLanguageScript(page)}` : ''}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escape(doc.title)} · Chat Memo Desktop</title>
     <meta name="description" content="Chat Memo Desktop · ${escape(doc.title)}.">
@@ -109,8 +110,7 @@ function documentPage(doc) {
     <footer class="legal-footer"><nav aria-label="${locale === 'en' ? 'Footer' : '页脚'}">
         ${footerLinks.map(([target, label]) => `<a href="${pathFor(locale, target)}">${escape(common[label])}</a>`).join('')}
     </nav></footer>
-    <script src="${asset('/site-i18n.js')}"></script>
-    <script src="${asset('/site-nav.js')}"></script>
+${neutral ? '' : `    <script src="${asset('/site-i18n.js')}"></script>\n`}    <script src="${asset('/site-nav.js')}"></script>
     <script>SiteI18n.init('${page}'); SiteNav.init();</script>
 </body>
 </html>
@@ -121,7 +121,7 @@ const outputs = new Map();
 for (const doc of documents.map(readDocument)) {
     outputs.set(`${pathFor(doc.locale, `desktop/${doc.key}`).slice(1)}.html`, documentPage(doc));
     // 无语言的旧地址与官网规则一致：英文静态兜底，脚本按明确选择／官网偏好／浏览器语言导航。
-    if (doc.locale === 'en') outputs.set(`desktop/${doc.key}.html`, documentPage(doc));
+    if (doc.locale === 'en') outputs.set(`desktop/${doc.key}.html`, documentPage(doc, true));
 }
 let mismatch = false;
 for (const [name, content] of outputs) {

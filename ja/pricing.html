@@ -8,23 +8,74 @@
     <link rel="icon" href="/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/pricing.css?v=1861a021d8ea">
-    <script src="/site-i18n.js?v=4212728fb83d"></script>
-    <script src="/site-nav.js?v=c8cb8e3efe80"></script>
-    <!-- GA4只记录规范语言定价页；中立跳转与URL中的凭证不进入统计。 -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
-    <script data-pricing-page-view="">
-        (() => {
-            if (!SiteI18n.isCanonicalPath('pricing') || window.__chatmemoPricingPageView) return;
-            window.__chatmemoPricingPageView = true;
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-            const pageLocation = window.location.origin + window.location.pathname;
-            gtag('js', new Date());
-            gtag('config', 'G-C4C06BSVNL', { send_page_view: false, page_location: pageLocation, page_referrer: '' });
-            gtag('event', 'page_view', { page_location: pageLocation, page_referrer: '' });
-        })();
-    </script>
-<meta name="language" content="ja"><meta property="og:url" content="https://chatmemo.ai/ja/pricing"><meta property="og:title" content="料金 · Chat Memo"><meta property="og:description" content="AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"><meta property="og:locale" content="ja_JP"><meta property="twitter:url" content="https://chatmemo.ai/ja/pricing"><meta property="twitter:title" content="料金 · Chat Memo"><meta property="twitter:description" content="AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"><script src="/pricing-region.js?v=776b1a7de66e"></script><meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"></head>
+
+    <script src="/site-i18n.js?v=d7f1109b3353"></script><script src="/site-nav.js?v=c8cb8e3efe80"></script>
+<meta name="language" content="ja"><meta property="og:url" content="https://chatmemo.ai/ja/pricing"><meta property="og:title" content="料金 · Chat Memo"><meta property="og:description" content="AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"><meta property="og:locale" content="ja_JP"><meta property="twitter:url" content="https://chatmemo.ai/ja/pricing"><meta property="twitter:title" content="料金 · Chat Memo"><meta property="twitter:description" content="AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"><script src="/pricing-region.js?v=776b1a7de66e"></script><meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><script data-site-analytics="pricing">// 统计只消费已发生的事件；SDK 下载与失败不参与页面初始化或交互。
+(function () {
+    'use strict';
+
+    const page = document.currentScript.dataset.siteAnalytics;
+    const gaId = 'G-C4C06BSVNL';
+    if (!window.SiteI18n?.isCanonicalPath(page) || window.SiteAnalytics) return;
+    const queue = [];
+    let started = false;
+    let gaReady = false;
+    let flushScheduled = false;
+    const gtag = function () { window.dataLayer.push(arguments); };
+
+    function flush() {
+        flushScheduled = false;
+        for (const [name, params] of queue.splice(0)) {
+            if (!gaReady && window.dataLayer.length >= 64) break;
+            try {
+                gtag('event', name, params);
+            } catch (error) {
+                console.warn('官网统计事件提交失败', error);
+                break;
+            }
+        }
+    }
+
+    window.SiteAnalytics = {
+        track(name, params) {
+            if (queue.length >= 32) return;
+            queue.push([name, params]);
+            // 第三方可能接管 dataLayer.push；官网点击处理只写本地队列。
+            if (started && !flushScheduled) {
+                flushScheduled = true;
+                setTimeout(flush, 0);
+            }
+        }
+    };
+
+    function start() {
+        window.dataLayer ||= [];
+        window.gtag = gtag;
+        gtag('js', new Date());
+        if (page === 'pricing') {
+            // 定价页只记一次规范地址，保留原有的查询参数、片段及 referrer 排除规则。
+            const location = window.location.origin + window.location.pathname;
+            const context = { page_location: location, page_referrer: '' };
+            gtag('config', gaId, { ...context, send_page_view: false });
+            gtag('event', 'page_view', context);
+        } else {
+            gtag('config', gaId);
+        }
+        started = true;
+        flush();
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        script.addEventListener('load', () => { gaReady = true; }, { once: true });
+        script.addEventListener('error', () => console.warn('官网 GA4 脚本加载失败'), { once: true });
+        document.head.append(script);
+    }
+
+    // 另起任务，保证 load 已完成；欢迎页等现有 load 回调也无需等统计网络。
+    const afterLoad = () => setTimeout(start, 0);
+    if (document.readyState === 'complete') afterLoad();
+    else window.addEventListener('load', afterLoad, { once: true });
+})();</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/pricing"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/pricing"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/pricing"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/pricing"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/pricing"></head>
 <body>
     <a href="#main" class="skip-link" data-key="skip-content">本文へスキップ</a>
     <div id="navbar-container"><!-- Navigation Component -->

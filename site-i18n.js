@@ -151,18 +151,23 @@
         window.location.assign(`${url.pathname}${url.search}${url.hash}`);
     }
 
+    // 中立入口在 head 执行同一个路由规则；运行时继续覆盖非规范直达地址。
+    function redirectToCanonical(pageName) {
+        const url = new URL(window.location.href);
+        const canonicalPath = pathFor(detectInitialLocale(), pageName);
+        if (url.pathname === canonicalPath) return false;
+        url.pathname = canonicalPath;
+        url.searchParams.delete('lang');
+        window.location.replace(`${url.pathname}${url.search}${url.hash}`);
+        return true;
+    }
+
     async function init(pageName) {
         if (!['home', 'welcome', 'updates', 'pricing', 'desktop/privacy', 'desktop/terms'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
         page = pageName;
+        if (redirectToCanonical(pageName)) return detectInitialLocale();
         const requestedLocale = detectInitialLocale();
         const url = new URL(window.location.href);
-        const canonicalPath = pathFor(requestedLocale, page);
-        if (url.pathname !== canonicalPath) {
-            url.pathname = canonicalPath;
-            url.searchParams.delete('lang');
-            window.location.replace(`${url.pathname}${url.search}${url.hash}`);
-            return requestedLocale;
-        }
         if (url.searchParams.has('lang')) {
             url.searchParams.delete('lang');
             window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
@@ -196,5 +201,5 @@
         return locale;
     }
 
-    window.SiteI18n = { init, apply, choose, isCanonicalPath, getLocale: () => locale, t: translate, messages, normalize, pathFor, routeInfo };
+    window.SiteI18n = { init, apply, choose, redirectToCanonical, isCanonicalPath, getLocale: () => locale, t: translate, messages, normalize, pathFor, routeInfo };
 })();

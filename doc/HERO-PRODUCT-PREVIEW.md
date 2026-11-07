@@ -34,7 +34,7 @@ npm run check:i18n
 
 前两步构建期显式读取兄弟 Desktop 仓及其已安装锁定依赖；字体子集工具用已有`uv`临时运行。生成结果`resource/hero-desktop/`是独立静态闭包，生产浏览器不访问 Desktop 仓或其运行时。MiSans和Geist许可随资源保留。日常仅编辑网站文字时不重建 Renderer。
 
-`devtools/hero-desktop/poster.png`来自该 Renderer 首页静止状态截图，构建时复制为首帧／无脚本封面；改了正式首页或虚构资料后一起更新。父页`hero-preview.js`拥有切换和可见性许可，子页只拥有三页的短编排与用户选页意图。切到插件、滚出视口、后台或减少动态时暂停；回到桌面保留用户所选页。
+`devtools/hero-desktop/poster.png`来自该 Renderer 首页静止状态截图，构建时转为逐像素和色彩配置均校验的无损 `poster.webp`，与演示图标一起按独立产物发布；改了正式首页或虚构资料后一起更新。父页`hero-preview.js`拥有切换和可见性许可，子页只拥有三页的短编排与用户选页意图。iframe 直接访问 `/resource/hero-desktop/`，避免 Pages 对 `index.html` 的额外跳转。切到插件、滚出视口、后台或减少动态时暂停；回到桌面保留用户所选页。
 
 本地网页检查包括三 Tab 自动／手动、搜索速度、多来源资料、活动和付费入口拦截、菜单和两段媒体切换、隐藏／恢复／减少动态、窄屏无溢出。它不证明实机采集、真实 AI 取用、安装、付费或生产发布。当前浏览器证据与截图在该目录忽略的`evidence/`中。
 

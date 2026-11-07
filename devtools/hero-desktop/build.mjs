@@ -7,6 +7,7 @@ import { execFileSync } from 'node:child_process'
 // 只在本地构建时复用正式 Renderer；输出为可独立部署的静态网页。
 const root = dirname(fileURLToPath(import.meta.url))
 const desktop = resolve(root, '../../../desktop')
+const outDir = resolve(root, '../../resource/hero-desktop')
 const require = createRequire(resolve(desktop, 'package.json'))
 execFileSync(process.execPath, [resolve(root, '../download-effects/build.mjs')], { stdio: 'inherit' })
 execFileSync(process.execPath, [resolve(root, '../export-pro-plan-presentation.mjs')], { stdio: 'inherit' })
@@ -30,5 +31,7 @@ await build({
       { find: 'react-dom', replacement: dirname(require.resolve('react-dom/package.json')) },
     ], dedupe: ['react', 'react-dom'],
   },
-  build: { outDir: resolve(root, '../../resource/hero-desktop'), emptyOutDir: true, sourcemap: false, assetsInlineLimit: 0 },
+  build: { outDir, emptyOutDir: true, sourcemap: false, assetsInlineLimit: 0 },
 })
+
+execFileSync('uv', ['run', '--with', 'pillow', 'python', resolve(root, 'optimize-images.py'), outDir], { stdio: 'inherit' })

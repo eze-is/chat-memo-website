@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serialize } from 'parse5';
 import { loadCatalog, pricingMarkup } from './pro-pricing.mjs';
+import { i18nSource, earlyLanguageScript, analyticsScript } from './site-entry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
@@ -64,7 +65,7 @@ const components = Object.fromEntries(['navbar', 'footer'].map((name) => [
     fs.readFileSync(path.join(root, 'components', `${name}.html`), 'utf8')
 ]));
 const routeContext = { window: {} };
-vm.runInNewContext(fs.readFileSync(path.join(root, 'site-i18n.js'), 'utf8'), routeContext);
+vm.runInNewContext(i18nSource, routeContext);
 const { pathFor, routeInfo } = routeContext.window.SiteI18n;
 const expected = new Map();
 // 生成前读取并校验线上销售事实；失败时不写出半套页面。
@@ -323,8 +324,24 @@ function localizeAttributesAndText(document, page, locale, dictionary) {
     walk(document);
 }
 
-function render(page, locale) {
+function render(page, locale, neutral = false) {
     const document = parse(source[page]);
+    const head = byIdHead(document);
+    head.childNodes = head.childNodes.filter(node => !(
+        node.tagName === 'script' && (
+            attr(node, 'data-early-language-route') !== undefined ||
+            attr(node, 'data-site-analytics') !== undefined ||
+            attr(node, 'src')?.split('?')[0] === '/site-i18n.js'
+        )
+    ));
+    if (neutral) {
+        const charset = head.childNodes.findIndex(node => attr(node, 'charset'));
+        head.childNodes.splice(charset + 1, 0, ...parseFragment(earlyLanguageScript(page)).childNodes);
+    } else {
+        const nav = head.childNodes.findIndex(node => attr(node, 'src')?.split('?')[0] === '/site-nav.js');
+        head.childNodes.splice(nav, 0, ...parseFragment('<script src="/site-i18n.js"></script>').childNodes);
+        appendMarkup(head, analyticsScript(page));
+    }
     const catalog = catalogs[locale];
     const dictionary = translated(catalog, page);
     let htmlElement = null;
@@ -376,7 +393,7 @@ for (const page of Object.keys(pages)) {
     for (const locale of locales) {
         const output = render(page, locale);
         expected.set(path.join(root, locale, pages[page]), output);
-        if (locale === 'en') expected.set(path.join(root, pages[page]), output);
+        if (locale === 'en') expected.set(path.join(root, pages[page]), render(page, locale, true));
     }
 }
 expected.set(path.join(root, 'sitemap.xml'), sitemap());

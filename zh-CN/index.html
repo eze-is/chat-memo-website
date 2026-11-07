@@ -91,7 +91,6 @@
     <!-- DNS Prefetch for External Resources -->
     <link rel="dns-prefetch" href="//chromewebstore.google.com">
     <link rel="dns-prefetch" href="//zkv549gmz8.feishu.cn">
-    <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Chat Memo","description":"实时备份你在网页和电脑上的 AI 对话，包括 ChatGPT、Claude、Gemini、DeepSeek、豆包，以及 Claude Code、Codex 等。连上 Chat Memo，打通 AI 之间的对话记忆，换到任何一个 AI，它都知道你聊过什么、接下来怎么聊。","url":"https://chatmemo.ai/zh-CN/","applicationCategory":"ProductivityApplication","operatingSystem":"Windows, macOS","author":{"@type":"Person","name":"Eze","jobTitle":"Developer & Maker"},"publisher":{"@id":"https://chatmemo.ai/#organization"},"screenshot":"https://chatmemo.ai/resource/images/video_cover.jpg","featureList":["自动保存 AI 聊天记录","备份 ChatGPT、Claude、Gemini、DeepSeek 对话","导出 AI 聊天记录","换个 AI 接着聊"],"browserRequirements":"Chrome, Microsoft Edge","downloadUrl":"https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici","keywords":["自动保存 AI 聊天记录","备份 AI 聊天记录","导出 AI 聊天记录","换个 AI 接着聊"]}</script>
@@ -102,17 +101,9 @@
     <!-- FAQ Schema -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"我的数据安全吗？","acceptedAnswer":{"@type":"Answer","text":"绝对安全。所有数据默认存储在您的电脑中，我们绝不触碰或分析您的任何对话内容。您的数据只属于您。"}},{"@type":"Question","name":"Chat Memo 是免费的吗？","acceptedAnswer":{"@type":"Answer","text":"保存、阅读和关键词搜索免费，Pro 提供跨 AI 接续对话能力。当前套餐、价格和计费规则请查看定价页。"}},{"@type":"Question","name":"未来会支持哪些新平台？","acceptedAnswer":{"@type":"Answer","text":"Claude 已经支持。当前支持的平台可在插件的「平台配置」中查看；如果希望增加其他 AI 平台，欢迎通过「我有建议」告诉我们，用户需求会帮助我们安排优先级。"}}]}</script>
 
-    <!-- Google Analytics 4 -->
-    <script src="/site-i18n.js?v=4212728fb83d"></script>
-    <script src="/site-nav.js?v=c8cb8e3efe80"></script>
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        // 旧入口只负责按语言跳转；页面浏览量只记规范语言 URL。
-        if (!window.SiteI18n || SiteI18n.isCanonicalPath('home')) gtag('config', 'G-C4C06BSVNL');
 
+    <script src="/site-i18n.js?v=d7f1109b3353"></script><script src="/site-nav.js?v=c8cb8e3efe80"></script>
+    <script>
         // 按钮点击追踪函数
         function trackButtonClick(buttonName, buttonType, destination) {
             // 事件身份取自稳定目标，不依赖翻译后的按钮文字。
@@ -130,7 +121,7 @@
                 eventCategory = 'navigation';
             }
 
-            gtag('event', eventName, {
+            window.SiteAnalytics?.track(eventName, {
                 'event_category': eventCategory,
                 'event_label': buttonName,
                 'button_type': buttonType,
@@ -287,7 +278,72 @@
         #hero h1 { font-weight: 600; letter-spacing: -.02em; line-height: 1.2; text-wrap: balance; }
 
     </style>
-<meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo：实时备份，跨 AI 互通上下文。Claude Code 对话与换个 AI 继续聊入口。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://chatmemo.ai/#organization","name":"Chat Memo","url":"https://chatmemo.ai","description":"实时备份你在网页和电脑上的 AI 对话，包括 ChatGPT、Claude、Gemini、DeepSeek、豆包，以及 Claude Code、Codex 等。连上 Chat Memo，打通 AI 之间的对话记忆，换到任何一个 AI，它都知道你聊过什么、接下来怎么聊。","logo":{"@type":"ImageObject","url":"https://chatmemo.ai/resource/icons/logo.png"}}</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"></head>
+<meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo：实时备份，跨 AI 互通上下文。Claude Code 对话与换个 AI 继续聊入口。"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://chatmemo.ai/#organization","name":"Chat Memo","url":"https://chatmemo.ai","description":"实时备份你在网页和电脑上的 AI 对话，包括 ChatGPT、Claude、Gemini、DeepSeek、豆包，以及 Claude Code、Codex 等。连上 Chat Memo，打通 AI 之间的对话记忆，换到任何一个 AI，它都知道你聊过什么、接下来怎么聊。","logo":{"@type":"ImageObject","url":"https://chatmemo.ai/resource/icons/logo.png"}}</script><script data-site-analytics="home">// 统计只消费已发生的事件；SDK 下载与失败不参与页面初始化或交互。
+(function () {
+    'use strict';
+
+    const page = document.currentScript.dataset.siteAnalytics;
+    const gaId = 'G-C4C06BSVNL';
+    if (!window.SiteI18n?.isCanonicalPath(page) || window.SiteAnalytics) return;
+    const queue = [];
+    let started = false;
+    let gaReady = false;
+    let flushScheduled = false;
+    const gtag = function () { window.dataLayer.push(arguments); };
+
+    function flush() {
+        flushScheduled = false;
+        for (const [name, params] of queue.splice(0)) {
+            if (!gaReady && window.dataLayer.length >= 64) break;
+            try {
+                gtag('event', name, params);
+            } catch (error) {
+                console.warn('官网统计事件提交失败', error);
+                break;
+            }
+        }
+    }
+
+    window.SiteAnalytics = {
+        track(name, params) {
+            if (queue.length >= 32) return;
+            queue.push([name, params]);
+            // 第三方可能接管 dataLayer.push；官网点击处理只写本地队列。
+            if (started && !flushScheduled) {
+                flushScheduled = true;
+                setTimeout(flush, 0);
+            }
+        }
+    };
+
+    function start() {
+        window.dataLayer ||= [];
+        window.gtag = gtag;
+        gtag('js', new Date());
+        if (page === 'pricing') {
+            // 定价页只记一次规范地址，保留原有的查询参数、片段及 referrer 排除规则。
+            const location = window.location.origin + window.location.pathname;
+            const context = { page_location: location, page_referrer: '' };
+            gtag('config', gaId, { ...context, send_page_view: false });
+            gtag('event', 'page_view', context);
+        } else {
+            gtag('config', gaId);
+        }
+        started = true;
+        flush();
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        script.addEventListener('load', () => { gaReady = true; }, { once: true });
+        script.addEventListener('error', () => console.warn('官网 GA4 脚本加载失败'), { once: true });
+        document.head.append(script);
+    }
+
+    // 另起任务，保证 load 已完成；欢迎页等现有 load 回调也无需等统计网络。
+    const afterLoad = () => setTimeout(start, 0);
+    if (document.readyState === 'complete') afterLoad();
+    else window.addEventListener('load', afterLoad, { once: true });
+})();</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/"></head>
 
 <body class="bg-white text-gray-800 antialiased">
 
@@ -412,8 +468,8 @@
 
                 <div class="hero-product-preview mt-16 mx-auto" data-hero-preview="" data-preview="desktop">
                     <div class="hero-product-layer" data-preview-desktop="">
-                        <img src="/resource/hero-desktop/poster.png" alt="Chat Memo" width="1120" height="720" loading="lazy" decoding="async">
-                        <iframe data-src="/resource/hero-desktop/index.html?v=20261105-records" title="Chat Memo" tabindex="0"></iframe>
+                        <img src="/resource/hero-desktop/poster.webp" alt="Chat Memo" width="1120" height="720" loading="lazy" decoding="async">
+                        <iframe data-src="/resource/hero-desktop/?v=20261107-lossless" title="Chat Memo" tabindex="0"></iframe>
                     </div>
                     <div class="hero-product-layer" data-preview-plugin="" aria-hidden="true">
                         <video muted="" loop="" playsinline="" poster="/resource/images/video_cover.jpg" preload="none">

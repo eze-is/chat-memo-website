@@ -35,17 +35,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
-    <!-- Google Analytics 4 -->
-    <script src="/site-i18n.js?v=4212728fb83d"></script>
-    <script src="/site-nav.js?v=c8cb8e3efe80"></script>
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C4C06BSVNL"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        // 避免旧入口跳转时双计；config 已自动产生一次 page_view。
-        if (!window.SiteI18n || SiteI18n.isCanonicalPath('welcome')) gtag('config', 'G-C4C06BSVNL');
-    </script>
+
+    <script src="/site-i18n.js?v=d7f1109b3353"></script><script src="/site-nav.js?v=c8cb8e3efe80"></script>
 
     <style>
         body {
@@ -123,7 +114,72 @@
             border-radius: 9999px;
         }
     </style>
-<meta name="language" content="es"><meta property="og:locale" content="es_ES"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
+<meta name="language" content="es"><meta property="og:locale" content="es_ES"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><script data-site-analytics="welcome">// 统计只消费已发生的事件；SDK 下载与失败不参与页面初始化或交互。
+(function () {
+    'use strict';
+
+    const page = document.currentScript.dataset.siteAnalytics;
+    const gaId = 'G-C4C06BSVNL';
+    if (!window.SiteI18n?.isCanonicalPath(page) || window.SiteAnalytics) return;
+    const queue = [];
+    let started = false;
+    let gaReady = false;
+    let flushScheduled = false;
+    const gtag = function () { window.dataLayer.push(arguments); };
+
+    function flush() {
+        flushScheduled = false;
+        for (const [name, params] of queue.splice(0)) {
+            if (!gaReady && window.dataLayer.length >= 64) break;
+            try {
+                gtag('event', name, params);
+            } catch (error) {
+                console.warn('官网统计事件提交失败', error);
+                break;
+            }
+        }
+    }
+
+    window.SiteAnalytics = {
+        track(name, params) {
+            if (queue.length >= 32) return;
+            queue.push([name, params]);
+            // 第三方可能接管 dataLayer.push；官网点击处理只写本地队列。
+            if (started && !flushScheduled) {
+                flushScheduled = true;
+                setTimeout(flush, 0);
+            }
+        }
+    };
+
+    function start() {
+        window.dataLayer ||= [];
+        window.gtag = gtag;
+        gtag('js', new Date());
+        if (page === 'pricing') {
+            // 定价页只记一次规范地址，保留原有的查询参数、片段及 referrer 排除规则。
+            const location = window.location.origin + window.location.pathname;
+            const context = { page_location: location, page_referrer: '' };
+            gtag('config', gaId, { ...context, send_page_view: false });
+            gtag('event', 'page_view', context);
+        } else {
+            gtag('config', gaId);
+        }
+        started = true;
+        flush();
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+        script.addEventListener('load', () => { gaReady = true; }, { once: true });
+        script.addEventListener('error', () => console.warn('官网 GA4 脚本加载失败'), { once: true });
+        document.head.append(script);
+    }
+
+    // 另起任务，保证 load 已完成；欢迎页等现有 load 回调也无需等统计网络。
+    const afterLoad = () => setTimeout(start, 0);
+    if (document.readyState === 'complete') afterLoad();
+    else window.addEventListener('load', afterLoad, { once: true });
+})();</script><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/welcome"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/welcome"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/welcome"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/welcome"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/welcome"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -568,7 +624,7 @@
     <script>
         // 按钮点击追踪
         function trackButtonClick(buttonName, buttonType, destination) {
-            gtag('event', 'button_click', {
+            window.SiteAnalytics?.track('button_click', {
                 'event_category': 'engagement',
                 'event_label': buttonName,
                 'button_type': buttonType,
