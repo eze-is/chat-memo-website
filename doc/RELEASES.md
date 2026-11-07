@@ -29,6 +29,14 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [dbc678d] — 2026-11-07 14:57:41 UTC+8：官网首屏、演示资源和统计隔离
+
+- 生产分支 `main` 的运行内容源码为 `dbc678d1edc7da3bfaaed8d2d8ab8966b2da9e16`。Cloudflare Pages production deployment `f6fa1509-520f-4ce8-aa74-22c197ae05e5` 于 2026-11-07 14:57:41（UTC+8）成功。推送前已在 Cloudflare 禁用 `chatmemo.ai` 的 Web Analytics 自动注入。API 回读确认规则关闭，Pages 项目无额外统计标签。
+- 57 项测试、四语和法律静态页一致性、Hero 源码检查通过。正式域名回读的中立首页、中文首页、英文定价、演示 iframe 和 WebP 海报与发布源码逐字节一致。
+- 正式浏览器抽查中立首页跳转后的中文首页、中文欢迎页、中文更新页及中英文定价。每页在 `load` 后各请求一次 GA4 SDK，浏览器各发出一次 `page_view`。样本均无 Cloudflare beacon，法律页和演示页没有统计请求。本机至 Google 收集端连接未收到成功回执，尚未核验 GA4 后台入账。
+- 正式域名故障注入让 GA4 SDK 请求持续挂起，中文入口正常跳转并保留来源参数和锚点，人民币和美元报价、移动导航、带 `link=website` 的下载选择页、演示自动轮播、三个 Tab 及能力弹窗均通过。Mac 和 Windows 下载入口指向 1.0.7，跟随安装包地址的 HEAD 最终均返回 200。
+- 本机回执在 `/tmp/chatmemo-website-perf-release.s0ZoAJ/` 的 `runtime-deployment.json`、`traffic.json`、`fault.json` 和 `download-head.json`。后续回执提交只补文档，Cloudflare 最新部署身份由 Pages 项目与 Git 历史对账。
+
 ### [f0251fb] — 2026-11-07 13:49:35 UTC+8：Desktop 1.0.7 四语说明
 
 - 产品公开依据：[Desktop v1.0.7](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.7)，实际公开时间 2026-11-07 13:48:27（UTC+8）；本官网版本与 App 包版本、发布时间分别记录。
