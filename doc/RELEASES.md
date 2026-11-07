@@ -6,7 +6,9 @@
 
 - `CHANGELOG.md`：官网自身完成了什么，尚未部署的变化放在 Unreleased；不把产品更新条目当作官网工程账本。
 - `updates-data.json`：面向访客的产品更新说明。桌面端条目在 `desktopUpdates`，依据 Desktop 仓 `releases/<version>.json` 的已确认用户说明和实际公开日期整理；插件条目由插件仓 `doc/release-entry-<version>.json` 及 `scripts/prepare_release.py` 生成。两者保持各自版本与含义，不从工程 Changelog 自动复制全部内部细节。当前没有 Desktop 条目自动导入器，人工同步时须核对原说明。
-- 本文件：发布流程、当前生产回执和专项证据入口。部署记录至少包含日期、环境、完整源码 SHA、Pages deployment ID、验收结果与限制；撤回或回滚另记结果，不覆盖原失败事实。长期专项证据引用原文，不再复制整套日志。
+- 本文件：发布流程、当前生产回执和专项证据入口。部署记录至少包含版本标识、实际发布时间（UTC+8）、环境、完整源码 SHA、Pages deployment ID、验收结果与限制；撤回或回滚另记结果，不覆盖原失败事实。长期专项证据引用原文，不再复制整套日志。
+
+版本节点使用 `[源码短 SHA] — 实际生产部署成功时间 UTC+8`；发布时间读取 Pages 成功 deploy 阶段的结束时间，不使用 Git 提交时间或计划时间。未发布保留 Unreleased，不强行使用 Desktop 版本号。纯文档维护可引用已发布的页面运行内容基线，并通过 Cloudflare 部署记录查询该文档提交对应的后续 deployment；不把后续文档 SHA 回填成原产品部署 SHA，也不为在文档中记录自身部署反复推送。
 
 ## 发布步骤与确认边界
 
@@ -19,9 +21,9 @@
 
 App 更新包及 `/desktop/download`、`/desktop/updates` 下载服务的发布由 Desktop 仓拥有；官网入口保持固定，不因新包发布手工改成临时资产链接。插件发版工具与商店步骤由插件仓的 release skill 拥有。本文件不新增跨仓自动发布器。
 
-## 当前生产回执
+## 页面运行内容发布回执
 
-### 2026-11-07：双 Tab 更新记录
+### [2ba8d11] — 2026-11-07 13:02:16 UTC+8：双 Tab 更新记录
 
 - 环境：production；Pages 项目 `chat-memo-website`，生产分支 `main`。
 - 源码：`2ba8d110f86911e99e46fc9d4bfff5d11303e9d1`。
@@ -30,4 +32,6 @@ App 更新包及 `/desktop/download`、`/desktop/updates` 下载服务的发布�
 - 本轮新增检查仅确认 Git 与云端部署身份；直接 HTTP 读取遇 403，未重复浏览器页面验收，不据此宣称页面异常或新增页面验收通过。
 - 当前官网源码仍展示 Desktop 1.0.6；1.0.7 尚未加入。浏览器插件记录保留原内容，不将这次官网部署视为新的插件发布。
 
-客服邮件及法律文档的此前生产部署见 [DESKTOP-LEGAL.md](DESKTOP-LEGAL.md#2026-11-07正式客服邮件迁移)。本轮流程文档未推送，线上仍为上述已验版本。
+客服邮件及法律文档的此前生产版本为 `7b1fe56`，Pages deployment `a1918413-3948-4059-8858-ef1fa18d5cd9`，实际成功时间为 2026-11-07 11:04:17（UTC+8）；详细证据见 [DESKTOP-LEGAL.md](DESKTOP-LEGAL.md#2026-11-07正式客服邮件迁移)。
+
+本轮流程文档提交不改变页面 HTML、脚本、样式或更新数据。上述条目记录页面运行内容的发布时间，不等同于文档提交后的最新 Pages deployment；后续部署身份以 [Cloudflare Pages 项目部署列表](https://dash.cloudflare.com/008df998c4e05d9ba380e310c79810c4/pages/view/chat-memo-website) 和 [Git 提交记录](https://github.com/eze-is/chat-memo-website/commits/main/) 对账。
