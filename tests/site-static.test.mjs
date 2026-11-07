@@ -147,12 +147,146 @@ test('四语更新记录在初始 HTML 中完整可见，结构化 FAQ 与正文
     }
 });
 
-test('sitemap 只列 16 个 canonical，未知路由有真实 404 文件', () => {
+test('sitemap 只列 16 个 canonical，并带与页面一致的 hreflang', () => {
     const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
-    const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+    assert.match(sitemap, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
+    const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
     const expected = Object.keys(pages).flatMap((page) => locales.map((locale) => `${origin}${route(locale, page)}`));
+    const locations = blocks.map((block) => block.match(/<loc>([^<]+)<\/loc>/)[1]);
     assert.deepEqual(locations, expected);
+    for (const [index, block] of blocks.entries()) {
+        const page = Object.keys(pages)[Math.floor(index / locales.length)];
+        const links = [...block.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)].map((match) => [match[1], match[2]]);
+        assert.deepEqual(links, [
+            ...locales.map((locale) => [locale, `${origin}${route(locale, page)}`]),
+            ['x-default', `${origin}${page === 'home' ? '/' : `/${page}`}`]
+        ]);
+    }
     assert.match(fs.readFileSync(path.join(root, '404.html'), 'utf8'), /<meta name="robots" content="noindex">/);
+    for (const file of ['index.html', ...locales.map((locale) => `${locale}/index.html`)]) {
+        assert.doesNotMatch(fs.readFileSync(path.join(root, file), 'utf8'), /<meta name="robots" content="[^"]*noindex/);
+    }
+});
+
+test('robots.txt 允许搜索引擎和 AI 爬虫，并指向 sitemap', () => {
+    const robots = fs.readFileSync(path.join(root, 'robots.txt'), 'utf8');
+    assert.match(robots, /^Sitemap:\s*https:\/\/chatmemo\.ai\/sitemap\.xml\s*$/m);
+    assert.doesNotMatch(robots, /Disallow:/);
+    const groups = new Map();
+    let agent = null;
+    for (const line of robots.split('\n')) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+        if (/^Sitemap:/i.test(trimmed)) continue;
+        const match = trimmed.match(/^(User-agent|Allow|Disallow):\s*(.*)$/i);
+        assert.ok(match, trimmed);
+        if (match[1].toLowerCase() === 'user-agent') agent = match[2];
+        else groups.set(agent, match[2]);
+    }
+    for (const bot of ['*', 'Googlebot', 'Bingbot', 'Baiduspider', 'DuckDuckBot', 'Applebot', 'YandexBot', 'GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended', 'Bytespider', 'Amazonbot', 'CCBot']) {
+        assert.equal(groups.get(bot), '/', bot);
+    }
+});
+
+test('中英首页结构化数据可解析，且不把爬虫短语写进可见正文', () => {
+    const copy = {
+        en: {
+            title: 'Chat Memo - Auto-save every AI chat, continue with any AI',
+            description: "Auto-save your AI chats on the web and desktop, from ChatGPT, Claude, Gemini and DeepSeek to Claude Code and Codex. Connect Chat Memo, and any AI knows what you've discussed and where to pick up.",
+            featureList: [
+                'Auto-save AI chats',
+                'Back up ChatGPT, Claude, Gemini, DeepSeek conversations',
+                'Export AI chat history',
+                'Continue a conversation in another AI'
+            ],
+            keywords: [
+                'Auto-save AI chats',
+                'Back up ChatGPT, Claude, Gemini, DeepSeek conversations',
+                'Export AI chat history',
+                'Continue a conversation in another AI'
+            ]
+        },
+        'zh-CN': {
+            title: 'Chat Memo - 实时备份所有 AI 对话，换个 AI 也能接着聊',
+            description: '实时备份你在网页和电脑上的 AI 对话，包括 ChatGPT、Claude、Gemini、DeepSeek、豆包，以及 Claude Code、Codex 等。连上 Chat Memo，打通 AI 之间的对话记忆，换到任何一个 AI，它都知道你聊过什么、接下来怎么聊。',
+            featureList: [
+                '自动保存 AI 聊天记录',
+                '备份 ChatGPT、Claude、Gemini、DeepSeek 对话',
+                '导出 AI 聊天记录',
+                '换个 AI 接着聊'
+            ],
+            keywords: [
+                '自动保存 AI 聊天记录',
+                '备份 AI 聊天记录',
+                '导出 AI 聊天记录',
+                '换个 AI 接着聊'
+            ]
+        }
+    };
+    for (const locale of ['en', 'zh-CN']) {
+        const files = locale === 'en' ? ['index.html', 'en/index.html'] : ['zh-CN/index.html'];
+        for (const file of files) {
+            const html = fs.readFileSync(path.join(root, file), 'utf8');
+            const document = parse(html);
+            assert.equal(textOf(find(document, (node) => node.tagName === 'title')), copy[locale].title, file);
+            for (const name of ['description', 'og:description', 'twitter:description']) {
+                const meta = find(document, (node) => node.tagName === 'meta' && (attribute(node, 'name') === name || attribute(node, 'property') === name));
+                assert.equal(attribute(meta, 'content'), copy[locale].description, `${file} ${name}`);
+            }
+            for (const name of ['og:title', 'twitter:title']) {
+                const meta = find(document, (node) => node.tagName === 'meta' && attribute(node, 'property') === name);
+                assert.equal(attribute(meta, 'content'), copy[locale].title, `${file} ${name}`);
+            }
+            assert.equal(find(document, (node) => node.tagName === 'meta' && attribute(node, 'name') === 'keywords'), null, file);
+            const scripts = all(document, (node) => node.tagName === 'script' && attribute(node, 'type') === 'application/ld+json');
+            const data = scripts.map((node) => JSON.parse(textOf(node)));
+            assert.deepEqual(data.map((item) => item['@type']), ['SoftwareApplication', 'WebSite', 'FAQPage', 'Organization'], file);
+            const software = data[0];
+            const website = data[1];
+            const faq = data[2];
+            const organization = data[3];
+            assert.equal(software.name, 'Chat Memo');
+            assert.equal(software.applicationCategory, 'ProductivityApplication');
+            assert.equal(software.operatingSystem, 'Windows, macOS');
+            assert.equal(software.browserRequirements, 'Chrome, Microsoft Edge');
+            assert.equal(software.url, `${origin}${route(locale, 'home')}`);
+            assert.equal(software.description, copy[locale].description);
+            assert.deepEqual(software.featureList, copy[locale].featureList);
+            assert.deepEqual(software.keywords, copy[locale].keywords);
+            for (const forbidden of ['offers', 'aggregateRating', 'review', 'interactionStatistic']) {
+                assert.equal(software[forbidden], undefined, `${file} ${forbidden}`);
+            }
+            assert.equal(website.name, 'Chat Memo');
+            assert.equal(website.url, `${origin}${route(locale, 'home')}`);
+            assert.equal(website.description, copy[locale].description);
+            assert.equal(website.potentialAction, undefined);
+            assert.equal(organization['@type'], 'Organization');
+            assert.equal(organization.name, 'Chat Memo');
+            assert.equal(organization.url, origin);
+            assert.equal(organization.description, copy[locale].description);
+            const questions = all(document, (node) => attribute(node, 'data-key')?.match(/^faq[123]-q$/));
+            assert.equal(faq.mainEntity.length, questions.length);
+            for (const [index, question] of questions.entries()) {
+                assert.equal(faq.mainEntity[index].name, textOf(question));
+                const answer = question.parentNode.childNodes.find((node) => attribute(node, 'data-key') === question.attrs.find((item) => item.name === 'data-key').value.replace('-q', '-a'));
+                assert.equal(faq.mainEntity[index].acceptedAnswer.text, textOf(answer));
+            }
+            const body = find(document, (node) => node.tagName === 'body');
+            let visible = textOf(body);
+            for (const script of scripts) visible = visible.replace(textOf(script), '');
+            for (const phrase of copy[locale].featureList) assert.equal(visible.includes(phrase), false, `${file} visible ${phrase}`);
+        }
+    }
+    for (const locale of ['ja', 'es']) {
+        const document = parse(fs.readFileSync(path.join(root, locale, 'index.html'), 'utf8'));
+        assert.equal(textOf(find(document, (node) => node.tagName === 'title')), catalogs[locale].meta.home.title);
+        const software = JSON.parse(textOf(find(document, (node) => node.tagName === 'script' && attribute(node, 'type') === 'application/ld+json' && textOf(node).includes('SoftwareApplication'))));
+        assert.equal(software.keywords, undefined, locale);
+        assert.equal(software.offers, undefined, locale);
+        assert.equal(software.operatingSystem, 'Windows, macOS');
+        assert.equal(software.description, catalogs[locale].meta.home.description);
+        assert.equal(software.featureList[0], textFromMarkup(catalogs[locale].home['feature1-title']));
+    }
 });
 
 test('中立入口指向稳定英文地址；静态正文不依赖脚本成功才可见', () => {
