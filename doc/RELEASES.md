@@ -29,6 +29,14 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [df2a6c2] — 2026-11-07 15:46:37 UTC+8：官网样式及首页演示提速
+
+- 生产分支 `main` 的运行内容源码为 `df2a6c27eabcff8216407cf11bcea34ec9155d0a`。Cloudflare Pages production deployment `f12a5ac5-36ea-4471-9fdd-d424d74d5c03` 于 2026-11-07 15:46:37（UTC+8）成功。四类正式营销页面样本、演示入口与共享 CSS 回读均与提交逐字节一致，Cloudflare Web Analytics 自动注入保持关闭。
+- 发布前 58 项测试、四语与法律静态页一致性和 Hero 源码检查通过。Ego Lite 正式站冷加载对照使用 390×844 触摸模拟、下行 1.6 Mbps、150 ms 请求延迟及禁用浏览器缓存，首屏显示后滚到演示。中文首页从导航开始到演示可操作由 16.90 秒降到 7.21 和 7.31 秒，发布后两个样本的海报分别在 1.25 和 2.24 秒可见。这是浏览器限速样本。
+- 正式站验证通过限速后的三个演示 Tab 触摸切换、默认自动轮播、两段功能视频滚入播放和离屏暂停、桌面插件视频播放和切回桌面演示。三段 MP4 的前 64 KiB 均与发布产物一致，媒体索引在音视频数据之前。
+- 中文定价只显示人民币档，英文定价在本次网络出口只显示美元档。移动菜单能打开带 `link=website` 的下载选择页，两平台入口均指向 1.0.7，安装包 URL 的 HEAD 最终返回 200。
+- 本机验收数据见 `/tmp/chatmemo-site-speed-prod.hjtwPR/` 的 `before.json`、`after.json`、`throttled-tabs.json`、`verify.json` 和部署及 HTTP 回执。后续文档提交只补发布记录，最新部署身份以 Pages 项目与 Git 历史对账。
+
 ### [dbc678d] — 2026-11-07 14:57:41 UTC+8：官网首屏、演示资源和统计隔离
 
 - 生产分支 `main` 的运行内容源码为 `dbc678d1edc7da3bfaaed8d2d8ab8966b2da9e16`。Cloudflare Pages production deployment `f6fa1509-520f-4ce8-aa74-22c197ae05e5` 于 2026-11-07 14:57:41（UTC+8）成功。推送前已在 Cloudflare 禁用 `chatmemo.ai` 的 Web Analytics 自动注入。API 回读确认规则关闭，Pages 项目无额外统计标签。
