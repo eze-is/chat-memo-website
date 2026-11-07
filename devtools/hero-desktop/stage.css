@@ -8,8 +8,9 @@ html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; back
 /* 官网开放三个 Tab 和记录页的对比入口；其余动作由短场景演出。 */
 .hero-product-canvas .v1-scroll, .hero-product-canvas .v1-gear-pills, .hero-product-canvas .v1-help, .hero-product-canvas .v1-header-status, .hero-product-canvas .v1-brand-wrap { pointer-events: none; }
 .hero-product-canvas .memory-prompt.is-compact { pointer-events: auto; }
-/* 原生 dialog 在顶层，不继承画布变换；让它与整个1120×720产品窗口等比缩放。 */
-.hero-product-canvas .v1-window-modal { width: var(--hero-width); height: var(--hero-height); transform: scale(var(--hero-scale)); transform-origin: top left; }
+/* 窄屏原生 dialog 在顶层，不继承画布变换；只在完整桌面窗口缩小时补同倍率。 */
+.hero-product-canvas .v1-window-modal { width: var(--hero-width); height: var(--hero-height); }
+.hero-product-canvas.is-scaled .v1-window-modal { transform: scale(var(--hero-scale)); transform-origin: top left; }
 html[data-scene="chats-4"] .memory-prompt.is-compact { animation: hero-cta-press 350ms ease-in-out; }
 @keyframes hero-cta-press { 50% { transform: scale(.96); } }
 @media (prefers-reduced-motion: reduce) { html[data-scene="chats-4"] .memory-prompt.is-compact { animation: none; } }

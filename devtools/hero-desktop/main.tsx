@@ -37,7 +37,10 @@ function Projection(): React.JSX.Element {
   const clock = useRef({ tab: 'home' as 'home' | 'chats' | 'connect', elapsed: 0, previous: 0, playing: false, frame: 0, step: 0, run: 0, pinned: false, automatic: false, inspecting: false, comparisonSeen: false })
   const english = locale === 'en'
   const virtualWidth = 1120, virtualHeight = 720
-  const scale = Math.min(viewport.width / virtualWidth, viewport.height / virtualHeight)
+  const scaled = viewport.width < 640
+  const canvasWidth = scaled ? virtualWidth : viewport.width
+  const canvasHeight = scaled ? virtualHeight : viewport.height
+  const scale = scaled ? Math.min(viewport.width / virtualWidth, viewport.height / virtualHeight) : 1
   function openComparison(manual: boolean): void {
     clock.current.inspecting = manual
     clock.current.comparisonSeen = true
@@ -180,11 +183,11 @@ function Projection(): React.JSX.Element {
   }, [scene, english])
   const conn = { ...connection, local: Object.fromEntries(Object.entries(connection.local).map(([id, value]) => [id, { ...value, save: scene.tab !== 'connect' || scene.step > 0 && savingEnabled }])) }
   return <>
-    <div className="hero-product-canvas" onClickCapture={userClick} style={{ width: virtualWidth, height: virtualHeight, transform: `scale(${scale})`, left: (viewport.width - virtualWidth * scale) / 2, '--hero-scale': scale, '--hero-width': `${virtualWidth}px`, '--hero-height': `${virtualHeight}px` } as CSSProperties}>
+    <div className={`hero-product-canvas${scaled ? ' is-scaled' : ''}`} onClickCapture={userClick} style={{ width: canvasWidth, height: canvasHeight, transform: scaled ? `scale(${scale})` : undefined, left: scaled ? (viewport.width - canvasWidth * scale) / 2 : 0, '--hero-scale': scale, '--hero-width': `${canvasWidth}px`, '--hero-height': `${canvasHeight}px` } as CSSProperties}>
       <div className="desktop-viewport"><V1Window data={fixture(english, scene.tab !== 'home' || scene.step >= 1, scene.tab !== 'home' || scene.step >= 2)} conn={conn} actions={{ ...actions, enableAllSaving: () => setSavingEnabled(true) }} settingsActions={settingsActions}
         refresh={{ updatedAt: Date.UTC(2026, 10, 5, 6, 40), now: Date.UTC(2026, 10, 5, 6, 41), busy: false, read: noop }}
         modelConfiguration={comparisonOpen ? <ProSheet onClose={closeComparison} /> : undefined}
-        onConnectionPresence={noop} onTab={changeTab} nPill="apple-lens" width={virtualWidth} height={virtualHeight} initialTab="home" guide={null} tryOnce={null} recentActivityLayout="content" /></div>
+        onConnectionPresence={noop} onTab={changeTab} nPill="apple-lens" width={canvasWidth} height={canvasHeight} initialTab="home" guide={null} tryOnce={null} recentActivityLayout="content" /></div>
     </div>
     <div className="hero-touch-targets" aria-hidden="true">
       {touchTargets.tabs && <div className="hero-touch-target is-tabs" style={touchTargets.tabs} onTouchStart={(event) => {
