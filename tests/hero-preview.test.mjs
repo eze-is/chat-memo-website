@@ -10,12 +10,16 @@ class Element {
   fire(type, event = {}) { for (const fn of this.listeners.get(type) ?? []) fn({ target: this, preventDefault() {}, ...event }) }
   setAttribute(key, value) { this.attributes.set(key, value) }
   hasAttribute(key) { return this.attributes.has(key) }
+  toggleAttribute(key, enabled) { if (enabled) this.attributes.set(key, ''); else this.attributes.delete(key) }
   contains(target) { return target === this || this.children.some(child => child.contains(target)) }
   focus() { this.focused = true }
 }
 function harness(locale = 'zh-CN') {
   const root = new Element(), frame = new Element(), video = new Element(), desktop = new Element(), plugin = new Element(), trigger = new Element(), menu = new Element(), desktopLayer = new Element(), pluginLayer = new Element(), pluginPoster = new Element()
   const doc = new Element(), win = new Element(), reduced = new Element()
+  const controls = new Element()
+  const tabs = ['home', 'chats', 'connect'].map(demoTab => Object.assign(new Element(), { dataset: { demoTab } }))
+  controls.querySelectorAll = () => tabs
   doc.documentElement = { lang: locale }; doc.hidden = false; reduced.matches = false
   plugin.children = [trigger, menu]
   const cta = new Element(), ctaTrigger = new Element(), ctaMenu = new Element()
@@ -24,7 +28,7 @@ function harness(locale = 'zh-CN') {
   cta.querySelector = selector => ({ '.hero-extension-trigger': ctaTrigger, '.hero-extension-menu': ctaMenu }[selector])
   doc.querySelectorAll = () => [plugin, cta]
   root.querySelector = selector => ({ iframe: frame, video, '[data-preview-desktop]': desktopLayer, '[data-preview-plugin]': pluginLayer, '[data-plugin-poster]': pluginPoster }[selector])
-  doc.querySelector = selector => ({ '[data-hero-preview]': root, '.hero-action-secondary .download-dropdown': plugin }[selector])
+  doc.querySelector = selector => ({ '[data-hero-preview]': root, '[data-hero-tab-controls]': controls, '.hero-action-secondary .download-dropdown': plugin }[selector])
   doc.getElementById = id => ({ 'hero-desktop-download-btn': desktop, 'hero-download-btn': trigger, 'hero-extension-menu': menu }[id])
   const messages = []
   frame.contentWindow = { postMessage: message => messages.push(message) }
@@ -39,7 +43,7 @@ function harness(locale = 'zh-CN') {
   class Observer { constructor(callback) { this.callback = callback; observer = this } observe() {} disconnect() { this.disconnected = true } fire(ratio) { this.callback([{ intersectionRatio: ratio }]) } }
   vm.runInNewContext(source, { document: doc, location: { href: 'https://chatmemo.ai/zh-CN/', origin: 'https://chatmemo.ai' }, URL, matchMedia: () => reduced, IntersectionObserver: Observer, addEventListener: win.addEventListener.bind(win) })
   const ready = event => win.fire('message', { origin: 'https://chatmemo.ai', source: frame.contentWindow, data: { type: 'chatmemo:hero:ready' }, ...event })
-  return { root, frame, video, desktop, plugin, trigger, menu, cta, ctaTrigger, ctaMenu, doc, win, reduced, messages, observer, ready, pluginPoster }
+  return { root, frame, video, desktop, plugin, trigger, menu, cta, ctaTrigger, ctaMenu, doc, win, reduced, messages, observer, ready, pluginPoster, controls, tabs }
 }
 test('默认桌面端，进入可见区域才加载；只接受自己frame的就绪消息', () => {
   const h = harness()
@@ -49,6 +53,32 @@ test('默认桌面端，进入可见区域才加载；只接受自己frame的就
   h.ready({ origin: 'https://other.example' }); h.ready({ source: {} })
   assert.equal(h.messages.length, 0)
   h.ready(); assert.equal(h.messages.at(-1).playing, true)
+})
+test('触控选页启动演示，等窗口就绪后应用最后一次选择，选中状态由窗口确认', () => {
+  const h = harness()
+  const [home, chats, connect] = h.tabs
+  h.plugin.fire('focusin')
+  chats.fire('click')
+  connect.fire('click')
+  assert.ok(h.frame.src)
+  assert.equal(h.root.dataset.preview, 'desktop')
+  assert.equal(h.controls.attributes.get('aria-busy'), 'true')
+  assert.equal(chats.hasAttribute('data-pending'), false)
+  assert.equal(connect.hasAttribute('data-pending'), true)
+  h.ready({ source: {} })
+  assert.equal(h.messages.length, 0)
+  h.ready()
+  const choices = h.messages.filter(message => message.type === 'chatmemo:hero:select-tab')
+  assert.equal(choices.length, 1)
+  assert.equal(choices[0].tab, 'connect')
+  const confirmation = { type: 'chatmemo:hero:tab', tab: 'connect' }
+  h.ready({ source: {}, data: confirmation })
+  assert.equal(h.controls.attributes.get('aria-busy'), 'true')
+  h.ready({ data: confirmation })
+  assert.equal(h.controls.attributes.get('aria-busy'), 'false')
+  assert.equal(home.attributes.get('aria-pressed'), 'false')
+  assert.equal(connect.attributes.get('aria-pressed'), 'true')
+  assert.equal(connect.hasAttribute('data-pending'), false)
 })
 test('悬停或键盘聚焦切换预览；下载点击没有被脚本接管', () => {
   const h = harness(); h.observer.fire(1); h.ready()

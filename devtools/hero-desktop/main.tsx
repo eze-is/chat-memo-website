@@ -41,6 +41,7 @@ function Projection(): React.JSX.Element {
     const state = clock.current
     state.tab = tab as typeof tabs[number]; state.elapsed = 0; state.previous = 0; state.step = 0; state.run++
     setScene({ tab: state.tab, step: 0, run: state.run })
+    parent.postMessage({ type: 'chatmemo:hero:tab', tab: state.tab }, location.origin)
   }
   function userClick(event: MouseEvent): void {
     // 让编排走正式的一键开启动作，用户点击其他深层控件仍会被拦住。
@@ -81,7 +82,16 @@ function Projection(): React.JSX.Element {
     }
     function resume(): void { if (state.playing && !reduced.matches && !document.hidden && !state.frame) state.frame = requestAnimationFrame(tick) }
     const receive = (event: MessageEvent): void => {
-      if (event.origin !== location.origin || event.source !== parent || event.data?.type !== 'chatmemo:hero:playback' || typeof event.data.playing !== 'boolean') return
+      if (event.origin !== location.origin || event.source !== parent) return
+      if (event.data?.type === 'chatmemo:hero:select-tab') {
+        const button = navButtons()[tabs.indexOf(event.data.tab)]
+        if (button) {
+          state.pinned = true
+          button.click()
+        }
+        return
+      }
+      if (event.data?.type !== 'chatmemo:hero:playback' || typeof event.data.playing !== 'boolean') return
       state.playing = event.data.playing
       if (state.playing) resume(); else stop()
     }

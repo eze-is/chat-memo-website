@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="331744296c6a"><head>
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="6130deae9769"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Memo - Auto-save every AI chat, continue with any AI</title>
@@ -55,7 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/resource/download-effects.css?v=93affb5629d0">
-    <link rel="stylesheet" href="/hero-preview.css?v=06eb66b783da">
+    <link rel="stylesheet" href="/hero-preview.css?v=5de86d5e8b58">
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/resource/icons/logo.png" as="image">
@@ -418,7 +418,7 @@
 </header>
 </div>
 
-    <script src="/hero-preview.js?v=e11f2b5db966" defer=""></script>
+    <script src="/hero-preview.js?v=154d74f20192" defer=""></script>
 
     <main>
         <section id="hero" class="pt-40 pb-24 text-center">
@@ -465,16 +465,23 @@
                 </div>
                 <p class="text-sm text-gray-500 mt-4" data-key="hero-user-count">Join <span id="user-count" class="font-semibold text-blue-600 transition-all duration-300">20000+</span> pioneers shaping the future of AI-powered work 🚀</p>
 
-                <div class="hero-product-preview mt-16 mx-auto" data-hero-preview="" data-preview="desktop">
-                    <div class="hero-product-layer" data-preview-desktop="">
-                        <img src="/resource/hero-desktop/poster.webp" alt="Chat Memo" width="1120" height="720" fetchpriority="high" decoding="async">
-                        <iframe data-src="/resource/hero-desktop/?v=20261107-priority" title="Chat Memo" tabindex="0"></iframe>
+                <div class="hero-preview-shell mt-16 mx-auto">
+                    <div class="hero-product-preview mx-auto" data-hero-preview="" data-preview="desktop">
+                        <div class="hero-product-layer" data-preview-desktop="">
+                            <img src="/resource/hero-desktop/poster.webp" alt="Chat Memo" width="1120" height="720" fetchpriority="high" decoding="async">
+                            <iframe id="hero-desktop-frame" data-src="/resource/hero-desktop/?v=20261107-mobile-tabs" title="Chat Memo" tabindex="0"></iframe>
+                        </div>
+                        <div class="hero-product-layer" data-preview-plugin="" aria-hidden="true">
+                            <img data-plugin-poster="" data-src="/resource/images/video_cover.jpg" alt="">
+                            <video muted="" loop="" playsinline="" preload="none">
+                                <source src="/resource/videos/video.mp4?v=aa0663cc4526" type="video/mp4">
+                            </video>
+                        </div>
                     </div>
-                    <div class="hero-product-layer" data-preview-plugin="" aria-hidden="true">
-                        <img data-plugin-poster="" data-src="/resource/images/video_cover.jpg" alt="">
-                        <video muted="" loop="" playsinline="" preload="none">
-                            <source src="/resource/videos/video.mp4?v=aa0663cc4526" type="video/mp4">
-                        </video>
+                    <div class="hero-preview-tabs" role="group" aria-label="Desktop demo" data-aria-label-key="hero-demo-tabs" data-hero-tab-controls="" hidden="">
+                        <button type="button" data-demo-tab="home" data-key="hero-demo-tab-home" aria-controls="hero-desktop-frame" aria-pressed="true">Home</button>
+                        <button type="button" data-demo-tab="chats" data-key="hero-demo-tab-chats" aria-controls="hero-desktop-frame" aria-pressed="false">Records</button>
+                        <button type="button" data-demo-tab="connect" data-key="hero-demo-tab-connect" aria-controls="hero-desktop-frame" aria-pressed="false">Connections</button>
                     </div>
                 </div>
 
@@ -1058,6 +1065,7 @@
 
         document.addEventListener('DOMContentLoaded', initFeatureVideos, { once: true });
     </script>
+
 
 
 
