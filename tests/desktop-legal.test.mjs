@@ -19,7 +19,7 @@ const text = node => {
 };
 const normalized = value => value.replace(/\s+/g, ' ').trim();
 const keys = ['privacy', 'terms'];
-const versions = { privacy: '2026-11-04.3', terms: '2026-11-05.1' };
+const versions = { privacy: '2026-11-07.1', terms: '2026-11-07.1' };
 const locales = ['zh-CN', 'en'];
 
 function parsePage(path) { return parse(readFileSync(join(root, path), 'utf8')); }
@@ -53,7 +53,7 @@ test('中英互链及canonical指向同一文档，不提供未翻译语言或�
     for (const locale of locales) for (const key of keys) {
         const document = parsePage(`${locale}/desktop/${key}.html`);
         const links = all(document, node => node.tagName === 'a');
-        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:eze@chatmemo.ai', `/${locale}/pricing`, `/${locale}/desktop/terms`, `/${locale}/desktop/privacy`]);
+        assert.deepEqual(links.map(node => attr(node, 'href')), ['#main', `/${locale}/`, `/zh-CN/desktop/${key}`, `/en/desktop/${key}`, 'mailto:support@chatmemo.ai', `/${locale}/pricing`, `/${locale}/desktop/terms`, `/${locale}/desktop/privacy`]);
         assert.equal(all(document, node => attr(node, 'download') !== undefined).length, 0);
         const trigger = all(document, node => attr(node, 'data-site-locale-trigger') !== undefined)[0];
         assert.equal(attr(trigger, 'aria-expanded'), 'false');
@@ -84,7 +84,7 @@ test('任一语言同版本正文变化时拒绝覆盖生成', () => {
             cpSync(join(root, 'locales'), join(temporary, 'locales'), { recursive: true });
             cpSync(join(root, 'site-i18n.js'), join(temporary, 'site-i18n.js'));
             cpSync(join(root, 'desktop/legal/versions'), join(temporary, 'desktop/legal/versions'), { recursive: true });
-            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/2026-11-04.3-published/privacy.md`), '\n发生变更\n');
+            appendFileSync(join(temporary, `desktop/legal/versions/${locale}/${versions.privacy}-published/privacy.md`), '\n发生变更\n');
             const result = spawnSync(process.execPath, ['scripts/build-desktop-legal.mjs'], { cwd: temporary, encoding: 'utf8' });
             assert.notEqual(result.status, 0);
             assert.match(result.stderr, /发布新版本，不覆盖旧稿/);

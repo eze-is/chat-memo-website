@@ -24,14 +24,14 @@ const locales = {
 };
 // 发布后不修改旧原文；修订时新增版本并切换对应指针。
 const documents = [
-    { key: 'privacy', locale: 'zh-CN', version: '2026-11-04.3', sha256: 'b0fb979ee3afd8758841f972fe77d4e0a366efe0c5639108f8e7bfc98539ab42' },
-    { key: 'terms', locale: 'zh-CN', version: '2026-11-05.1', sha256: 'ee67e09b785ffe50b993c9ebc3bde96a7d85f78cf0b5dff863a3d0e1eef430e5' },
-    { key: 'privacy', locale: 'en', version: '2026-11-04.3', sha256: '206702d2a8808eb5b6c130c6c4c4b67565b43494aa42babb0155150b31c9d22b' },
-    { key: 'terms', locale: 'en', version: '2026-11-05.1', sha256: '6ebb8b2f90149e305a4db94ffa03039a5db72d41079baff4d9c81f1d464238f2' },
+    { key: 'privacy', locale: 'zh-CN', version: '2026-11-07.1', sha256: '7e435c54bef026fcf4af4eb784103e618a059871cb96e7519ec21ac9f40c500d' },
+    { key: 'terms', locale: 'zh-CN', version: '2026-11-07.1', sha256: '5ebb2ab1d45fdcf8629c8eb8d77a65b1a2d79ec3b3ce1e1e6096eacffc0b7a82' },
+    { key: 'privacy', locale: 'en', version: '2026-11-07.1', sha256: 'f9903b6df90f53aef448ce1a9fe08dbb7e74a7892b152a6e61c5ae900502882b' },
+    { key: 'terms', locale: 'en', version: '2026-11-07.1', sha256: '874d1454edb489954c5036e48e1654659106268c7b28d758df646abb6e5c30ff' },
 ];
 
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-const inline = value => escape(value).replace(/\beze@chatmemo\.ai\b/g, '<!--email_off--><a href="mailto:eze@chatmemo.ai">eze@chatmemo.ai</a><!--/email_off-->');
+const inline = value => escape(value).replace(/\bsupport@chatmemo\.ai\b/g, '<!--email_off--><a href="mailto:support@chatmemo.ai">support@chatmemo.ai</a><!--/email_off-->');
 
 function readDocument(spec) {
     const copy = locales[spec.locale];
