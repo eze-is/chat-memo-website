@@ -1,37 +1,36 @@
-// 更新记录的唯一渲染器：浏览器与静态页面生成器共用同一份版式。
-(function (root) {
-    'use strict';
+// 官网版本说明由静态生成器统一渲染，内容以各产品的发布记录为准。
+'use strict';
 
-    const types = [
-        { key: 'new', icon: '🚀', color: 'new', label: 'New Features' },
-        { key: 'improvement', icon: '✨', color: 'improvement', label: 'Improvements' },
-        { key: 'fix', icon: '🔧', color: 'fix', label: 'Bug Fixes' }
-    ];
+const types = [
+    { key: 'new', icon: '🚀', color: 'new', label: 'New Features' },
+    { key: 'improvement', icon: '✨', color: 'improvement', label: 'Improvements' },
+    { key: 'fix', icon: '🔧', color: 'fix', label: 'Bug Fixes' }
+];
 
-    function escapeHtml(value) {
-        return String(value ?? '').replace(/[&<>"']/g, (character) => ({
-            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-        })[character]);
-    }
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+}
 
-    function localized(value, locale) {
-        if (typeof value === 'string') return value;
-        return value?.[locale] || value?.en || '';
-    }
+function localized(value, locale) {
+    if (typeof value === 'string') return value;
+    return value?.[locale] || value?.en || '';
+}
 
-    function renderUpdate(update, locale, messages) {
-        const groups = types.map((type) => {
-            const features = update.features.filter((feature) => feature.type === type.key);
-            if (!features.length) return '';
+function renderUpdate(update, locale, messages) {
+    const groups = types.map((type) => {
+        const features = update.features.filter((feature) => feature.type === type.key);
+        if (!features.length) return '';
 
-            const featuresHtml = features.map((feature) => `
+        const featuresHtml = features.map((feature) => `
                         <div class="feature-item">
                             <h4 class="feature-title">${escapeHtml(localized(feature.title, locale))}</h4>
                             <p class="feature-description">${escapeHtml(localized(feature.description, locale))}</p>
                         </div>
                     `).join('');
 
-            return `
+        return `
                         <div class="feature-group mb-6">
                             <div class="flex items-center group-title">
                                 <span class="group-icon">${type.icon}</span>
@@ -42,9 +41,9 @@
                             </div>
                         </div>
                     `;
-        }).join('');
+    }).join('');
 
-        return `
+    return `
             <div class="timeline-item">
                 <div class="update-card">
                     <!-- 版本头部 -->
@@ -65,14 +64,27 @@
                 </div>
             </div>
         `;
-    }
+}
 
-    function render(updates, locale, messages = {}) {
-        if (!Array.isArray(updates)) throw new TypeError('updates must be an array');
-        return updates.map((update) => renderUpdate(update, locale, messages)).join('');
-    }
+function render(data, locale, messages = {}) {
+    // updates 仍由插件发版工具写入，两端允许使用同一版本号。
+    const products = [
+        { id: 'updates-app', name: messages['updates-app'] || 'Desktop App', updates: data.desktopUpdates ?? [] },
+        { id: 'updates-extension', name: messages['updates-extension'] || 'Browser Extension', updates: data.updates }
+    ];
+    const sections = products.map((product) => {
+        if (!Array.isArray(product.updates)) throw new TypeError(`${product.id} must be an array`);
+        const content = product.updates.length
+            ? product.updates.map((update) => renderUpdate(update, locale, messages)).join('')
+            : `<p class="product-updates-empty">${escapeHtml(messages['updates-empty'] || 'No release notes yet.')}</p>`;
+        return `<section id="${product.id}" class="product-updates" aria-labelledby="${product.id}-title">
+            <h2 id="${product.id}-title" class="product-updates-title">${escapeHtml(product.name)}</h2>
+            ${content}
+        </section>`;
+    }).join('');
+    return `<div class="updates-products" role="navigation" aria-label="${escapeHtml(messages['updates-products'] || 'Products')}">
+        ${products.map(({ id, name }) => `<a id="${id}-tab" href="#${id}">${escapeHtml(name)}</a>`).join('')}
+    </div>${sections}`;
+}
 
-    const api = { render };
-    if (typeof module !== 'undefined' && module.exports) module.exports = api;
-    if (root) root.UpdatesRenderer = api;
-})(typeof window !== 'undefined' ? window : null);
+module.exports = { render };

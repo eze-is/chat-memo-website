@@ -160,11 +160,10 @@
     "tag-new": "New Features",
     "tag-improvement": "Improvements",
     "tag-fix": "Bug Fixes",
-    "loading-failed": "Loading Failed",
-    "loading-failed-desc": "Unable to load update content, please try again later",
-    "reload-btn": "Reload",
-    "no-updates": "No Updates Available",
-    "no-updates-desc": "Update records are being prepared, stay tuned..."
+    "updates-app": "Desktop App",
+    "updates-extension": "Browser Extension",
+    "updates-products": "Choose a product",
+    "updates-empty": "No release notes yet."
   },
   "meta": {
     "home": {
@@ -177,7 +176,7 @@
     },
     "updates": {
       "title": "Chat Memo Updates - Product Improvements",
-      "description": "See the latest features, improvements, and fixes for the Chat Memo browser extension."
+      "description": "Release notes for the Chat Memo desktop app and browser extension."
     },
     "pricing": {
       "title": "Pricing · Chat Memo",

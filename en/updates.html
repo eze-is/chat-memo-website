@@ -1,8 +1,8 @@
-<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="71c67d929bd0"><head>
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-lang="en" data-catalog-version="331744296c6a"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Memo Updates - Product Improvements</title>
-    <meta name="description" content="See the latest features, improvements, and fixes for the Chat Memo browser extension.">
+    <meta name="description" content="Release notes for the Chat Memo desktop app and browser extension.">
 
     <!-- SEO Meta Tags -->
     <meta name="author" content="一泽Eze">
@@ -13,14 +13,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chatmemo.ai/en/updates">
     <meta property="og:title" content="Chat Memo Updates - Product Improvements">
-    <meta property="og:description" content="See the latest features, improvements, and fixes for the Chat Memo browser extension.">
+    <meta property="og:description" content="Release notes for the Chat Memo desktop app and browser extension.">
     <meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://chatmemo.ai/en/updates">
     <meta property="twitter:title" content="Chat Memo Updates - Product Improvements">
-    <meta property="twitter:description" content="See the latest features, improvements, and fixes for the Chat Memo browser extension.">
+    <meta property="twitter:description" content="Release notes for the Chat Memo desktop app and browser extension.">
     <meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png">
 
     <!-- Favicon and Icons -->
@@ -157,23 +157,6 @@
             filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
         }
 
-        /* 加载动画 - 更柔和 */
-        .loading-skeleton {
-            background: linear-gradient(90deg, rgba(55, 53, 47, 0.06) 25%, rgba(55, 53, 47, 0.12) 50%, rgba(55, 53, 47, 0.06) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 6px;
-        }
-
-        @keyframes loading {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
         /* 页面标题样式优化 */
         .page-title {
             font-size: 2.5rem;
@@ -264,6 +247,37 @@
         .no-scroll {
             overflow: hidden;
             height: 100vh;
+        }
+        /* 产品页签位于原更新列表上方。 */
+        .updates-products { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-bottom: 24px; border-bottom: 1px solid #e5e7eb; }
+        .updates-products a {
+            display: flex;
+            align-items: center;
+            min-height: 46px;
+            margin-bottom: -1px;
+            padding: 9px 2px;
+            border-bottom: 2px solid transparent;
+            color: #555b66;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .updates-products a:hover { color: #191919; }
+        .updates-products a[aria-selected="true"] { color: #191919; border-color: #3b82f6; }
+        #updates-container :focus-visible { outline: 2px solid #3b82f6; outline-offset: 4px; }
+        .product-updates { scroll-margin-top: 168px; }
+        .product-updates[hidden] { display: none; }
+        .product-updates-title { margin: 0 0 1rem; font-size: 20px; font-weight: 600; }
+        .product-updates[role="tabpanel"] .product-updates-title {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
+        .product-updates-empty { padding: 30px 0; color: #555b66; }
+        @media (forced-colors: active) {
+            .updates-products a[aria-selected="true"] { border-color: Highlight; }
         }
     </style>
 <meta name="language" content="en"><meta property="og:locale" content="en_US"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
@@ -372,15 +386,65 @@
         <section id="updates-section" class="updates-section py-16 bg-white">
             <div class="container mx-auto px-6">
                 <div class="content-container">
-                    <!-- 加载状态 -->
-                    <div id="loading-state" class="space-y-8 hidden">
-                        <div class="loading-skeleton h-32 rounded-xl"></div>
-                        <div class="loading-skeleton h-24 rounded-xl"></div>
-                        <div class="loading-skeleton h-28 rounded-xl"></div>
+                    <!-- 更新内容容器 -->
+                    <div id="updates-container" data-rendered-locale="en"><div class="updates-products" role="navigation" aria-label="Choose a product">
+        <a id="updates-app-tab" href="#updates-app">Desktop App</a><a id="updates-extension-tab" href="#updates-extension">Browser Extension</a>
+    </div><section id="updates-app" class="product-updates" aria-labelledby="updates-app-title">
+            <h2 id="updates-app-title" class="product-updates-title">Desktop App</h2>
+
+            <div class="timeline-item">
+                <div class="update-card">
+                    <!-- 版本头部 -->
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex-1">
+                            <h2 class="version-title">v1.0.6</h2>
+                            <p class="page-subtitle mb-0">The Chat Memo desktop app is officially available.</p>
+                        </div>
+                        <div class="flex-shrink-0 ml-4">
+                            <span class="update-date">November 5, 2026</span>
+                        </div>
                     </div>
 
-                    <!-- 更新内容容器 -->
-                    <div id="updates-container" class="space-y-8" data-rendered-locale="en">
+                    <!-- 分组功能列表 -->
+                    <div class="space-y-5">
+
+                        <div class="feature-group mb-6">
+                            <div class="flex items-center group-title">
+                                <span class="group-icon">🚀</span>
+                                <h3 class="text-new">New Features</h3>
+                            </div>
+                            <div class="space-y-3">
+
+                        <div class="feature-item">
+                            <h4 class="feature-title">Automatic conversation backup</h4>
+                            <p class="feature-description">Automatically back up conversations from connected desktop agents and web AI services.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4 class="feature-title">Continue with another AI</h4>
+                            <p class="feature-description">Carry context between AI services so you can pick up the same conversation with another AI.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4 class="feature-title">Conversations stored locally</h4>
+                            <p class="feature-description">Chat Memo stores your conversation backups on your own computer.</p>
+                        </div>
+
+                        <div class="feature-item">
+                            <h4 class="feature-title">Search in seconds and recall the right context</h4>
+                            <p class="feature-description">Find past conversations by keyword and let AI recall the relevant excerpts when needed.</p>
+                        </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section><section id="updates-extension" class="product-updates" aria-labelledby="updates-extension-title">
+            <h2 id="updates-extension-title" class="product-updates-title">Browser Extension</h2>
+
             <div class="timeline-item">
                 <div class="update-card">
                     <!-- 版本头部 -->
@@ -1520,19 +1584,9 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-                    <!-- 错误状态 -->
-                    <div id="error-state" class="hidden text-center py-16">
-                        <div class="text-gray-400 mb-4">
-                            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-600 mb-2" data-key="loading-failed">Loading Failed</h3>
-                        <p class="text-gray-500 mb-4" data-key="loading-failed-desc">Unable to load update content, please try again later</p>
-                        <button onclick="loadUpdates()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition" data-key="reload-btn">Reload</button>
-                    </div>
+        </section></div>
+
                 </div>
             </div>
         </section>
@@ -1603,111 +1657,83 @@
 </footer>
 </div>
 
-    <script src="/updates-renderer.js"></script>
     <script>
-        // 动态加载更新数据
-        async function loadUpdates() {
-            const loadingState = document.getElementById('loading-state');
-            const updatesContainer = document.getElementById('updates-container');
-            const errorState = document.getElementById('error-state');
+        // 静态 HTML 保留两个完整区块，脚本将产品锚点增强为页签。
+        const productTabs = document.querySelector('.updates-products');
+        const tabs = [...productTabs.querySelectorAll('a')];
+        const panels = tabs.map(tab => document.getElementById(tab.hash.slice(1)));
 
-            // 静态页面已有该语言的完整时间线时，不再下载和重绘同一份记录。
-            if (updatesContainer.dataset.renderedLocale === SiteI18n.getLocale()
-                && updatesContainer.querySelector('.timeline-item')) {
-                loadingState.classList.add('hidden');
-                updatesContainer.classList.remove('hidden');
-                errorState.classList.add('hidden');
-                return;
-            }
-
-            // 显示加载状态
-            loadingState.classList.remove('hidden');
-            updatesContainer.classList.add('hidden');
-            errorState.classList.add('hidden');
-
-            try {
-                const response = await fetch('/updates-data.json');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch updates');
-                }
-
-                const data = await response.json();
-                renderUpdates(data.updates);
-
-                // 显示内容，隐藏加载状态
-                loadingState.classList.add('hidden');
-                updatesContainer.classList.remove('hidden');
-
-            } catch (error) {
-                console.error('加载更新数据失败:', error);
-                // 网络失败不能抹去静态页面已经提供的更新记录。
-                if (!updatesContainer.querySelector('.timeline-item')) renderDefaultUpdates();
-
-                // 显示内容，隐藏加载状态
-                loadingState.classList.add('hidden');
-                updatesContainer.classList.remove('hidden');
-            }
+        function selectProduct(index) {
+            tabs.forEach((tab, i) => {
+                const selected = i === index;
+                tab.setAttribute('aria-selected', String(selected));
+                tab.tabIndex = selected ? 0 : -1;
+                panels[i].hidden = !selected;
+            });
         }
 
-        function renderUpdates(updates) {
-            const container = document.getElementById('updates-container');
-            const locale = SiteI18n.getLocale();
-            container.innerHTML = UpdatesRenderer.render(updates, locale, SiteI18n.messages());
-            container.dataset.renderedLocale = locale;
+        function selectProductFromHash() {
+            selectProduct(Math.max(0, tabs.findIndex(tab => tab.hash === location.hash)));
         }
 
-        function renderDefaultUpdates() {
-            // 如果无法加载 JSON 数据，显示默认内容
-            const container = document.getElementById('updates-container');
-            container.innerHTML = `
-                <div class="text-center py-16">
-                    <div class="text-6xl mb-4">📝</div>
-                    <h3 class="text-xl font-semibold text-gray-700 mb-2" data-key="no-updates">No Updates Available</h3>
-                    <p class="text-gray-500" data-key="no-updates-desc">Update records are being prepared, please stay tuned...</p>
-                </div>
-            `;
-
-            SiteI18n.apply();
+        function openProduct(index) {
+            const tab = tabs[index];
+            if (location.hash !== tab.hash) history.pushState(history.state, '', tab.hash);
+            selectProduct(index);
+            tab.focus({ preventScroll: true });
         }
 
-        // 加载导航组件
-        async function loadNavbar() {
-            try {
-                const container = document.getElementById('navbar-container');
-                if (container.childElementCount) return;
-                const response = await fetch('/components/navbar.html');
-                const navbarHTML = await response.text();
-                container.innerHTML = navbarHTML;
-            } catch (error) {
-                console.error('Failed to load navbar:', error);
-            }
-        }
+        productTabs.setAttribute('role', 'tablist');
+        tabs.forEach((tab, i) => {
+            const panel = panels[i];
+            tab.setAttribute('role', 'tab');
+            tab.setAttribute('aria-controls', panel.id);
+            panel.setAttribute('role', 'tabpanel');
+            panel.setAttribute('aria-labelledby', tab.id);
+            panel.tabIndex = 0;
 
-        // 加载footer组件
-        async function loadFooter() {
-            try {
-                const container = document.getElementById('footer-container');
-                if (container.childElementCount) return;
-                const response = await fetch('/components/footer.html');
-                const footerHTML = await response.text();
-                container.innerHTML = footerHTML;
-            } catch (error) {
-                console.error('Failed to load footer:', error);
-            }
-        }
+            tab.addEventListener('click', (event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                openProduct(i);
+            });
+            tab.addEventListener('keydown', (event) => {
+                const destination = {
+                    ArrowLeft: (i + tabs.length - 1) % tabs.length,
+                    ArrowRight: (i + 1) % tabs.length,
+                    Home: 0,
+                    End: tabs.length - 1,
+                    ' ': i
+                }[event.key];
+                if (destination === undefined) return;
+                event.preventDefault();
+                openProduct(destination);
+            });
+        });
+        selectProductFromHash();
+        window.addEventListener('hashchange', selectProductFromHash);
 
         // 英雄区动画函数
         function startHeroAnimation() {
+            const heroSection = document.getElementById('hero-section');
+            const heroContent = document.getElementById('hero-content');
+            const updatesSection = document.getElementById('updates-section');
+
+            // 直达某个产品或偏好减少动态时，直接使用原页头的收起状态。
+            if (tabs.some(tab => tab.hash === location.hash) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                heroSection.style.transition = 'none';
+                heroContent.style.transition = 'none';
+                heroSection.classList.add('collapsed');
+                heroContent.classList.add('collapsed');
+                return;
+            }
+
             document.documentElement.classList.add('intro-running');
             // 页面加载时立即禁用滚动
             document.body.classList.add('no-scroll');
 
             // 延迟1.5秒后开始动画，让用户先看到完整的英雄区
             setTimeout(() => {
-                const heroSection = document.getElementById('hero-section');
-                const heroContent = document.getElementById('hero-content');
-                const updatesSection = document.getElementById('updates-section');
-
                 // 添加收缩样式
                 heroSection.classList.add('collapsed');
                 heroContent.classList.add('collapsed');
@@ -1726,42 +1752,11 @@
             }, 1500);
         }
 
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', async function() {
-            // 重置滚动位置到顶部，不记忆用户之前的滚动位置
-            window.scrollTo(0, 0);
-
-            // 加载导航组件
-            await loadNavbar();
-            // 加载footer组件
-            await loadFooter();
-
+        document.addEventListener('DOMContentLoaded', async () => {
             const i18nReady = SiteI18n.init('updates');
             SiteNav.init();
             await i18nReady;
-
-            // 加载更新数据
-            await loadUpdates();
-
-            // 确保所有内容加载完成后滚动位置仍在顶部
-            window.scrollTo(0, 0);
-
-            // 启动英雄区动画
             startHeroAnimation();
         });
-
-        // 页面完全加载后的额外保障
-        window.addEventListener('load', function() {
-            // 再次确保滚动位置在顶部
-            window.scrollTo(0, 0);
-        });
     </script>
-
-
-
-
-
-
-
-
 </body></html>

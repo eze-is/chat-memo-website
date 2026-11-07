@@ -11,7 +11,7 @@
     },
     "updates": {
       "title": "Novedades de Chat Memo: funciones, mejoras y correcciones",
-      "description": "Conoce las nuevas funciones, mejoras y correcciones de Chat Memo, la extensión para guardar y organizar tus conversaciones con IA."
+      "description": "Consulta las novedades de la app de escritorio y de la extensión de Chat Memo."
     },
     "pricing": {
       "title": "Precios · Chat Memo",
@@ -178,11 +178,10 @@
     "tag-new": "Nuevas funciones",
     "tag-improvement": "Mejoras",
     "tag-fix": "Correcciones",
-    "loading-failed": "No se pudieron cargar las novedades",
-    "loading-failed-desc": "Inténtalo de nuevo más tarde",
-    "reload-btn": "Volver a cargar",
-    "no-updates": "Todavía no hay novedades",
-    "no-updates-desc": "Estamos preparando el historial de actualizaciones. Vuelve pronto."
+    "updates-app": "App de escritorio",
+    "updates-extension": "Extensión del navegador",
+    "updates-products": "Elegir producto",
+    "updates-empty": "Aún no hay notas de la versión."
   },
   "pricing": {
     "pricing-title": "Elige tu plan",

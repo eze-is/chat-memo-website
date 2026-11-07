@@ -160,11 +160,10 @@
     "tag-new": "新功能",
     "tag-improvement": "功能改进",
     "tag-fix": "问题修复",
-    "loading-failed": "加载失败",
-    "loading-failed-desc": "无法加载更新内容，请稍后重试",
-    "reload-btn": "重新加载",
-    "no-updates": "暂无更新内容",
-    "no-updates-desc": "更新记录正在准备中，敬请期待..."
+    "updates-app": "桌面端",
+    "updates-extension": "浏览器插件",
+    "updates-products": "选择产品",
+    "updates-empty": "暂无更新记录。"
   },
   "meta": {
     "home": {
@@ -177,7 +176,7 @@
     },
     "updates": {
       "title": "Chat Memo 更新日志 - 产品功能更新与改进记录",
-      "description": "Chat Memo 产品更新日志，记录所有功能更新、改进和修复。了解最新的AI对话管理工具功能和优化。"
+      "description": "查看 Chat Memo 桌面端和浏览器插件的功能更新、改进与修复。"
     },
     "pricing": {
       "title": "定价 · Chat Memo",

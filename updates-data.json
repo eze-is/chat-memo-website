@@ -1300,5 +1300,84 @@
         }
       ]
     }
+  ],
+  "desktopUpdates": [
+    {
+      "version": "v1.0.6",
+      "date": {
+        "zh-CN": "2026年11月5日",
+        "en": "November 5, 2026",
+        "ja": "2026年11月5日",
+        "es": "5 de noviembre de 2026"
+      },
+      "summary": {
+        "zh-CN": "Chat Memo 桌面端正式发布。",
+        "en": "The Chat Memo desktop app is officially available.",
+        "ja": "Chat Memo のデスクトップアプリを正式リリースしました。",
+        "es": "Ya está disponible la versión oficial de Chat Memo para escritorio."
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "自动备份 AI 对话",
+            "en": "Automatic conversation backup",
+            "ja": "AI との会話を自動でバックアップ",
+            "es": "Copia automática de conversaciones"
+          },
+          "description": {
+            "zh-CN": "自动备份已连接的电脑 Agent 和网页 AI 对话。",
+            "en": "Automatically back up conversations from connected desktop agents and web AI services.",
+            "ja": "接続したデスクトップのエージェントやウェブ版 AI との会話を自動でバックアップします。",
+            "es": "Guarda automáticamente las conversaciones de los agentes de escritorio y servicios de IA web que conectes."
+          }
+        },
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "跨 AI 接着聊",
+            "en": "Continue with another AI",
+            "ja": "別の AI で会話を続ける",
+            "es": "Sigue la conversación con otra IA"
+          },
+          "description": {
+            "zh-CN": "打通不同 AI 间的聊天上下文，同一件事，换个 AI 也能接着聊。",
+            "en": "Carry context between AI services so you can pick up the same conversation with another AI.",
+            "ja": "AI 間で会話の文脈を引き継げるので、別の AI に切り替えても同じ話題を続けられます。",
+            "es": "Lleva el contexto de una conversación a otra IA y sigue hablando del mismo tema."
+          }
+        },
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "对话保存在本机",
+            "en": "Conversations stored locally",
+            "ja": "会話は自分のパソコンに保存",
+            "es": "Conversaciones guardadas en tu equipo"
+          },
+          "description": {
+            "zh-CN": "Chat Memo 将对话备份保存在你自己的电脑上。",
+            "en": "Chat Memo stores your conversation backups on your own computer.",
+            "ja": "Chat Memo は会話のバックアップをお使いのパソコンに保存します。",
+            "es": "Chat Memo guarda las copias de tus conversaciones en tu propio equipo."
+          }
+        },
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "秒级查询，精准召回",
+            "en": "Search in seconds and recall the right context",
+            "ja": "すばやく検索し、必要な文脈を取り出す",
+            "es": "Busca en segundos y recupera el contexto relevante"
+          },
+          "description": {
+            "zh-CN": "用关键词找回历史对话，让 AI 按需召回相关片段。",
+            "en": "Find past conversations by keyword and let AI recall the relevant excerpts when needed.",
+            "ja": "キーワードで過去の会話を見つけ、必要に応じて AI が関連する箇所を参照できます。",
+            "es": "Encuentra conversaciones por palabra clave y permite que la IA recupere los fragmentos pertinentes cuando los necesite."
+          }
+        }
+      ]
+    }
   ]
 }

@@ -13,7 +13,7 @@ const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.h
 const catalogs = Object.fromEntries(locales.map((locale) => [
     locale, JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'))
 ]));
-const updates = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8')).updates;
+const { updates, desktopUpdates } = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8'));
 
 function route(locale, page) {
     const prefix = `/${locale}`;
@@ -133,9 +133,9 @@ test('四语更新记录在初始 HTML 中完整可见，结构化 FAQ 与正文
         const updatesHtml = fs.readFileSync(path.join(base, 'updates.html'), 'utf8');
         const updatesDocument = parse(updatesHtml);
         const timeline = all(updatesDocument, (node) => node.tagName === 'div' && (attribute(node, 'class') || '').split(' ').includes('timeline-item'));
-        assert.equal(timeline.length, updates.length, locale);
+        assert.equal(timeline.length, updates.length + desktopUpdates.length, locale);
         const container = find(updatesDocument, (node) => attribute(node, 'id') === 'updates-container');
-        assert.ok(!attribute(container, 'class').split(' ').includes('hidden'), locale);
+        assert.ok(!(attribute(container, 'class') || '').split(' ').includes('hidden'), locale);
         assert.equal(attribute(container, 'data-rendered-locale'), locale);
         assert.ok(textOf(container).includes(updates[0].summary[locale]), locale);
 

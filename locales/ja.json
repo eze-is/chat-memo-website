@@ -11,7 +11,7 @@
     },
     "updates": {
       "title": "Chat Memo の更新履歴｜新機能と改善",
-      "description": "Chat Memo の新機能、改善、不具合修正をまとめた更新履歴です。"
+      "description": "Chat Memo のデスクトップアプリとブラウザー拡張機能の更新履歴です。"
     },
     "pricing": {
       "title": "料金 · Chat Memo",
@@ -178,11 +178,10 @@
     "tag-new": "新機能",
     "tag-improvement": "改善",
     "tag-fix": "不具合修正",
-    "loading-failed": "読み込みに失敗しました",
-    "loading-failed-desc": "更新内容を読み込めませんでした。しばらくしてからもう一度お試しください",
-    "reload-btn": "再読み込み",
-    "no-updates": "更新履歴はまだありません",
-    "no-updates-desc": "更新履歴を準備中です。もうしばらくお待ちください"
+    "updates-app": "デスクトップアプリ",
+    "updates-extension": "ブラウザー拡張機能",
+    "updates-products": "製品を選択",
+    "updates-empty": "更新履歴はまだありません。"
   },
   "pricing": {
     "pricing-title": "プランを選ぶ",

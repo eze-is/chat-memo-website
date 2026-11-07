@@ -62,9 +62,9 @@ test('页面和共享组件引用的词条都有归属', () => {
 });
 
 test('全部历史更新四语完整，英文是唯一缺译兜底', () => {
-    const { updates } = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8'));
+    const { updates, desktopUpdates } = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8'));
     assert.ok(updates.length > 0);
-    for (const update of updates) {
+    for (const update of [...desktopUpdates, ...updates]) {
         for (const field of ['date', 'summary']) {
             for (const locale of locales) assert.ok(update[field][locale]?.trim(), `${update.version} ${field}.${locale}`);
         }

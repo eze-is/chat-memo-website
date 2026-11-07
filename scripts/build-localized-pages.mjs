@@ -54,7 +54,7 @@ const catalogs = Object.fromEntries(locales.map((locale) => [
     locale,
     JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'))
 ]));
-const updates = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8')).updates;
+const updates = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8'));
 const source = Object.fromEntries(Object.entries(pages).map(([page, file]) => [
     page,
     fs.readFileSync(path.join(root, file), 'utf8')
@@ -106,17 +106,6 @@ function setHtml(node, html) {
 
 function setText(node, value) {
     node.childNodes = [{ nodeName: '#text', value, parentNode: node }];
-}
-
-function addClass(node, className) {
-    const classes = new Set((attr(node, 'class') || '').split(/\s+/).filter(Boolean));
-    classes.add(className);
-    setAttr(node, 'class', [...classes].join(' '));
-}
-
-function removeClass(node, className) {
-    const classes = (attr(node, 'class') || '').split(/\s+/).filter((item) => item && item !== className);
-    setAttr(node, 'class', classes.join(' '));
 }
 
 function appendMarkup(node, markup) {
@@ -353,8 +342,6 @@ function render(page, locale) {
         const container = byId(document, 'updates-container');
         setHtml(container, renderUpdates(updates, locale, dictionary));
         setAttr(container, 'data-rendered-locale', locale);
-        removeClass(container, 'hidden');
-        addClass(byId(document, 'loading-state'), 'hidden');
     }
     {
         const assets = ['/site-i18n.js', '/site-nav.js'];
