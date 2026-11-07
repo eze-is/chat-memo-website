@@ -4,8 +4,6 @@
     const root = document.querySelector('[data-hero-preview]');
     if (!root) return;
     const frame = root.querySelector('iframe');
-    const controls = document.querySelector('[data-hero-tab-controls]');
-    const tabs = [...controls.querySelectorAll('button[data-demo-tab]')];
     const video = root.querySelector('video');
     const pluginPoster = root.querySelector('[data-plugin-poster]');
     const desktop = document.getElementById('hero-desktop-download-btn');
@@ -25,18 +23,6 @@
     });
 
     let selected = 'desktop', visible = false, ready = false, hovering = false, closed = false, playRequest = 0;
-    let activeTab = 'home', pendingTab = null;
-
-    function syncTabs() {
-        controls.setAttribute('aria-busy', String(pendingTab !== null));
-        for (const button of tabs) {
-            button.setAttribute('aria-pressed', String(selected === 'desktop' && button.dataset.demoTab === activeTab));
-            button.toggleAttribute('data-pending', button.dataset.demoTab === pendingTab);
-        }
-    }
-    function sendPendingTab() {
-        if (ready && pendingTab) frame.contentWindow.postMessage({ type: 'chatmemo:hero:select-tab', tab: pendingTab }, location.origin);
-    }
 
     function loadDesktop() {
         if (frame.hasAttribute('src')) return;
@@ -50,7 +36,6 @@
         root.dataset.preview = selected;
         root.querySelector('[data-preview-desktop]').setAttribute('aria-hidden', String(selected !== 'desktop'));
         root.querySelector('[data-preview-plugin]').setAttribute('aria-hidden', String(selected !== 'plugin'));
-        syncTabs();
         if (visible) loadDesktop();
         if (selected === 'plugin' && !pluginPoster.hasAttribute('src')) {
             pluginPoster.src = pluginPoster.dataset.src;
@@ -65,15 +50,6 @@
         } else video.pause();
     }
     function select(value) { selected = value; sync(); }
-    for (const button of tabs) {
-        button.addEventListener('click', () => {
-            pendingTab = button.dataset.demoTab;
-            select('desktop');
-            loadDesktop();
-            sendPendingTab();
-        });
-    }
-    controls.hidden = false;
     desktop.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') select('desktop'); });
     desktop.addEventListener('focus', () => select('desktop'));
     plugin.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') select('plugin'); });
@@ -89,11 +65,6 @@
         if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
         if (event.data?.type === 'chatmemo:hero:ready') {
             ready = true; root.dataset.desktopReady = 'true'; sync();
-            sendPendingTab();
-        } else if (event.data?.type === 'chatmemo:hero:tab' && tabs.some(button => button.dataset.demoTab === event.data.tab)) {
-            activeTab = event.data.tab;
-            if (pendingTab === activeTab) pendingTab = null;
-            syncTabs();
         }
     });
     document.addEventListener('visibilitychange', sync);

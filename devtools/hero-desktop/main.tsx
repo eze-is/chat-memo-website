@@ -25,14 +25,16 @@ const heroCatalogs: MessageCatalogs = {
 const noop = (): void => {}
 document.documentElement.dataset.platform = 'mac'
 const navButtons = (): HTMLButtonElement[] => [...document.querySelectorAll<HTMLButtonElement>('.v1-brow .v1-pills:not(.v1-gear-pills) button')]
+type TouchTargets = { tabs?: CSSProperties; action?: CSSProperties }
 
 function Projection(): React.JSX.Element {
   const [viewport, setViewport] = useState({ width: innerWidth, height: innerHeight })
   const [comparisonOpen, setComparisonOpen] = useState(false)
   const [savingEnabled, setSavingEnabled] = useState(false)
+  const [touchTargets, setTouchTargets] = useState<TouchTargets>({})
   const outsideFocus = useRef<HTMLElement | null>(null)
   const [scene, setScene] = useState<{ tab: 'home' | 'chats' | 'connect'; step: number; run: number }>({ tab: 'home', step: 0, run: 0 })
-  const clock = useRef({ tab: 'home' as 'home' | 'chats' | 'connect', elapsed: 0, previous: 0, playing: false, frame: 0, step: 0, run: 0, pinned: false, inspecting: false, comparisonSeen: false })
+  const clock = useRef({ tab: 'home' as 'home' | 'chats' | 'connect', elapsed: 0, previous: 0, playing: false, frame: 0, step: 0, run: 0, pinned: false, automatic: false, inspecting: false, comparisonSeen: false })
   const english = locale === 'en'
   const virtualWidth = 1120, virtualHeight = 720
   const scale = Math.min(viewport.width / virtualWidth, viewport.height / virtualHeight)
@@ -50,18 +52,21 @@ function Projection(): React.JSX.Element {
   function changeTab(tab: Tab): void {
     if (!tabs.includes(tab as typeof tabs[number])) return
     const state = clock.current
+    if (!state.automatic) state.pinned = true
     closeComparison()
     state.comparisonSeen = false
     state.tab = tab as typeof tabs[number]; state.elapsed = 0; state.previous = 0; state.step = 0; state.run++
     setScene({ tab: state.tab, step: 0, run: state.run })
     parent.postMessage({ type: 'chatmemo:hero:tab', tab: state.tab }, location.origin)
   }
+  function selectTab(tab: typeof tabs[number]): void {
+    navButtons()[tabs.indexOf(tab)]?.click()
+  }
   function userClick(event: MouseEvent): void {
     const target = event.target as Element
     // 让编排走正式的一键开启动作，用户点击其他深层控件仍会被拦住。
     if (!event.isTrusted && clock.current.tab === 'connect' && clock.current.step === 1 && target.closest('.v1-allon button')) return
     if (target.closest('.v1-brow .v1-pills:not(.v1-gear-pills) button')) {
-      if (event.isTrusted) clock.current.pinned = true
       return
     }
     if (target.closest('.v1-sheet-x')) return
@@ -89,7 +94,11 @@ function Projection(): React.JSX.Element {
       state.previous = now
       if (state.elapsed >= duration[state.tab]) {
         if (state.pinned) { state.elapsed %= duration[state.tab]; state.run++; state.step = -1; state.comparisonSeen = false }
-        else navButtons()[(tabs.indexOf(state.tab) + 1) % tabs.length]?.click()
+        else {
+          state.automatic = true
+          navButtons()[(tabs.indexOf(state.tab) + 1) % tabs.length]?.click()
+          state.automatic = false
+        }
       }
       const step = stepAt(state.tab, state.elapsed)
       if (step !== state.step) { state.step = step; setScene({ tab: state.tab, step, run: state.run }) }
@@ -101,7 +110,6 @@ function Projection(): React.JSX.Element {
       if (event.data?.type === 'chatmemo:hero:select-tab') {
         const button = navButtons()[tabs.indexOf(event.data.tab)]
         if (button) {
-          state.pinned = true
           button.click()
         }
         return
@@ -117,6 +125,34 @@ function Projection(): React.JSX.Element {
     void document.fonts.ready.then(() => parent.postMessage({ type: 'chatmemo:hero:ready' }, location.origin))
     return () => { stop(); removeEventListener('message', receive); removeEventListener('resize', resize); document.removeEventListener('visibilitychange', visibility); reduced.removeEventListener('change', visibility) }
   }, [])
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const buttons = navButtons()
+      if (buttons.length !== tabs.length) { setTouchTargets({}); return }
+      const first = buttons[0].getBoundingClientRect()
+      const last = buttons.at(-1)!.getBoundingClientRect()
+      const tabsWidth = Math.max(132, last.right - first.left + 44)
+      const tabsCenter = (first.left + last.right) / 2
+      const tabsTarget = {
+        left: tabsCenter - tabsWidth / 2,
+        top: (first.top + first.bottom) / 2 - 22,
+        width: tabsWidth,
+        height: 44,
+      }
+      const action = comparisonOpen ? null : document.querySelector<HTMLButtonElement>('.memory-prompt.is-compact')
+      const rect = action?.getBoundingClientRect()
+      setTouchTargets({
+        tabs: tabsTarget,
+        action: rect && rect.width > 0 && rect.height > 0 ? {
+          left: rect.left + rect.width / 2 - Math.max(44, rect.width) / 2,
+          top: rect.top + rect.height / 2 - 22,
+          width: Math.max(44, rect.width),
+          height: 44,
+        } : undefined,
+      })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [scene, viewport, comparisonOpen])
   useEffect(() => {
     document.documentElement.dataset.scene = `${scene.tab}-${scene.step}`
     document.documentElement.dataset.manual = String(clock.current.pinned)
@@ -143,11 +179,25 @@ function Projection(): React.JSX.Element {
     for (const input of document.querySelectorAll<HTMLInputElement>('.v1-scroll input')) input.readOnly = true
   }, [scene, english])
   const conn = { ...connection, local: Object.fromEntries(Object.entries(connection.local).map(([id, value]) => [id, { ...value, save: scene.tab !== 'connect' || scene.step > 0 && savingEnabled }])) }
-  return <div className="hero-product-canvas" onClickCapture={userClick} style={{ width: virtualWidth, height: virtualHeight, transform: `scale(${scale})`, left: (viewport.width - virtualWidth * scale) / 2, '--hero-scale': scale, '--hero-width': `${virtualWidth}px`, '--hero-height': `${virtualHeight}px` } as CSSProperties}>
-    <div className="desktop-viewport"><V1Window data={fixture(english, scene.tab !== 'home' || scene.step >= 1, scene.tab !== 'home' || scene.step >= 2)} conn={conn} actions={{ ...actions, enableAllSaving: () => setSavingEnabled(true) }} settingsActions={settingsActions}
-      refresh={{ updatedAt: Date.UTC(2026, 10, 5, 6, 40), now: Date.UTC(2026, 10, 5, 6, 41), busy: false, read: noop }}
-      modelConfiguration={comparisonOpen ? <ProSheet onClose={closeComparison} /> : undefined}
-      onConnectionPresence={noop} onTab={changeTab} nPill="apple-lens" width={virtualWidth} height={virtualHeight} initialTab="home" guide={null} tryOnce={null} recentActivityLayout="content" /></div>
-  </div>
+  return <>
+    <div className="hero-product-canvas" onClickCapture={userClick} style={{ width: virtualWidth, height: virtualHeight, transform: `scale(${scale})`, left: (viewport.width - virtualWidth * scale) / 2, '--hero-scale': scale, '--hero-width': `${virtualWidth}px`, '--hero-height': `${virtualHeight}px` } as CSSProperties}>
+      <div className="desktop-viewport"><V1Window data={fixture(english, scene.tab !== 'home' || scene.step >= 1, scene.tab !== 'home' || scene.step >= 2)} conn={conn} actions={{ ...actions, enableAllSaving: () => setSavingEnabled(true) }} settingsActions={settingsActions}
+        refresh={{ updatedAt: Date.UTC(2026, 10, 5, 6, 40), now: Date.UTC(2026, 10, 5, 6, 41), busy: false, read: noop }}
+        modelConfiguration={comparisonOpen ? <ProSheet onClose={closeComparison} /> : undefined}
+        onConnectionPresence={noop} onTab={changeTab} nPill="apple-lens" width={virtualWidth} height={virtualHeight} initialTab="home" guide={null} tryOnce={null} recentActivityLayout="content" /></div>
+    </div>
+    <div className="hero-touch-targets" aria-hidden="true">
+      {touchTargets.tabs && <div className="hero-touch-target is-tabs" style={touchTargets.tabs} onTouchStart={(event) => {
+        event.preventDefault()
+        const rect = event.currentTarget.getBoundingClientRect()
+        const index = Math.min(tabs.length - 1, Math.max(0, Math.floor((event.touches[0].clientX - rect.left) / rect.width * tabs.length)))
+        selectTab(tabs[index])
+      }} />}
+      {touchTargets.action && <div className="hero-touch-target is-action" style={touchTargets.action} onTouchStart={(event) => {
+        event.preventDefault()
+        openComparison(true)
+      }} />}
+    </div>
+  </>
 }
 createRoot(document.getElementById('root')!).render(<I18nProvider initialLocale={locale} catalogs={heroCatalogs}><Projection /></I18nProvider>)

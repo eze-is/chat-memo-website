@@ -1,5 +1,8 @@
 html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; }
 .hero-product-canvas { position: absolute; top: 0; transform-origin: top left; }
+.hero-touch-targets { display: none; position: fixed; inset: 0; z-index: 2147483646; pointer-events: none; }
+.hero-touch-target { position: absolute; pointer-events: auto; touch-action: none; }
+@media (max-width: 639px), (hover: none) and (pointer: coarse) { .hero-touch-targets { display: block; } }
 /* 原生窗控属于 macOS，浏览器中仅补回三个静态圆点，产品界面仍由正式组件绘制。 */
 .desktop-native-window-controls { background: radial-gradient(circle at 6px 6px, #ff6059 0 5px, transparent 5.5px), radial-gradient(circle at 26px 6px, #ffbd2e 0 5px, transparent 5.5px), radial-gradient(circle at 46px 6px, #28c840 0 5px, transparent 5.5px); }
 /* 官网开放三个 Tab 和记录页的对比入口；其余动作由短场景演出。 */
