@@ -1303,6 +1303,98 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.7",
+      "date": {
+        "zh-CN": "2026年11月7日",
+        "en": "November 7, 2026",
+        "ja": "2026年11月7日",
+        "es": "7 de noviembre de 2026"
+      },
+      "summary": {
+        "zh-CN": "备份更完整，浏览更流畅。",
+        "en": "More complete backups and smoother browsing.",
+        "ja": "バックアップを改善し、閲覧をよりスムーズに。",
+        "es": "Copias más completas y navegación más fluida."
+      },
+      "features": [
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "对话备份与内容显示",
+            "en": "Conversation backups and content display",
+            "ja": "会話のバックアップと表示",
+            "es": "Copias de conversaciones y visualización"
+          },
+          "description": {
+            "zh-CN": "改进 Codex、DeepSeek 等来源的对话备份，图片、视频和文件引用显示更完整。",
+            "en": "Improved backups from Codex, DeepSeek and other sources, with more complete display of images, videos and file references.",
+            "ja": "Codex、DeepSeek などの会話バックアップを改善し、画像・動画・ファイル参照の表示を改善しました。",
+            "es": "Mejoramos las copias de conversaciones de Codex, DeepSeek y otras fuentes, con una visualización más completa de imágenes, vídeos y referencias a archivos."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "更流畅地浏览记录",
+            "en": "Smoother browsing",
+            "ja": "記録をよりスムーズに閲覧",
+            "es": "Navegación más fluida"
+          },
+          "description": {
+            "zh-CN": "对话较多时，打开和滚动记录更流畅。",
+            "en": "Opening and scrolling through records is smoother when you have many conversations.",
+            "ja": "会話が多い場合でも、記録の読み込みやスクロールがよりスムーズになりました。",
+            "es": "Abrir y recorrer los registros es más fluido cuando tienes muchas conversaciones."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "备份状态一目了然",
+            "en": "Visible backup status",
+            "ja": "バックアップの状態を表示",
+            "es": "Estado de la copia de seguridad"
+          },
+          "description": {
+            "zh-CN": "备份时，右上角更新图标持续转动，显示备份状态。",
+            "en": "The refresh icon in the top-right corner keeps spinning during backup to show that it is in progress.",
+            "ja": "バックアップ中は右上の更新アイコンが回転し続け、処理中であることを表示します。",
+            "es": "Durante la copia de seguridad, el icono de actualización de la esquina superior derecha sigue girando para indicar que está en curso."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "更清楚的连接提示",
+            "en": "Clearer connection guidance",
+            "ja": "接続エラーの案内を改善",
+            "es": "Indicaciones de conexión más claras"
+          },
+          "description": {
+            "zh-CN": "浏览器插件连接失败时，提供更清楚的原因和处理提示。",
+            "en": "When the browser extension fails to connect, clearer messages explain the cause and what to do next.",
+            "ja": "ブラウザー拡張機能に接続できない場合、原因と対処方法をよりわかりやすく案内します。",
+            "es": "Si la extensión del navegador no se conecta, se muestran mensajes más claros sobre la causa y cómo solucionarlo."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "退款后可以再次购买",
+            "en": "Purchase again after a refund",
+            "ja": "返金後の再購入を修正",
+            "es": "Volver a comprar tras un reembolso"
+          },
+          "description": {
+            "zh-CN": "修复退款后无法再次购买的问题。",
+            "en": "Fixed an issue that prevented another purchase after a refund.",
+            "ja": "返金後に再購入できなくなる問題を修正しました。",
+            "es": "Se corrige un problema que impedía volver a comprar después de un reembolso."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.6",
       "date": {
         "zh-CN": "2026年11月5日",
