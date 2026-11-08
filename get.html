@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en" data-lang="en" data-catalog-version="1d225eb08467"><head>
+    <meta charset="utf-8"><script data-early-language-route="">// 官网语言规则只在这里解释；页面词条和版本记录各由自己的数据文件拥有。
+(function () {
+    'use strict';
+
+    const supportedLocales = ['zh-CN', 'en', 'ja', 'es'];
+    const catalogCache = new Map();
+    let page = null;
+    let locale = 'en';
+
+    function localesFor(pageName) {
+        return pageName?.startsWith('desktop/') ? ['zh-CN', 'en'] : supportedLocales;
+    }
+
+    function routeInfo(pathname) {
+        const legal = pathname.match(/^\/(?:(zh-CN|en)\/)?(desktop\/(?:privacy|terms))(?:\.html)?\/?$/);
+        if (legal) return { locale: legal[1] || null, page: legal[2] };
+        const localized = pathname.match(/^\/(zh-CN|en|ja|es)(?:\/(welcome|updates|pricing|downloads)(?:\.html)?)?\/?$/);
+        if (localized) return { locale: localized[1], page: localized[2] || 'home' };
+        const base = pathname.match(/^\/(welcome|updates|pricing|downloads|get)(?:\.html)?\/?$/);
+        if (base) return { locale: null, page: base[1] === 'get' ? 'downloads' : base[1] };
+        if (pathname === '/') return { locale: null, page: 'home' };
+        return null;
+    }
+
+    function pathFor(targetLocale, targetPage) {
+        const availableLocale = localesFor(targetPage).includes(targetLocale) ? targetLocale : 'en';
+        const prefix = `/${availableLocale}`;
+        return targetPage === 'home' ? `${prefix}/` : `${prefix}/${targetPage}`;
+    }
+
+    function normalize(candidate) {
+        if (typeof candidate !== 'string') return null;
+        const value = candidate.trim().replaceAll('_', '-').toLowerCase();
+        if (value === 'zh' || value.startsWith('zh-')) return 'zh-CN';
+        if (value === 'en' || value.startsWith('en-')) return 'en';
+        if (value === 'ja' || value.startsWith('ja-')) return 'ja';
+        if (value === 'es' || value.startsWith('es-')) return 'es';
+        return null;
+    }
+
+    function detectInitialLocale() {
+        const url = new URL(window.location.href);
+        const route = routeInfo(url.pathname);
+        const available = candidate => localesFor(page || route?.page).includes(candidate) ? candidate : 'en';
+        if (route?.locale) return available(route.locale);
+        const linkedLocale = normalize(url.searchParams.get('lang'));
+        if (linkedLocale) return available(linkedLocale);
+
+        let savedLocale = null;
+        try {
+            savedLocale = normalize(window.localStorage.getItem('chat-memo-lang'));
+        } catch (error) {
+            console.warn('官网语言偏好不可读取，使用浏览器语言:', error);
+        }
+        if (savedLocale) return available(savedLocale);
+
+        const browserLocales = navigator.languages?.length
+            ? navigator.languages
+            : [navigator.language || navigator.userLanguage];
+        return available(browserLocales.map(normalize).find(Boolean) || 'en');
+    }
+
+    function isCanonicalPath(pageName) {
+        return new URL(window.location.href).pathname === pathFor(detectInitialLocale(), pageName);
+    }
+
+    async function loadCatalog(targetLocale) {
+        if (!catalogCache.has(targetLocale)) {
+            const version = document.documentElement.dataset.catalogVersion;
+            const suffix = version ? `?v=${encodeURIComponent(version)}` : '';
+            const response = await fetch(`/locales/${targetLocale}.json${suffix}`);
+            if (!response.ok) throw new Error(`Cannot load website locale ${targetLocale}: ${response.status}`);
+            const catalog = await response.json();
+            if (catalog.locale !== targetLocale) throw new Error(`Website locale mismatch: ${targetLocale}`);
+            catalogCache.set(targetLocale, catalog);
+        }
+        return catalogCache.get(targetLocale);
+    }
+
+    function messages() {
+        const english = catalogCache.get('en');
+        const active = catalogCache.get(locale);
+        return {
+            ...english?.common,
+            ...english?.[page],
+            ...active?.common,
+            ...active?.[page]
+        };
+    }
+
+    function translate(key) {
+        return messages()[key] || '';
+    }
+
+    function updateInternalLinks() {
+        document.querySelectorAll('a[href]').forEach((link) => {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#') || href.startsWith('//')) return;
+            const target = new URL(href, window.location.origin);
+            if (target.origin !== window.location.origin) return;
+            const route = routeInfo(target.pathname);
+            if (!route) return;
+            target.pathname = pathFor(locale, route.page);
+            target.searchParams.delete('lang');
+            link.setAttribute('href', `${target.pathname}${target.search}${target.hash}`);
+        });
+    }
+
+    function updateLocaleSelection() {
+        document.querySelectorAll('[data-site-locale-option]').forEach((option) => {
+            if (option.dataset.siteLocaleOption === locale) option.setAttribute('aria-current', 'true');
+            else option.removeAttribute('aria-current');
+        });
+    }
+
+    function apply() {
+        if (!page || !catalogCache.has('en') || !catalogCache.has(locale)) return;
+        document.documentElement.lang = locale;
+        document.documentElement.dataset.lang = locale;
+        const dictionary = messages();
+        document.querySelectorAll('[data-key]').forEach((element) => {
+            const key = element.dataset.key;
+            if (Object.hasOwn(dictionary, key)) element.innerHTML = dictionary[key];
+        });
+        document.querySelectorAll('[data-alt-key]').forEach((element) => {
+            const key = element.dataset.altKey;
+            if (Object.hasOwn(dictionary, key)) element.alt = dictionary[key];
+        });
+        document.querySelectorAll('[data-aria-label-key]').forEach((element) => {
+            const key = element.dataset.ariaLabelKey;
+            if (Object.hasOwn(dictionary, key)) element.setAttribute('aria-label', dictionary[key]);
+        });
+        updateInternalLinks();
+        updateLocaleSelection();
+    }
+
+    function choose(candidate) {
+        const nextLocale = normalize(candidate);
+        if (!nextLocale || !localesFor(page).includes(nextLocale)) throw new Error(`Unsupported locale: ${candidate}`);
+        try {
+            window.localStorage.setItem('chat-memo-lang', nextLocale);
+        } catch (error) {
+            // 受限浏览器仍可通过语言地址切换；仅不跨访问保存选择。
+            console.warn('官网语言偏好不可保存:', error);
+        }
+        const url = new URL(window.location.href);
+        url.pathname = pathFor(nextLocale, page);
+        url.searchParams.delete('lang');
+        // 营销页换语言从顶部阅读；法律文档保留当前条款位置。
+        if (!page.startsWith('desktop/')) url.hash = '';
+        window.location.assign(`${url.pathname}${url.search}${url.hash}`);
+    }
+
+    // 中立入口在 head 执行同一个路由规则；运行时继续覆盖非规范直达地址。
+    function redirectToCanonical(pageName) {
+        const url = new URL(window.location.href);
+        const canonicalPath = pathFor(detectInitialLocale(), pageName);
+        if (url.pathname === canonicalPath) return false;
+        url.pathname = canonicalPath;
+        url.searchParams.delete('lang');
+        window.location.replace(`${url.pathname}${url.search}${url.hash}`);
+        return true;
+    }
+
+    async function init(pageName) {
+        if (!['home', 'welcome', 'updates', 'pricing', 'downloads', 'desktop/privacy', 'desktop/terms'].includes(pageName)) throw new Error(`Unsupported page: ${pageName}`);
+        page = pageName;
+        if (redirectToCanonical(pageName)) return detectInitialLocale();
+        const requestedLocale = detectInitialLocale();
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('lang')) {
+            url.searchParams.delete('lang');
+            window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        }
+        if (page.startsWith('desktop/')) {
+            // 法律正文由已审阅的双语静态页拥有，不加载营销词包或覆盖正文。
+            locale = requestedLocale;
+            updateLocaleSelection();
+            return locale;
+        }
+        locale = requestedLocale;
+        const english = loadCatalog('en');
+        // 两份词包同时请求。即使当前语言先失败，也要等英文兜底可用再完成初始化。
+        const active = locale === 'en' ? null : loadCatalog(locale).then(
+            () => ({ ok: true }),
+            error => ({ ok: false, error })
+        );
+        try {
+            await english;
+            if (active) {
+                const result = await active;
+                if (!result.ok) throw result.error;
+            }
+        } catch (error) {
+            // 明确的静态语言 URL 自带完整译文；词包故障时不覆盖已有正文。
+            console.error('官网语言加载失败，保留静态页面:', error);
+            updateLocaleSelection();
+            return locale;
+        }
+        apply();
+        return locale;
+    }
+
+    window.SiteI18n = { init, apply, choose, redirectToCanonical, isCanonicalPath, getLocale: () => locale, t: translate, messages, normalize, pathFor, routeInfo };
+})();
+SiteI18n.redirectToCanonical("downloads");</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Download Chat Memo · Desktop and browser extensions</title>
+    <meta name="description" content="Download Chat Memo for desktop, or install the browser extension from Chrome and Microsoft Edge stores.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://chatmemo.ai/en/downloads">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/resource/download-page/page.css?v=8621234a36e6">
+    <script src="/site-nav.js?v=b35d6b10890d" defer=""></script>
+<meta name="language" content="en"><meta property="og:url" content="https://chatmemo.ai/en/downloads"><meta property="og:image" content="https://chatmemo.ai/resource/social/chatmemo-brand-square-20261106-v2.png"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="og:title" content="Download Chat Memo · Desktop and browser extensions"><meta property="og:description" content="Download Chat Memo for desktop, or install the browser extension from Chrome and Microsoft Edge stores."><meta property="og:locale" content="en_US"><meta property="twitter:url" content="https://chatmemo.ai/en/downloads"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:image" content="https://chatmemo.ai/resource/social/chatmemo-context-20261105-v2-en.png"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><meta property="twitter:title" content="Download Chat Memo · Desktop and browser extensions"><meta property="twitter:description" content="Download Chat Memo for desktop, or install the browser extension from Chrome and Microsoft Edge stores."><link rel="stylesheet" href="/resource/download-page/dialog.css?v=0665539359e1"><script src="/site-download.js?v=858235d91e7f" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/downloads"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/downloads"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/downloads"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/downloads"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/get"></head><body>
+    <a href="#main-content" class="downloads-skip" data-key="skip-content">Skip to content</a>
+    <div id="navbar-container"><!-- Navigation Component -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="/resource/icons/logo.png" alt="Chat Memo" class="h-8 w-8">
+                <span class="text-xl font-bold text-gray-900">Chat Memo</span>
+            </div>
+            <nav class="hidden lg:flex space-x-8">
+                <a href="/en/" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-overview">Overview</a>
+                <a href="/en/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-guide">Getting Started</a>
+                <a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-updates">Updates</a>
+                <a href="/en/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-pricing">Pricing</a>
+                <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center min-h-[40px]" data-key="nav-feedback">Feedback</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <div data-site-locale-menu="" class="relative shrink-0">
+                    <button type="button" data-site-locale-trigger="" aria-label="Language" data-aria-label-key="language-label" aria-expanded="false" aria-controls="site-locale-options" class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
+                        <!-- Lucide Languages (ISC): Copyright (c) 2026 Lucide Icons and Contributors.
+                             Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that this copyright and permission notice appear in all copies. -->
+                        <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="m5 8 6 6"></path>
+                            <path d="m4 14 6-6 2-3"></path>
+                            <path d="M2 5h12"></path>
+                            <path d="M7 2h1"></path>
+                            <path d="m22 22-5-10-5 10"></path>
+                            <path d="M14 18h6"></path>
+                        </svg>
+                    </button>
+                    <div id="site-locale-options" data-site-locale-options="" hidden="" class="absolute right-0 top-full z-[60] mt-2 w-40 rounded-xl border border-gray-200 bg-white p-1.5 shadow-xl shadow-gray-900/10">
+                        <button type="button" data-site-locale-option="zh-CN" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>简体中文</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="en" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700" aria-current="true">
+                            <span>English</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="ja" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>日本語</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                        <button type="button" data-site-locale-option="es" class="group flex min-h-[36px] w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-[current=true]:bg-blue-50 aria-[current=true]:text-blue-700">
+                            <span>Español</span><svg aria-hidden="true" class="h-4 w-4 opacity-0 group-aria-[current=true]:opacity-100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></svg>
+                        </button>
+                    </div>
+                </div>
+                <a href="https://chatmemo.ai/desktop/download?link=website" class="hidden lg:flex items-center justify-center bg-gray-900 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition text-sm min-h-[40px]">
+                    <span class="text-center" data-key="nav-desktop">Download Chat Memo</span>
+                </a>
+                <button type="button" id="mobile-menu-button" aria-label="Menu" data-aria-label-key="nav-menu" aria-expanded="false" aria-controls="mobile-menu" class="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 aria-expanded:border-blue-300 aria-expanded:bg-blue-50 aria-expanded:text-blue-700">
+                    <svg aria-hidden="true" focusable="false" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-200">
+            <nav class="flex flex-col space-y-3 pt-4">
+                <a href="/en/" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-overview">Overview</a>
+                <a href="/en/welcome" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-guide">Getting Started</a>
+                <a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-updates">Updates</a>
+                <a href="/en/pricing" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-pricing">Pricing</a>
+                <a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition flex items-center justify-center py-3 px-4 rounded-lg hover:bg-gray-50 min-h-[48px]" data-key="nav-feedback">Feedback</a>
+                <a href="https://chatmemo.ai/desktop/download?link=website" class="bg-gray-900 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm min-h-[48px] flex items-center justify-center">
+                    <span data-key="nav-desktop-mobile">Download Chat Memo</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+</div>
+    <main class="downloads-shell" id="main-content">
+        <div class="downloads-page">
+            <header class="downloads-heading"><h1><span data-key="download-heading">Download</span> <span class="downloads-brand"><img src="/resource/icons/logo.png" alt="">Chat Memo</span></h1></header>
+            <div class="downloads-grid">
+                <section class="downloads-card" aria-labelledby="downloads-desktop-title">
+                    <div class="downloads-content"><h2 id="downloads-desktop-title" data-key="download-desktop">Desktop</h2>
+                        <div class="downloads-rows">
+                            <div class="downloads-row"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c.02 2.33 2.05 3.1 2.07 3.11-.02.06-.33 1.12-1.09 2.21-.65.94-1.33 1.88-2.4 1.9-1.05.02-1.39-.62-2.59-.62-1.21 0-1.58.6-2.58.64-1.03.04-1.82-1.02-2.48-1.96-1.35-1.91-2.38-5.39-.99-7.76.69-1.17 1.92-1.91 3.25-1.93 1.02-.02 1.98.68 2.6.68.62 0 1.8-.84 3.02-.72.51.02 1.96.2 2.9 1.56-.07.05-1.72 1-1.71 2.89ZM15.08 6.87c.55-.65.92-1.55.82-2.44-.79.03-1.75.52-2.33 1.17-.51.58-.96 1.5-.84 2.38.88.07 1.79-.44 2.35-1.11Z"></path></svg><strong>macOS <small data-key="download-mac-parenthetical">(Apple silicon)</small></strong></span><a href="https://chatmemo.ai/desktop/download/mac?link=website" data-aria-label-key="download-mac-label" aria-label="Download for macOS" data-key="download-button">Download</a></div>
+                            <div class="downloads-row"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.37 10.43 4.3v7.2H3V5.37Zm8.35-1.2L21 2.75v8.75h-9.65V4.17ZM3 12.5h7.43v7.2L3 18.63V12.5Zm8.35 0H21v8.75l-9.65-1.42V12.5Z"></path></svg><strong>Windows <small data-key="download-win-parenthetical">(64-bit)</small></strong></span><a href="https://chatmemo.ai/desktop/download/win?link=website" data-aria-label-key="download-win-label" aria-label="Download for Windows" data-key="download-button">Download</a></div>
+                        </div>
+                    </div>
+                    <div class="downloads-art downloads-desktop-art"><div class="downloads-window"><div class="downloads-window-bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="/resource/download-page/desktop.webp" alt="Chat Memo desktop interface" data-alt-key="download-desktop-image" loading="lazy"></div></div>
+                </section>
+                <section class="downloads-card" aria-labelledby="downloads-extension-title">
+                    <div class="downloads-content"><h2 id="downloads-extension-title" data-key="download-extension">Browser extension</h2>
+                        <div class="downloads-rows">
+                            <div class="downloads-row"><span><img src="/resource/icons/chrome_icon.png" alt=""><strong>Chrome</strong></span><a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" data-aria-label-key="download-chrome-label" aria-label="Open Chrome Web Store"><span data-key="download-store">Open store ↗</span></a></div>
+                            <div class="downloads-row"><span><img src="/resource/icons/edge_icon_96.webp" alt=""><strong>Microsoft Edge</strong></span><a href="https://microsoftedge.microsoft.com/addons/detail/cfmmkmfimmmfikomegalpmgookideojo" target="_blank" rel="noopener noreferrer" data-aria-label-key="download-edge-label" aria-label="Open Microsoft Edge Add-ons"><span data-key="download-store">Open store ↗</span></a></div>
+                        </div>
+                    </div>
+                    <div class="downloads-art downloads-extension-art"><img src="/resource/download-page/extension.webp" alt="Chat Memo extension alongside an AI conversation" data-alt-key="download-extension-image" loading="lazy"></div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <div id="footer-container"><!-- 共享页脚：现有资源按产品、支持与文档分组。 -->
+<footer class="bg-white border-t border-gray-100">
+    <div class="mx-auto w-full max-w-6xl px-6 py-10 lg:py-12">
+        <div class="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-[1.6fr_repeat(3,minmax(0,1fr))] lg:gap-x-12">
+            <div class="col-span-2 sm:col-span-3 lg:col-span-1 flex flex-col items-start gap-5">
+                <div class="flex items-center gap-3">
+                    <img src="/resource/icons/logo.png" alt="Chat Memo" class="h-6 w-6">
+                    <span class="text-base font-medium text-gray-900">Chat Memo</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://discord.gg/hWU7DpvyUw" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#5865F2] transition-colors" title="Discord">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/eze_is_1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-600 transition-colors" title="X (Twitter)">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                        </svg>
+                    </a>
+                    <div class="relative group">
+                        <a href="#" class="text-gray-400 hover:text-green-600 transition-all duration-200 transform hover:scale-110" title="WeChat">
+                            <img src="/resource/images/wechat.png" alt="WeChat" class="w-4 h-4 filter grayscale hover:grayscale-0 transition-all duration-200">
+                        </a>
+                        <div class="absolute bottom-full left-0 mb-3 w-52 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+                            <div class="bg-white rounded-xl shadow-xl border border-gray-100 p-6 backdrop-blur-sm flex w-full flex-col items-center">
+                                <img src="/resource/images/author-wechat.png" alt="Eze's WeChat QR code" data-alt-key="wechat-qr-alt" class="w-40 h-40 rounded-lg mb-4">
+                                <p class="text-sm text-gray-700 text-center font-medium" data-key="footer-wechat-text">Chat Memo Author WeChat</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://okjk.co/hLZBMP" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gray-600 transition-colors" title="Jike">
+                        <img src="/resource/icons/jike_icon.png" alt="Jike" class="w-4 h-4 filter grayscale hover:grayscale-0 transition-all">
+                    </a>
+                </div>
+                <p class="text-xs text-gray-500" data-key="footer-copyright">© Chat Memo by Eze. All rights reserved.</p>
+            </div>
+            <nav aria-labelledby="footer-product-title" class="min-w-0 text-sm">
+                <h2 id="footer-product-title" class="font-semibold text-gray-900 mb-4" data-key="footer-group-product">Product</h2>
+                <ul class="flex flex-col items-start gap-3">
+                    <li><a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-chrome">Chrome Extension</a></li>
+                    <li><a href="/en/downloads" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-downloads">All downloads</a></li>
+                    <li><a href="/en/pricing" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-pricing">Pricing</a></li>
+                    <li><a href="/en/updates" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="nav-updates">Updates</a></li>
+                </ul>
+            </nav>
+            <nav aria-labelledby="footer-support-title" class="min-w-0 text-sm">
+                <h2 id="footer-support-title" class="font-semibold text-gray-900 mb-4" data-key="footer-group-support">Support</h2>
+                <ul class="flex flex-col items-start gap-3">
+                    <li><a href="/en/welcome" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-guide">Extension Guide</a></li>
+                    <li><a href="/feedback" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-feedback">Feedback</a></li>
+                </ul>
+            </nav>
+            <nav aria-labelledby="footer-docs-title" class="min-w-0 text-sm">
+                <h2 id="footer-docs-title" class="font-semibold text-gray-900 mb-4" data-key="footer-group-docs">Documents</h2>
+                <ul class="flex flex-col items-start gap-3">
+                    <li><a href="/en/desktop/terms" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-terms">Terms of Service</a></li>
+                    <li><a href="/en/desktop/privacy" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-desktop-privacy">Privacy Policy</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+</div>
+    <script>document.addEventListener('DOMContentLoaded', async () => { const i18nReady = SiteI18n.init('downloads'); SiteNav.init(); await i18nReady; });</script><dialog class="download-dialog" id="download-dialog" aria-labelledby="download-dialog-title">
+    <div class="download-dialog-top"><div class="download-dialog-brand"><img src="/resource/icons/logo.png" alt=""><span>Chat Memo</span></div><button type="button" class="download-dialog-close" data-download-close="" aria-label="Close" data-aria-label-key="download-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
+    <h2 id="download-dialog-title"><span data-download-choose-title="" data-key="download-choose-title">Choose your system</span><span data-download-failure-title="" data-key="download-failure-title" hidden="">Automatic download is unavailable. Please install manually.</span></h2>
+    <div class="download-dialog-platforms">
+        <a href="https://chatmemo.ai/desktop/download/mac?link=website" data-download-os="mac"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c.02 2.33 2.05 3.1 2.07 3.11-.02.06-.33 1.12-1.09 2.21-.65.94-1.33 1.88-2.4 1.9-1.05.02-1.39-.62-2.59-.62-1.21 0-1.58.6-2.58.64-1.03.04-1.82-1.02-2.48-1.96-1.35-1.91-2.38-5.39-.99-7.76.69-1.17 1.92-1.91 3.25-1.93 1.02-.02 1.98.68 2.6.68.62 0 1.8-.84 3.02-.72.51.02 1.96.2 2.9 1.56-.07.05-1.72 1-1.71 2.89ZM15.08 6.87c.55-.65.92-1.55.82-2.44-.79.03-1.75.52-2.33 1.17-.51.58-.96 1.5-.84 2.38.88.07 1.79-.44 2.35-1.11Z"></path></svg><span class="download-dialog-platform-name"><strong>macOS</strong><small data-key="download-mac-chip">Apple silicon</small></span><span class="download-dialog-action" data-key="download-action">Download</span></a>
+        <a href="https://chatmemo.ai/desktop/download/win?link=website" data-download-os="win"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.37 10.43 4.3v7.2H3V5.37Zm8.35-1.2L21 2.75v8.75h-9.65V4.17ZM3 12.5h7.43v7.2L3 18.63V12.5Zm8.35 0H21v8.75l-9.65-1.42V12.5Z"></path></svg><span class="download-dialog-platform-name"><strong>Windows</strong><small data-key="download-win-arch">64-bit</small></span><span class="download-dialog-action" data-key="download-action">Download</span></a>
+    </div>
+    <p class="download-dialog-error" data-download-error="" role="alert" hidden="" data-key="download-retry-error">Still unavailable. Please try again later.</p>
+</dialog></body></html>

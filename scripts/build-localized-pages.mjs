@@ -17,6 +17,8 @@ const { render: renderUpdates } = require(path.join(root, 'updates-renderer.js')
 const locales = ['en', 'zh-CN', 'ja', 'es'];
 const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html', downloads: 'downloads.html' };
 const origin = 'https://chatmemo.ai';
+// /download* 由旧产品 Worker 持有，中立下载页使用不冲突的路径。
+const neutralPath = page => page === 'home' ? '/' : page === 'downloads' ? '/get' : `/${page}`;
 // 桌面安装包只提供 Windows 与 macOS；浏览器插件入口是 Chrome 与 Edge。
 const operatingSystem = 'Windows, macOS';
 const browserRequirements = 'Chrome, Microsoft Edge';
@@ -210,7 +212,7 @@ function updateHead(document, page, locale, dictionary) {
             appendMarkup(head, `<meta property="og:locale:alternate" content="${ogLocale}">`);
         }
     }
-    const defaultPath = page === 'home' ? '/' : `/${page}`;
+    const defaultPath = neutralPath(page);
     appendMarkup(head, `<link rel="alternate" hreflang="x-default" href="${origin}${defaultPath}">`);
 
     for (const node of jsonLdScripts(head)) {
@@ -399,7 +401,7 @@ function render(page, locale, neutral = false) {
 function sitemap() {
     const urls = Object.keys(pages).flatMap((page) => locales.map((locale) => {
         const alternates = locales.map((alternate) => `        <xhtml:link rel="alternate" hreflang="${alternate}" href="${origin}${pathFor(alternate, page)}"/>`);
-        const defaultPath = page === 'home' ? '/' : `/${page}`;
+        const defaultPath = neutralPath(page);
         alternates.push(`        <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${defaultPath}"/>`);
         return `    <url>\n        <loc>${origin}${pathFor(locale, page)}</loc>\n${alternates.join('\n')}\n    </url>`;
     }));
@@ -410,7 +412,11 @@ for (const page of Object.keys(pages)) {
     for (const locale of locales) {
         const output = render(page, locale);
         expected.set(path.join(root, locale, pages[page]), output);
-        if (locale === 'en') expected.set(path.join(root, pages[page]), render(page, locale, true));
+        if (locale === 'en') {
+            const neutral = render(page, locale, true);
+            expected.set(path.join(root, pages[page]), neutral);
+            if (page === 'downloads') expected.set(path.join(root, 'get.html'), neutral);
+        }
     }
 }
 const utilityCss = await marketingStyles(

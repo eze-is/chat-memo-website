@@ -20,8 +20,8 @@
         if (legal) return { locale: legal[1] || null, page: legal[2] };
         const localized = pathname.match(/^\/(zh-CN|en|ja|es)(?:\/(welcome|updates|pricing|downloads)(?:\.html)?)?\/?$/);
         if (localized) return { locale: localized[1], page: localized[2] || 'home' };
-        const base = pathname.match(/^\/(welcome|updates|pricing|downloads)(?:\.html)?\/?$/);
-        if (base) return { locale: null, page: base[1] };
+        const base = pathname.match(/^\/(welcome|updates|pricing|downloads|get)(?:\.html)?\/?$/);
+        if (base) return { locale: null, page: base[1] === 'get' ? 'downloads' : base[1] };
         if (pathname === '/') return { locale: null, page: 'home' };
         return null;
     }

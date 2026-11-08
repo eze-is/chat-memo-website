@@ -35,6 +35,8 @@ function route(locale, page) {
     return page === 'home' ? `${prefix}/` : `${prefix}/${page}`;
 }
 
+const neutralRoute = page => page === 'home' ? '/' : page === 'downloads' ? '/get' : `/${page}`;
+
 function each(node, visitor) {
     visitor(node);
     for (const child of node.childNodes || []) each(child, visitor);
@@ -112,7 +114,7 @@ test('20 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
                 const alternate = alternates.find((node) => attribute(node, 'hreflang') === other);
                 assert.equal(attribute(alternate, 'href'), `${origin}${route(other, page)}`, `${file} ${other}`);
             }
-            assert.equal(attribute(alternates.find((node) => attribute(node, 'hreflang') === 'x-default'), 'href'), `${origin}${page === 'home' ? '/' : `/${page}`}`);
+            assert.equal(attribute(alternates.find((node) => attribute(node, 'hreflang') === 'x-default'), 'href'), `${origin}${neutralRoute(page)}`);
 
             const key = page === 'updates' ? 'updates-title' : page === 'pricing' ? 'pricing-title' : page === 'downloads' ? 'download-heading' : 'hero-title';
             const headline = find(document, (node) => attribute(node, 'data-key') === key);
@@ -179,7 +181,7 @@ test('sitemap 只列 20 个 canonical，并带与页面一致的 hreflang', () =
         const links = [...block.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)].map((match) => [match[1], match[2]]);
         assert.deepEqual(links, [
             ...locales.map((locale) => [locale, `${origin}${route(locale, page)}`]),
-            ['x-default', `${origin}${page === 'home' ? '/' : `/${page}`}`]
+            ['x-default', `${origin}${neutralRoute(page)}`]
         ]);
     }
     assert.match(fs.readFileSync(path.join(root, '404.html'), 'utf8'), /<meta name="robots" content="noindex">/);
@@ -325,6 +327,7 @@ test('中立入口指向稳定英文地址；静态正文不依赖脚本成功�
         assert.doesNotMatch(html, /\.js \.(content|updates)-section/);
         assert.match(html, /\.intro-running \.(content|updates)-section/);
     }
+    assert.equal(fs.readFileSync(path.join(root, 'get.html'), 'utf8'), fs.readFileSync(path.join(root, 'downloads.html'), 'utf8'));
 });
 
 test('五页先启动语言加载并立即绑定导航，再等待词包完成', () => {
