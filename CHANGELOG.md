@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 
-当前没有待发布的页面运行内容。
+- 修复从 `www.chatmemo.ai` 访问官网后下载时，短期匿名标识无法随请求发送到 `chatmemo.ai` 的问题；预览域继续只写本主机 cookie。历史 host-only 标识在原到期时间前仍可能缺失，禁用 cookie 或不支持 Web Locks 的请求仍按未识别处理。
 
 ## [15eaa80] — 2026-11-07 20:38:11 UTC+8
 

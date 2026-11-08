@@ -9,7 +9,9 @@
             if (/(?:^|;\s*)cm_download_visit=[^;]+/.test(document.cookie)) return;
             const day = 86_400_000, offset = 8 * 3_600_000;
             const expires = new Date((Math.floor((Date.now() + offset) / day) + 2) * day - offset);
-            document.cookie = 'cm_download_visit=' + crypto.randomUUID() + '; Expires=' + expires.toUTCString() + '; Path=/; Secure; SameSite=Lax';
+            // www 的下载链接指向主域；只在正式官网共享短期标识，预览域仍限定当前主机。
+            const sharedDomain = /^(?:www\.)?chatmemo\.ai$/i.test(globalThis.location?.hostname || '') ? '; Domain=chatmemo.ai' : '';
+            document.cookie = 'cm_download_visit=' + crypto.randomUUID() + '; Expires=' + expires.toUTCString() + '; Path=/; Secure; SameSite=Lax' + sharedDomain;
         }).catch(() => {});
     }
     prepareDownloadVisit();

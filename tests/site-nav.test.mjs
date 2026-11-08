@@ -217,3 +217,16 @@ test('官网匿名标识在 UTC+8 午夜到期，单日内重新打开页面沿�
     h.document.fire('visibilitychange');
     assert.equal(created, 1);
 });
+
+test('正式官网的下载标识由主域与 www 共享，预览域不扩展 cookie 范围', () => {
+    for (const hostname of ['chatmemo.ai', 'www.chatmemo.ai', 'preview.example.com']) {
+        const h = createNavigation({ browser: {
+            location: { hostname },
+            navigator: { locks: { async request(_name, prepare) { prepare(); } } },
+            crypto: { randomUUID() { return 'c0369794-2b46-4178-9f31-cac23dd9f267'; } }
+        } });
+        assert.match(h.document.cookie, /cm_download_visit=c0369794-2b46-4178-9f31-cac23dd9f267/);
+        assert.equal(h.document.cookie.includes('; Domain=chatmemo.ai'), hostname !== 'preview.example.com');
+        assert.match(h.document.cookie, /; Secure; SameSite=Lax/);
+    }
+});
