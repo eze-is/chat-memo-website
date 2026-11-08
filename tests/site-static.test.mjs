@@ -15,6 +15,21 @@ const catalogs = Object.fromEntries(locales.map((locale) => [
 ]));
 const { updates, desktopUpdates } = JSON.parse(fs.readFileSync(path.join(root, 'updates-data.json'), 'utf8'));
 
+test('官网脚本和样式不落入旧下载 Worker 的 /download* 路由', () => {
+    for (const file of Object.values(pages)) {
+        for (const prefix of ['', ...locales]) {
+            const html = fs.readFileSync(path.join(root, prefix, file), 'utf8');
+            const document = parse(html);
+            const assets = all(document, node => node.tagName === 'script' && attribute(node, 'src')
+                || node.tagName === 'link' && attribute(node, 'rel') === 'stylesheet');
+            for (const asset of assets) {
+                const url = attribute(asset, asset.tagName === 'script' ? 'src' : 'href');
+                assert.doesNotMatch(url, /^\/download/i, `${prefix}/${file}: ${url}`);
+            }
+        }
+    }
+});
+
 function route(locale, page) {
     const prefix = `/${locale}`;
     return page === 'home' ? `${prefix}/` : `${prefix}/${page}`;

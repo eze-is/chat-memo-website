@@ -331,7 +331,7 @@ function render(page, locale, neutral = false) {
     head.childNodes = head.childNodes.filter(node => !(
         (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' &&
             attr(node, 'href')?.split('?')[0] === '/resource/marketing-utilities.css') ||
-        (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' && attr(node, 'href')?.split('?')[0] === '/download-dialog.css') ||
+        (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' && ['/download-dialog.css', '/resource/download-page/dialog.css'].includes(attr(node, 'href')?.split('?')[0])) ||
         node.tagName === 'script' && (
             attr(node, 'src')?.split('?')[0] === '/site-download.js' ||
             attr(node, 'data-early-language-route') !== undefined ||
@@ -347,7 +347,7 @@ function render(page, locale, neutral = false) {
         head.childNodes.splice(nav, 0, ...parseFragment('<script src="/site-i18n.js"></script>').childNodes);
         appendMarkup(head, analyticsScript(page));
     }
-    appendMarkup(head, '<link rel="stylesheet" href="/download-dialog.css"><script src="/site-download.js" defer></script>');
+    appendMarkup(head, '<link rel="stylesheet" href="/resource/download-page/dialog.css"><script src="/site-download.js" defer></script>');
     // 旧 CDN 将工具类插在 head 末尾，保持它与手写样式的覆盖顺序。
     appendMarkup(head, '<link rel="stylesheet" href="/resource/marketing-utilities.css">');
     const catalog = catalogs[locale];
@@ -374,8 +374,8 @@ function render(page, locale, neutral = false) {
         setAttr(container, 'data-rendered-locale', locale);
     }
     {
-        const assets = ['/site-i18n.js', '/site-nav.js', '/site-download.js', '/download-dialog.css'];
-        if (page === 'downloads') assets.push('/downloads.css');
+        const assets = ['/site-i18n.js', '/site-nav.js', '/site-download.js', '/resource/download-page/dialog.css'];
+        if (page === 'downloads') assets.push('/resource/download-page/page.css');
         if (page === 'pricing') assets.push('/pricing.css', '/pricing-region.js');
         if (page === 'home') assets.push(
             '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css',
