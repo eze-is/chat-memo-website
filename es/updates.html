@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es" class="scroll-smooth" data-lang="es" data-catalog-version="331744296c6a"><head>
+<!DOCTYPE html><html lang="es" class="scroll-smooth" data-lang="es" data-catalog-version="1d225eb08467"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novedades de Chat Memo: funciones, mejoras y correcciones</title>
@@ -36,7 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
 
-    <script src="/site-i18n.js?v=385cb81880a3"></script><script src="/site-nav.js?v=b35d6b10890d"></script>
+    <script src="/site-i18n.js?v=2e9c5b4868b2"></script><script src="/site-nav.js?v=b35d6b10890d"></script>
 
     <style>
         body {
@@ -336,7 +336,7 @@
     const afterLoad = () => setTimeout(start, 0);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad, { once: true });
-})();</script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
+})();</script><link rel="stylesheet" href="/download-dialog.css?v=0665539359e1"><script src="/site-download.js?v=858235d91e7f" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=c04c41c44595"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -1755,6 +1755,7 @@
                 <h2 id="footer-product-title" class="font-semibold text-gray-900 mb-4" data-key="footer-group-product">Producto</h2>
                 <ul class="flex flex-col items-start gap-3">
                     <li><a href="https://chromewebstore.google.com/detail/memnnheiikbfdcobfkghhfihnegkfici" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-chrome">Extensión para Chrome</a></li>
+                    <li><a href="/es/downloads" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-downloads">Todas las descargas</a></li>
                     <li><a href="/es/pricing" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="footer-pricing">Precios</a></li>
                     <li><a href="/es/updates" class="text-gray-600 hover:text-gray-900 transition-colors" data-key="nav-updates">Novedades</a></li>
                 </ul>
@@ -1879,5 +1880,12 @@
             await i18nReady;
             startHeroAnimation();
         });
-    </script>
-</body></html>
+    </script><dialog class="download-dialog" id="download-dialog" aria-labelledby="download-dialog-title">
+    <div class="download-dialog-top"><div class="download-dialog-brand"><img src="/resource/icons/logo.png" alt=""><span>Chat Memo</span></div><button type="button" class="download-dialog-close" data-download-close="" aria-label="Cerrar" data-aria-label-key="download-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>
+    <h2 id="download-dialog-title"><span data-download-choose-title="" data-key="download-choose-title">Elige tu sistema</span><span data-download-failure-title="" data-key="download-failure-title" hidden="">La descarga automática no está disponible. Instálala manualmente.</span></h2>
+    <div class="download-dialog-platforms">
+        <a href="https://chatmemo.ai/desktop/download/mac?link=website" data-download-os="mac"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.54c.02 2.33 2.05 3.1 2.07 3.11-.02.06-.33 1.12-1.09 2.21-.65.94-1.33 1.88-2.4 1.9-1.05.02-1.39-.62-2.59-.62-1.21 0-1.58.6-2.58.64-1.03.04-1.82-1.02-2.48-1.96-1.35-1.91-2.38-5.39-.99-7.76.69-1.17 1.92-1.91 3.25-1.93 1.02-.02 1.98.68 2.6.68.62 0 1.8-.84 3.02-.72.51.02 1.96.2 2.9 1.56-.07.05-1.72 1-1.71 2.89ZM15.08 6.87c.55-.65.92-1.55.82-2.44-.79.03-1.75.52-2.33 1.17-.51.58-.96 1.5-.84 2.38.88.07 1.79-.44 2.35-1.11Z"></path></svg><span class="download-dialog-platform-name"><strong>macOS</strong><small data-key="download-mac-chip">Apple silicon</small></span><span class="download-dialog-action" data-key="download-action">Descargar</span></a>
+        <a href="https://chatmemo.ai/desktop/download/win?link=website" data-download-os="win"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.37 10.43 4.3v7.2H3V5.37Zm8.35-1.2L21 2.75v8.75h-9.65V4.17ZM3 12.5h7.43v7.2L3 18.63V12.5Zm8.35 0H21v8.75l-9.65-1.42V12.5Z"></path></svg><span class="download-dialog-platform-name"><strong>Windows</strong><small data-key="download-win-arch">64 bits</small></span><span class="download-dialog-action" data-key="download-action">Descargar</span></a>
+    </div>
+    <p class="download-dialog-error" data-download-error="" role="alert" hidden="" data-key="download-retry-error">Aún no está disponible. Inténtalo de nuevo más tarde.</p>
+</dialog></body></html>

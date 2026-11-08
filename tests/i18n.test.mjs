@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const locales = ['zh-CN', 'en', 'ja', 'es'];
-const pages = { index: 'home', welcome: 'welcome', updates: 'updates', pricing: 'pricing' };
+const pages = { index: 'home', welcome: 'welcome', updates: 'updates', pricing: 'pricing', downloads: 'downloads' };
 const catalogs = Object.fromEntries(locales.map((locale) => [
     locale,
     JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'))
@@ -35,7 +35,7 @@ test('四语页面词条和元信息与英文基准完整对齐', () => {
     for (const locale of locales) {
         const catalog = catalogs[locale];
         assert.equal(catalog.locale, locale);
-        for (const section of ['common', 'home', 'welcome', 'updates', 'pricing']) {
+        for (const section of ['common', 'home', 'welcome', 'updates', 'pricing', 'downloads']) {
             assert.deepEqual(Object.keys(catalog[section]).sort(), Object.keys(catalogs.en[section]).sort(), `${locale} ${section}`);
             for (const [key, value] of Object.entries(catalog[section])) {
                 assert.equal(typeof value, 'string', `${locale} ${section}.${key}`);
@@ -50,7 +50,7 @@ test('四语页面词条和元信息与英文基准完整对齐', () => {
 });
 
 test('页面和共享组件引用的词条都有归属', () => {
-    const componentHtml = ['navbar', 'footer'].map((name) => fs.readFileSync(path.join(root, 'components', `${name}.html`), 'utf8')).join('\n');
+    const componentHtml = ['navbar', 'footer', 'download-dialog'].map((name) => fs.readFileSync(path.join(root, 'components', `${name}.html`), 'utf8')).join('\n');
     const commonKeys = [...componentHtml.matchAll(/data-(?:key|alt-key|aria-label-key)="([^"]+)"/g)].map((match) => match[1]);
     for (const key of commonKeys) assert.ok(Object.hasOwn(catalogs.en.common, key), `common.${key}`);
     for (const [file, page] of Object.entries(pages)) {
@@ -224,7 +224,7 @@ test('浏览器禁用本地存储时仍可按浏览器语言显示和手动切�
     assert.equal(context.location.href, 'https://chatmemo.ai/es/');
 });
 
-test('四个页面内联脚本保持语法有效', () => {
+test('五个页面内联脚本保持语法有效', () => {
     for (const file of Object.keys(pages)) {
         const html = fs.readFileSync(path.join(root, `${file}.html`), 'utf8');
         for (const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
@@ -283,7 +283,7 @@ test('首页并行读取同一内容版本的英文与当前词包', async () =>
 });
 
 test('营销页切换语言去掉页内锚点，保留页面、查询参数与语言偏好', async () => {
-    for (const page of ['home', 'welcome', 'updates', 'pricing']) {
+    for (const page of ['home', 'welcome', 'updates', 'pricing', 'downloads']) {
         const suffix = page === 'home' ? '/' : `/${page}`;
         const context = await createRuntime({ url: `https://chatmemo.ai/ja${suffix}?ref=preview#cta`, languages: ['ja'], page });
         context.runtime.choose('en');
