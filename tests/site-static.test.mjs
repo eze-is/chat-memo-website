@@ -120,6 +120,15 @@ test('20 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
             const headline = find(document, (node) => attribute(node, 'data-key') === key);
             assert.equal(textOf(headline), textFromMarkup(catalog[page][key]), `${file} ${key}`);
             assert.ok(find(document, (node) => attribute(node, 'id') === 'navbar-container')?.childNodes?.length, `${file} navbar`);
+            const navbar = find(document, (node) => attribute(node, 'id') === 'navbar-container');
+            const downloadsLinks = all(navbar, (node) => node.tagName === 'a' && attribute(node, 'data-key') === 'nav-downloads');
+            assert.equal(downloadsLinks.length, 2, `${file} desktop and mobile download page links`);
+            for (const link of downloadsLinks) {
+                assert.equal(attribute(link, 'href'), route(locale, 'downloads'), file);
+                assert.equal(textOf(link), catalog.common['nav-downloads'], file);
+            }
+            const installerLinks = all(navbar, (node) => node.tagName === 'a' && attribute(node, 'href') === `${origin}/desktop/download?link=website`);
+            assert.equal(installerLinks.length, 2, `${file} direct installer links remain`);
             assert.ok(find(document, (node) => attribute(node, 'id') === 'footer-container')?.childNodes?.length, `${file} footer`);
             assert.doesNotMatch(html, /(?:src|href|poster)="resource\//, `${file} relative asset`);
             const triggers = all(document, (node) => node.tagName === 'button' && attribute(node, 'data-site-locale-trigger') !== undefined);
