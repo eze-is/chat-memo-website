@@ -1303,6 +1303,68 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.8",
+      "date": {
+        "zh-CN": "2026年11月9日",
+        "en": "November 9, 2026",
+        "ja": "2026年11月9日",
+        "es": "9 de noviembre de 2026"
+      },
+      "summary": {
+        "zh-CN": "跨 AI 互通使用指南与对话显示改进。",
+        "en": "A guide to cross-AI context and improvements to conversation display.",
+        "ja": "AI 間のコンテキスト共有ガイドと、会話の表示改善。",
+        "es": "Guía para compartir contexto entre distintas IA y mejoras en la visualización de conversaciones."
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "跨 AI 互通使用指南",
+            "en": "Cross-AI context guide",
+            "ja": "AI 間のコンテキスト共有ガイド",
+            "es": "Guía para compartir contexto entre distintas IA"
+          },
+          "description": {
+            "zh-CN": "新增跨 AI 互通使用指南，细化 Manus、ChatGPT 和 Grok Bot 的接入步骤。",
+            "en": "Added a guide to sharing context across AIs, with more detailed setup steps for Manus, ChatGPT, and Grok Bot.",
+            "ja": "AI 間でコンテキストを共有するためのガイドを追加し、Manus、ChatGPT、Grok Bot の接続手順を詳しく案内します。",
+            "es": "Nueva guía para compartir contexto entre distintas IA, con pasos más detallados para conectar Manus, ChatGPT y Grok Bot."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "Claude Code 对话显示",
+            "en": "Claude Code conversation display",
+            "ja": "Claude Code の会話表示",
+            "es": "Visualización de conversaciones de Claude Code"
+          },
+          "description": {
+            "zh-CN": "优化 Claude Code 解析，图片和文件引用显示更完整",
+            "en": "Improved Claude Code parsing for more complete display of images and file references.",
+            "ja": "Claude Code の解析を改善し、画像やファイルへの参照をより漏れなく表示できるようになりました。",
+            "es": "Mejoramos el análisis de las conversaciones de Claude Code para mostrar las imágenes y las referencias a archivos de forma más completa."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "重新同步对话",
+            "en": "Resync a conversation",
+            "ja": "会話を再同期",
+            "es": "Volver a sincronizar una conversación"
+          },
+          "description": {
+            "zh-CN": "对话格式显示不对时，可在详情页右上角点「⋯」，选择「重新同步」。",
+            "en": "If a conversation looks incorrectly formatted, click “⋯” in the top-right corner of its details page and select “Resync this conversation”.",
+            "ja": "会話の表示形式が崩れている場合は、詳細ページ右上の「⋯」をクリックし、「この会話を再同期」を選択してください。",
+            "es": "Si una conversación no se muestra con el formato correcto, haz clic en «⋯» en la esquina superior derecha de la página de detalles y selecciona «Volver a sincronizar esta conversación»."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.7",
       "date": {
         "zh-CN": "2026年11月7日",
