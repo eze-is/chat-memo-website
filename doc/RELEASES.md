@@ -29,6 +29,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [21e70a2] — 2026-11-09 17:03:39 UTC+8 · Desktop 1.0.8 四语说明
+
+- Desktop v1.0.8 于 2026-11-09 17:02:46（UTC+8）正式公开。官网生产运行内容源码为 `21e70a23d2710b07626dc52370db2a7cee53e5c3`，Cloudflare Pages production deployment `e2969ba4-f2ff-47d5-bf02-af322082d4d4` 于 17:03:39（UTC+8）成功。[桌面版正式发布](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.8)
+- 更新包含 `desktopUpdates` 的 1.0.8 条目和五份生成页面。三项中文与 Desktop 的 `releases/1.0.8.json` 逐字一致，旧桌面和插件条目逐项核对一致。66 项官网测试、四语生成与法律页一致性检查通过。
+- Ego Lite 回读正式站四语更新页，四页均返回 200，首响应和渲染页面均包含正确版本、日期及三项说明。核对了双端下载入口、键盘切换桌面与插件页签、中文切换至英文，以及错误地址返回 404。本机回执见 `/tmp/chatmemo-website-108-deployment.json` 和 `/tmp/chatmemo-website-108-browser-readback.json`。[官网更新日志](https://chatmemo.ai/zh-CN/updates)
+
 ### [8234dfd] — 2026-11-09 09:50:06 UTC+8 · 顶部下载页入口
 
 - 生产运行内容源码 `8234dfdc69420a64210c2541bf9a895cce7aeca5`；Cloudflare Pages production deployment `c2d067d4-adf1-4a70-8873-9b63d4e87329` 于 09:50:06（UTC+8）成功。桌面导航和手机菜单新增指向当前语言下载页的入口，原有桌面端直接下载按钮保留。
