@@ -29,6 +29,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [4c8feb8] — 2026-11-10 15:09:22 UTC+8 · 设备版本下载菜单
+
+- 生产运行内容源码 `4c8feb894fdecfe6e91e05bdcfcdb49695124212`，Cloudflare Pages production deployment `4d65c4f8-baef-4e43-bd31-9ae73f4c45ad`。首页、页尾与导航支持选择 Apple 芯片、Intel 芯片和 Windows 版本；浏览器未提供可靠信息时不自动下载。已有下载网关与安装包未重新发布。
+- 68 项官网测试、四语生成一致性、法律页面一致性与独立代码审计通过。正式站四语首页回读版本菜单及推荐标记；中文首页、下载脚本和样式与发布源码 SHA-256 一致。浏览器模拟未识别设备时验证主按钮禁用、手动选 Intel 的准备请求及模拟失败弹窗；本机 Apple 芯片 Chrome 验证推荐与悬停菜单。
+- Intel Mac 真机、Windows 真机和真实屏幕阅读器未验收；未进行安装或升级测试。浏览器触摸模拟不代表真实手机验收。
+
 ### [0dc95c2] — 2026-11-10 11:22:08 UTC+8 · Intel Mac 下载入口
 
 - 生产运行内容源码 `0dc95c2e3ccbc327f79a61f17e00b26975475ae5`，Cloudflare Pages production deployment `9769a597-810f-4c1a-905c-17fd2e87f356`。桌面下载页增加 Intel Mac，主下载保持 Apple 芯片版，并说明 macOS 12 及以上要求。
