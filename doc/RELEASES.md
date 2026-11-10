@@ -29,6 +29,11 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [0dc95c2] — 2026-11-10 11:22:08 UTC+8 · Intel Mac 下载入口
+
+- 生产运行内容源码 `0dc95c2e3ccbc327f79a61f17e00b26975475ae5`，Cloudflare Pages production deployment `9769a597-810f-4c1a-905c-17fd2e87f356`。桌面下载页增加 Intel Mac，主下载保持 Apple 芯片版，并说明 macOS 12 及以上要求。
+- 官网 67 项测试和四语生成一致性通过；Ego Lite 在本地检查桌面、平板和手机布局，并回读正式中文页面和链接。桌面 v1.0.8 Intel 包通过签名、公证和镜像完整读回，正式 Intel 接口 HEAD 和 Range 检查通过；Intel 真机安装与真实升级尚未验证。
+
 ### [21e70a2] — 2026-11-09 17:03:39 UTC+8 · Desktop 1.0.8 四语说明
 
 - Desktop v1.0.8 于 2026-11-09 17:02:46（UTC+8）正式公开。官网生产运行内容源码为 `21e70a23d2710b07626dc52370db2a7cee53e5c3`，Cloudflare Pages production deployment `e2969ba4-f2ff-47d5-bf02-af322082d4d4` 于 17:03:39（UTC+8）成功。[桌面版正式发布](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.8)
