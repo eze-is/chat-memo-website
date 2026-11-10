@@ -67,6 +67,105 @@
             if (active === controller) active = null;
         }
     }
+    // 只采用浏览器明确提供的芯片信息，不把 Mac 的旧式 UA 当作 Intel。
+    async function detectDevice() {
+        const hints = navigator.userAgentData;
+        if (!hints || hints.mobile || typeof hints.getHighEntropyValues !== 'function') return null;
+        try {
+            const { architecture, bitness } = await hints.getHighEntropyValues(['architecture', 'bitness']);
+            if (bitness !== '64') return null;
+            if (hints.platform === 'macOS' && architecture === 'arm') return 'mac';
+            if (hints.platform === 'macOS' && architecture === 'x86') return 'mac-intel';
+            if (hints.platform === 'Windows' && architecture === 'x86') return 'win';
+        } catch { /* 浏览器未提供信息时让用户选择。 */ }
+        return null;
+    }
+
+    function setupDownloadMenus() {
+        const primaryLinks = document.querySelectorAll('[data-desktop-download-primary]');
+        const sourceOptions = dialog.querySelectorAll('[data-download-os]');
+        if (!primaryLinks.length || !sourceOptions.length) return;
+        const menus = [];
+        primaryLinks.forEach((primary, index) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'desktop-download-choice';
+            const inNavigation = !!primary.closest('header');
+            if (inNavigation) wrap.classList.add('desktop-download-choice--nav');
+            if (primary.classList.contains('lg:flex')) {
+                primary.classList.remove('hidden', 'lg:flex');
+                primary.classList.add('flex');
+                wrap.classList.add('hidden', 'lg:flex');
+            }
+            primary.parentNode.insertBefore(wrap, primary);
+            wrap.append(primary);
+            primary.setAttribute('aria-disabled', 'true');
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'desktop-download-toggle';
+            if (inNavigation) {
+                toggle.setAttribute('aria-label', 'Choose a version');
+                toggle.setAttribute('data-aria-label-key', 'download-select-version');
+                toggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+            } else {
+                toggle.setAttribute('data-key', 'download-select-version');
+                toggle.textContent = 'Choose a version';
+            }
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-controls', `desktop-download-menu-${index}`);
+            const menu = document.createElement('div');
+            menu.id = `desktop-download-menu-${index}`;
+            menu.className = 'desktop-download-menu';
+            menu.hidden = true;
+            sourceOptions.forEach(option => {
+                const item = option.cloneNode(true);
+                const status = item.querySelector('.download-dialog-action');
+                status.className = 'desktop-download-current';
+                status.setAttribute('data-key', 'download-current-device');
+                status.textContent = 'Current device';
+                status.hidden = true;
+                menu.append(item);
+            });
+            wrap.append(toggle, menu);
+            let restoringFocus = false;
+            const setOpen = open => {
+                menu.hidden = !open;
+                toggle.setAttribute('aria-expanded', String(open));
+                if (open) menus.forEach(other => { if (other.menu !== menu) other.close(); });
+            };
+            wrap.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') setOpen(true); });
+            wrap.addEventListener('pointerleave', event => { if (event.pointerType !== 'touch' && !wrap.contains(document.activeElement)) setOpen(false); });
+            primary.addEventListener('focus', () => {
+                if (!restoringFocus && primary.matches(':focus-visible')) setOpen(true);
+            });
+            wrap.addEventListener('focusout', event => { if (!wrap.contains(event.relatedTarget)) setOpen(false); });
+            wrap.addEventListener('keydown', event => {
+                if (event.key !== 'Escape' || menu.hidden) return;
+                setOpen(false);
+                restoringFocus = true;
+                (toggle.hidden ? primary : toggle).focus();
+                restoringFocus = false;
+            });
+            toggle.addEventListener('click', () => setOpen(menu.hidden));
+            primary.addEventListener('click', event => {
+                if (primary.hasAttribute('aria-disabled')) event.preventDefault();
+            });
+            menus.push({ primary, menu, toggle, close: () => setOpen(false) });
+        });
+        document.addEventListener('pointerdown', event => {
+            menus.forEach(({ primary, close }) => { if (!primary.parentElement.contains(event.target)) close(); });
+        });
+        void detectDevice().then(platform => {
+            if (!platform) return;
+            menus.forEach(({ primary, menu, toggle }) => {
+                primary.href = `https://chatmemo.ai/desktop/download/${platform}?link=website`;
+                primary.removeAttribute('aria-disabled');
+                if (!primary.closest('header')) toggle.classList.add('desktop-download-toggle--compact');
+                menu.querySelector(`[data-download-os="${platform}"] .desktop-download-current`).hidden = false;
+            });
+        });
+    }
+    setupDownloadMenus();
+
     document.addEventListener('click', event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         const anchor = event.target.closest('a[href]');

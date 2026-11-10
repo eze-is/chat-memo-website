@@ -32,7 +32,9 @@
     "download-mac-chip": "Apple silicon",
     "download-intel-chip": "Intel",
     "download-win-arch": "64-bit",
-    "download-retry-error": "Still unavailable. Please try again later."
+    "download-retry-error": "Still unavailable. Please try again later.",
+    "download-current-device": "Current device",
+    "download-select-version": "Choose a version"
   },
   "home": {
     "dropdown-chrome": "Chrome Store",

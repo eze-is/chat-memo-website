@@ -54,7 +54,9 @@
     "download-mac-chip": "Apple シリコン",
     "download-intel-chip": "Intel",
     "download-win-arch": "64 ビット",
-    "download-retry-error": "取得できません。しばらくしてから再度お試しください。"
+    "download-retry-error": "取得できません。しばらくしてから再度お試しください。",
+    "download-current-device": "このデバイス",
+    "download-select-version": "バージョンを選択"
   },
   "home": {
     "dropdown-chrome": "Chrome ウェブストア",

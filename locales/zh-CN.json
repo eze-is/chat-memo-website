@@ -32,7 +32,9 @@
     "download-mac-chip": "Apple 芯片",
     "download-intel-chip": "Intel 芯片",
     "download-win-arch": "64 位",
-    "download-retry-error": "暂时无法获取安装包，请稍后重试。"
+    "download-retry-error": "暂时无法获取安装包，请稍后重试。",
+    "download-current-device": "当前设备",
+    "download-select-version": "选择版本"
   },
   "home": {
     "dropdown-chrome": "Chrome 商店",

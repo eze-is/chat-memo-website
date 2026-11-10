@@ -127,8 +127,9 @@ test('20 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
                 assert.equal(attribute(link, 'href'), route(locale, 'downloads'), file);
                 assert.equal(textOf(link), catalog.common['nav-downloads'], file);
             }
-            const installerLinks = all(navbar, (node) => node.tagName === 'a' && attribute(node, 'href') === `${origin}/desktop/download?link=website`);
-            assert.equal(installerLinks.length, 2, `${file} direct installer links remain`);
+            const installerLinks = all(navbar, (node) => node.tagName === 'a' && attribute(node, 'data-desktop-download-primary') !== undefined);
+            assert.equal(installerLinks.length, 2, `${file} desktop and mobile installer choices`);
+            for (const link of installerLinks) assert.equal(attribute(link, 'href'), route(locale, 'downloads'), `${file} safe fallback`);
             assert.ok(find(document, (node) => attribute(node, 'id') === 'footer-container')?.childNodes?.length, `${file} footer`);
             assert.doesNotMatch(html, /(?:src|href|poster)="resource\//, `${file} relative asset`);
             const triggers = all(document, (node) => node.tagName === 'button' && attribute(node, 'data-site-locale-trigger') !== undefined);

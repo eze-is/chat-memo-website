@@ -13,6 +13,7 @@ function harness({ hostname = 'chatmemo.ai', fetchImpl } = {}) {
   const choose = { hidden: false }, failure = { hidden: true }, error = { hidden: true }
   const closeButton = { addEventListener(name, fn) { buttonHandlers[name] = fn } }
   const dialog = {
+    querySelectorAll() { return [] },
     open: false, contains: anchor => !!anchor.inDialog,
     querySelector(selector) { return ({ '[data-download-choose-title]': choose, '[data-download-failure-title]': failure, '[data-download-error]': error, '[data-download-close]': closeButton })[selector] },
     addEventListener(name, fn) { closeHandlers[name] = fn },
@@ -20,10 +21,10 @@ function harness({ hostname = 'chatmemo.ai', fetchImpl } = {}) {
     close() { this.open = false; closeHandlers.close?.() },
   }
   const location = { hostname, origin: `https://${hostname}`, href: `https://${hostname}/zh-CN/`, assign(value) { assigned.push(value) } }
-  const document = { getElementById(id) { return id === 'download-dialog' ? dialog : null }, addEventListener(name, fn) { documentHandlers[name] = fn } }
+  const document = { querySelectorAll() { return [] }, getElementById(id) { return id === 'download-dialog' ? dialog : null }, addEventListener(name, fn) { documentHandlers[name] = fn } }
   const fetch = async (...args) => { calls.push(args); return fetchImpl(...args) }
   const window = { location, fetch }
-  vm.runInNewContext(source, { window, document, fetch, URL, AbortController, setTimeout, clearTimeout })
+  vm.runInNewContext(source, { window, document, navigator: {}, fetch, URL, AbortController, setTimeout, clearTimeout })
   function anchor(path = '/desktop/download?link=website', inDialog = false) {
     const attrs = new Map()
     return { href: `https://chatmemo.ai${path}`, target: '', inDialog, focused: false,

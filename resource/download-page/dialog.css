@@ -17,3 +17,30 @@
 .download-dialog-action { flex: none; min-width: 68px; padding: 8px 14px; border-radius: 999px; background: #1e1f23; color: #fff; font-size: 13px; font-weight: 600; line-height: 1.2; text-align: center; }
 .download-dialog-error { margin: 14px 0 0; color: #a53838; font-size: 13px; line-height: 1.5; }
 @media (max-width: 600px) { .download-dialog { padding: 23px 22px 24px; }.download-dialog-platforms a { min-height: 68px; } }
+
+/* 下载入口复用弹窗里的版本和下载链接。 */
+.desktop-download-choice { position: relative; }
+.desktop-download-choice > a[aria-disabled="true"] { opacity: .68; cursor: default; }
+.desktop-download-toggle { display: block; margin: 6px auto 0; padding: 3px 8px; border: 0; border-radius: 6px; color: #536fe4; background: transparent; font: inherit; font-size: 13px; font-weight: 500; line-height: 1.4; cursor: pointer; }
+.desktop-download-toggle[hidden] { display: none; }
+/* 已推荐的首页按钮不显示箭头，键盘和读屏仍可找到版本选择。 */
+.desktop-download-toggle--compact:not(:focus-visible) { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.desktop-download-toggle--compact:focus-visible { position: absolute; z-index: 81; bottom: calc(100% + 7px); left: 50%; margin: 0; transform: translateX(-50%); white-space: nowrap; background: #fff; box-shadow: 0 3px 12px rgb(0 0 0 / 12%); }
+.desktop-download-choice--nav > a { padding-right: 42px; }
+.desktop-download-choice--nav .desktop-download-toggle { position: absolute; top: 50%; right: 3px; display: grid; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; transform: translateY(-50%); border-radius: 7px; color: white; }
+.desktop-download-choice--nav .desktop-download-toggle svg { width: 16px; height: 16px; transition: transform 160ms ease; }
+.desktop-download-choice--nav .desktop-download-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.desktop-download-toggle:hover { background: rgb(83 111 228 / 8%); }
+.desktop-download-toggle:focus-visible, .desktop-download-menu a:focus-visible { outline: 2px solid #6480ea; outline-offset: 2px; }
+.desktop-download-menu { position: absolute; top: calc(100% + 8px); left: 50%; z-index: 80; width: 280px; max-width: calc(100vw - 32px); padding: 8px; transform: translateX(-50%); border: 1px solid rgb(0 0 0 / 7%); border-radius: 18px; background: #fff; box-shadow: 0 16px 40px rgb(27 33 55 / 14%); }
+.desktop-download-menu[hidden], .desktop-download-current[hidden] { display: none; }
+.desktop-download-menu::before { position: absolute; right: 0; bottom: 100%; left: 0; height: 9px; content: ''; }
+.desktop-download-menu a { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 9px 10px; border-radius: 11px; color: #202126; font: 500 14px/1.3 Inter, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif; text-decoration: none; }
+.desktop-download-menu a:hover { background: #f5f6f9; }
+.desktop-download-menu a > svg { width: 20px; height: 20px; flex: none; }
+.desktop-download-menu .download-dialog-platform-name { gap: 3px 6px; }
+.desktop-download-menu .download-dialog-platform-name strong { font-size: 14px; }
+.desktop-download-menu .download-dialog-platform-name small { font-size: 12px; }
+.desktop-download-current { flex: none; color: #536fe4; font-size: 11px; font-weight: 500; white-space: nowrap; }
+header .desktop-download-menu { right: 0; left: auto; transform: none; }
+@media (max-width: 1023px) { header .desktop-download-menu { right: auto; left: 50%; transform: translateX(-50%); } }
