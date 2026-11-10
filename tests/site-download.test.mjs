@@ -48,6 +48,15 @@ test('下载准备成功后只在原窗口交给浏览器，www 也使用主域�
   assert.deepEqual(h.assigned, ['https://chatmemo.ai' + valid])
 })
 
+test('Intel 下载使用 Intel 准备入口，并接受固定版本的 Intel DMG', async () => {
+  const intel = '/desktop/releases/v1.2.3/chatmemo-1.2.3-x64.dmg'
+  const h = harness({ fetchImpl: async () => ready(intel) })
+  h.click(h.anchor('/desktop/download/mac-intel?link=website'))
+  await flush()
+  assert.equal(h.calls[0][0], 'https://chatmemo.ai/desktop/download/prepare/mac-intel?link=website')
+  assert.deepEqual(h.assigned, ['https://chatmemo.ai' + intel])
+})
+
 test('不可信目的地与准备失败显示弹窗，而不是跳转错误页面', async () => {
   for (const value of ['https://evil.example/file', '/desktop/releases/v1.2.3/chatmemo-9.9.9-arm64.dmg', '/desktop/releases/v1.2.3/chatmemo-1.2.3-arm64.dmg?x=1']) {
     const h = harness({ fetchImpl: async () => ready(value) }); h.click(h.anchor()); await flush()

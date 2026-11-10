@@ -32,8 +32,8 @@
         try {
             const url = new URL(path, base);
             const version = '(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)';
-            const mirror = new RegExp(`^/desktop/download/file/v(${version})/[a-f0-9]{64}/chatmemo-\\1-(?:arm64\\.dmg|x64\\.exe)$`);
-            const github = new RegExp(`^/desktop/releases/v(${version})/chatmemo-\\1-(?:arm64\\.dmg|x64\\.exe)$`);
+            const mirror = new RegExp(`^/desktop/download/file/v(${version})/[a-f0-9]{64}/chatmemo-\\1-(?:arm64\\.dmg|x64\\.dmg|x64\\.exe)$`);
+            const github = new RegExp(`^/desktop/releases/v(${version})/chatmemo-\\1-(?:arm64\\.dmg|x64\\.dmg|x64\\.exe)$`);
             return url.origin === base && (mirror.test(url.pathname) || github.test(url.pathname)) && !url.search && !url.hash ? url.href : null;
         } catch { return null; }
     }
@@ -74,7 +74,7 @@
         let url;
         try { url = new URL(anchor.href, window.location.href); } catch { return; }
         if (!['chatmemo.ai', 'www.chatmemo.ai', 'localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) return;
-        const match = /^\/desktop\/download(?:\/(mac|win))?\/?$/.exec(url.pathname);
+        const match = /^\/desktop\/download(?:\/(mac|mac-intel|win))?\/?$/.exec(url.pathname);
         if (!match || url.search !== '?link=website') return;
         event.preventDefault();
         if (!dialog.contains(anchor)) lastTrigger = anchor;

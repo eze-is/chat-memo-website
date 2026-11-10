@@ -12,3 +12,5 @@
 @media (max-width: 700px) {.downloads-page { width: calc(100% - 40px); padding: 118px 0 64px; }.downloads-heading { margin-bottom: 48px; }.downloads-heading h1 { font-size: 32px; }.downloads-card { min-height: 0; }.downloads-content { padding: 26px 22px 44px; }.downloads-content h2 { margin-bottom: 26px; font-size: 21px; }.downloads-rows { gap: 13px; }.downloads-row > a { min-width: 86px; } }
 @media (max-width: 420px) { .downloads-content { padding-inline: 16px; }.downloads-row { gap: 6px; }.downloads-row > span { flex: 1; gap: 8px; }.downloads-row strong { font-size: 13px; line-height: 1.4; white-space: normal; }.downloads-row small { font-size: 11px; white-space: nowrap; }.downloads-row > a { min-width: 74px; padding-inline: 10px; font-size: 12px; } }
 @media (prefers-reduced-transparency: reduce) { .downloads-shell { background: #fafbfe; }.downloads-card { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; } }
+
+.downloads-requirement { margin: 18px 0 0; color: #6b7280; font-size: 12px; line-height: 1.4; }
