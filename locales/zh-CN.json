@@ -22,7 +22,15 @@
     "footer-pricing": "定价",
     "footer-group-product": "产品",
     "footer-group-support": "支持",
-    "footer-group-docs": "文档"
+    "footer-group-docs": "文档",
+    "footer-downloads": "全部下载",
+    "download-close": "关闭",
+    "download-choose-title": "选择你的系统",
+    "download-failure-title": "暂时无法自动下载，请手动安装",
+    "download-action": "下载",
+    "download-mac-chip": "Apple 芯片",
+    "download-win-arch": "64 位",
+    "download-retry-error": "暂时无法获取安装包，请稍后重试。"
   },
   "home": {
     "dropdown-chrome": "Chrome 商店",
@@ -181,6 +189,10 @@
     "pricing": {
       "title": "定价 · Chat Memo",
       "description": "免费保存、阅读和搜索 AI 对话。开通 Pro，让不同 AI 接着聊。"
+    },
+    "downloads": {
+      "title": "下载 Chat Memo · 桌面端与浏览器插件",
+      "description": "下载 Chat Memo 桌面端，或前往 Chrome 和 Microsoft Edge 商店安装浏览器插件。"
     }
   },
   "pricing": {
@@ -195,5 +207,20 @@
     "price-error": "暂时无法读取价格。",
     "price-retry": "重试",
     "price-noscript": "请启用 JavaScript 查看适用价格。"
+  },
+  "downloads": {
+    "download-heading": "下载",
+    "download-desktop": "桌面端",
+    "download-extension": "浏览器插件",
+    "download-mac-parenthetical": "（Apple 芯片）",
+    "download-win-parenthetical": "（64 位）",
+    "download-button": "下载",
+    "download-store": "前往商店 ↗",
+    "download-mac-label": "下载 macOS 版",
+    "download-win-label": "下载 Windows 版",
+    "download-chrome-label": "前往 Chrome 网上应用店",
+    "download-edge-label": "前往 Microsoft Edge 加载项商店",
+    "download-desktop-image": "Chat Memo 桌面端界面",
+    "download-extension-image": "Chat Memo 浏览器插件与 AI 对话界面"
   }
 }

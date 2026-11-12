@@ -16,6 +16,10 @@
     "pricing": {
       "title": "料金 · Chat Memo",
       "description": "AI との会話の保存・閲覧・キーワード検索は無料。Pro なら、別の AI でも会話の続きを始められます。"
+    },
+    "downloads": {
+      "title": "Chat Memo をダウンロード · デスクトップとブラウザ拡張機能",
+      "description": "Chat Memo のデスクトップ版をダウンロード、または Chrome と Microsoft Edge のストアから拡張機能をインストール。"
     }
   },
   "common": {
@@ -40,7 +44,15 @@
     "footer-pricing": "料金",
     "footer-group-product": "製品",
     "footer-group-support": "サポート",
-    "footer-group-docs": "ドキュメント"
+    "footer-group-docs": "ドキュメント",
+    "footer-downloads": "ダウンロード一覧",
+    "download-close": "閉じる",
+    "download-choose-title": "お使いのシステムを選択",
+    "download-failure-title": "自動ダウンロードできません。手動でインストールしてください。",
+    "download-action": "ダウンロード",
+    "download-mac-chip": "Apple シリコン",
+    "download-win-arch": "64 ビット",
+    "download-retry-error": "取得できません。しばらくしてから再度お試しください。"
   },
   "home": {
     "dropdown-chrome": "Chrome ウェブストア",
@@ -195,5 +207,20 @@
     "price-error": "料金を取得できませんでした。",
     "price-retry": "再試行",
     "price-noscript": "適用される料金を表示するには、JavaScript を有効にしてください。"
+  },
+  "downloads": {
+    "download-heading": "ダウンロード",
+    "download-desktop": "デスクトップ",
+    "download-extension": "ブラウザ拡張機能",
+    "download-mac-parenthetical": "（Apple シリコン）",
+    "download-win-parenthetical": "（64 ビット）",
+    "download-button": "ダウンロード",
+    "download-store": "ストアを開く ↗",
+    "download-mac-label": "macOS 版をダウンロード",
+    "download-win-label": "Windows 版をダウンロード",
+    "download-chrome-label": "Chrome ウェブストアを開く",
+    "download-edge-label": "Microsoft Edge アドオンを開く",
+    "download-desktop-image": "Chat Memo デスクトップ版の画面",
+    "download-extension-image": "AI の会話と Chat Memo ブラウザ拡張機能の画面"
   }
 }

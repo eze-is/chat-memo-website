@@ -22,7 +22,15 @@
     "footer-pricing": "Pricing",
     "footer-group-product": "Product",
     "footer-group-support": "Support",
-    "footer-group-docs": "Documents"
+    "footer-group-docs": "Documents",
+    "footer-downloads": "All downloads",
+    "download-close": "Close",
+    "download-choose-title": "Choose your system",
+    "download-failure-title": "Automatic download is unavailable. Please install manually.",
+    "download-action": "Download",
+    "download-mac-chip": "Apple silicon",
+    "download-win-arch": "64-bit",
+    "download-retry-error": "Still unavailable. Please try again later."
   },
   "home": {
     "dropdown-chrome": "Chrome Store",
@@ -181,6 +189,10 @@
     "pricing": {
       "title": "Pricing · Chat Memo",
       "description": "Save, read and search your AI conversations for free. Pro lets you pick up the conversation in another AI."
+    },
+    "downloads": {
+      "title": "Download Chat Memo · Desktop and browser extensions",
+      "description": "Download Chat Memo for desktop, or install the browser extension from Chrome and Microsoft Edge stores."
     }
   },
   "pricing": {
@@ -195,5 +207,20 @@
     "price-error": "Price is temporarily unavailable.",
     "price-retry": "Retry",
     "price-noscript": "Enable JavaScript to see the applicable price."
+  },
+  "downloads": {
+    "download-heading": "Download",
+    "download-desktop": "Desktop",
+    "download-extension": "Browser extension",
+    "download-mac-parenthetical": "(Apple silicon)",
+    "download-win-parenthetical": "(64-bit)",
+    "download-button": "Download",
+    "download-store": "Open store ↗",
+    "download-mac-label": "Download for macOS",
+    "download-win-label": "Download for Windows",
+    "download-chrome-label": "Open Chrome Web Store",
+    "download-edge-label": "Open Microsoft Edge Add-ons",
+    "download-desktop-image": "Chat Memo desktop interface",
+    "download-extension-image": "Chat Memo extension alongside an AI conversation"
   }
 }

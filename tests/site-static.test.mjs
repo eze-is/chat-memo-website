@@ -9,7 +9,7 @@ import { parse, parseFragment } from 'parse5';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://chatmemo.ai';
 const locales = ['en', 'zh-CN', 'ja', 'es'];
-const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html' };
+const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html', downloads: 'downloads.html' };
 const catalogs = Object.fromEntries(locales.map((locale) => [
     locale, JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'))
 ]));
@@ -59,7 +59,7 @@ function assertNavigationScript(document, file) {
     assert.ok(initIndex > scripts.indexOf(navScripts[0]), `${file} navigation initializes after script load`);
 }
 
-test('16 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返语言链接', () => {
+test('20 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返语言链接', () => {
     const utilities = fs.readFileSync(path.join(root, 'resource/marketing-utilities.css'));
     const version = createHash('sha256').update(utilities).digest('hex').slice(0, 12);
     for (const page of Object.keys(pages)) {
@@ -99,7 +99,7 @@ test('16 个静态语言 URL 的初始 HTML 含对应正文、元信息与互返
             }
             assert.equal(attribute(alternates.find((node) => attribute(node, 'hreflang') === 'x-default'), 'href'), `${origin}${page === 'home' ? '/' : `/${page}`}`);
 
-            const key = page === 'updates' ? 'updates-title' : page === 'pricing' ? 'pricing-title' : 'hero-title';
+            const key = page === 'updates' ? 'updates-title' : page === 'pricing' ? 'pricing-title' : page === 'downloads' ? 'download-heading' : 'hero-title';
             const headline = find(document, (node) => attribute(node, 'data-key') === key);
             assert.equal(textOf(headline), textFromMarkup(catalog[page][key]), `${file} ${key}`);
             assert.ok(find(document, (node) => attribute(node, 'id') === 'navbar-container')?.childNodes?.length, `${file} navbar`);
@@ -152,7 +152,7 @@ test('四语更新记录在初始 HTML 中完整可见，结构化 FAQ 与正文
     }
 });
 
-test('sitemap 只列 16 个 canonical，并带与页面一致的 hreflang', () => {
+test('sitemap 只列 20 个 canonical，并带与页面一致的 hreflang', () => {
     const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
     assert.match(sitemap, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
     const blocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
@@ -305,14 +305,14 @@ test('中立入口指向稳定英文地址；静态正文不依赖脚本成功�
         assert.ok(firstAfterCharset.childNodes[0].value.includes(`SiteI18n.redirectToCanonical("${page}");`), file);
         const canonical = find(document, (node) => node.tagName === 'link' && attribute(node, 'rel') === 'canonical');
         assert.equal(attribute(canonical, 'href'), `${origin}${route('en', page)}`);
-        if (page === 'home' || page === 'pricing') continue;
+        if (page === 'home' || page === 'pricing' || page === 'downloads') continue;
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         assert.doesNotMatch(html, /\.js \.(content|updates)-section/);
         assert.match(html, /\.intro-running \.(content|updates)-section/);
     }
 });
 
-test('四页先启动语言加载并立即绑定导航，再等待词包完成', () => {
+test('五页先启动语言加载并立即绑定导航，再等待词包完成', () => {
     for (const [page, file] of Object.entries(pages)) {
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         const startup = new RegExp(`const\\s+i18nReady\\s*=\\s*SiteI18n\\.init\\('${page}'\\);\\s*SiteNav\\.init\\(\\);\\s*await\\s+i18nReady;`);
@@ -347,7 +347,6 @@ test('官网各语言页面的App下载入口使用已登记的website来源', (
         for (const link of all(document, node => node.tagName === 'a' && attribute(node, 'href'))) {
             const url = new URL(attribute(link, 'href'), origin);
             if (url.origin !== origin || !/^\/desktop\/download(?:\/(?:mac|win))?$/.test(url.pathname)) continue;
-            assert.equal(url.pathname, '/desktop/download', filename);
             assert.equal(url.searchParams.get('link'), 'website', filename);
             assert.deepEqual([...url.searchParams.keys()], ['link'], filename);
             count++;

@@ -16,6 +16,10 @@
     "pricing": {
       "title": "Precios · Chat Memo",
       "description": "Guarda, lee y busca tus conversaciones con IA gratis. Con Pro, puedes continuar una conversación en otra IA."
+    },
+    "downloads": {
+      "title": "Descargar Chat Memo · Escritorio y extensiones",
+      "description": "Descarga Chat Memo para escritorio o instala la extensión desde las tiendas de Chrome y Microsoft Edge."
     }
   },
   "common": {
@@ -40,7 +44,15 @@
     "footer-pricing": "Precios",
     "footer-group-product": "Producto",
     "footer-group-support": "Ayuda",
-    "footer-group-docs": "Documentación"
+    "footer-group-docs": "Documentación",
+    "footer-downloads": "Todas las descargas",
+    "download-close": "Cerrar",
+    "download-choose-title": "Elige tu sistema",
+    "download-failure-title": "La descarga automática no está disponible. Instálala manualmente.",
+    "download-action": "Descargar",
+    "download-mac-chip": "Apple silicon",
+    "download-win-arch": "64 bits",
+    "download-retry-error": "Aún no está disponible. Inténtalo de nuevo más tarde."
   },
   "home": {
     "dropdown-chrome": "Chrome Web Store",
@@ -195,5 +207,20 @@
     "price-error": "El precio no está disponible en este momento.",
     "price-retry": "Reintentar",
     "price-noscript": "Activa JavaScript para ver el precio aplicable."
+  },
+  "downloads": {
+    "download-heading": "Descargar",
+    "download-desktop": "Escritorio",
+    "download-extension": "Extensión del navegador",
+    "download-mac-parenthetical": "(Apple silicon)",
+    "download-win-parenthetical": "(64 bits)",
+    "download-button": "Descargar",
+    "download-store": "Ir a la tienda ↗",
+    "download-mac-label": "Descargar para macOS",
+    "download-win-label": "Descargar para Windows",
+    "download-chrome-label": "Abrir Chrome Web Store",
+    "download-edge-label": "Abrir Complementos de Microsoft Edge",
+    "download-desktop-image": "Interfaz de escritorio de Chat Memo",
+    "download-extension-image": "Extensión de Chat Memo junto a una conversación con IA"
   }
 }

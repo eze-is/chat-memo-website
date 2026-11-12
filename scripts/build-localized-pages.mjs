@@ -15,7 +15,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 const { render: renderUpdates } = require(path.join(root, 'updates-renderer.js'));
 const locales = ['en', 'zh-CN', 'ja', 'es'];
-const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html' };
+const pages = { home: 'index.html', welcome: 'welcome.html', updates: 'updates.html', pricing: 'pricing.html', downloads: 'downloads.html' };
 const origin = 'https://chatmemo.ai';
 // 桌面安装包只提供 Windows 与 macOS；浏览器插件入口是 Chrome 与 Edge。
 const operatingSystem = 'Windows, macOS';
@@ -61,7 +61,7 @@ const source = Object.fromEntries(Object.entries(pages).map(([page, file]) => [
     page,
     fs.readFileSync(path.join(root, file), 'utf8')
 ]));
-const components = Object.fromEntries(['navbar', 'footer'].map((name) => [
+const components = Object.fromEntries(['navbar', 'footer', 'download-dialog'].map((name) => [
     name,
     fs.readFileSync(path.join(root, 'components', `${name}.html`), 'utf8')
 ]));
@@ -331,7 +331,9 @@ function render(page, locale, neutral = false) {
     head.childNodes = head.childNodes.filter(node => !(
         (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' &&
             attr(node, 'href')?.split('?')[0] === '/resource/marketing-utilities.css') ||
+        (node.tagName === 'link' && attr(node, 'rel') === 'stylesheet' && attr(node, 'href')?.split('?')[0] === '/download-dialog.css') ||
         node.tagName === 'script' && (
+            attr(node, 'src')?.split('?')[0] === '/site-download.js' ||
             attr(node, 'data-early-language-route') !== undefined ||
             attr(node, 'data-site-analytics') !== undefined ||
             attr(node, 'src')?.split('?')[0] === '/site-i18n.js'
@@ -345,6 +347,7 @@ function render(page, locale, neutral = false) {
         head.childNodes.splice(nav, 0, ...parseFragment('<script src="/site-i18n.js"></script>').childNodes);
         appendMarkup(head, analyticsScript(page));
     }
+    appendMarkup(head, '<link rel="stylesheet" href="/download-dialog.css"><script src="/site-download.js" defer></script>');
     // 旧 CDN 将工具类插在 head 末尾，保持它与手写样式的覆盖顺序。
     appendMarkup(head, '<link rel="stylesheet" href="/resource/marketing-utilities.css">');
     const catalog = catalogs[locale];
@@ -357,6 +360,11 @@ function render(page, locale, neutral = false) {
     setAttr(htmlElement, 'data-catalog-version', createHash('sha256').update(JSON.stringify(catalogs)).digest('hex').slice(0, 12));
     setHtml(byId(document, 'navbar-container'), components.navbar);
     setHtml(byId(document, 'footer-container'), components.footer);
+    let body = null;
+    visit(document, node => { if (node.tagName === 'body') body = node; });
+    body.childNodes = body.childNodes.filter(node => attr(node, 'id') !== 'download-dialog');
+    while (body.childNodes.at(-1)?.nodeName === '#text' && !body.childNodes.at(-1).value.trim()) body.childNodes.pop();
+    appendMarkup(body, components['download-dialog'].trim());
     if (page === 'pricing') {
         setHtml(byId(document, 'pricing-comparison'), pricingMarkup(proCatalog, catalogs[locale].pricing, locale));
     }
@@ -366,7 +374,8 @@ function render(page, locale, neutral = false) {
         setAttr(container, 'data-rendered-locale', locale);
     }
     {
-        const assets = ['/site-i18n.js', '/site-nav.js'];
+        const assets = ['/site-i18n.js', '/site-nav.js', '/site-download.js', '/download-dialog.css'];
+        if (page === 'downloads') assets.push('/downloads.css');
         if (page === 'pricing') assets.push('/pricing.css', '/pricing-region.js');
         if (page === 'home') assets.push(
             '/hero-preview.js', '/hero-preview.css', '/resource/download-effects.css',
