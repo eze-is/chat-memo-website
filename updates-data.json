@@ -1318,6 +1318,12 @@
             "en": "Grok Bot conversations can now be backed up, with an option to authorize a history sync.",
             "ja": "Grok Bot の会話もバックアップできるようになりました。許可すると、過去の会話も同期できます。",
             "es": "Ya puedes guardar las conversaciones de Grok Bot y autorizar la sincronización del historial."
+          },
+          "title": {
+            "zh-CN": "备份 Grok Bot 对话",
+            "en": "Back up Grok Bot chats",
+            "ja": "Grok Bot の会話をバックアップ",
+            "es": "Copias de conversaciones de Grok Bot"
           }
         },
         {
@@ -1327,6 +1333,12 @@
             "en": "International payments are now available. Feel free to recommend Chat Memo to friends overseas.",
             "ja": "海外からの支払いに対応しました。海外のお友達にも、ぜひ Chat Memo を紹介してください。",
             "es": "Ya están disponibles los pagos internacionales. Puedes recomendar Chat Memo a tus amigos en el extranjero."
+          },
+          "title": {
+            "zh-CN": "国际支付",
+            "en": "International payments",
+            "ja": "海外向けの決済に対応",
+            "es": "Pagos internacionales"
           }
         },
         {
@@ -1336,6 +1348,12 @@
             "en": "Redeem codes in the app to add time to your Pro plan.",
             "ja": "アプリ内でコードを引き換えて、Pro の利用期間を追加できるようになりました。",
             "es": "Canjea códigos en la app para añadir tiempo a tu plan Pro."
+          },
+          "title": {
+            "zh-CN": "兑换 Pro 时长",
+            "en": "Redeem codes for Pro",
+            "ja": "コードで Pro を利用",
+            "es": "Canjea códigos por Pro"
           }
         },
         {
@@ -1345,6 +1363,12 @@
             "en": "Added setup instructions for Claude on the web.",
             "ja": "ウェブ版 Claude の接続手順を追加しました。",
             "es": "Añadimos instrucciones para conectar Claude en la web."
+          },
+          "title": {
+            "zh-CN": "Claude 网页端指引",
+            "en": "Claude web setup guide",
+            "ja": "ウェブ版 Claude の接続ガイド",
+            "es": "Guía para conectar Claude en la web"
           }
         },
         {
@@ -1354,6 +1378,12 @@
             "en": "Added launch at login so conversation saving resumes automatically after a restart.",
             "ja": "ログイン時の自動起動に対応し、再起動後も自動で会話の保存を再開します。",
             "es": "Añadimos el inicio automático al iniciar sesión para seguir guardando conversaciones después de reiniciar."
+          },
+          "title": {
+            "zh-CN": "开机自启",
+            "en": "Launch at login",
+            "ja": "ログイン時に自動起動",
+            "es": "Inicio automático al iniciar sesión"
           }
         },
         {
@@ -1363,6 +1393,12 @@
             "en": "Improved update, sign-in, and Pro messages, and refined the Contact support page.",
             "ja": "更新・ログイン・Pro の案内と、サポートへの連絡ページを改善しました。",
             "es": "Mejoramos los mensajes de actualización, inicio de sesión y Pro, así como la página de contacto con soporte."
+          },
+          "title": {
+            "zh-CN": "更新与使用提示",
+            "en": "Clearer guidance and support",
+            "ja": "各種案内とサポートを改善",
+            "es": "Mejoras en las indicaciones y la ayuda"
           }
         }
       ]
