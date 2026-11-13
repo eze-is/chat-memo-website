@@ -29,6 +29,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [3251d40] — 2026-11-13 21:11:09 UTC+8 · 1.0.9 沿用已确认原文
+
+- 运行内容源码 `3251d4008888fec4c2cecbf4c52616b8285600b3`，Cloudflare Pages production 部署 `070d5bcd-a94c-4e55-9e0f-6b2ce8d056fb`；实际时间取 deploy 阶段 `ended_on=2026-11-13T13:11:09.479366Z`。
+- 1.0.9 直接展示六条已确认说明，不另加摘要或功能小标题。中文和英文与 Desktop `releases/1.0.9.json` 中的 `notes`、`notesEn` 逐字一致，日文和西文忠实翻译。摘要、小标题省略时不生成空占位；既有历史条目数据与渲染输出逐字节保持。
+- 69 项官网测试、四语生成一致性和 diff 检查通过；正式站四语 HTML 与发布源码 SHA-256 一致，六条原文及无额外标题均已回读。回执保存在 `/private/tmp/chatmemo-website-109-original-wording-deployment.json` 与 `/private/tmp/chatmemo-website-109-original-wording-readback.json`。未重新发布安装包或验收客户端升级。
+
 ### [7890dde] — 2026-11-13 21:04:13 UTC+8 · Desktop 1.0.9 四语说明
 
 - Desktop v1.0.9 已于 2026-11-13 20:24:08（UTC+8）正式公开。官网运行内容源码 `7890ddef673255fdaeb0c14d5249333de0788115`，Cloudflare Pages **production** 部署 `d6daf003-e5ef-410c-a52e-d1848ef79c40`；实际时间取 Pages deploy 阶段 `ended_on=2026-11-13T13:04:13.470101Z`。[桌面版正式发布](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.9)
