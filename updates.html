@@ -404,46 +404,19 @@ SiteI18n.redirectToCanonical("updates");</script>
             margin: 0 auto;
         }
 
-        /* 英雄区动画样式 */
+        /* 页头直接采用原动画结束后的紧凑布局，正文始终可见、可滚动。 */
         .hero-section {
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: top center;
-        }
-
-        .hero-section.collapsed {
-            min-height: 300px !important;
-            max-height: 300px !important;
-            padding: 100px 0 20px 0 !important;
-            justify-content: center !important;
-            align-items: center !important;
+            min-height: 300px;
+            max-height: 300px;
+            padding: 100px 0 20px;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero-content {
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hero-content.collapsed {
             transform: scale(0.8);
         }
 
-        /* 更新内容区域动画 */
-        .intro-running .updates-section {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: 0.3s;
-        }
-
-        .intro-running .updates-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 禁用滚动样式 */
-        .no-scroll {
-            overflow: hidden;
-            height: 100vh;
-        }
         /* 产品页签位于原更新列表上方。 */
         .updates-products { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-bottom: 24px; border-bottom: 1px solid #e5e7eb; }
         .updates-products a {
@@ -555,7 +528,7 @@ SiteI18n.redirectToCanonical("updates");</script>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero-section" class="hero-section min-h-screen bg-white relative overflow-hidden flex items-center">
+        <section id="hero-section" class="hero-section bg-white relative overflow-hidden flex items-center">
             <!-- 高斯模糊Logo背景 -->
             <div class="absolute inset-0 flex items-center justify-center opacity-15">
                 <img src="/resource/icons/logo.png" alt="Chat Memo Logo" class="w-96 h-96 object-contain filter blur-3xl scale-150">
@@ -2102,50 +2075,9 @@ SiteI18n.redirectToCanonical("updates");</script>
         selectProductFromHash();
         window.addEventListener('hashchange', selectProductFromHash);
 
-        // 英雄区动画函数
-        function startHeroAnimation() {
-            const heroSection = document.getElementById('hero-section');
-            const heroContent = document.getElementById('hero-content');
-            const updatesSection = document.getElementById('updates-section');
-
-            // 直达某个产品或偏好减少动态时，直接使用原页头的收起状态。
-            if (tabs.some(tab => tab.hash === location.hash) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                heroSection.style.transition = 'none';
-                heroContent.style.transition = 'none';
-                heroSection.classList.add('collapsed');
-                heroContent.classList.add('collapsed');
-                return;
-            }
-
-            document.documentElement.classList.add('intro-running');
-            // 页面加载时立即禁用滚动
-            document.body.classList.add('no-scroll');
-
-            // 延迟1.5秒后开始动画，让用户先看到完整的英雄区
-            setTimeout(() => {
-                // 添加收缩样式
-                heroSection.classList.add('collapsed');
-                heroContent.classList.add('collapsed');
-
-                // 延迟显示更新内容，让英雄区动画先完成一部分
-                setTimeout(() => {
-                    updatesSection.classList.add('visible');
-
-                    // 动画完全完成后重新启用滚动
-                    // 等待updates-section的动画完成（1s + 0.3s delay = 1.3s）
-                    setTimeout(() => {
-                        document.body.classList.remove('no-scroll');
-                    }, 1300);
-                }, 600);
-
-            }, 1500);
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const i18nReady = SiteI18n.init('updates');
+        document.addEventListener('DOMContentLoaded', () => {
+            SiteI18n.init('updates');
             SiteNav.init();
-            await i18nReady;
-            startHeroAnimation();
         });
     </script><dialog class="download-dialog" id="download-dialog" aria-labelledby="download-dialog-title">
     <div class="download-dialog-top"><div class="download-dialog-brand"><img src="/resource/icons/logo.png" alt=""><span>Chat Memo</span></div><button type="button" class="download-dialog-close" data-download-close="" aria-label="Close" data-aria-label-key="download-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 6l12 12M18 6 6 18"></path></svg></button></div>

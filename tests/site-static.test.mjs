@@ -335,18 +335,24 @@ test('中立入口指向稳定英文地址；静态正文不依赖脚本成功�
         if (page === 'home' || page === 'pricing' || page === 'downloads') continue;
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         assert.doesNotMatch(html, /\.js \.(content|updates)-section/);
-        assert.match(html, /\.intro-running \.(content|updates)-section/);
+        if (page === 'updates') {
+            assert.doesNotMatch(html, /intro-running|startHeroAnimation|no-scroll/);
+            const hero = find(document, node => attribute(node, 'id') === 'hero-section');
+            assert.ok(!(attribute(hero, 'class') || '').split(' ').includes('min-h-screen'));
+        } else assert.match(html, /\.intro-running \.(content|updates)-section/);
     }
     assert.equal(fs.readFileSync(path.join(root, 'get.html'), 'utf8'), fs.readFileSync(path.join(root, 'downloads.html'), 'utf8'));
 });
 
-test('五页先启动语言加载并立即绑定导航，再等待词包完成', () => {
+test('五页启动语言加载时立即绑定导航，不等待词包完成', () => {
     for (const [page, file] of Object.entries(pages)) {
         const html = fs.readFileSync(path.join(root, file), 'utf8');
         const startup = new RegExp(`const\\s+i18nReady\\s*=\\s*SiteI18n\\.init\\('${page}'\\);\\s*SiteNav\\.init\\(\\);\\s*await\\s+i18nReady;`);
         if (page === 'pricing') {
             assert.ok(html.indexOf('ChatMemoPricing.init()') < html.indexOf('await i18nReady'), '报价不等待运行时词包');
             assert.match(html, /SiteNav\.init\(\);[\s\S]*if \(SiteI18n\.isCanonicalPath\('pricing'\)\) ChatMemoPricing\.init\(\);/);
+        } else if (page === 'updates') {
+            assert.match(html, /SiteI18n\.init\('updates'\);\s*SiteNav\.init\(\);/);
         } else assert.match(html, startup, file);
     }
 });
