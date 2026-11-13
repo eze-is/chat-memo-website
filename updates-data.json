@@ -1310,99 +1310,57 @@
         "ja": "2026年11月13日",
         "es": "13 de noviembre de 2026"
       },
-      "summary": {
-        "zh-CN": "新增 Grok Bot 备份、国际支付与兑换码，补充 Claude 网页端指引并支持开机自启。",
-        "en": "Grok Bot backups, international payments, redemption codes, a Claude web setup guide, and launch at login.",
-        "ja": "Grok Bot のバックアップ、海外向け決済、引き換えコード、ウェブ版 Claude の接続ガイド、ログイン時の自動起動に対応しました。",
-        "es": "Copias de Grok Bot, pagos internacionales, códigos de canje, una guía para conectar Claude en la web e inicio automático al iniciar sesión."
-      },
       "features": [
         {
           "type": "new",
-          "title": {
-            "zh-CN": "备份 Grok Bot 对话",
-            "en": "Back up Grok Bot chats",
-            "ja": "Grok Bot の会話をバックアップ",
-            "es": "Copias de conversaciones de Grok Bot"
-          },
           "description": {
             "zh-CN": "Grok Bot 对话也能备份了，还能授权补全历史。",
-            "en": "You can now back up Grok Bot chats and authorize Chat Memo to back up past conversations too.",
-            "ja": "Grok Bot の会話をバックアップできるようになりました。許可すると、過去の会話もバックアップできます。",
-            "es": "Ya puedes guardar las conversaciones de Grok Bot y autorizar a Chat Memo para que también guarde las anteriores."
+            "en": "Grok Bot conversations can now be backed up, with an option to authorize a history sync.",
+            "ja": "Grok Bot の会話もバックアップできるようになりました。許可すると、過去の会話も同期できます。",
+            "es": "Ya puedes guardar las conversaciones de Grok Bot y autorizar la sincronización del historial."
           }
         },
         {
           "type": "new",
-          "title": {
-            "zh-CN": "国际支付",
-            "en": "International payments",
-            "ja": "海外向けの決済に対応",
-            "es": "Pagos internacionales"
-          },
           "description": {
             "zh-CN": "国际支付开通了，欢迎推荐给海外朋友。",
-            "en": "International payments are now available. Share Chat Memo with friends around the world.",
+            "en": "International payments are now available. Feel free to recommend Chat Memo to friends overseas.",
             "ja": "海外からの支払いに対応しました。海外のお友達にも、ぜひ Chat Memo を紹介してください。",
-            "es": "Ya están disponibles los pagos internacionales. Comparte Chat Memo con tus amigos de todo el mundo."
+            "es": "Ya están disponibles los pagos internacionales. Puedes recomendar Chat Memo a tus amigos en el extranjero."
           }
         },
         {
           "type": "new",
-          "title": {
-            "zh-CN": "兑换 Pro 时长",
-            "en": "Redeem codes for Pro",
-            "ja": "コードで Pro を利用",
-            "es": "Canjea códigos por Pro"
-          },
           "description": {
             "zh-CN": "支持兑换码，在 App 里兑换 Pro 时长。",
-            "en": "Redeem codes directly in the app for Pro access.",
-            "ja": "アプリ内でコードを入力して、Pro の利用期間と引き換えられるようになりました。",
-            "es": "Canjea códigos directamente en la app para obtener tiempo de acceso a Pro."
+            "en": "Redeem codes in the app to add time to your Pro plan.",
+            "ja": "アプリ内でコードを引き換えて、Pro の利用期間を追加できるようになりました。",
+            "es": "Canjea códigos en la app para añadir tiempo a tu plan Pro."
           }
         },
         {
           "type": "new",
-          "title": {
-            "zh-CN": "Claude 网页端指引",
-            "en": "Claude web setup guide",
-            "ja": "ウェブ版 Claude の接続ガイド",
-            "es": "Guía para conectar Claude en la web"
-          },
           "description": {
             "zh-CN": "新增 Claude 网页端接入指引。",
-            "en": "Added setup instructions for connecting Claude on the web.",
-            "ja": "ウェブ版 Claude を接続するための手順を追加しました。",
+            "en": "Added setup instructions for Claude on the web.",
+            "ja": "ウェブ版 Claude の接続手順を追加しました。",
             "es": "Añadimos instrucciones para conectar Claude en la web."
           }
         },
         {
           "type": "new",
-          "title": {
-            "zh-CN": "开机自启",
-            "en": "Launch at login",
-            "ja": "ログイン時に自動起動",
-            "es": "Inicio automático al iniciar sesión"
-          },
           "description": {
             "zh-CN": "支持开机自启，重启后自动接着保存对话。",
-            "en": "Chat Memo can now launch at login and resume saving conversations after a restart.",
-            "ja": "ログイン時の自動起動に対応し、パソコンを再起動したあとも会話の保存を自動で再開できるようになりました。",
-            "es": "Chat Memo puede iniciarse al iniciar sesión y seguir guardando conversaciones después de reiniciar el equipo."
+            "en": "Added launch at login so conversation saving resumes automatically after a restart.",
+            "ja": "ログイン時の自動起動に対応し、再起動後も自動で会話の保存を再開します。",
+            "es": "Añadimos el inicio automático al iniciar sesión para seguir guardando conversaciones después de reiniciar."
           }
         },
         {
           "type": "improvement",
-          "title": {
-            "zh-CN": "更新与使用提示",
-            "en": "Clearer guidance and support",
-            "ja": "各種案内とサポートを改善",
-            "es": "Mejoras en las indicaciones y la ayuda"
-          },
           "description": {
             "zh-CN": "优化更新、登录和 Pro 提示，完善联系支持页面。",
-            "en": "Improved update, sign-in, and Pro messages, along with the support contact page.",
+            "en": "Improved update, sign-in, and Pro messages, and refined the Contact support page.",
             "ja": "更新・ログイン・Pro の案内と、サポートへの連絡ページを改善しました。",
             "es": "Mejoramos los mensajes de actualización, inicio de sesión y Pro, así como la página de contacto con soporte."
           }

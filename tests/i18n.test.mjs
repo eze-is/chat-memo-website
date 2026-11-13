@@ -66,10 +66,12 @@ test('全部历史更新四语完整，英文是唯一缺译兜底', () => {
     assert.ok(updates.length > 0);
     for (const update of [...desktopUpdates, ...updates]) {
         for (const field of ['date', 'summary']) {
+            if (field === 'summary' && update.summary === undefined) continue;
             for (const locale of locales) assert.ok(update[field][locale]?.trim(), `${update.version} ${field}.${locale}`);
         }
         for (const feature of update.features) {
             for (const field of ['title', 'description']) {
+                if (field === 'title' && feature.title === undefined) continue;
                 for (const locale of locales) assert.ok(feature[field][locale]?.trim(), `${update.version} ${field}.${locale}`);
             }
         }

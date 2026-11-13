@@ -25,7 +25,7 @@ function renderUpdate(update, locale, messages) {
 
         const featuresHtml = features.map((feature) => `
                         <div class="feature-item">
-                            <h4 class="feature-title">${escapeHtml(localized(feature.title, locale))}</h4>
+                            ${feature.title ? `<h4 class="feature-title">${escapeHtml(localized(feature.title, locale))}</h4>` : ''}
                             <p class="feature-description">${escapeHtml(localized(feature.description, locale))}</p>
                         </div>
                     `).join('');
@@ -50,7 +50,7 @@ function renderUpdate(update, locale, messages) {
                     <div class="flex items-start justify-between mb-6">
                         <div class="flex-1">
                             <h2 class="version-title">${escapeHtml(update.version)}</h2>
-                            <p class="page-subtitle mb-0">${escapeHtml(localized(update.summary, locale))}</p>
+                            ${update.summary ? `<p class="page-subtitle mb-0">${escapeHtml(localized(update.summary, locale))}</p>` : ''}
                         </div>
                         <div class="flex-shrink-0 ml-4">
                             <span class="update-date">${escapeHtml(localized(update.date, locale))}</span>

@@ -46,6 +46,18 @@ test('缺译仅回退英文，数据作为文本转义且渲染不修改输入',
     assert.equal(JSON.stringify(sample), before);
 });
 
+test('按原文展示更新说明时不补写摘要、小标题或空占位', () => {
+    const app = {
+        version: 'v1.0.9', date: { en: 'November 13, 2026' },
+        features: [{ type: 'new', description: { en: 'The approved release note.' } }]
+    };
+    const html = render({ desktopUpdates: [app], updates: [] }, 'en');
+    assert.ok(html.includes('The approved release note.'));
+    assert.ok(html.includes('November 13, 2026'));
+    assert.ok(!html.includes('class="page-subtitle mb-0"'));
+    assert.ok(!html.includes('class="feature-title"'));
+});
+
 
 test('同名版本按产品隔离，四语首响应保留两个产品入口', () => {
     const app = { ...updates[0], summary: { en: 'App release' } };
