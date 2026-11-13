@@ -29,6 +29,13 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [7890dde] — 2026-11-13 21:04:13 UTC+8 · Desktop 1.0.9 四语说明
+
+- Desktop v1.0.9 已于 2026-11-13 20:24:08（UTC+8）正式公开。官网运行内容源码 `7890ddef673255fdaeb0c14d5249333de0788115`，Cloudflare Pages **production** 部署 `d6daf003-e5ef-410c-a52e-d1848ef79c40`；实际时间取 Pages deploy 阶段 `ended_on=2026-11-13T13:04:13.470101Z`。[桌面版正式发布](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.9)
+- `desktopUpdates` 新增 1.0.9 六项说明及中、英、日、西四语译文，五份更新页由现有生成器生成。中文说明与 Desktop `releases/1.0.9.json` 逐字一致；既有桌面历史、插件记录和页面布局保持。使用独立 worktree 从实时 `origin/main` 发布，本地主树尚未发布的历史整合与 Hero 检查改动未混入。
+- 68 项官网测试、四语生成一致性、6 个法律静态页面一致性及 diff 检查通过。正式站四语更新页 HTTP 200，全部 HTML 的 SHA-256 与该发布源码一致，版本、日期及六项译文均已核对；正式 `updates-data.json` 与源码一致。部署与回读凭据分别在本机 `/private/tmp/chatmemo-website-109-deployment.json`、`/private/tmp/chatmemo-website-109-readback.json`。
+- 本次仅更新说明内容，没有重新构建或发布安装包，也未重复验收浏览器交互、下载、真实设备或客户端升级；文档回执的后续提交不替代上面的运行内容源码。[官网更新日志](https://chatmemo.ai/zh-CN/updates)
+
 ### [4c8feb8] — 2026-11-10 15:09:22 UTC+8 · 设备版本下载菜单
 
 - 生产运行内容源码 `4c8feb894fdecfe6e91e05bdcfcdb49695124212`，Cloudflare Pages production deployment `4d65c4f8-baef-4e43-bd31-9ae73f4c45ad`。首页、页尾与导航支持选择 Apple 芯片、Intel 芯片和 Windows 版本；浏览器未提供可靠信息时不自动下载。已有下载网关与安装包未重新发布。
