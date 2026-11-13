@@ -36,6 +36,8 @@ npm run check:i18n
 
 前两步构建期显式读取兄弟 Desktop 仓及其已安装锁定依赖；字体子集工具用已有`uv`临时运行。生成结果`resource/hero-desktop/`是独立静态闭包，生产浏览器不访问 Desktop 仓或其运行时。MiSans和Geist许可随资源保留。日常仅编辑网站文字时不重建 Renderer。
 
+2026-11-13 发版前复核：Desktop 新增 Grok 本地备份后，`check:hero` 仍按上方已确认的演示范围排除 Google AI Mode 与 Grok，不把正式来源表的新增项自动变成演示内容。其余来源仍逐项检查三条示例及总量、增量和正式活动布局；本次不改变 fixture 或静态产物。
+
 `devtools/hero-desktop/poster.png`来自该 Renderer 首页静止状态截图，构建时转为逐像素和色彩配置均校验的无损 `poster.webp`，与演示图标一起按独立产物发布；改了正式首页或虚构资料后一起更新。父页`hero-preview.js`拥有切换和可见性许可，子页只拥有三页的短编排与用户选页意图。iframe 直接访问 `/resource/hero-desktop/`，避免 Pages 对 `index.html` 的额外跳转。切到插件、滚出视口、后台或减少动态时暂停；回到桌面保留用户所选页。
 
 首页优先取桌面演示海报，iframe 入口将 MiSans 与应用脚本并行加载。插件封面在选中插件演示时加载，功能区视频接近视口时才请求封面并尝试播放，离开视口即暂停。三段 MP4 将索引放在文件开头，音视频流保持原样。

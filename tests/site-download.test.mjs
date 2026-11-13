@@ -13,6 +13,7 @@ function harness({ hostname = 'chatmemo.ai', fetchImpl } = {}) {
   const choose = { hidden: false }, failure = { hidden: true }, error = { hidden: true }
   const closeButton = { addEventListener(name, fn) { buttonHandlers[name] = fn } }
   const dialog = {
+    querySelectorAll() { return [] },
     open: false, contains: anchor => !!anchor.inDialog,
     querySelector(selector) { return ({ '[data-download-choose-title]': choose, '[data-download-failure-title]': failure, '[data-download-error]': error, '[data-download-close]': closeButton })[selector] },
     addEventListener(name, fn) { closeHandlers[name] = fn },
@@ -20,10 +21,10 @@ function harness({ hostname = 'chatmemo.ai', fetchImpl } = {}) {
     close() { this.open = false; closeHandlers.close?.() },
   }
   const location = { hostname, origin: `https://${hostname}`, href: `https://${hostname}/zh-CN/`, assign(value) { assigned.push(value) } }
-  const document = { getElementById(id) { return id === 'download-dialog' ? dialog : null }, addEventListener(name, fn) { documentHandlers[name] = fn } }
+  const document = { querySelectorAll() { return [] }, getElementById(id) { return id === 'download-dialog' ? dialog : null }, addEventListener(name, fn) { documentHandlers[name] = fn } }
   const fetch = async (...args) => { calls.push(args); return fetchImpl(...args) }
   const window = { location, fetch }
-  vm.runInNewContext(source, { window, document, fetch, URL, AbortController, setTimeout, clearTimeout })
+  vm.runInNewContext(source, { window, document, navigator: {}, fetch, URL, AbortController, setTimeout, clearTimeout })
   function anchor(path = '/desktop/download?link=website', inDialog = false) {
     const attrs = new Map()
     return { href: `https://chatmemo.ai${path}`, target: '', inDialog, focused: false,
@@ -46,6 +47,15 @@ test('下载准备成功后只在原窗口交给浏览器，www 也使用主域�
   assert.equal(e.defaultPrevented, true)
   assert.equal(h.calls[0][0], 'https://chatmemo.ai/desktop/download/prepare?link=website')
   assert.deepEqual(h.assigned, ['https://chatmemo.ai' + valid])
+})
+
+test('Intel 下载使用 Intel 准备入口，并接受固定版本的 Intel DMG', async () => {
+  const intel = '/desktop/releases/v1.2.3/chatmemo-1.2.3-x64.dmg'
+  const h = harness({ fetchImpl: async () => ready(intel) })
+  h.click(h.anchor('/desktop/download/mac-intel?link=website'))
+  await flush()
+  assert.equal(h.calls[0][0], 'https://chatmemo.ai/desktop/download/prepare/mac-intel?link=website')
+  assert.deepEqual(h.assigned, ['https://chatmemo.ai' + intel])
 })
 
 test('不可信目的地与准备失败显示弹窗，而不是跳转错误页面', async () => {

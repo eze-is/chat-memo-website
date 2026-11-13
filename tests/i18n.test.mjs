@@ -145,6 +145,13 @@ test('地区语言归入基础语言，未知语言回退英文', async () => {
     assert.equal((await createRuntime({ url: 'https://chatmemo.ai/', languages: ['fr-FR'] })).location.href, 'https://chatmemo.ai/en/');
 });
 
+test('下载页中立入口避开旧服务路径并按浏览器语言选择', async () => {
+    const context = await createRuntime({ url: 'https://chatmemo.ai/get?ref=footer', languages: ['zh-CN'], page: 'downloads' });
+    assert.equal(context.runtime.routeInfo('/get').page, 'downloads');
+    assert.equal(context.location.href, 'https://chatmemo.ai/zh-CN/downloads?ref=footer');
+    assert.equal(context.getWrites(), 0);
+});
+
 test('明确的语言路径优先于旧查询参数、保存偏好和浏览器语言', async () => {
     const context = await createRuntime({
         url: 'https://chatmemo.ai/ja/welcome?lang=es', languages: ['es-MX'], saved: 'zh-CN', page: 'welcome'

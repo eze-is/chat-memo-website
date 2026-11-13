@@ -134,7 +134,7 @@
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/downloads"/>
         <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/downloads"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/downloads"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/downloads"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/get"/>
     </url>
     <url>
         <loc>https://chatmemo.ai/zh-CN/downloads</loc>
@@ -142,7 +142,7 @@
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/downloads"/>
         <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/downloads"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/downloads"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/downloads"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/get"/>
     </url>
     <url>
         <loc>https://chatmemo.ai/ja/downloads</loc>
@@ -150,7 +150,7 @@
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/downloads"/>
         <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/downloads"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/downloads"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/downloads"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/get"/>
     </url>
     <url>
         <loc>https://chatmemo.ai/es/downloads</loc>
@@ -158,6 +158,6 @@
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/downloads"/>
         <xhtml:link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/downloads"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/downloads"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/downloads"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/get"/>
     </url>
 </urlset>
