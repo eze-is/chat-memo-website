@@ -29,6 +29,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [360b18a] — 2026-11-13 21:13:44 UTC+8 · 1.0.9 保留功能标题
+
+- 运行内容源码 `360b18a94d6b1c737469e1dc653a56b5285f49e5`，Cloudflare Pages production 部署 `1348fb2c-f14a-4e21-9169-5e3be2838514`；实际时间取 deploy 阶段 `ended_on=2026-11-13T13:13:44.667716Z`。
+- 六项说明恢复中、英、日、西四语功能小标题；正文逐字保留上次已确认原文，不恢复额外摘要。不修改渲染器、样式或其他历史记录。
+- 69 项官网测试、四语生成一致性、diff 检查通过。正式四语 HTML 与源码一致，六个标题及原文正文均已回读；回执为 `/private/tmp/chatmemo-website-109-titles-deployment.json` 和 `/private/tmp/chatmemo-website-109-titles-readback.json`。
+
 ### [3251d40] — 2026-11-13 21:11:09 UTC+8 · 1.0.9 沿用已确认原文
 
 - 运行内容源码 `3251d4008888fec4c2cecbf4c52616b8285600b3`，Cloudflare Pages production 部署 `070d5bcd-a94c-4e55-9e0f-6b2ce8d056fb`；实际时间取 deploy 阶段 `ended_on=2026-11-13T13:11:09.479366Z`。
