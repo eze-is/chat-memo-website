@@ -1303,6 +1303,62 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.10",
+      "date": {
+        "zh-CN": "2026年11月16日",
+        "en": "November 16, 2026",
+        "ja": "2026年11月16日",
+        "es": "16 de noviembre de 2026"
+      },
+      "features": [
+        {
+          "type": "new",
+          "description": {
+            "zh-CN": "新增深色外观，可在设置里选跟随系统、浅色或深色。",
+            "en": "Added dark appearance. Choose System, Light, or Dark in Settings.",
+            "ja": "ダークモードを追加しました。設定で「システムに従う」「ライト」「ダーク」を選べます。",
+            "es": "Añadimos el modo oscuro. En Ajustes, puedes elegir entre Sistema, Claro y Oscuro."
+          }
+        },
+        {
+          "type": "improvement",
+          "description": {
+            "zh-CN": "更新包准备就绪后，点击系统通知即可打开更新弹窗。更新说明会跟随 App 语言。",
+            "en": "Open the update dialog from the system notification when an update is ready. Release notes follow the app language.",
+            "ja": "更新の準備ができると、システム通知から更新ダイアログを開けます。更新内容はアプリで設定した言語で表示します。",
+            "es": "Cuando la actualización esté lista, puedes abrir el cuadro de actualización desde la notificación del sistema. Las notas se muestran en el idioma de la aplicación."
+          }
+        },
+        {
+          "type": "improvement",
+          "description": {
+            "zh-CN": "简化 Grok Bot 历史补全提示，清楚显示同步结果和未保存的图片。",
+            "en": "Simplified Grok Bot history sync to make the result and unsaved images easier to see.",
+            "ja": "Grok Bot の履歴同期の案内を簡潔にし、同期結果と保存できなかった画像を確認しやすくしました。",
+            "es": "Simplificamos el aviso de sincronización del historial de Grok Bot para que sea más fácil ver el resultado y qué imágenes no se guardaron."
+          }
+        },
+        {
+          "type": "improvement",
+          "description": {
+            "zh-CN": "来源离线时也能关闭自动存入。活动趋势的图例现在按所选时段汇总。",
+            "en": "Turn off automatic saving for offline sources. The activity chart legend now summarizes the selected date range.",
+            "ja": "保存元がオフラインでも自動保存をオフにできます。アクティビティグラフの凡例は、選択した期間の集計を表示します。",
+            "es": "Puedes desactivar el guardado automático aunque la fuente esté sin conexión. La leyenda del gráfico de actividad ahora resume el periodo seleccionado."
+          }
+        },
+        {
+          "type": "fix",
+          "description": {
+            "zh-CN": "修复诊断日志长时间无响应时可能卡住退出的问题。",
+            "en": "Fixed an issue where an unresponsive diagnostic log could prevent the app from quitting.",
+            "ja": "診断ログが長時間応答しない場合に、アプリを終了できなくなることがある問題を修正しました。",
+            "es": "Corregimos un problema que podía impedir que la aplicación se cerrara si el registro de diagnóstico dejaba de responder durante mucho tiempo."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.9",
       "date": {
         "zh-CN": "2026年11月13日",
