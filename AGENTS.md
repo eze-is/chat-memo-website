@@ -2,6 +2,10 @@
 
 Chat Memo 产品家族的公开官网，生产地址 `https://chatmemo.ai`。
 
+## 埋点与数据分析（必读）
+
+涉及官网统计、获客分析或用量，或业务改动影响已有事件时，必须先读 [统一规范](../analytics/TELEMETRY-AND-ANALYTICS.md)，再读 [`doc/RELEASES.md`](doc/RELEASES.md) 的统计合同及真实生产者。官网 GA4 浏览、下载服务请求、App 首开与账号注册是不同事实；统计失败不得阻断官网交互，不能凭独立累计量推断逐人转化。
+
 ## 生产事实
 
 - Git 仓库：`eze-is/chat-memo-website`

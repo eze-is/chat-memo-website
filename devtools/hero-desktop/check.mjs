@@ -33,7 +33,8 @@ if (!errors.length) {
   const { SOURCES } = load(join(desktop, 'src/renderer/src/product/v1-data.ts'))
   const { fixture } = load(join(root, 'fixture.tsx'))
   const initial = fixture(false, false, false), saved = fixture(false, true, false)
-  const expected = SOURCES.filter(source => source.id !== 'google-ai-mode').map(source => source.id).sort()
+  // 官网演示范围由 HERO-PRODUCT-PREVIEW.md「当前确认」拥有；新增正式来源不自动进入已确认示例。
+  const expected = SOURCES.filter(source => !['google-ai-mode', 'grok-bot'].includes(source.id)).map(source => source.id).sort()
   assert.deepEqual([...new Set(initial.recordList.map(item => item.source))].sort(), [...expected])
   for (const id of expected) assert.equal(initial.recordList.filter(item => item.source === id).length, 3, id)
   for (const data of [initial, saved]) {
