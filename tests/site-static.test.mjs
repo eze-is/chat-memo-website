@@ -169,7 +169,8 @@ test('四语更新记录在初始 HTML 中完整可见，结构化 FAQ 与正文
         const container = find(updatesDocument, (node) => attribute(node, 'id') === 'updates-container');
         assert.ok(!(attribute(container, 'class') || '').split(' ').includes('hidden'), locale);
         assert.equal(attribute(container, 'data-rendered-locale'), locale);
-        assert.ok(textOf(container).includes(updates[0].summary[locale]), locale);
+        const leadText = updates[0].summary?.[locale] ?? updates[0].features[0].title[locale];
+        assert.ok(textOf(container).includes(leadText), locale);
 
         const homeDocument = parse(fs.readFileSync(path.join(base, 'index.html'), 'utf8'));
         const faqScript = find(homeDocument, (node) => node.tagName === 'script' && attribute(node, 'type') === 'application/ld+json' && textOf(node).includes('FAQPage'));
