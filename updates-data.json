@@ -1303,6 +1303,44 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.11",
+      "date": {
+        "zh-CN": "2026年11月19日",
+        "en": "November 19, 2026",
+        "ja": "2026年11月19日",
+        "es": "19 de noviembre de 2026"
+      },
+      "features": [
+        {
+          "type": "new",
+          "description": {
+            "zh-CN": "现在可以在连接页导入 DeepSeek 网页端的历史对话。更多平台将陆续支持。",
+            "en": "Import your DeepSeek web chat history from the Connections page. More platforms are on the way.",
+            "ja": "「接続」ページから、DeepSeek ウェブ版の過去の会話をインポートできるようになりました。今後、対応するサービスを順次追加します。",
+            "es": "Ahora puedes importar tu historial de conversaciones de la versión web de DeepSeek desde la página Conexiones. Añadiremos más plataformas próximamente."
+          }
+        },
+        {
+          "type": "improvement",
+          "description": {
+            "zh-CN": "优化了浏览器插件保存 DeepSeek 对话的格式，支持图片和公式。",
+            "en": "The browser extension now preserves images and formulas when saving DeepSeek chats.",
+            "ja": "ブラウザー拡張機能で DeepSeek の会話を保存する際、画像や数式も保存できるようになりました。",
+            "es": "La extensión del navegador ahora conserva las imágenes y las fórmulas al guardar conversaciones de DeepSeek."
+          }
+        },
+        {
+          "type": "new",
+          "description": {
+            "zh-CN": "新增 Gemini 跨 AI 互通指引。",
+            "en": "Added a guide to connecting Gemini with Chat Memo.",
+            "ja": "Gemini と Chat Memo を連携するためのガイドを追加しました。",
+            "es": "Añadimos una guía para conectar Gemini con Chat Memo."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.10",
       "date": {
         "zh-CN": "2026年11月16日",
