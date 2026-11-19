@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=a88a9db990f7">
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=3dc5eb7d9141">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -80,74 +80,6 @@
             box-shadow: none;
         }
 
-        /* 标签样式 - 提高饱和度 */
-        .tag-new {
-            background: rgba(0, 200, 150, 0.15);
-            color: #00c896;
-            border: 1px solid rgba(0, 200, 150, 0.3);
-        }
-
-        .tag-improvement {
-            background: rgba(59, 130, 246, 0.15);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .tag-fix {
-            background: rgba(251, 146, 60, 0.15);
-            color: #fb923c;
-            border: 1px solid rgba(251, 146, 60, 0.3);
-        }
-
-        /* 分组标题文本颜色 */
-        .text-new {
-            color: #00c896;
-        }
-
-        .text-improvement {
-            color: #3b82f6;
-        }
-
-        .text-fix {
-            color: #fb923c;
-        }
-
-        /* 分组容器样式 */
-        .feature-group {
-            background: rgba(248, 250, 252, 0.6);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            transition: all 0.2s ease-in-out;
-        }
-
-
-        /* 分组标题样式 */
-        .group-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(226, 232, 240, 0.6);
-        }
-
-        /* 功能项样式优化 */
-        .feature-item {
-            background: white;
-            border: 1px solid rgba(226, 232, 240, 0.5);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            transition: all 0.15s ease-in-out;
-        }
-
-
-        /* 图标样式 */
-        .group-icon {
-            font-size: 1.25rem;
-            margin-right: 0.5rem;
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-        }
-
         /* 页面标题样式优化 */
         .page-title {
             font-size: 2.5rem;
@@ -172,18 +104,68 @@
             margin-bottom: 0.75rem;
         }
 
-        /* 功能描述样式 */
-        .feature-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #37352f;
-            margin-bottom: 0.25rem;
+        .update-article .feature-item + .feature-item {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
         }
-
-        .feature-description {
-            font-size: 0.875rem;
+        .update-article .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .update-article .feature-description {
+            font-size: 0.9375rem;
+            line-height: 1.75;
             color: rgba(55, 53, 47, 0.65);
-            line-height: 1.5;
+        }
+        .update-article .feature-description + .feature-description { margin-top: 10px; }
+        .update-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: 12px;
+            max-width: 640px;
+            margin: 16px auto 0;
+        }
+        .update-images .update-image { margin: 0; }
+        .update-image {
+            display: grid;
+            width: 100%;
+            max-width: 640px;
+            margin: 16px auto 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .update-image img { width: 100%; height: auto; }
+        .update-article .desktop-download-choice,
+        .update-article .feature-item > .update-download {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: fit-content;
+            max-width: 100%;
+            margin: 12px 0 0;
+        }
+        .update-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 8px 18px;
+            border: 1px solid #dce4fa;
+            border-radius: 999px;
+            background: #f3f6ff;
+            color: #344ca0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .update-download:hover { background: #eaf0ff; }
+        @media (max-width: 480px) {
+            .update-article .feature-item + .feature-item { margin-top: 22px; padding-top: 20px; }
         }
 
         /* 日期样式 */
@@ -309,7 +291,7 @@
     const afterLoad = () => setTimeout(start, 0);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad, { once: true });
-})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=a88a9db990f7"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
+})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=3dc5eb7d9141"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -396,20 +378,6 @@
             <div id="hero-content" class="hero-content container mx-auto px-6 text-center content-container relative z-10">
                 <h1 class="page-title" data-key="updates-title">Chat Memo の更新履歴</h1>
                 <p class="page-subtitle max-w-2xl mx-auto" data-key="updates-subtitle">Chat Memo の改善と、新しくできるようになったことをお知らせします</p>
-                <div class="flex justify-center items-center space-x-6 text-sm">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #00c896;"></div>
-                        <span class="text-gray-600" data-key="tag-new">新機能</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #3b82f6;"></div>
-                        <span class="text-gray-600" data-key="tag-improvement">改善</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #fb923c;"></div>
-                        <span class="text-gray-600" data-key="tag-fix">不具合修正</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -436,42 +404,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">「接続」ページから、DeepSeek ウェブ版の過去の会話をインポートできるようになりました。今後、対応するサービスを順次追加します。</p>
+
+                        </div>
+
+                        <div class="feature-item">
+
+                            <p class="feature-description">ブラウザー拡張機能で DeepSeek の会話を保存する際、画像や数式も保存できるようになりました。</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Gemini と Chat Memo を連携するためのガイドを追加しました。</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-
-                            <p class="feature-description">ブラウザー拡張機能で DeepSeek の会話を保存する際、画像や数式も保存できるようになりました。</p>
-                        </div>
-
-                            </div>
                         </div>
 
                     </div>
@@ -491,62 +441,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">ダークモードを追加しました。設定で「システムに従う」「ライト」「ダーク」を選べます。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">更新の準備ができると、システム通知から更新ダイアログを開けます。更新内容はアプリで設定した言語で表示します。</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Grok Bot の履歴同期の案内を簡潔にし、同期結果と保存できなかった画像を確認しやすくしました。</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">保存元がオフラインでも自動保存をオフにできます。アクティビティグラフの凡例は、選択した期間の集計を表示します。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">診断ログが長時間応答しない場合に、アプリを終了できなくなることがある問題を修正しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -566,57 +490,42 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Grok Bot の会話をバックアップ</h4>
+                            <h3 class="feature-title">Grok Bot の会話をバックアップ</h3>
                             <p class="feature-description">Grok Bot の会話もバックアップできるようになりました。許可すると、過去の会話も同期できます。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">海外向けの決済に対応</h4>
+                            <h3 class="feature-title">海外向けの決済に対応</h3>
                             <p class="feature-description">海外からの支払いに対応しました。海外のお友達にも、ぜひ Chat Memo を紹介してください。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">コードで Pro を利用</h4>
+                            <h3 class="feature-title">コードで Pro を利用</h3>
                             <p class="feature-description">アプリ内でコードを引き換えて、Pro の利用期間を追加できるようになりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">ウェブ版 Claude の接続ガイド</h4>
+                            <h3 class="feature-title">ウェブ版 Claude の接続ガイド</h3>
                             <p class="feature-description">ウェブ版 Claude の接続手順を追加しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">ログイン時に自動起動</h4>
+                            <h3 class="feature-title">ログイン時に自動起動</h3>
                             <p class="feature-description">ログイン時の自動起動に対応し、再起動後も自動で会話の保存を再開します。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">各種案内とサポートを改善</h4>
+                            <h3 class="feature-title">各種案内とサポートを改善</h3>
                             <p class="feature-description">更新・ログイン・Pro の案内と、サポートへの連絡ページを改善しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -636,42 +545,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">AI 間のコンテキスト共有ガイド</h4>
+                            <h3 class="feature-title">AI 間のコンテキスト共有ガイド</h3>
                             <p class="feature-description">AI 間でコンテキストを共有するためのガイドを追加し、Manus、ChatGPT、Grok Bot の接続手順を詳しく案内します。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Code の会話表示</h4>
+                            <h3 class="feature-title">Claude Code の会話表示</h3>
                             <p class="feature-description">Claude Code の解析を改善し、画像やファイルへの参照をより漏れなく表示できるようになりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">会話を再同期</h4>
+                            <h3 class="feature-title">会話を再同期</h3>
                             <p class="feature-description">会話の表示形式が崩れている場合は、詳細ページ右上の「⋯」をクリックし、「この会話を再同期」を選択してください。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -691,52 +582,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">会話のバックアップと表示</h4>
+                            <h3 class="feature-title">会話のバックアップと表示</h3>
                             <p class="feature-description">Codex、DeepSeek などの会話バックアップを改善し、画像・動画・ファイル参照の表示を改善しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">記録をよりスムーズに閲覧</h4>
+                            <h3 class="feature-title">記録をよりスムーズに閲覧</h3>
                             <p class="feature-description">会話が多い場合でも、記録の読み込みやスクロールがよりスムーズになりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">バックアップの状態を表示</h4>
+                            <h3 class="feature-title">バックアップの状態を表示</h3>
                             <p class="feature-description">バックアップ中は右上の更新アイコンが回転し続け、処理中であることを表示します。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">接続エラーの案内を改善</h4>
+                            <h3 class="feature-title">接続エラーの案内を改善</h3>
                             <p class="feature-description">ブラウザー拡張機能に接続できない場合、原因と対処方法をよりわかりやすく案内します。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">返金後の再購入を修正</h4>
+                            <h3 class="feature-title">返金後の再購入を修正</h3>
                             <p class="feature-description">返金後に再購入できなくなる問題を修正しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -756,37 +631,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">AI との会話を自動でバックアップ</h4>
+                            <h3 class="feature-title">AI との会話を自動でバックアップ</h3>
                             <p class="feature-description">接続したデスクトップのエージェントやウェブ版 AI との会話を自動でバックアップします。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">別の AI で会話を続ける</h4>
+                            <h3 class="feature-title">別の AI で会話を続ける</h3>
                             <p class="feature-description">AI 間で会話の文脈を引き継げるので、別の AI に切り替えても同じ話題を続けられます。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">会話は自分のパソコンに保存</h4>
+                            <h3 class="feature-title">会話は自分のパソコンに保存</h3>
                             <p class="feature-description">Chat Memo は会話のバックアップをお使いのパソコンに保存します。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">すばやく検索し、必要な文脈を取り出す</h4>
+                            <h3 class="feature-title">すばやく検索し、必要な文脈を取り出す</h3>
                             <p class="feature-description">キーワードで過去の会話を見つけ、必要に応じて AI が関連する箇所を参照できます。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -809,57 +677,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Chat Memo デスクトップ版と連携</h4>
-                            <p class="feature-description">会話をパソコンにバックアップし、接続した AI から検索・参照できます。別の AI でも、会話の続きを。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">画面を一新</h4>
+                            <h3 class="feature-title">画面を一新</h3>
                             <p class="feature-description">サイドバーと保存状況を示すフローティング表示を刷新。会話の閲覧や接続の管理がわかりやすくなりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Google AI Mode の保存を一時停止</h4>
-                            <p class="feature-description">Google AI Mode の新しい会話の保存を一時停止しています。保存済みの会話は引き続き閲覧・エクスポートできます。</p>
-                        </div>
+                            <h3 class="feature-title">Chat Memo デスクトップ版と連携</h3>
+                            <p class="feature-description">会話をパソコンにバックアップし、接続した AI から検索・参照できます。別の AI でも、会話の続きを。</p>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">保存処理を改善</h4>
+                            <h3 class="feature-title">保存処理を改善</h3>
                             <p class="feature-description">会話の保存、保存完了の表示、中断したアップグレードの再開、デスクトップ版のダウンロードを改善しました。新たに保存するのは、ユーザーの発言と AI の回答本文のみです。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Google AI Mode の保存を一時停止</h3>
+                            <p class="feature-description">Google AI Mode の新しい会話の保存を一時停止しています。保存済みの会話は引き続き閲覧・エクスポートできます。</p>
+
                         </div>
 
                     </div>
@@ -879,37 +720,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">ウェブ版 Claude Code に対応</h4>
-                            <p class="feature-description">claude.ai/code でのセッションも自動的に保存されるようになりました。保存されるのは入力したメッセージと Claude のテキスト返信のみで、ツールの使用やコードの変更内容は保存されません。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Claude の会話保存を復旧</h4>
+                            <h3 class="feature-title">Claude の会話保存を復旧</h3>
                             <p class="feature-description">Claude のウェブサイトが最近刷新されたあと、会話が保存されなくなっていました。新しい画面に対応しました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">ウェブ版 Claude Code に対応</h3>
+                            <p class="feature-description">claude.ai/code でのセッションも自動的に保存されるようになりました。保存されるのは入力したメッセージと Claude のテキスト返信のみで、ツールの使用やコードの変更内容は保存されません。</p>
+
                         </div>
 
                     </div>
@@ -929,52 +751,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Cowork に対応</h4>
-                            <p class="feature-description">Claude Cowork での会話も自動的に保存されるようになりました。</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">ChatGPT dot に対応</h4>
-                            <p class="feature-description">ChatGPT dot との会話も自動的に保存されるようになりました。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">ChatGPT の会話保存を復旧</h4>
+                            <h3 class="feature-title">ChatGPT の会話保存を復旧</h3>
                             <p class="feature-description">ChatGPT のウェブサイトが最近刷新されたあと、会話が保存されなくなっていました。新しい画面に対応し、同じタブで会話を切り替えた場合も、それぞれの会話が対応する記録に保存されます。この期間に保存されなかった会話は、開き直すと保存が再開されます。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">一部のブラウザで自動保存が開始されない問題を修正</h4>
+                            <h3 class="feature-title">一部のブラウザで自動保存が開始されない問題を修正</h3>
                             <p class="feature-description">バージョン 1.5.0 は一部のブラウザで起動に失敗し、すべてのプラットフォームで保存されない状態になっていました。この問題を修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude の返信が保存されない問題を修正</h4>
+                            <h3 class="feature-title">Claude の返信が保存されない問題を修正</h3>
                             <p class="feature-description">Claude の返信にウェブ検索、ツールの使用、思考プロセスが含まれる場合、返信全体が保存されないことがありました。現在は保存されます。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Claude Cowork に対応</h3>
+                            <p class="feature-description">Claude Cowork での会話も自動的に保存されるようになりました。</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">ChatGPT dot に対応</h3>
+                            <p class="feature-description">ChatGPT dot との会話も自動的に保存されるようになりました。</p>
+
                         </div>
 
                     </div>
@@ -994,47 +800,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Cowork に対応</h4>
-                            <p class="feature-description">Claude Cowork での会話も自動的に保存されるようになりました。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">ChatGPT の会話保存を復旧</h4>
+                            <h3 class="feature-title">ChatGPT の会話保存を復旧</h3>
                             <p class="feature-description">ChatGPT のウェブサイトが最近刷新されたあと、会話が保存されなくなっていました。新しい画面に対応し、同じタブで会話を切り替えた場合も、それぞれの会話が対応する記録に保存されます。この期間に保存されなかった会話は、開き直すと保存が再開されます。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">一部のブラウザで自動保存が開始されない問題を修正</h4>
+                            <h3 class="feature-title">一部のブラウザで自動保存が開始されない問題を修正</h3>
                             <p class="feature-description">バージョン 1.5.0 は一部のブラウザで起動に失敗し、すべてのプラットフォームで保存されない状態になっていました。この問題を修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude の返信が保存されない問題を修正</h4>
+                            <h3 class="feature-title">Claude の返信が保存されない問題を修正</h3>
                             <p class="feature-description">Claude の返信にウェブ検索、ツールの使用、思考プロセスが含まれる場合、返信全体が保存されないことがありました。現在は保存されます。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Claude Cowork に対応</h3>
+                            <p class="feature-description">Claude Cowork での会話も自動的に保存されるようになりました。</p>
+
                         </div>
 
                     </div>
@@ -1054,67 +843,42 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">日本語・スペイン語の画面表示に対応</h4>
+                            <h3 class="feature-title">日本語・スペイン語の画面表示に対応</h3>
                             <p class="feature-description">Chrome の表示言語が日本語またはスペイン語なら、Chat Memo もその言語で表示します。保存済みの会話の原文は変わりません。未対応の表示言語では英語で表示します。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">プラットフォームごとの自動保存設定</h4>
+                            <h3 class="feature-title">プラットフォームごとの自動保存設定</h3>
                             <p class="feature-description">「プラットフォーム設定」で、9 つのプラットフォームそれぞれの自動保存を一時停止・再開できます。全体のスイッチをオフにしても個別設定は保持され、フローティングラベルには一時停止の状態が表示されます。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">現在の会話の状態をわかりやすく表示</h4>
+                            <h3 class="feature-title">現在の会話の状態をわかりやすく表示</h3>
                             <p class="feature-description">一覧で現在のページに対応する記録がわかるようになり、自動保存の一時停止も表示します。同じ会話に複数のローカル記録がある場合は管理画面で確認できます。既存の記録を自動で統合・削除することはありません。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">狭いサイドバーと多言語混在の表示を改善</h4>
+                            <h3 class="feature-title">狭いサイドバーと多言語混在の表示を改善</h3>
                             <p class="feature-description">検索、複数選択、エクスポート、日付フィルターがサイドバーの幅に合わせて表示され、文字のずれを抑えます。日本語・中国語・英語などが混在するタイトルや本文も、より自然に表示されます。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Google AI Mode の会話保存を改善</h4>
+                            <h3 class="feature-title">Google AI Mode の会話保存を改善</h3>
                             <p class="feature-description">会話の内容からローカル記録を照合し、元ページのリンク変更による重複保存を減らしました。内容が実際に分岐した場合は、元の記録を残したまま別々に保存します。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Gemini の会話切り替え時の保存先を修正</h4>
+                            <h3 class="feature-title">Gemini の会話切り替え時の保存先を修正</h3>
                             <p class="feature-description">同じタブで Gemini の会話を切り替えたとき、直前の会話の内容が新しい記録に書き込まれる場合がある問題を修正しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1134,52 +898,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Google AI Mode に対応</h4>
+                            <h3 class="feature-title">Google AI Mode に対応</h3>
                             <p class="feature-description">Google AI Mode の会話を Chat Memo に自動保存できるようになりました。フィルター、エクスポート、元の会話を開く操作にも対応します。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">削除後の表示をより一貫した状態に</h4>
-                            <p class="feature-description">記録を削除・消去した後、開いているサイドバーは一覧に戻ります。また、現在開いている元のページから削除済みの記録がすぐに再作成されることを防ぎます。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">会話内容の取りこぼしを修正</h4>
+                            <h3 class="feature-title">会話内容の取りこぼしを修正</h3>
                             <p class="feature-description">リンクを含む ChatGPT のユーザーメッセージと、新しい Tencent Yuanbao のディープサーチの返信が完全に保存されない問題を修正しました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">削除後の表示をより一貫した状態に</h3>
+                            <p class="feature-description">記録を削除・消去した後、開いているサイドバーは一覧に戻ります。また、現在開いている元のページから削除済みの記録がすぐに再作成されることを防ぎます。</p>
+
                         </div>
 
                     </div>
@@ -1199,47 +935,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">データのバックアップとアップグレード時の案内</h4>
-                            <p class="feature-description">今回の更新にはデータ移行が含まれます。移行前にはローカルのスナップショットを自動で保持します。1.3.3 から更新した後は、「設定 → データバックアップ」から更新前のスナップショットと Markdown 文書をダウンロードできます。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">保存機能を大幅に修正</h4>
+                            <h3 class="feature-title">保存機能を大幅に修正</h3>
                             <p class="feature-description">Doubao、ChatGPT などで起きていた同期の問題を修正しました。以前から保存に失敗していた、または同期が止まっている会話は、Chat Memo 内の該当記録を削除して取り込み直してください。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">元の Web ページでの削除を同期しない方式に変更</h4>
+                            <h3 class="feature-title">元の Web ページでの削除を同期しない方式に変更</h3>
                             <p class="feature-description">同期を安定させるため、Web ページで手動削除したメッセージは Chat Memo 側では削除されなくなりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">取り込みをすべて自動保存に統一</h4>
+                            <h3 class="feature-title">取り込みをすべて自動保存に統一</h3>
                             <p class="feature-description">手動保存モードを廃止しました。設定画面から自動保存を一時停止することは引き続き可能です。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">データのバックアップとアップグレード時の案内</h3>
+                            <p class="feature-description">今回の更新にはデータ移行が含まれます。移行前にはローカルのスナップショットを自動で保持します。1.3.3 から更新した後は、「設定 → データバックアップ」から更新前のスナップショットと Markdown 文書をダウンロードできます。</p>
+
                         </div>
 
                     </div>
@@ -1259,22 +978,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">データ保持の強化</h4>
+                            <h3 class="feature-title">データ保持の強化</h3>
                             <p class="feature-description">永続的なストレージを要求し、ローカルに保存した会話の容量制限を取り除きました。ブラウザのストレージ容量が逼迫したときの自動削除の対象からも除外されます。データは引き続きすべてお使いの端末に保存されます。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1294,22 +1003,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Doubao の AI 返信の同期を修正</h4>
+                            <h3 class="feature-title">Doubao の AI 返信の同期を修正</h3>
                             <p class="feature-description">Doubao で AI 返信のページ構造が変わり、ユーザーのメッセージだけが同期されていました。新しい構造に対応し、AI の返信も再び保存できるようにしました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1329,37 +1028,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">コピー時のフィードバックを改善</h4>
-                            <p class="feature-description">一部のブラウザで会話をコピーしても成功メッセージが表示されない問題を修正しました。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Doubao への対応を修正</h4>
+                            <h3 class="feature-title">Doubao への対応を修正</h3>
                             <p class="feature-description">Doubao の画面更新で data-testid 属性が削除され、会話を保存できなくなっていた問題を修正しました。画面変更の影響を受けにくい属性に切り替えています。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">コピー時のフィードバックを改善</h3>
+                            <p class="feature-description">一部のブラウザで会話をコピーしても成功メッセージが表示されない問題を修正しました。</p>
+
                         </div>
 
                     </div>
@@ -1379,57 +1059,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Qwen に対応</h4>
+                            <h3 class="feature-title">Qwen に対応</h3>
                             <p class="feature-description">Qwen の AI チャットを自動保存できるようになりました。安定した意味上のセレクターを使い、画面変更に対応しやすくしています。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">データ読み込みをより安定させました</h4>
-                            <p class="feature-description">1 件の破損した記録によって会話がすべて読み込めなくなることを防ぎました。破損した会話には空白画面の代わりに警告を表示します。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">DeepSeek への対応を修正</h4>
+                            <h3 class="feature-title">DeepSeek への対応を修正</h3>
                             <p class="feature-description">DeepSeek のページ構造変更により、会話を自動保存できなくなっていた問題を修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Gemini への対応を修正</h4>
+                            <h3 class="feature-title">Gemini への対応を修正</h3>
                             <p class="feature-description">中国語環境の Gemini で、ユーザーメッセージの先頭にアクセシビリティ用の余分な文言が入る問題を修正しました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">データ読み込みをより安定させました</h3>
+                            <p class="feature-description">1 件の破損した記録によって会話がすべて読み込めなくなることを防ぎました。破損した会話には空白画面の代わりに警告を表示します。</p>
+
                         </div>
 
                     </div>
@@ -1449,47 +1102,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Kimi に対応</h4>
+                            <h3 class="feature-title">Kimi に対応</h3>
                             <p class="feature-description">Kimi の会話を自動保存できるようになり、対応する AI サービスがさらに増えました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">使い方を案内するガイドを追加</h4>
-                            <p class="feature-description">ブラウザ内のページで拡張機能を押すと、使い始め方を案内する Chat Memo のポップアップが表示されます。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">フローティングラベルのデザインを刷新</h4>
+                            <h3 class="feature-title">フローティングラベルのデザインを刷新</h3>
                             <p class="feature-description">フローティングラベルをより洗練された見た目に改め、操作時の使い心地も改善しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">ブラウザ互換性を大幅に改善</h4>
+                            <h3 class="feature-title">ブラウザ互換性を大幅に改善</h3>
                             <p class="feature-description">Dia、Quark などを含むブラウザで拡張機能の画面が正常に表示されるよう改善しました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">使い方を案内するガイドを追加</h3>
+                            <p class="feature-description">ブラウザ内のページで拡張機能を押すと、使い始め方を案内する Chat Memo のポップアップが表示されます。</p>
+
                         </div>
 
                     </div>
@@ -1509,52 +1145,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">対応する AI サービスを追加</h4>
+                            <h3 class="feature-title">対応する AI サービスを追加</h3>
                             <p class="feature-description">Kimi に対応し、会話を自動保存できるようになりました。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">ブラウザ互換性を大幅に改善</h4>
-                            <p class="feature-description">Dia、Quark などを含むブラウザで拡張機能の画面が正常に表示されるよう、互換性を改善しました。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Doubao の問題を修正</h4>
+                            <h3 class="feature-title">Doubao の問題を修正</h3>
                             <p class="feature-description">Doubao でメッセージを保存できない問題を修正し、会話を安定して残せるようにしました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">ブラウザ互換性を大幅に改善</h3>
+                            <p class="feature-description">Dia、Quark などを含むブラウザで拡張機能の画面が正常に表示されるよう、互換性を改善しました。</p>
+
                         </div>
 
                     </div>
@@ -1574,57 +1182,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">新たな AI サービスに対応</h4>
+                            <h3 class="feature-title">新たな AI サービスに対応</h3>
                             <p class="feature-description">Doubao と Claude の会話も自動保存できるようになりました。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">長いメッセージを折りたたみ、読みやすく</h4>
+                            <h3 class="feature-title">長いメッセージを折りたたみ、読みやすく</h3>
                             <p class="feature-description">詳細画面で長い会話を折りたたみ、読みやすさとページの動作を改善しました。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">エクスポート機能を改善</h4>
+                            <h3 class="feature-title">エクスポート機能を改善</h3>
                             <p class="feature-description">エクスポートに関する表示と多言語対応の問題を修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">会話の日時を修正</h4>
+                            <h3 class="feature-title">会話の日時を修正</h3>
                             <p class="feature-description">保存済みの会話の元ページを再び開くと、会話の日時が変わってしまう問題を修正しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1644,62 +1225,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">フィルターと複数選択によるエクスポート</h4>
+                            <h3 class="feature-title">フィルターと複数選択によるエクスポート</h3>
                             <p class="feature-description">プラットフォームや期間で会話を絞り込み、必要な会話を複数選んでエクスポートできるようになりました。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">画面端でフローティングラベルを半分隠す機能</h4>
+                            <h3 class="feature-title">画面端でフローティングラベルを半分隠す機能</h3>
                             <p class="feature-description">ラベルを画面端へドラッグすると案内が表示され、離した後は端に半分隠れるようになりました。</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">画面表示をより安定させました</h4>
+                            <h3 class="feature-title">画面表示をより安定させました</h3>
                             <p class="feature-description">国際ネットワークの接続状態が悪い環境でアイコンが表示されない問題を修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">エクスポートファイル名の文字化けを修正</h4>
+                            <h3 class="feature-title">エクスポートファイル名の文字化けを修正</h3>
                             <p class="feature-description">エクスポートするファイル名で使える文字を増やし、日本語のひらがな・カタカナと韓国語に対応しました。日本語ユーザーが ZIP をエクスポートした際のファイル名の文字化けも修正しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">手動保存モードを修正</h4>
+                            <h3 class="feature-title">手動保存モードを修正</h3>
                             <p class="feature-description">手動保存モードでページを再読み込みしたときに、自動保存が始まらないよう修正しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1719,32 +1274,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">一覧から直接編集</h4>
+                            <h3 class="feature-title">一覧から直接編集</h3>
                             <p class="feature-description">記録の一覧でタイトルを直接編集できるようになりました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">操作性を改善</h4>
+                            <h3 class="feature-title">操作性を改善</h3>
                             <p class="feature-description">記録カードと詳細画面の操作を改善しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">データ保持を強化</h4>
+                            <h3 class="feature-title">データ保持を強化</h3>
                             <p class="feature-description">ブラウザによって保存データが自動的に消去されにくいよう、データ保持の仕組みを強化しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1764,22 +1311,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">エクスポート機能</h4>
+                            <h3 class="feature-title">エクスポート機能</h3>
                             <p class="feature-description">会話を 1 つの文書にまとめてエクスポートする機能を追加しました。AI サービスにまとめて渡す際に便利です。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1799,27 +1336,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">フローティングラベルの文言を改善</h4>
+                            <h3 class="feature-title">フローティングラベルの文言を改善</h3>
                             <p class="feature-description">誤解を招かないよう、フローティングラベルの文言を「Auto Memorizing」から「Auto Memory」に変更しました。</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Gemini への対応を拡張</h4>
+                            <h3 class="feature-title">Gemini への対応を拡張</h3>
                             <p class="feature-description">`/*/*/app/*` と `/*/*/gem/*/*` の URL 形式に対応しました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1839,22 +1367,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">インストールガイド</h4>
+                            <h3 class="feature-title">インストールガイド</h3>
                             <p class="feature-description">初めてダウンロード・インストールした際に、使い方を案内する Web ページを表示するようにしました。</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1874,62 +1392,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">新機能</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">キーワード検索</h4>
+                            <h3 class="feature-title">キーワード検索</h3>
                             <p class="feature-description">すべての会話記録を横断して、内容をすばやく見つけられるキーワード検索を追加しました。</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">改善</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">製品名を変更</h4>
-                            <p class="feature-description">製品の中心的な価値が伝わるよう、正式名称を「Chat Memo」に変更しました。</p>
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">公式サイトへの入口を追加</h4>
-                            <p class="feature-description">公式サイトにアクセスできる入口を追加しました。</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">画面表示を改善</h4>
-                            <p class="feature-description">画面の細かなデザインを整えました。</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">不具合修正</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Gemini の問題を修正</h4>
+                            <h3 class="feature-title">Gemini の問題を修正</h3>
                             <p class="feature-description">ページを再読み込みした後に Gemini のメッセージ記録が失われる問題を修正しました。</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">製品名を変更</h3>
+                            <p class="feature-description">製品の中心的な価値が伝わるよう、正式名称を「Chat Memo」に変更しました。</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">公式サイトへの入口を追加</h3>
+                            <p class="feature-description">公式サイトにアクセスできる入口を追加しました。</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">画面表示を改善</h3>
+                            <p class="feature-description">画面の細かなデザインを整えました。</p>
+
                         </div>
 
                     </div>

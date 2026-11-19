@@ -16,15 +16,19 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[character]);
 
-test('四语共用时间线版式，版本与分类数量稳定', () => {
+test('四语两端的所有版本共用分段版式，保留每一条说明和已有配图', () => {
     for (const locale of ['zh-CN', 'en', 'ja', 'es']) {
         const catalog = JSON.parse(fs.readFileSync(path.join(root, 'locales', `${locale}.json`), 'utf8'));
         const html = render(data, locale, { ...catalog.common, ...catalog.updates });
         assert.equal((html.match(/class="timeline-item"/g) || []).length, updates.length + data.desktopUpdates.length, locale);
-        assert.ok(html.includes(escapeHtml(updates[0].summary[locale])), locale);
-        assert.ok(html.includes(catalog.updates['tag-new']), locale);
-        assert.ok(html.includes(catalog.updates['tag-improvement']), locale);
-        assert.ok(html.includes(catalog.updates['tag-fix']), locale);
+        const newest = updates[0];
+        assert.ok(html.includes(escapeHtml((newest.summary ?? newest.features[0].title)[locale])), locale);
+        const releases = [...data.desktopUpdates, ...updates];
+        const features = releases.flatMap(release => release.features);
+        assert.equal((html.match(/class="update-article"/g) || []).length, releases.length, locale);
+        assert.equal((html.match(/class="feature-item"/g) || []).length, features.length, locale);
+        assert.equal((html.match(/<img /g) || []).length, features.flatMap(feature => feature.images ?? []).length, locale);
+        assert.doesNotMatch(html, /class="feature-group/);
     }
 });
 
@@ -36,12 +40,11 @@ test('缺译仅回退英文，数据作为文本转义且渲染不修改输入',
         features: [{ type: 'new', title: { en: '<script>' }, description: { en: '"safe"' } }]
     }];
     const before = JSON.stringify(sample);
-    const html = render({ updates: sample, desktopUpdates: [] }, 'es', { 'tag-new': 'Novedades' });
+    const html = render({ updates: sample, desktopUpdates: [] }, 'es');
     assert.ok(html.includes('English &amp; safe'));
     assert.ok(html.includes('v1 &lt;test&gt;'));
     assert.ok(html.includes('&lt;script&gt;'));
     assert.ok(html.includes('&quot;safe&quot;'));
-    assert.ok(html.includes('Novedades'));
     assert.ok(html.includes('No release notes yet.'));
     assert.equal(JSON.stringify(sample), before);
 });
@@ -56,8 +59,32 @@ test('按原文展示更新说明时不补写摘要、小标题或空占位', ()
     assert.ok(html.includes('November 13, 2026'));
     assert.ok(!html.includes('class="page-subtitle mb-0"'));
     assert.ok(!html.includes('class="feature-title"'));
+    assert.doesNotMatch(html, /<img |class="update-images?"/);
 });
 
+test('长版更新说明保留段落和顺序，配图及下载入口随对应段落展示', () => {
+    const entry = {
+        version: 'v2.1.0',
+        features: [
+            { type: 'improvement', title: '先读我', description: '第一段\n\n第二段' },
+            { type: 'new', title: '桌面端', description: '说明', desktopDownload: '下载',
+                images: [{ src: '/resource/updates/2.1.0/example.png', alt: '前后对照', width: 640, height: 320 }] },
+            { type: 'new', title: '导入', description: '历史记录', images: [
+                { src: '/resource/updates/2.1.0/records.png', alt: '导入后的记录' },
+                { src: '/resource/updates/2.1.0/import.png', alt: '导入入口' },
+            ] },
+        ],
+    };
+    const html = render({ updates: [entry] }, 'zh-CN');
+    assert.ok(html.indexOf('先读我') < html.indexOf('桌面端'));
+    assert.ok(html.includes('<p class="feature-description">第一段</p>'));
+    assert.ok(html.includes('<p class="feature-description">第二段</p>'));
+    assert.ok(html.includes('alt="前后对照" width="640" height="320"'));
+    assert.ok(html.includes('href="/zh-CN/downloads" data-desktop-download-primary>下载</a>'));
+    assert.ok(html.indexOf('data-desktop-download-primary') < html.indexOf('class="update-image"'));
+    assert.match(html, /class="update-images".*导入后的记录.*导入入口/);
+    assert.doesNotMatch(html, /class="group-title"/);
+});
 
 test('同名版本按产品隔离，四语首响应保留两个产品入口', () => {
     const app = { ...updates[0], summary: { en: 'App release' } };

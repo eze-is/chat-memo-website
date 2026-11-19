@@ -1,12 +1,6 @@
 // 官网版本说明由静态生成器统一渲染，内容以各产品的发布记录为准。
 'use strict';
 
-const types = [
-    { key: 'new', icon: '🚀', color: 'new', label: 'New Features' },
-    { key: 'improvement', icon: '✨', color: 'improvement', label: 'Improvements' },
-    { key: 'fix', icon: '🔧', color: 'fix', label: 'Bug Fixes' }
-];
-
 function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, (character) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -18,31 +12,30 @@ function localized(value, locale) {
     return value?.[locale] || value?.en || '';
 }
 
-function renderUpdate(update, locale, messages) {
-    const groups = types.map((type) => {
-        const features = update.features.filter((feature) => feature.type === type.key);
-        if (!features.length) return '';
-
-        const featuresHtml = features.map((feature) => `
+function renderFeature(feature, locale) {
+    const title = escapeHtml(localized(feature.title, locale));
+    const paragraphs = localized(feature.description, locale).split('\n\n').map(paragraph =>
+        `<p class="feature-description">${escapeHtml(paragraph)}</p>`).join('\n                            ');
+    const images = (feature.images ?? []).filter(image => /^\/resource\/updates\/[a-z0-9./-]+\.(?:png|webp)$/.test(image.src));
+    const figures = images.map(image =>
+        `<a class="update-image" href="${escapeHtml(image.src)}" target="_blank" rel="noopener"><img src="${escapeHtml(image.src)}" alt="${escapeHtml(localized(image.alt, locale))}" width="${escapeHtml(image.width)}" height="${escapeHtml(image.height)}" loading="lazy"></a>`
+    ).join('');
+    const media = images.length > 1 ? `<div class="update-images">${figures}</div>` : figures;
+    const download = localized(feature.desktopDownload, locale);
+    const action = download
+        ? `<a class="update-download" href="/${locale}/downloads" data-desktop-download-primary>${escapeHtml(download)}</a>`
+        : '';
+    return `
                         <div class="feature-item">
-                            ${feature.title ? `<h4 class="feature-title">${escapeHtml(localized(feature.title, locale))}</h4>` : ''}
-                            <p class="feature-description">${escapeHtml(localized(feature.description, locale))}</p>
-                        </div>
-                    `).join('');
-
-        return `
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">${type.icon}</span>
-                                <h3 class="text-${type.color}">${escapeHtml(messages[`tag-${type.key}`] || type.label)}</h3>
-                            </div>
-                            <div class="space-y-3">
-                                ${featuresHtml}
-                            </div>
+                            ${title ? `<h3 class="feature-title">${title}</h3>` : ''}
+                            ${paragraphs}
+                            ${action}${media}
                         </div>
                     `;
-    }).join('');
+}
 
+function renderUpdate(update, locale) {
+    const features = update.features.map(feature => renderFeature(feature, locale)).join('');
     return `
             <div class="timeline-item">
                 <div class="update-card">
@@ -57,9 +50,8 @@ function renderUpdate(update, locale, messages) {
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-                        ${groups}
+                    <div class="update-article">
+                        ${features}
                     </div>
                 </div>
             </div>
@@ -75,7 +67,7 @@ function render(data, locale, messages = {}) {
     const sections = products.map((product) => {
         if (!Array.isArray(product.updates)) throw new TypeError(`${product.id} must be an array`);
         const content = product.updates.length
-            ? product.updates.map((update) => renderUpdate(update, locale, messages)).join('')
+            ? product.updates.map((update) => renderUpdate(update, locale)).join('')
             : `<p class="product-updates-empty">${escapeHtml(messages['updates-empty'] || 'No release notes yet.')}</p>`;
         return `<section id="${product.id}" class="product-updates" aria-labelledby="${product.id}-title">
             <h2 id="${product.id}-title" class="product-updates-title">${escapeHtml(product.name)}</h2>

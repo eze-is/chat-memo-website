@@ -235,7 +235,7 @@ SiteI18n.redirectToCanonical("updates");</script>
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=a88a9db990f7">
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=3dc5eb7d9141">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -285,74 +285,6 @@ SiteI18n.redirectToCanonical("updates");</script>
             box-shadow: none;
         }
 
-        /* 标签样式 - 提高饱和度 */
-        .tag-new {
-            background: rgba(0, 200, 150, 0.15);
-            color: #00c896;
-            border: 1px solid rgba(0, 200, 150, 0.3);
-        }
-
-        .tag-improvement {
-            background: rgba(59, 130, 246, 0.15);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .tag-fix {
-            background: rgba(251, 146, 60, 0.15);
-            color: #fb923c;
-            border: 1px solid rgba(251, 146, 60, 0.3);
-        }
-
-        /* 分组标题文本颜色 */
-        .text-new {
-            color: #00c896;
-        }
-
-        .text-improvement {
-            color: #3b82f6;
-        }
-
-        .text-fix {
-            color: #fb923c;
-        }
-
-        /* 分组容器样式 */
-        .feature-group {
-            background: rgba(248, 250, 252, 0.6);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            transition: all 0.2s ease-in-out;
-        }
-
-
-        /* 分组标题样式 */
-        .group-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(226, 232, 240, 0.6);
-        }
-
-        /* 功能项样式优化 */
-        .feature-item {
-            background: white;
-            border: 1px solid rgba(226, 232, 240, 0.5);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            transition: all 0.15s ease-in-out;
-        }
-
-
-        /* 图标样式 */
-        .group-icon {
-            font-size: 1.25rem;
-            margin-right: 0.5rem;
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-        }
-
         /* 页面标题样式优化 */
         .page-title {
             font-size: 2.5rem;
@@ -377,18 +309,68 @@ SiteI18n.redirectToCanonical("updates");</script>
             margin-bottom: 0.75rem;
         }
 
-        /* 功能描述样式 */
-        .feature-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #37352f;
-            margin-bottom: 0.25rem;
+        .update-article .feature-item + .feature-item {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
         }
-
-        .feature-description {
-            font-size: 0.875rem;
+        .update-article .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .update-article .feature-description {
+            font-size: 0.9375rem;
+            line-height: 1.75;
             color: rgba(55, 53, 47, 0.65);
-            line-height: 1.5;
+        }
+        .update-article .feature-description + .feature-description { margin-top: 10px; }
+        .update-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: 12px;
+            max-width: 640px;
+            margin: 16px auto 0;
+        }
+        .update-images .update-image { margin: 0; }
+        .update-image {
+            display: grid;
+            width: 100%;
+            max-width: 640px;
+            margin: 16px auto 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .update-image img { width: 100%; height: auto; }
+        .update-article .desktop-download-choice,
+        .update-article .feature-item > .update-download {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: fit-content;
+            max-width: 100%;
+            margin: 12px 0 0;
+        }
+        .update-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 8px 18px;
+            border: 1px solid #dce4fa;
+            border-radius: 999px;
+            background: #f3f6ff;
+            color: #344ca0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .update-download:hover { background: #eaf0ff; }
+        @media (max-width: 480px) {
+            .update-article .feature-item + .feature-item { margin-top: 22px; padding-top: 20px; }
         }
 
         /* 日期样式 */
@@ -449,7 +431,7 @@ SiteI18n.redirectToCanonical("updates");</script>
             .updates-products a[aria-selected="true"] { border-color: Highlight; }
         }
     </style>
-<meta name="language" content="en"><meta property="og:locale" content="en_US"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=a88a9db990f7"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
+<meta name="language" content="en"><meta property="og:locale" content="en_US"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1024"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Chat Memo"><meta property="twitter:image:alt" content="Chat Memo: real-time backup and context across AIs. A Claude Code conversation with Continue in another AI."><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=3dc5eb7d9141"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -536,20 +518,6 @@ SiteI18n.redirectToCanonical("updates");</script>
             <div id="hero-content" class="hero-content container mx-auto px-6 text-center content-container relative z-10">
                 <h1 class="page-title" data-key="updates-title">Chat Memo Updates</h1>
                 <p class="page-subtitle max-w-2xl mx-auto" data-key="updates-subtitle">Track every improvement of Chat Memo and witness how we continuously enhance user experience</p>
-                <div class="flex justify-center items-center space-x-6 text-sm">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #00c896;"></div>
-                        <span class="text-gray-600" data-key="tag-new">New Features</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #3b82f6;"></div>
-                        <span class="text-gray-600" data-key="tag-improvement">Improvements</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #fb923c;"></div>
-                        <span class="text-gray-600" data-key="tag-fix">Bug Fixes</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -576,42 +544,24 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Import your DeepSeek web chat history from the Connections page. More platforms are on the way.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+
+                            <p class="feature-description">The browser extension now preserves images and formulas when saving DeepSeek chats.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Added a guide to connecting Gemini with Chat Memo.</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-
-                            <p class="feature-description">The browser extension now preserves images and formulas when saving DeepSeek chats.</p>
-                        </div>
-
-                            </div>
                         </div>
 
                     </div>
@@ -631,62 +581,36 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Added dark appearance. Choose System, Light, or Dark in Settings.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Open the update dialog from the system notification when an update is ready. Release notes follow the app language.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Simplified Grok Bot history sync to make the result and unsaved images easier to see.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Turn off automatic saving for offline sources. The activity chart legend now summarizes the selected date range.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Fixed an issue where an unresponsive diagnostic log could prevent the app from quitting.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -706,57 +630,42 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Back up Grok Bot chats</h4>
+                            <h3 class="feature-title">Back up Grok Bot chats</h3>
                             <p class="feature-description">Grok Bot conversations can now be backed up, with an option to authorize a history sync.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">International payments</h4>
+                            <h3 class="feature-title">International payments</h3>
                             <p class="feature-description">International payments are now available. Feel free to recommend Chat Memo to friends overseas.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Redeem codes for Pro</h4>
+                            <h3 class="feature-title">Redeem codes for Pro</h3>
                             <p class="feature-description">Redeem codes in the app to add time to your Pro plan.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude web setup guide</h4>
+                            <h3 class="feature-title">Claude web setup guide</h3>
                             <p class="feature-description">Added setup instructions for Claude on the web.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Launch at login</h4>
+                            <h3 class="feature-title">Launch at login</h3>
                             <p class="feature-description">Added launch at login so conversation saving resumes automatically after a restart.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Clearer guidance and support</h4>
+                            <h3 class="feature-title">Clearer guidance and support</h3>
                             <p class="feature-description">Improved update, sign-in, and Pro messages, and refined the Contact support page.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -776,42 +685,24 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Cross-AI context guide</h4>
+                            <h3 class="feature-title">Cross-AI context guide</h3>
                             <p class="feature-description">Added a guide to sharing context across AIs, with more detailed setup steps for Manus, ChatGPT, and Grok Bot.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Code conversation display</h4>
+                            <h3 class="feature-title">Claude Code conversation display</h3>
                             <p class="feature-description">Improved Claude Code parsing for more complete display of images and file references.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Resync a conversation</h4>
+                            <h3 class="feature-title">Resync a conversation</h3>
                             <p class="feature-description">If a conversation looks incorrectly formatted, click “⋯” in the top-right corner of its details page and select “Resync this conversation”.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -831,52 +722,36 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Conversation backups and content display</h4>
+                            <h3 class="feature-title">Conversation backups and content display</h3>
                             <p class="feature-description">Improved backups from Codex, DeepSeek and other sources, with more complete display of images, videos and file references.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Smoother browsing</h4>
+                            <h3 class="feature-title">Smoother browsing</h3>
                             <p class="feature-description">Opening and scrolling through records is smoother when you have many conversations.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Visible backup status</h4>
+                            <h3 class="feature-title">Visible backup status</h3>
                             <p class="feature-description">The refresh icon in the top-right corner keeps spinning during backup to show that it is in progress.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Clearer connection guidance</h4>
+                            <h3 class="feature-title">Clearer connection guidance</h3>
                             <p class="feature-description">When the browser extension fails to connect, clearer messages explain the cause and what to do next.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Purchase again after a refund</h4>
+                            <h3 class="feature-title">Purchase again after a refund</h3>
                             <p class="feature-description">Fixed an issue that prevented another purchase after a refund.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -896,37 +771,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Automatic conversation backup</h4>
+                            <h3 class="feature-title">Automatic conversation backup</h3>
                             <p class="feature-description">Automatically back up conversations from connected desktop agents and web AI services.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Continue with another AI</h4>
+                            <h3 class="feature-title">Continue with another AI</h3>
                             <p class="feature-description">Carry context between AI services so you can pick up the same conversation with another AI.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Conversations stored locally</h4>
+                            <h3 class="feature-title">Conversations stored locally</h3>
                             <p class="feature-description">Chat Memo stores your conversation backups on your own computer.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Search in seconds and recall the right context</h4>
+                            <h3 class="feature-title">Search in seconds and recall the right context</h3>
                             <p class="feature-description">Find past conversations by keyword and let AI recall the relevant excerpts when needed.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -949,57 +817,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Connect to Chat Memo Desktop</h4>
-                            <p class="feature-description">Back up chats to your computer so your connected AIs can find and use them. Switch AIs and pick up where you left off.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">A redesigned interface</h4>
+                            <h3 class="feature-title">A redesigned interface</h3>
                             <p class="feature-description">A refreshed sidebar and floating save-status indicator make it easier to browse chats and manage connections.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Google AI Mode capture paused</h4>
-                            <p class="feature-description">Capturing new Google AI Mode chats is temporarily disabled. Existing records remain available to view and export.</p>
-                        </div>
+                            <h3 class="feature-title">Connect to Chat Memo Desktop</h3>
+                            <p class="feature-description">Back up chats to your computer so your connected AIs can find and use them. Switch AIs and pick up where you left off.</p>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">More reliable saving</h4>
+                            <h3 class="feature-title">More reliable saving</h3>
                             <p class="feature-description">Fixes and improvements to chat saving, save confirmations, recovery after interrupted upgrades, and desktop downloads. Newly captured chats include only your messages and AI response text.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Google AI Mode capture paused</h3>
+                            <p class="feature-description">Capturing new Google AI Mode chats is temporarily disabled. Existing records remain available to view and export.</p>
+
                         </div>
 
                     </div>
@@ -1019,37 +860,18 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Code on the web support</h4>
-                            <p class="feature-description">Sessions on claude.ai/code are now saved automatically. Only your prompts and Claude's text replies are saved, not tool calls or code changes.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Restore Claude saving</h4>
+                            <h3 class="feature-title">Restore Claude saving</h3>
                             <p class="feature-description">Conversations stopped saving after Claude's recent website redesign. Chat Memo now supports the new layout.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Claude Code on the web support</h3>
+                            <p class="feature-description">Sessions on claude.ai/code are now saved automatically. Only your prompts and Claude's text replies are saved, not tool calls or code changes.</p>
+
                         </div>
 
                     </div>
@@ -1069,52 +891,36 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Cowork support</h4>
-                            <p class="feature-description">Conversations in Claude Cowork are now saved automatically.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">ChatGPT dot support</h4>
-                            <p class="feature-description">Your conversations with ChatGPT dot are now saved automatically.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Restore ChatGPT saving</h4>
+                            <h3 class="feature-title">Restore ChatGPT saving</h3>
                             <p class="feature-description">Conversations stopped saving after ChatGPT's recent website redesign. Chat Memo now supports the new layout, and switching conversations in the same tab saves each one to its own record. Conversations missed during this period resume saving when you reopen them.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Fix auto-save not starting in some browsers</h4>
+                            <h3 class="feature-title">Fix auto-save not starting in some browsers</h3>
                             <p class="feature-description">In some browsers, version 1.5.0 failed to start, so nothing was saved on any platform. This is now fixed.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Fix missing Claude replies</h4>
+                            <h3 class="feature-title">Fix missing Claude replies</h3>
                             <p class="feature-description">Claude replies that included web search, tool use, or thinking could be dropped entirely. They are now saved.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Claude Cowork support</h3>
+                            <p class="feature-description">Conversations in Claude Cowork are now saved automatically.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">ChatGPT dot support</h3>
+                            <p class="feature-description">Your conversations with ChatGPT dot are now saved automatically.</p>
+
                         </div>
 
                     </div>
@@ -1134,47 +940,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Claude Cowork support</h4>
-                            <p class="feature-description">Conversations in Claude Cowork are now saved automatically.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Restore ChatGPT saving</h4>
+                            <h3 class="feature-title">Restore ChatGPT saving</h3>
                             <p class="feature-description">Conversations stopped saving after ChatGPT's recent website redesign. Chat Memo now supports the new layout, and switching conversations in the same tab saves each one to its own record. Conversations missed during this period resume saving when you reopen them.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Fix auto-save not starting in some browsers</h4>
+                            <h3 class="feature-title">Fix auto-save not starting in some browsers</h3>
                             <p class="feature-description">In some browsers, version 1.5.0 failed to start, so nothing was saved on any platform. This is now fixed.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Fix missing Claude replies</h4>
+                            <h3 class="feature-title">Fix missing Claude replies</h3>
                             <p class="feature-description">Claude replies that included web search, tool use, or thinking could be dropped entirely. They are now saved.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Claude Cowork support</h3>
+                            <p class="feature-description">Conversations in Claude Cowork are now saved automatically.</p>
+
                         </div>
 
                     </div>
@@ -1194,67 +983,42 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Japanese and Spanish interfaces</h4>
+                            <h3 class="feature-title">Japanese and Spanish interfaces</h3>
                             <p class="feature-description">When Chrome's interface language is Japanese or Spanish, Chat Memo displays its interface in that language. Saved conversation text stays unchanged; unsupported interface languages fall back to English.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Per-platform auto-save controls</h4>
+                            <h3 class="feature-title">Per-platform auto-save controls</h3>
                             <p class="feature-description">Pause or enable auto-save for each of the nine platforms in Platform settings. Turning off the main switch pauses all platforms while preserving their individual choices; the floating capsule still shows the paused state.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Clearer current-conversation status</h4>
+                            <h3 class="feature-title">Clearer current-conversation status</h3>
                             <p class="feature-description">The library marks the record matching the current page and shows when auto-save is paused. If multiple local records match a conversation, you can review them; existing copies are not automatically merged or deleted.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Better narrow-sidebar layout and mixed-language reading</h4>
+                            <h3 class="feature-title">Better narrow-sidebar layout and mixed-language reading</h3>
                             <p class="feature-description">Search, multi-select, export, and date filters adapt to narrower sidebars, while titles and content with mixed scripts render more consistently.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Improve Google AI Mode saving</h4>
+                            <h3 class="feature-title">Improve Google AI Mode saving</h3>
                             <p class="feature-description">Matches local records by conversation content to reduce duplicates caused by changing source links. Distinct content branches are saved separately while the original record remains.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Fix save targeting when switching Gemini conversations</h4>
+                            <h3 class="feature-title">Fix save targeting when switching Gemini conversations</h3>
                             <p class="feature-description">Fixes a case where switching Gemini conversations in the same tab could write content from the previous conversation into the new record.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1274,52 +1038,24 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Google AI Mode support</h4>
+                            <h3 class="feature-title">Google AI Mode support</h3>
                             <p class="feature-description">Google AI Mode conversations can now be saved automatically in Chat Memo, filtered, exported, and reopened.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">More consistent deletion state</h4>
-                            <p class="feature-description">After deleting or clearing records, open sidebars return to the library and the currently open source page no longer immediately recreates deleted entries.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Fix missed conversation content</h4>
+                            <h3 class="feature-title">Fix missed conversation content</h3>
                             <p class="feature-description">Fixes missing ChatGPT user messages containing links and newer Tencent Yuanbao deep-search replies.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">More consistent deletion state</h3>
+                            <p class="feature-description">After deleting or clearing records, open sidebars return to the library and the currently open source page no longer immediately recreates deleted entries.</p>
+
                         </div>
 
                     </div>
@@ -1339,47 +1075,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Data backups and upgrade notes</h4>
-                            <p class="feature-description">This upgrade includes a data migration. Chat Memo automatically retains a local snapshot before migration. After upgrading from 1.3.3, you can download your pre-upgrade data snapshot and Markdown documents from Settings → Data Backup.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Major saving fixes</h4>
+                            <h3 class="feature-title">Major saving fixes</h3>
                             <p class="feature-description">Fixed syncing issues on Doubao, ChatGPT, and other platforms. If an existing conversation previously failed to save or no longer syncs, delete its record in Chat Memo and capture it again.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Website deletions no longer sync</h4>
+                            <h3 class="feature-title">Website deletions no longer sync</h3>
                             <p class="feature-description">To improve sync stability, manually deleting messages on a website no longer deletes them in Chat Memo.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Auto-save for all capture</h4>
+                            <h3 class="feature-title">Auto-save for all capture</h3>
                             <p class="feature-description">Manual saving has been removed. You can still pause auto-save in Settings.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Data backups and upgrade notes</h3>
+                            <p class="feature-description">This upgrade includes a data migration. Chat Memo automatically retains a local snapshot before migration. After upgrading from 1.3.3, you can download your pre-upgrade data snapshot and Markdown documents from Settings → Data Backup.</p>
+
                         </div>
 
                     </div>
@@ -1399,22 +1118,12 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Stronger Data Durability</h4>
+                            <h3 class="feature-title">Stronger Data Durability</h3>
                             <p class="feature-description">Requests persistent storage and removes storage quota limits for locally saved conversations, exempting them from automatic eviction under browser storage pressure. All data still stays 100% on your device.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1434,22 +1143,12 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Doubao AI Reply Sync Fix</h4>
+                            <h3 class="feature-title">Doubao AI Reply Sync Fix</h3>
                             <p class="feature-description">Doubao changed the page structure of AI replies, causing only user messages to sync while AI replies were lost. Re-adapted so AI replies save correctly again.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1469,37 +1168,18 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Copy Experience Improvement</h4>
-                            <p class="feature-description">Fixed missing success feedback after copying conversations in some browser environments</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Doubao Adapter Fix</h4>
+                            <h3 class="feature-title">Doubao Adapter Fix</h3>
                             <p class="feature-description">Fixed conversation saving failures caused by Doubao removing the data-testid attribute in a frontend update by switching to more stable semantic business attributes</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Copy Experience Improvement</h3>
+                            <p class="feature-description">Fixed missing success feedback after copying conversations in some browser environments</p>
+
                         </div>
 
                     </div>
@@ -1519,57 +1199,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Qwen Platform Support</h4>
+                            <h3 class="feature-title">Qwen Platform Support</h3>
                             <p class="feature-description">Support automatic saving for Qwen AI chat platform, using stable semantic selectors for long-term compatibility</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Data Loading Reliability Improvement</h4>
-                            <p class="feature-description">A single corrupted record no longer causes all conversations to fail loading; corrupted conversations show a warning instead of blank</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">DeepSeek Adapter Fix</h4>
+                            <h3 class="feature-title">DeepSeek Adapter Fix</h3>
                             <p class="feature-description">Fixed conversation auto-save failure caused by DeepSeek page structure update</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Gemini Adapter Fix</h4>
+                            <h3 class="feature-title">Gemini Adapter Fix</h3>
                             <p class="feature-description">Fixed user messages in Gemini Chinese environment being prefixed with extra accessibility text</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Data Loading Reliability Improvement</h3>
+                            <p class="feature-description">A single corrupted record no longer causes all conversations to fail loading; corrupted conversations show a warning instead of blank</p>
+
                         </div>
 
                     </div>
@@ -1589,47 +1242,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Kimi Platform Support</h4>
+                            <h3 class="feature-title">Kimi Platform Support</h3>
                             <p class="feature-description">Now you can automatically save Kimi conversation records, with more comprehensive AI platform support</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Smart Usage Guide</h4>
-                            <p class="feature-description">When clicking the extension on browser internal pages, a branded guide popup appears to help you get started</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Floating Tag Redesigned</h4>
+                            <h3 class="feature-title">Floating Tag Redesigned</h3>
                             <p class="feature-description">Redesigned floating tag visuals for a more refined look and smoother interaction experience</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Major Browser Compatibility Improvement</h4>
+                            <h3 class="feature-title">Major Browser Compatibility Improvement</h3>
                             <p class="feature-description">Now the extension interface works properly in any browser including Dia, Quark, and more</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Smart Usage Guide</h3>
+                            <p class="feature-description">When clicking the extension on browser internal pages, a branded guide popup appears to help you get started</p>
+
                         </div>
 
                     </div>
@@ -1649,52 +1285,24 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">New AI Platform Support</h4>
+                            <h3 class="feature-title">New AI Platform Support</h3>
                             <p class="feature-description">Added support for Kimi platform, now you can automatically save Kimi conversation records</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Major Browser Compatibility Improvement</h4>
-                            <p class="feature-description">Major compatibility optimization: Now the extension interface works properly in any browser including Dia, Quark, and more</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Doubao Platform Fix</h4>
+                            <h3 class="feature-title">Doubao Platform Fix</h3>
                             <p class="feature-description">Fixed message saving failure issue on Doubao platform, ensuring all conversations are reliably saved</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Major Browser Compatibility Improvement</h3>
+                            <p class="feature-description">Major compatibility optimization: Now the extension interface works properly in any browser including Dia, Quark, and more</p>
+
                         </div>
 
                     </div>
@@ -1714,57 +1322,30 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">We support new AI platforms</h4>
+                            <h3 class="feature-title">We support new AI platforms</h3>
                             <p class="feature-description">Now you can automatically save conversation records in Doubao and Claude, two mainstream AI platforms</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Long Message Collapsing, Optimized Reading Experience</h4>
+                            <h3 class="feature-title">Long Message Collapsing, Optimized Reading Experience</h3>
                             <p class="feature-description">Long conversations in detail pages will be collapsed for better reading experience and page performance</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Export Feature Optimization</h4>
+                            <h3 class="feature-title">Export Feature Optimization</h3>
                             <p class="feature-description">Optimized export-related styling and internationalization issues for better user experience</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Conversation Timestamp Fix</h4>
+                            <h3 class="feature-title">Conversation Timestamp Fix</h3>
                             <p class="feature-description">Fixed issue where re-entering saved conversation source pages would change recent conversation timestamps</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1784,62 +1365,36 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Filtering and Multi-select Export Feature</h4>
+                            <h3 class="feature-title">Filtering and Multi-select Export Feature</h3>
                             <p class="feature-description">Now you can filter conversations by platform and time range; and multi-select conversations for export as needed</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Floating Tag Edge Auto-hide</h4>
+                            <h3 class="feature-title">Floating Tag Edge Auto-hide</h3>
                             <p class="feature-description">When dragging the floating tag near screen edges, visual guidance prompts appear, and the tag will semi-hide at the edge after release</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">UI Display Stability Fix</h4>
+                            <h3 class="feature-title">UI Display Stability Fix</h3>
                             <p class="feature-description">Fixed icon display issues in poor international network environments, improving plugin stability</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Export Filename Encoding Fix</h4>
+                            <h3 class="feature-title">Export Filename Encoding Fix</h3>
                             <p class="feature-description">Extended character support for exported files, added support for Japanese Hiragana, Katakana, and Korean characters, fixed filename encoding issues when Japanese users export zip files</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Manual Save Mode Fix</h4>
+                            <h3 class="feature-title">Manual Save Mode Fix</h3>
                             <p class="feature-description">Prevent automatic saving from being triggered when refreshing the page in manual save mode</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1859,32 +1414,24 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Direct List Editing</h4>
+                            <h3 class="feature-title">Direct List Editing</h3>
                             <p class="feature-description">You can now edit titles directly in the record list</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Interaction Optimization</h4>
+                            <h3 class="feature-title">Interaction Optimization</h3>
                             <p class="feature-description">Optimized interactions for record cards and detail pages</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Enhanced Data Persistence</h4>
+                            <h3 class="feature-title">Enhanced Data Persistence</h3>
                             <p class="feature-description">Enhanced data persistence: prevents data from being automatically cleared by the browser</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1904,22 +1451,12 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Export Feature</h4>
+                            <h3 class="feature-title">Export Feature</h3>
                             <p class="feature-description">Added 'merge into one document' export feature for convenient AI platform conversations</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1939,27 +1476,18 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Floating Label Wording</h4>
+                            <h3 class="feature-title">Floating Label Wording</h3>
                             <p class="feature-description">Fixed floating label text from 'Auto Memorizing' to 'Auto Memory' to prevent misunderstanding</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Gemini Platform Enhancement</h4>
+                            <h3 class="feature-title">Gemini Platform Enhancement</h3>
                             <p class="feature-description">Added support for `/*/*/app/*` and `/*/*/gem/*/*` URL formats</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1979,22 +1507,12 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Installation Guide</h4>
+                            <h3 class="feature-title">Installation Guide</h3>
                             <p class="feature-description">Added feature to show guide webpage when first downloading and installing</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -2014,62 +1532,36 @@ SiteI18n.redirectToCanonical("updates");</script>
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">New Features</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Keyword Search Feature</h4>
+                            <h3 class="feature-title">Keyword Search Feature</h3>
                             <p class="feature-description">Added powerful keyword search functionality to quickly find content across all conversation records</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Improvements</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Brand Rename</h4>
-                            <p class="feature-description">Product name officially updated to "Chat Memo" to better reflect its core value</p>
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Official Website Entry</h4>
-                            <p class="feature-description">Added official website entry</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">UI Optimization</h4>
-                            <p class="feature-description">Optimized UI details</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Bug Fixes</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Gemini Platform Fix</h4>
+                            <h3 class="feature-title">Gemini Platform Fix</h3>
                             <p class="feature-description">Fixed Gemini platform issues, ensuring message records won't be lost after page refresh</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Brand Rename</h3>
+                            <p class="feature-description">Product name officially updated to "Chat Memo" to better reflect its core value</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">Official Website Entry</h3>
+                            <p class="feature-description">Added official website entry</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">UI Optimization</h3>
+                            <p class="feature-description">Optimized UI details</p>
+
                         </div>
 
                     </div>

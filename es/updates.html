@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=a88a9db990f7">
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=3dc5eb7d9141">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -80,74 +80,6 @@
             box-shadow: none;
         }
 
-        /* 标签样式 - 提高饱和度 */
-        .tag-new {
-            background: rgba(0, 200, 150, 0.15);
-            color: #00c896;
-            border: 1px solid rgba(0, 200, 150, 0.3);
-        }
-
-        .tag-improvement {
-            background: rgba(59, 130, 246, 0.15);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .tag-fix {
-            background: rgba(251, 146, 60, 0.15);
-            color: #fb923c;
-            border: 1px solid rgba(251, 146, 60, 0.3);
-        }
-
-        /* 分组标题文本颜色 */
-        .text-new {
-            color: #00c896;
-        }
-
-        .text-improvement {
-            color: #3b82f6;
-        }
-
-        .text-fix {
-            color: #fb923c;
-        }
-
-        /* 分组容器样式 */
-        .feature-group {
-            background: rgba(248, 250, 252, 0.6);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            transition: all 0.2s ease-in-out;
-        }
-
-
-        /* 分组标题样式 */
-        .group-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(226, 232, 240, 0.6);
-        }
-
-        /* 功能项样式优化 */
-        .feature-item {
-            background: white;
-            border: 1px solid rgba(226, 232, 240, 0.5);
-            border-radius: 0.5rem;
-            padding: 1rem;
-            transition: all 0.15s ease-in-out;
-        }
-
-
-        /* 图标样式 */
-        .group-icon {
-            font-size: 1.25rem;
-            margin-right: 0.5rem;
-            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-        }
-
         /* 页面标题样式优化 */
         .page-title {
             font-size: 2.5rem;
@@ -172,18 +104,68 @@
             margin-bottom: 0.75rem;
         }
 
-        /* 功能描述样式 */
-        .feature-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #37352f;
-            margin-bottom: 0.25rem;
+        .update-article .feature-item + .feature-item {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
         }
-
-        .feature-description {
-            font-size: 0.875rem;
+        .update-article .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .update-article .feature-description {
+            font-size: 0.9375rem;
+            line-height: 1.75;
             color: rgba(55, 53, 47, 0.65);
-            line-height: 1.5;
+        }
+        .update-article .feature-description + .feature-description { margin-top: 10px; }
+        .update-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: 12px;
+            max-width: 640px;
+            margin: 16px auto 0;
+        }
+        .update-images .update-image { margin: 0; }
+        .update-image {
+            display: grid;
+            width: 100%;
+            max-width: 640px;
+            margin: 16px auto 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .update-image img { width: 100%; height: auto; }
+        .update-article .desktop-download-choice,
+        .update-article .feature-item > .update-download {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: fit-content;
+            max-width: 100%;
+            margin: 12px 0 0;
+        }
+        .update-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 8px 18px;
+            border: 1px solid #dce4fa;
+            border-radius: 999px;
+            background: #f3f6ff;
+            color: #344ca0;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .update-download:hover { background: #eaf0ff; }
+        @media (max-width: 480px) {
+            .update-article .feature-item + .feature-item { margin-top: 22px; padding-top: 20px; }
         }
 
         /* 日期样式 */
@@ -309,7 +291,7 @@
     const afterLoad = () => setTimeout(start, 0);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad, { once: true });
-})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=a88a9db990f7"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
+})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=3dc5eb7d9141"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><meta property="og:locale:alternate" content="en_US"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -396,20 +378,6 @@
             <div id="hero-content" class="hero-content container mx-auto px-6 text-center content-container relative z-10">
                 <h1 class="page-title" data-key="updates-title">Novedades de Chat Memo</h1>
                 <p class="page-subtitle max-w-2xl mx-auto" data-key="updates-subtitle">Conoce los cambios y mejoras de cada versión de Chat Memo</p>
-                <div class="flex justify-center items-center space-x-6 text-sm">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #00c896;"></div>
-                        <span class="text-gray-600" data-key="tag-new">Nuevas funciones</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #3b82f6;"></div>
-                        <span class="text-gray-600" data-key="tag-improvement">Mejoras</span>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full" style="background-color: #fb923c;"></div>
-                        <span class="text-gray-600" data-key="tag-fix">Correcciones</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -436,42 +404,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Ahora puedes importar tu historial de conversaciones de la versión web de DeepSeek desde la página Conexiones. Añadiremos más plataformas próximamente.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+
+                            <p class="feature-description">La extensión del navegador ahora conserva las imágenes y las fórmulas al guardar conversaciones de DeepSeek.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Añadimos una guía para conectar Gemini con Chat Memo.</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-
-                            <p class="feature-description">La extensión del navegador ahora conserva las imágenes y las fórmulas al guardar conversaciones de DeepSeek.</p>
-                        </div>
-
-                            </div>
                         </div>
 
                     </div>
@@ -491,62 +441,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Añadimos el modo oscuro. En Ajustes, puedes elegir entre Sistema, Claro y Oscuro.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Cuando la actualización esté lista, puedes abrir el cuadro de actualización desde la notificación del sistema. Las notas se muestran en el idioma de la aplicación.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Simplificamos el aviso de sincronización del historial de Grok Bot para que sea más fácil ver el resultado y qué imágenes no se guardaron.</p>
+
                         </div>
 
                         <div class="feature-item">
 
                             <p class="feature-description">Puedes desactivar el guardado automático aunque la fuente esté sin conexión. La leyenda del gráfico de actividad ahora resume el periodo seleccionado.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
 
                             <p class="feature-description">Corregimos un problema que podía impedir que la aplicación se cerrara si el registro de diagnóstico dejaba de responder durante mucho tiempo.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -566,57 +490,42 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Copias de conversaciones de Grok Bot</h4>
+                            <h3 class="feature-title">Copias de conversaciones de Grok Bot</h3>
                             <p class="feature-description">Ya puedes guardar las conversaciones de Grok Bot y autorizar la sincronización del historial.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Pagos internacionales</h4>
+                            <h3 class="feature-title">Pagos internacionales</h3>
                             <p class="feature-description">Ya están disponibles los pagos internacionales. Puedes recomendar Chat Memo a tus amigos en el extranjero.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Canjea códigos por Pro</h4>
+                            <h3 class="feature-title">Canjea códigos por Pro</h3>
                             <p class="feature-description">Canjea códigos en la app para añadir tiempo a tu plan Pro.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guía para conectar Claude en la web</h4>
+                            <h3 class="feature-title">Guía para conectar Claude en la web</h3>
                             <p class="feature-description">Añadimos instrucciones para conectar Claude en la web.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Inicio automático al iniciar sesión</h4>
+                            <h3 class="feature-title">Inicio automático al iniciar sesión</h3>
                             <p class="feature-description">Añadimos el inicio automático al iniciar sesión para seguir guardando conversaciones después de reiniciar.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejoras en las indicaciones y la ayuda</h4>
+                            <h3 class="feature-title">Mejoras en las indicaciones y la ayuda</h3>
                             <p class="feature-description">Mejoramos los mensajes de actualización, inicio de sesión y Pro, así como la página de contacto con soporte.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -636,42 +545,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guía para compartir contexto entre distintas IA</h4>
+                            <h3 class="feature-title">Guía para compartir contexto entre distintas IA</h3>
                             <p class="feature-description">Nueva guía para compartir contexto entre distintas IA, con pasos más detallados para conectar Manus, ChatGPT y Grok Bot.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Visualización de conversaciones de Claude Code</h4>
+                            <h3 class="feature-title">Visualización de conversaciones de Claude Code</h3>
                             <p class="feature-description">Mejoramos el análisis de las conversaciones de Claude Code para mostrar las imágenes y las referencias a archivos de forma más completa.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Volver a sincronizar una conversación</h4>
+                            <h3 class="feature-title">Volver a sincronizar una conversación</h3>
                             <p class="feature-description">Si una conversación no se muestra con el formato correcto, haz clic en «⋯» en la esquina superior derecha de la página de detalles y selecciona «Volver a sincronizar esta conversación».</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -691,52 +582,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Copias de conversaciones y visualización</h4>
+                            <h3 class="feature-title">Copias de conversaciones y visualización</h3>
                             <p class="feature-description">Mejoramos las copias de conversaciones de Codex, DeepSeek y otras fuentes, con una visualización más completa de imágenes, vídeos y referencias a archivos.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Navegación más fluida</h4>
+                            <h3 class="feature-title">Navegación más fluida</h3>
                             <p class="feature-description">Abrir y recorrer los registros es más fluido cuando tienes muchas conversaciones.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Estado de la copia de seguridad</h4>
+                            <h3 class="feature-title">Estado de la copia de seguridad</h3>
                             <p class="feature-description">Durante la copia de seguridad, el icono de actualización de la esquina superior derecha sigue girando para indicar que está en curso.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Indicaciones de conexión más claras</h4>
+                            <h3 class="feature-title">Indicaciones de conexión más claras</h3>
                             <p class="feature-description">Si la extensión del navegador no se conecta, se muestran mensajes más claros sobre la causa y cómo solucionarlo.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Volver a comprar tras un reembolso</h4>
+                            <h3 class="feature-title">Volver a comprar tras un reembolso</h3>
                             <p class="feature-description">Se corrige un problema que impedía volver a comprar después de un reembolso.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -756,37 +631,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Copia automática de conversaciones</h4>
+                            <h3 class="feature-title">Copia automática de conversaciones</h3>
                             <p class="feature-description">Guarda automáticamente las conversaciones de los agentes de escritorio y servicios de IA web que conectes.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Sigue la conversación con otra IA</h4>
+                            <h3 class="feature-title">Sigue la conversación con otra IA</h3>
                             <p class="feature-description">Lleva el contexto de una conversación a otra IA y sigue hablando del mismo tema.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Conversaciones guardadas en tu equipo</h4>
+                            <h3 class="feature-title">Conversaciones guardadas en tu equipo</h3>
                             <p class="feature-description">Chat Memo guarda las copias de tus conversaciones en tu propio equipo.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Busca en segundos y recupera el contexto relevante</h4>
+                            <h3 class="feature-title">Busca en segundos y recupera el contexto relevante</h3>
                             <p class="feature-description">Encuentra conversaciones por palabra clave y permite que la IA recupere los fragmentos pertinentes cuando los necesite.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -809,57 +677,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Conecta con Chat Memo para escritorio</h4>
-                            <p class="feature-description">Guarda una copia de tus conversaciones en tu ordenador para que las IA conectadas puedan consultarlas y usarlas. Cambia de IA y retoma donde lo dejaste.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Interfaz renovada</h4>
+                            <h3 class="feature-title">Interfaz renovada</h3>
                             <p class="feature-description">La barra lateral y el indicador flotante de guardado se renuevan para facilitar la consulta de conversaciones y la gestión de conexiones.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Captura de Google AI Mode en pausa</h4>
-                            <p class="feature-description">La captura de nuevas conversaciones de Google AI Mode se desactiva temporalmente. Los registros existentes se pueden seguir consultando y exportando.</p>
-                        </div>
+                            <h3 class="feature-title">Conecta con Chat Memo para escritorio</h3>
+                            <p class="feature-description">Guarda una copia de tus conversaciones en tu ordenador para que las IA conectadas puedan consultarlas y usarlas. Cambia de IA y retoma donde lo dejaste.</p>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guardado más fiable</h4>
+                            <h3 class="feature-title">Guardado más fiable</h3>
                             <p class="feature-description">Correcciones y mejoras en el guardado, su confirmación, la recuperación de actualizaciones interrumpidas y la descarga de la aplicación de escritorio. Las nuevas capturas solo incluyen tus mensajes y el texto de las respuestas de la IA.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Captura de Google AI Mode en pausa</h3>
+                            <p class="feature-description">La captura de nuevas conversaciones de Google AI Mode se desactiva temporalmente. Los registros existentes se pueden seguir consultando y exportando.</p>
+
                         </div>
 
                     </div>
@@ -879,37 +720,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Claude Code en la web</h4>
-                            <p class="feature-description">Las sesiones de claude.ai/code ahora se guardan automáticamente. Solo se guardan tus mensajes y las respuestas de texto de Claude, no el uso de herramientas ni los cambios de código.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Se restablece el guardado de Claude</h4>
+                            <h3 class="feature-title">Se restablece el guardado de Claude</h3>
                             <p class="feature-description">Las conversaciones dejaron de guardarse tras el reciente rediseño del sitio web de Claude. Chat Memo ya es compatible con el nuevo diseño.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Compatibilidad con Claude Code en la web</h3>
+                            <p class="feature-description">Las sesiones de claude.ai/code ahora se guardan automáticamente. Solo se guardan tus mensajes y las respuestas de texto de Claude, no el uso de herramientas ni los cambios de código.</p>
+
                         </div>
 
                     </div>
@@ -929,52 +751,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Claude Cowork</h4>
-                            <p class="feature-description">Las conversaciones de Claude Cowork ahora se guardan automáticamente.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con ChatGPT dot</h4>
-                            <p class="feature-description">Tus conversaciones con ChatGPT dot ahora se guardan automáticamente.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Se restablece el guardado de ChatGPT</h4>
+                            <h3 class="feature-title">Se restablece el guardado de ChatGPT</h3>
                             <p class="feature-description">Las conversaciones dejaron de guardarse tras el reciente rediseño del sitio web de ChatGPT. Chat Memo ya es compatible con el nuevo diseño y, al cambiar de conversación en la misma pestaña, cada una se guarda en su propio registro. Las conversaciones que no se guardaron durante este periodo vuelven a guardarse cuando las abres de nuevo.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Se corrige que el guardado automático no se iniciara en algunos navegadores</h4>
+                            <h3 class="feature-title">Se corrige que el guardado automático no se iniciara en algunos navegadores</h3>
                             <p class="feature-description">En algunos navegadores, la versión 1.5.0 no lograba iniciarse y no se guardaba nada en ninguna plataforma. Ya está corregido.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Se corrigen las respuestas de Claude que no se guardaban</h4>
+                            <h3 class="feature-title">Se corrigen las respuestas de Claude que no se guardaban</h3>
                             <p class="feature-description">Las respuestas de Claude que incluían búsqueda web, uso de herramientas o razonamiento podían quedar sin guardar por completo. Ahora se guardan.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Compatibilidad con Claude Cowork</h3>
+                            <p class="feature-description">Las conversaciones de Claude Cowork ahora se guardan automáticamente.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">Compatibilidad con ChatGPT dot</h3>
+                            <p class="feature-description">Tus conversaciones con ChatGPT dot ahora se guardan automáticamente.</p>
+
                         </div>
 
                     </div>
@@ -994,47 +800,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Claude Cowork</h4>
-                            <p class="feature-description">Las conversaciones de Claude Cowork ahora se guardan automáticamente.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Se restablece el guardado de ChatGPT</h4>
+                            <h3 class="feature-title">Se restablece el guardado de ChatGPT</h3>
                             <p class="feature-description">Las conversaciones dejaron de guardarse tras el reciente rediseño del sitio web de ChatGPT. Chat Memo ya es compatible con el nuevo diseño y, al cambiar de conversación en la misma pestaña, cada una se guarda en su propio registro. Las conversaciones que no se guardaron durante este periodo vuelven a guardarse cuando las abres de nuevo.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Se corrige que el guardado automático no se iniciara en algunos navegadores</h4>
+                            <h3 class="feature-title">Se corrige que el guardado automático no se iniciara en algunos navegadores</h3>
                             <p class="feature-description">En algunos navegadores, la versión 1.5.0 no lograba iniciarse y no se guardaba nada en ninguna plataforma. Ya está corregido.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Se corrigen las respuestas de Claude que no se guardaban</h4>
+                            <h3 class="feature-title">Se corrigen las respuestas de Claude que no se guardaban</h3>
                             <p class="feature-description">Las respuestas de Claude que incluían búsqueda web, uso de herramientas o razonamiento podían quedar sin guardar por completo. Ahora se guardan.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Compatibilidad con Claude Cowork</h3>
+                            <p class="feature-description">Las conversaciones de Claude Cowork ahora se guardan automáticamente.</p>
+
                         </div>
 
                     </div>
@@ -1054,67 +843,42 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Interfaces en japonés y español</h4>
+                            <h3 class="feature-title">Interfaces en japonés y español</h3>
                             <p class="feature-description">Si el idioma de la interfaz de Chrome es japonés o español, Chat Memo muestra la interfaz en ese idioma. El texto original de las conversaciones guardadas no cambia; los idiomas de interfaz no admitidos usan el inglés como alternativa.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Control del guardado automático por plataforma</h4>
+                            <h3 class="feature-title">Control del guardado automático por plataforma</h3>
                             <p class="feature-description">Puedes pausar o activar el guardado automático para cada una de las nueve plataformas desde Configuración de plataformas. Si desactivas el interruptor principal, todas quedan en pausa sin perder sus preferencias individuales; la etiqueta flotante sigue mostrando el estado de pausa.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Estado más claro de la conversación actual</h4>
+                            <h3 class="feature-title">Estado más claro de la conversación actual</h3>
                             <p class="feature-description">La biblioteca marca el registro correspondiente a la página abierta y muestra cuándo está pausado el guardado automático. Si una conversación tiene varios registros locales, puedes revisarlos; las copias existentes no se fusionan ni eliminan automáticamente.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejor diseño en paneles estrechos y lectura de varios idiomas</h4>
+                            <h3 class="feature-title">Mejor diseño en paneles estrechos y lectura de varios idiomas</h3>
                             <p class="feature-description">La búsqueda, la selección múltiple, la exportación y los filtros de fecha se adaptan a paneles laterales más estrechos. Los títulos y contenidos que mezclan sistemas de escritura también se muestran de forma más uniforme.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejor guardado de Google AI Mode</h4>
+                            <h3 class="feature-title">Mejor guardado de Google AI Mode</h3>
                             <p class="feature-description">Chat Memo identifica registros locales a partir del contenido de la conversación para reducir duplicados cuando cambia el enlace de origen. Si el contenido se divide en ramas distintas, cada una se guarda por separado y se conserva el registro original.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección al cambiar entre conversaciones de Gemini</h4>
+                            <h3 class="feature-title">Corrección al cambiar entre conversaciones de Gemini</h3>
                             <p class="feature-description">Se corrigió un caso en el que, al cambiar de conversación de Gemini dentro de la misma pestaña, el contenido de la conversación anterior podía guardarse en el registro nuevo.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1134,52 +898,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Google AI Mode</h4>
+                            <h3 class="feature-title">Compatibilidad con Google AI Mode</h3>
                             <p class="feature-description">Ahora las conversaciones de Google AI Mode se pueden guardar automáticamente en Chat Memo, filtrar, exportar y volver a abrir en su página original.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Estado más coherente después de eliminar registros</h4>
-                            <p class="feature-description">Al eliminar o vaciar registros, los paneles laterales abiertos vuelven a la biblioteca y la página de origen abierta ya no recrea de inmediato las entradas eliminadas.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Corrección de contenido omitido</h4>
+                            <h3 class="feature-title">Corrección de contenido omitido</h3>
                             <p class="feature-description">Se corrigió la omisión de mensajes del usuario con enlaces en ChatGPT y de respuestas del modo de búsqueda profunda más reciente de Tencent Yuanbao.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Estado más coherente después de eliminar registros</h3>
+                            <p class="feature-description">Al eliminar o vaciar registros, los paneles laterales abiertos vuelven a la biblioteca y la página de origen abierta ya no recrea de inmediato las entradas eliminadas.</p>
+
                         </div>
 
                     </div>
@@ -1199,47 +935,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Copias de seguridad y notas de actualización</h4>
-                            <p class="feature-description">Esta actualización incluye una migración de datos. Chat Memo guarda automáticamente una copia local antes de migrar. Tras actualizar desde la versión 1.3.3, puedes descargar esa copia y los documentos Markdown desde Configuración → Copia de seguridad de datos.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Correcciones importantes del guardado</h4>
+                            <h3 class="feature-title">Correcciones importantes del guardado</h3>
                             <p class="feature-description">Se corrigieron problemas de sincronización en Doubao, ChatGPT y otras plataformas. Si una conversación antigua no se guardaba o dejó de sincronizarse, elimina su registro de Chat Memo y vuelve a capturarla.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Las eliminaciones en la web ya no se sincronizan</h4>
+                            <h3 class="feature-title">Las eliminaciones en la web ya no se sincronizan</h3>
                             <p class="feature-description">Para mejorar la estabilidad de la sincronización, eliminar manualmente mensajes en una página web ya no los elimina de Chat Memo.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guardado automático para todas las capturas</h4>
+                            <h3 class="feature-title">Guardado automático para todas las capturas</h3>
                             <p class="feature-description">Se retiró el modo de guardado manual. Todavía puedes pausar el guardado automático en Configuración.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Copias de seguridad y notas de actualización</h3>
+                            <p class="feature-description">Esta actualización incluye una migración de datos. Chat Memo guarda automáticamente una copia local antes de migrar. Tras actualizar desde la versión 1.3.3, puedes descargar esa copia y los documentos Markdown desde Configuración → Copia de seguridad de datos.</p>
+
                         </div>
 
                     </div>
@@ -1259,22 +978,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mayor protección de los datos</h4>
+                            <h3 class="feature-title">Mayor protección de los datos</h3>
                             <p class="feature-description">Solicita almacenamiento persistente y elimina los límites de cuota para las conversaciones guardadas localmente, para evitar que el navegador las borre automáticamente cuando escasea el espacio. Todos los datos permanecen en tu dispositivo.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1294,22 +1003,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección de respuestas de Doubao</h4>
+                            <h3 class="feature-title">Corrección de respuestas de Doubao</h3>
                             <p class="feature-description">Un cambio en la estructura de las respuestas de Doubao hacía que solo se guardaran los mensajes del usuario. Se adaptó la captura para volver a guardar correctamente las respuestas de la IA.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1329,37 +1028,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejora al copiar</h4>
-                            <p class="feature-description">Se corrigió la falta de confirmación después de copiar conversaciones en algunos navegadores.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Corrección de Doubao</h4>
+                            <h3 class="feature-title">Corrección de Doubao</h3>
                             <p class="feature-description">Se corrigió un fallo de guardado provocado por la eliminación del atributo data-testid en una actualización de Doubao, usando atributos semánticos más estables.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Mejora al copiar</h3>
+                            <p class="feature-description">Se corrigió la falta de confirmación después de copiar conversaciones en algunos navegadores.</p>
+
                         </div>
 
                     </div>
@@ -1379,57 +1059,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Qwen</h4>
+                            <h3 class="feature-title">Compatibilidad con Qwen</h3>
                             <p class="feature-description">Se añadió el guardado automático de conversaciones de Qwen mediante selectores semánticos estables para mejorar la compatibilidad a largo plazo.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Carga de datos más fiable</h4>
-                            <p class="feature-description">Un solo registro dañado ya no impide cargar todas las conversaciones. En su lugar, las conversaciones afectadas muestran una advertencia.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Corrección de DeepSeek</h4>
+                            <h3 class="feature-title">Corrección de DeepSeek</h3>
                             <p class="feature-description">Se corrigió un fallo del guardado automático causado por un cambio en la estructura de la página de DeepSeek.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección de Gemini</h4>
+                            <h3 class="feature-title">Corrección de Gemini</h3>
                             <p class="feature-description">Se eliminó el texto de accesibilidad adicional que aparecía al principio de los mensajes del usuario en Gemini con interfaz en chino.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Carga de datos más fiable</h3>
+                            <p class="feature-description">Un solo registro dañado ya no impide cargar todas las conversaciones. En su lugar, las conversaciones afectadas muestran una advertencia.</p>
+
                         </div>
 
                     </div>
@@ -1449,47 +1102,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Compatibilidad con Kimi</h4>
+                            <h3 class="feature-title">Compatibilidad con Kimi</h3>
                             <p class="feature-description">Ahora puedes guardar automáticamente conversaciones de Kimi, lo que amplía la compatibilidad con plataformas de IA.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guía de uso</h4>
-                            <p class="feature-description">Al hacer clic en la extensión desde una página interna del navegador, aparece una guía de Chat Memo para ayudarte a empezar.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Etiqueta flotante renovada</h4>
+                            <h3 class="feature-title">Etiqueta flotante renovada</h3>
                             <p class="feature-description">Se rediseñó la etiqueta flotante para ofrecer una apariencia más cuidada y una interacción más fluida.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejor compatibilidad con navegadores</h4>
+                            <h3 class="feature-title">Mejor compatibilidad con navegadores</h3>
                             <p class="feature-description">La interfaz de la extensión ahora funciona correctamente en navegadores como Dia y Quark, entre otros.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Guía de uso</h3>
+                            <p class="feature-description">Al hacer clic en la extensión desde una página interna del navegador, aparece una guía de Chat Memo para ayudarte a empezar.</p>
+
                         </div>
 
                     </div>
@@ -1509,52 +1145,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Nueva plataforma de IA</h4>
+                            <h3 class="feature-title">Nueva plataforma de IA</h3>
                             <p class="feature-description">Se añadió compatibilidad con Kimi para guardar automáticamente sus conversaciones.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejor compatibilidad con navegadores</h4>
-                            <p class="feature-description">Se optimizó la interfaz de la extensión para que funcione correctamente en navegadores como Dia y Quark, entre otros.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Corrección de Doubao</h4>
+                            <h3 class="feature-title">Corrección de Doubao</h3>
                             <p class="feature-description">Se corrigió un fallo que impedía guardar mensajes de Doubao de forma fiable.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Mejor compatibilidad con navegadores</h3>
+                            <p class="feature-description">Se optimizó la interfaz de la extensión para que funcione correctamente en navegadores como Dia y Quark, entre otros.</p>
+
                         </div>
 
                     </div>
@@ -1574,57 +1182,30 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Nuevas plataformas de IA</h4>
+                            <h3 class="feature-title">Nuevas plataformas de IA</h3>
                             <p class="feature-description">Ahora puedes guardar automáticamente conversaciones de Doubao y Claude.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mensajes largos plegables</h4>
+                            <h3 class="feature-title">Mensajes largos plegables</h3>
                             <p class="feature-description">Los mensajes largos se pueden plegar en la vista de detalles para facilitar la lectura y mejorar el rendimiento.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejoras de exportación</h4>
+                            <h3 class="feature-title">Mejoras de exportación</h3>
                             <p class="feature-description">Se mejoraron los estilos y la compatibilidad de idiomas de la función de exportación.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección de las fechas de conversación</h4>
+                            <h3 class="feature-title">Corrección de las fechas de conversación</h3>
                             <p class="feature-description">Se corrigió un problema que cambiaba las fechas de las conversaciones recientes al volver a abrir sus páginas originales.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1644,62 +1225,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Filtros y exportación múltiple</h4>
+                            <h3 class="feature-title">Filtros y exportación múltiple</h3>
                             <p class="feature-description">Ahora puedes filtrar conversaciones por plataforma y período, seleccionar varias y exportarlas según necesites.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">La etiqueta flotante se oculta en los bordes</h4>
+                            <h3 class="feature-title">La etiqueta flotante se oculta en los bordes</h3>
                             <p class="feature-description">Al arrastrarla hacia un borde de la pantalla, aparecen indicaciones visuales. Al soltarla, queda parcialmente oculta.</p>
-                        </div>
 
-                            </div>
                         </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Visualización más estable</h4>
+                            <h3 class="feature-title">Visualización más estable</h3>
                             <p class="feature-description">Se corrigieron problemas de visualización de iconos en redes internacionales con poca conectividad.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección de nombres de archivo exportados</h4>
+                            <h3 class="feature-title">Corrección de nombres de archivo exportados</h3>
                             <p class="feature-description">Se amplió la compatibilidad de caracteres de los archivos exportados para incluir hiragana, katakana y coreano, y se corrigió la codificación de nombres de ZIP al exportar en japonés.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Corrección del modo de guardado manual</h4>
+                            <h3 class="feature-title">Corrección del modo de guardado manual</h3>
                             <p class="feature-description">Se evitó que actualizar la página activara el guardado automático mientras estaba seleccionado el modo manual.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1719,32 +1274,24 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Editar títulos desde la lista</h4>
+                            <h3 class="feature-title">Editar títulos desde la lista</h3>
                             <p class="feature-description">Ahora puedes cambiar los títulos directamente en la lista de conversaciones.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejoras de interacción</h4>
+                            <h3 class="feature-title">Mejoras de interacción</h3>
                             <p class="feature-description">Se mejoraron las interacciones de las tarjetas de registro y las páginas de detalles.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mayor protección de los datos</h4>
+                            <h3 class="feature-title">Mayor protección de los datos</h3>
                             <p class="feature-description">Se reforzó la persistencia para evitar que el navegador borre los datos automáticamente.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1764,22 +1311,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Exportación en un solo archivo</h4>
+                            <h3 class="feature-title">Exportación en un solo archivo</h3>
                             <p class="feature-description">Se añadió la opción de combinar conversaciones en un solo documento al exportarlas.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1799,27 +1336,18 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mejora del texto de la etiqueta</h4>
+                            <h3 class="feature-title">Mejora del texto de la etiqueta</h3>
                             <p class="feature-description">Se cambió «Auto Memorizing» por «Auto Memory» en la etiqueta flotante para evitar confusiones.</p>
+
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Mayor compatibilidad con Gemini</h4>
+                            <h3 class="feature-title">Mayor compatibilidad con Gemini</h3>
                             <p class="feature-description">Se añadió compatibilidad con los formatos de URL `/*/*/app/*` y `/*/*/gem/*/*`.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1839,22 +1367,12 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Guía de instalación</h4>
+                            <h3 class="feature-title">Guía de instalación</h3>
                             <p class="feature-description">Se añadió una página de guía que aparece al descargar e instalar la extensión por primera vez.</p>
-                        </div>
 
-                            </div>
                         </div>
 
                     </div>
@@ -1874,62 +1392,36 @@
                         </div>
                     </div>
 
-                    <!-- 分组功能列表 -->
-                    <div class="space-y-5">
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🚀</span>
-                                <h3 class="text-new">Nuevas funciones</h3>
-                            </div>
-                            <div class="space-y-3">
+                    <div class="update-article">
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Búsqueda por palabras clave</h4>
+                            <h3 class="feature-title">Búsqueda por palabras clave</h3>
                             <p class="feature-description">Se añadió una búsqueda por palabras clave para encontrar contenido en todas tus conversaciones.</p>
-                        </div>
 
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">✨</span>
-                                <h3 class="text-improvement">Mejoras</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Cambio de nombre</h4>
-                            <p class="feature-description">El producto pasó a llamarse oficialmente «Chat Memo» para reflejar mejor su propósito.</p>
                         </div>
 
                         <div class="feature-item">
-                            <h4 class="feature-title">Acceso al sitio oficial</h4>
-                            <p class="feature-description">Se añadió un enlace al sitio oficial.</p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Mejoras de interfaz</h4>
-                            <p class="feature-description">Se ajustaron detalles de la interfaz.</p>
-                        </div>
-
-                            </div>
-                        </div>
-
-                        <div class="feature-group mb-6">
-                            <div class="flex items-center group-title">
-                                <span class="group-icon">🔧</span>
-                                <h3 class="text-fix">Correcciones</h3>
-                            </div>
-                            <div class="space-y-3">
-
-                        <div class="feature-item">
-                            <h4 class="feature-title">Corrección de Gemini</h4>
+                            <h3 class="feature-title">Corrección de Gemini</h3>
                             <p class="feature-description">Se corrigieron problemas de Gemini para evitar que se pierdan mensajes al actualizar la página.</p>
+
                         </div>
 
-                            </div>
+                        <div class="feature-item">
+                            <h3 class="feature-title">Cambio de nombre</h3>
+                            <p class="feature-description">El producto pasó a llamarse oficialmente «Chat Memo» para reflejar mejor su propósito.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">Acceso al sitio oficial</h3>
+                            <p class="feature-description">Se añadió un enlace al sitio oficial.</p>
+
+                        </div>
+
+                        <div class="feature-item">
+                            <h3 class="feature-title">Mejoras de interfaz</h3>
+                            <p class="feature-description">Se ajustaron detalles de la interfaz.</p>
+
                         </div>
 
                     </div>
