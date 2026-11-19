@@ -35,22 +35,19 @@ function renderFeature(feature, locale) {
 }
 
 function renderUpdate(update, locale) {
+    const summary = update.summary
+        ? `<p class="release-summary">${escapeHtml(localized(update.summary, locale))}</p>`
+        : '';
     const features = update.features.map(feature => renderFeature(feature, locale)).join('');
     return `
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">${escapeHtml(update.version)}</h2>
-                            ${update.summary ? `<p class="page-subtitle mb-0">${escapeHtml(localized(update.summary, locale))}</p>` : ''}
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">${escapeHtml(localized(update.date, locale))}</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">${escapeHtml(localized(update.date, locale))}</span> <span class="version-title">${escapeHtml(update.version)}</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        ${summary}
                         ${features}
                     </div>
                 </div>

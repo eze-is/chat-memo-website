@@ -30,7 +30,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/resource/icons/logo.png">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=3dc5eb7d9141">
+    <link rel="preload" as="style" href="/resource/marketing-utilities.css?v=1f3a1eab7886">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -65,19 +65,17 @@
             background: rgba(55, 53, 47, 0.24);
         }
 
-        /* 现代化的时间线样式 */
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
+        #updates-section .content-container { max-width: 940px; }
+        .timeline-item + .timeline-item {
+            margin-top: 36px;
+            padding-top: 36px;
+            border-top: 1px solid #e6e6e6;
         }
-
-        /* 更新卡片样式 - 与首页配方卡片保持一致 */
         .update-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: none;
+            display: grid;
+            grid-template-columns: minmax(165px, 21%) minmax(0, 1fr);
+            align-items: start;
+            gap: clamp(40px, 6vw, 80px);
         }
 
         /* 页面标题样式优化 */
@@ -96,29 +94,34 @@
             margin-bottom: 2rem;
         }
 
-        /* 版本标题样式 */
-        .version-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #37352f;
-            margin-bottom: 0.75rem;
+        .release-heading { min-width: 0; }
+        .release-identity {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            margin: 0;
+            line-height: 1.35;
+            font-variant-numeric: tabular-nums;
         }
-
-        .update-article .feature-item + .feature-item {
-            margin-top: 28px;
-            padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
-        }
+        .update-date { color: #44464c; font-size: 20px; font-weight: 500; }
+        .version-title { color: #777980; font-size: 16px; font-weight: 400; }
+        .release-summary { margin: 0 0 16px; color: #606060; font-size: 15px; line-height: 1.7; }
+        .update-article { min-width: 0; overflow-wrap: anywhere; }
+        .update-article .feature-item + .feature-item { margin-top: 18px; }
+        .update-article .feature-item + .feature-item:has(> .feature-description:first-child) { margin-top: 8px; }
         .update-article .feature-title {
-            font-size: 1.125rem;
+            margin: 0 0 3px;
+            color: #292929;
+            font-size: 1rem;
             font-weight: 600;
             line-height: 1.45;
-            margin-bottom: 8px;
         }
         .update-article .feature-description {
+            margin: 0;
             font-size: 0.9375rem;
             line-height: 1.75;
-            color: rgba(55, 53, 47, 0.65);
+            color: #494949;
         }
         .update-article .feature-description + .feature-description { margin-top: 10px; }
         .update-images {
@@ -164,15 +167,10 @@
             text-align: center;
         }
         .update-download:hover { background: #eaf0ff; }
-        @media (max-width: 480px) {
-            .update-article .feature-item + .feature-item { margin-top: 22px; padding-top: 20px; }
-        }
-
-        /* 日期样式 */
-        .update-date {
-            font-size: 0.875rem;
-            color: rgba(55, 53, 47, 0.45);
-            font-weight: 400;
+        @media (max-width: 640px) {
+            .update-card { grid-template-columns: 1fr; gap: 14px; }
+            .release-identity { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+            .timeline-item + .timeline-item { margin-top: 28px; padding-top: 28px; }
         }
 
         /* 容器最大宽度优化 */
@@ -291,7 +289,7 @@
     const afterLoad = () => setTimeout(start, 0);
     if (document.readyState === 'complete') afterLoad();
     else window.addEventListener('load', afterLoad, { once: true });
-})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=3dc5eb7d9141"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
+})();</script><link rel="stylesheet" href="/resource/download-page/dialog.css?v=9fb1b37cb9f0"><script src="/site-download.js?v=090240674b96" defer=""></script><link rel="stylesheet" href="/resource/marketing-utilities.css?v=1f3a1eab7886"><link rel="alternate" hreflang="en" href="https://chatmemo.ai/en/updates"><link rel="alternate" hreflang="zh-CN" href="https://chatmemo.ai/zh-CN/updates"><meta property="og:locale:alternate" content="zh_CN"><link rel="alternate" hreflang="ja" href="https://chatmemo.ai/ja/updates"><meta property="og:locale:alternate" content="ja_JP"><link rel="alternate" hreflang="es" href="https://chatmemo.ai/es/updates"><meta property="og:locale:alternate" content="es_ES"><link rel="alternate" hreflang="x-default" href="https://chatmemo.ai/updates"></head>
 <body class="bg-white text-gray-800 antialiased">
 
     <!-- Header -->
@@ -393,18 +391,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.11</h2>
-
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 19, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 19, 2026</span> <span class="version-title">v1.0.11</span></h2>
+                    </header>
 
                     <div class="update-article">
+
 
                         <div class="feature-item">
 
@@ -430,18 +422,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.10</h2>
-
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 16, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 16, 2026</span> <span class="version-title">v1.0.10</span></h2>
+                    </header>
 
                     <div class="update-article">
+
 
                         <div class="feature-item">
 
@@ -479,18 +465,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.9</h2>
-
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 13, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 13, 2026</span> <span class="version-title">v1.0.9</span></h2>
+                    </header>
 
                     <div class="update-article">
+
 
                         <div class="feature-item">
                             <h3 class="feature-title">Back up Grok Bot chats</h3>
@@ -534,18 +514,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.8</h2>
-                            <p class="page-subtitle mb-0">A guide to cross-AI context and improvements to conversation display.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 9, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 9, 2026</span> <span class="version-title">v1.0.8</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">A guide to cross-AI context and improvements to conversation display.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Cross-AI context guide</h3>
@@ -571,18 +545,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.7</h2>
-                            <p class="page-subtitle mb-0">More complete backups and smoother browsing.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 7, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 7, 2026</span> <span class="version-title">v1.0.7</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">More complete backups and smoother browsing.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Conversation backups and content display</h3>
@@ -620,18 +588,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.6</h2>
-                            <p class="page-subtitle mb-0">The Chat Memo desktop app is officially available.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 5, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 5, 2026</span> <span class="version-title">v1.0.6</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">The Chat Memo desktop app is officially available.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Automatic conversation backup</h3>
@@ -666,18 +628,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v2.0.0</h2>
-                            <p class="page-subtitle mb-0">A redesigned interface and a connection to Chat Memo Desktop. Switch AIs and keep the conversation going.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 5, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 5, 2026</span> <span class="version-title">v2.0.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">A redesigned interface and a connection to Chat Memo Desktop. Switch AIs and keep the conversation going.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">A redesigned interface</h3>
@@ -709,18 +665,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.5.3</h2>
-                            <p class="page-subtitle mb-0">Restores saving after Claude's website redesign and adds support for Claude Code on the web.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">October 19, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">October 19, 2026</span> <span class="version-title">v1.5.3</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Restores saving after Claude's website redesign and adds support for Claude Code on the web.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Restore Claude saving</h3>
@@ -740,18 +690,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.5.2</h2>
-                            <p class="page-subtitle mb-0">Adds support for ChatGPT dot and Claude Cowork, and fixes saving on the redesigned ChatGPT website and an auto-save startup failure in some browsers.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">September 30, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">September 30, 2026</span> <span class="version-title">v1.5.2</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Adds support for ChatGPT dot and Claude Cowork, and fixes saving on the redesigned ChatGPT website and an auto-save startup failure in some browsers.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Restore ChatGPT saving</h3>
@@ -789,18 +733,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.5.1</h2>
-                            <p class="page-subtitle mb-0">Fixes saving on the redesigned ChatGPT website and an auto-save startup failure in some browsers, and adds Claude Cowork support.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">September 29, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">September 29, 2026</span> <span class="version-title">v1.5.1</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Fixes saving on the redesigned ChatGPT website and an auto-save startup failure in some browsers, and adds Claude Cowork support.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Restore ChatGPT saving</h3>
@@ -832,18 +770,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.5.0</h2>
-                            <p class="page-subtitle mb-0">Adds Japanese and Spanish interfaces and per-platform auto-save controls, with better narrow-sidebar layouts and conversation saving.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">September 25, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">September 25, 2026</span> <span class="version-title">v1.5.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Adds Japanese and Spanish interfaces and per-platform auto-save controls, with better narrow-sidebar layouts and conversation saving.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Japanese and Spanish interfaces</h3>
@@ -887,18 +819,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.4.3</h2>
-                            <p class="page-subtitle mb-0">Adds automatic saving for Google AI Mode, fixes missed ChatGPT link messages and newer Tencent Yuanbao replies, and keeps deletion state consistent across pages.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">September 11, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">September 11, 2026</span> <span class="version-title">v1.4.3</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Adds automatic saving for Google AI Mode, fixes missed ChatGPT link messages and newer Tencent Yuanbao replies, and keeps deletion state consistent across pages.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Google AI Mode support</h3>
@@ -924,18 +850,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.4.0</h2>
-                            <p class="page-subtitle mb-0">More reliable AI conversation capture, with better protection for your saved data. Comprehensive fixes for saving issues on ChatGPT, Doubao, and other platforms. If an existing conversation no longer saves automatically after updating, delete its record in Chat Memo and try again.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">September 8, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">September 8, 2026</span> <span class="version-title">v1.4.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">More reliable AI conversation capture, with better protection for your saved data. Comprehensive fixes for saving issues on ChatGPT, Doubao, and other platforms. If an existing conversation no longer saves automatically after updating, delete its record in Chat Memo and try again.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Major saving fixes</h3>
@@ -967,18 +887,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.3.3</h2>
-                            <p class="page-subtitle mb-0">Strengthened local data durability to further reduce the risk of saved conversations being cleared.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">June 16, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">June 16, 2026</span> <span class="version-title">v1.3.3</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Strengthened local data durability to further reduce the risk of saved conversations being cleared.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Stronger Data Durability</h3>
@@ -992,18 +906,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.3.2</h2>
-                            <p class="page-subtitle mb-0">Fixed an issue where Doubao AI replies could not be synced.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">June 16, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">June 16, 2026</span> <span class="version-title">v1.3.2</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Fixed an issue where Doubao AI replies could not be synced.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Doubao AI Reply Sync Fix</h3>
@@ -1017,18 +925,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.3.1</h2>
-                            <p class="page-subtitle mb-0">Fixed Doubao adapter issues and improved copy success feedback.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">April 13, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">April 13, 2026</span> <span class="version-title">v1.3.1</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Fixed Doubao adapter issues and improved copy success feedback.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Doubao Adapter Fix</h3>
@@ -1048,18 +950,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.3.0</h2>
-                            <p class="page-subtitle mb-0">Added Qwen platform support, fixed DeepSeek and Gemini adapter issues, improved data loading reliability.</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">March 22, 2026</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">March 22, 2026</span> <span class="version-title">v1.3.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Added Qwen platform support, fixed DeepSeek and Gemini adapter issues, improved data loading reliability.</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Qwen Platform Support</h3>
@@ -1091,18 +987,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.2.0</h2>
-                            <p class="page-subtitle mb-0">Christmas surprise! Added Kimi platform support, floating tag visual upgrade, major browser compatibility improvements, plus smart guidance to help you get started!</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">December 25, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">December 25, 2025</span> <span class="version-title">v1.2.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Christmas surprise! Added Kimi platform support, floating tag visual upgrade, major browser compatibility improvements, plus smart guidance to help you get started!</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Kimi Platform Support</h3>
@@ -1134,18 +1024,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.1.2</h2>
-                            <p class="page-subtitle mb-0">Added Kimi platform support, fixed Doubao platform issues, and greatly improved browser compatibility for seamless use in any browser!</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">November 29, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">November 29, 2025</span> <span class="version-title">v1.1.2</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Added Kimi platform support, fixed Doubao platform issues, and greatly improved browser compatibility for seamless use in any browser!</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">New AI Platform Support</h3>
@@ -1171,18 +1055,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.1.0</h2>
-                            <p class="page-subtitle mb-0">Added support for Doubao and Claude platforms, optimized reading experience with long message collapsing, and fixed export and conversation timing issues</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">August 12, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">August 12, 2025</span> <span class="version-title">v1.1.0</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Added support for Doubao and Claude platforms, optimized reading experience with long message collapsing, and fixed export and conversation timing issues</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">We support new AI platforms</h3>
@@ -1214,18 +1092,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.10</h2>
-                            <p class="page-subtitle mb-0">Added filtering and multi-select export features, optimized floating tag experience, and resolved several important issues to improve plugin stability and internationalization support!</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">July 24, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">July 24, 2025</span> <span class="version-title">v1.0.10</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Added filtering and multi-select export features, optimized floating tag experience, and resolved several important issues to improve plugin stability and internationalization support!</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Filtering and Multi-select Export Feature</h3>
@@ -1263,18 +1135,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.9</h2>
-                            <p class="page-subtitle mb-0">Optimized record management experience. You can now edit titles directly in the list, and enhanced data persistence to keep your chat records safer!</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">July 6, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">July 6, 2025</span> <span class="version-title">v1.0.9</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Optimized record management experience. You can now edit titles directly in the list, and enhanced data persistence to keep your chat records safer!</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Direct List Editing</h3>
@@ -1300,18 +1166,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.8</h2>
-                            <p class="page-subtitle mb-0">Thanks to user @James' suggestion, the feature to merge and export chat records into a single file is here, making it convenient for everyone to interact with AI platforms 🥰</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">July 3, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">July 3, 2025</span> <span class="version-title">v1.0.8</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Thanks to user @James' suggestion, the feature to merge and export chat records into a single file is here, making it convenient for everyone to interact with AI platforms 🥰</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Export Feature</h3>
@@ -1325,18 +1185,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.7</h2>
-                            <p class="page-subtitle mb-0">Floating-label wording and Gemini platform enhancements. No more worries about Gemini conversation records not being saved in multi-user scenarios! Thanks to users @William and LUCIFER for their feedback 🙌</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">July 2, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">July 2, 2025</span> <span class="version-title">v1.0.7</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Floating-label wording and Gemini platform enhancements. No more worries about Gemini conversation records not being saved in multi-user scenarios! Thanks to users @William and LUCIFER for their feedback 🙌</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Floating Label Wording</h3>
@@ -1356,18 +1210,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.6</h2>
-                            <p class="page-subtitle mb-0">Added first-time installation guide feature to help you get started quickly~</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">July 1, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">July 1, 2025</span> <span class="version-title">v1.0.6</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Added first-time installation guide feature to help you get started quickly~</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Installation Guide</h3>
@@ -1381,18 +1229,12 @@
 
             <div class="timeline-item">
                 <div class="update-card">
-                    <!-- 版本头部 -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex-1">
-                            <h2 class="version-title">v1.0.5</h2>
-                            <p class="page-subtitle mb-0">Chat Memo's first public release version, hope everyone enjoys using it!</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <span class="update-date">June 30, 2025</span>
-                        </div>
-                    </div>
+                    <header class="release-heading">
+                        <h2 class="release-identity"><span class="update-date">June 30, 2025</span> <span class="version-title">v1.0.5</span></h2>
+                    </header>
 
                     <div class="update-article">
+                        <p class="release-summary">Chat Memo's first public release version, hope everyone enjoys using it!</p>
 
                         <div class="feature-item">
                             <h3 class="feature-title">Keyword Search Feature</h3>
