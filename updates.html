@@ -282,6 +282,9 @@ SiteI18n.redirectToCanonical("updates");</script>
             align-items: start;
             gap: clamp(40px, 6vw, 80px);
         }
+        .update-card:lang(zh-CN) {
+            font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+        }
 
         /* 页面标题样式优化 */
         .page-title {
@@ -304,23 +307,22 @@ SiteI18n.redirectToCanonical("updates");</script>
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 4px;
+            gap: 3px;
             margin: 0;
-            line-height: 1.35;
-            font-variant-numeric: tabular-nums;
+            line-height: 1.5;
         }
-        .update-date { color: #44464c; font-size: 20px; font-weight: 500; }
-        .version-title { color: #777980; font-size: 16px; font-weight: 400; }
+        .update-date { color: #44464c; font-size: 1rem; font-weight: 400; }
+        .version-title { color: #686b72; font-size: 0.8125rem; font-weight: 400; }
         .release-summary { margin: 0 0 16px; color: #606060; font-size: 15px; line-height: 1.7; }
         .update-article { min-width: 0; overflow-wrap: anywhere; }
         .update-article .feature-item + .feature-item { margin-top: 18px; }
         .update-article .feature-item + .feature-item:has(> .feature-description:first-child) { margin-top: 8px; }
         .update-article .feature-title {
-            margin: 0 0 3px;
+            margin: 0 0 4px;
             color: #292929;
             font-size: 1rem;
             font-weight: 600;
-            line-height: 1.45;
+            line-height: 1.5;
         }
         .update-article .feature-description {
             margin: 0;
