@@ -1431,7 +1431,31 @@
             "en": "Import your DeepSeek web chat history from the Connections page. More platforms are on the way.",
             "ja": "「接続」ページから、DeepSeek ウェブ版の過去の会話をインポートできるようになりました。今後、対応するサービスを順次追加します。",
             "es": "Ahora puedes importar tu historial de conversaciones de la versión web de DeepSeek desde la página Conexiones. Añadiremos más plataformas próximamente."
-          }
+          },
+          "images": [
+            {
+              "src": "/resource/updates/2.1.0/deepseek-import.png",
+              "alt": {
+                "zh-CN": "Chat Memo 桌面端记录页，在导入历史里查看 DeepSeek 网页对话",
+                "en": "DeepSeek web conversations in Chat Memo Desktop’s import history",
+                "ja": "Chat Memo デスクトップ版のインポート履歴に表示された DeepSeek のウェブ会話",
+                "es": "Chats web de DeepSeek en el historial de importaciones de Chat Memo Desktop"
+              },
+              "width": 1742,
+              "height": 1474
+            },
+            {
+              "src": "/resource/updates/2.1.0/deepseek-import-entry.png",
+              "alt": {
+                "zh-CN": "Chat Memo 桌面端的导入页，显示 DeepSeek 网页对话导入入口",
+                "en": "The Import tab in Chat Memo Desktop with the DeepSeek web import option",
+                "ja": "Chat Memo デスクトップ版のインポートタブにある DeepSeek ウェブの取り込み項目",
+                "es": "Pestaña de importación en Chat Memo Desktop con la opción de importar chats web de DeepSeek"
+              },
+              "width": 1198,
+              "height": 690
+            }
+          ]
         },
         {
           "type": "improvement",
@@ -1440,7 +1464,20 @@
             "en": "The browser extension now preserves images and formulas when saving DeepSeek chats.",
             "ja": "ブラウザー拡張機能で DeepSeek の会話を保存する際、画像や数式も保存できるようになりました。",
             "es": "La extensión del navegador ahora conserva las imágenes y las fórmulas al guardar conversaciones de DeepSeek."
-          }
+          },
+          "images": [
+            {
+              "src": "/resource/updates/1.0.11/deepseek-images-and-formulas.png",
+              "alt": {
+                "zh-CN": "桌面端显示由浏览器插件保存的 DeepSeek 对话，包含数学公式和一张彩色几何图形图片",
+                "en": "Chat Memo Desktop showing equations and an image of colored shapes in a DeepSeek chat saved by the browser extension",
+                "ja": "ブラウザー拡張機能で保存した DeepSeek の会話をデスクトップ版で開き、数式と色付きの図形の画像を表示した画面",
+                "es": "Chat de DeepSeek guardado por la extensión y abierto en Chat Memo Desktop, con fórmulas y una imagen de figuras de colores"
+              },
+              "width": 2120,
+              "height": 1520
+            }
+          ]
         },
         {
           "type": "new",
