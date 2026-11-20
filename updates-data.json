@@ -1426,6 +1426,12 @@
       "features": [
         {
           "type": "new",
+          "title": {
+            "zh-CN": "导入网页端历史对话",
+            "en": "Import your web chat history",
+            "ja": "ウェブ版の会話履歴をインポート",
+            "es": "Importa tu historial de chats web"
+          },
           "description": {
             "zh-CN": "现在可以在连接页导入 DeepSeek 网页端的历史对话。更多平台将陆续支持。",
             "en": "Import your DeepSeek web chat history from the Connections page. More platforms are on the way.",
@@ -1459,11 +1465,11 @@
         },
         {
           "type": "improvement",
-          "description": {
-            "zh-CN": "优化了浏览器插件保存 DeepSeek 对话的格式，支持图片和公式。",
-            "en": "The browser extension now preserves images and formulas when saving DeepSeek chats.",
-            "ja": "ブラウザー拡張機能で DeepSeek の会話を保存する際、画像や数式も保存できるようになりました。",
-            "es": "La extensión del navegador ahora conserva las imágenes y las fórmulas al guardar conversaciones de DeepSeek."
+          "title": {
+            "zh-CN": "浏览器插件支持保存 DeepSeek 对话中的图片和公式",
+            "en": "The browser extension saves images and formulas in DeepSeek chats",
+            "ja": "ブラウザー拡張機能で DeepSeek の会話の画像や数式も保存",
+            "es": "La extensión guarda imágenes y fórmulas en los chats de DeepSeek"
           },
           "images": [
             {
@@ -1481,11 +1487,11 @@
         },
         {
           "type": "new",
-          "description": {
-            "zh-CN": "新增 Gemini 跨 AI 互通指引。",
-            "en": "Added a guide to connecting Gemini with Chat Memo.",
-            "ja": "Gemini と Chat Memo を連携するためのガイドを追加しました。",
-            "es": "Añadimos una guía para conectar Gemini con Chat Memo."
+          "title": {
+            "zh-CN": "新增 Gemini 跨 AI 互通指引",
+            "en": "New guide to connecting Gemini with Chat Memo",
+            "ja": "Gemini と Chat Memo の連携ガイドを追加",
+            "es": "Nueva guía para conectar Gemini con Chat Memo"
           }
         }
       ]

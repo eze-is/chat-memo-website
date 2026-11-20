@@ -27,6 +27,8 @@ test('四语两端的所有版本共用分段版式，保留每一条说明和�
         const features = releases.flatMap(release => release.features);
         assert.equal((html.match(/class="update-article"/g) || []).length, releases.length, locale);
         assert.equal((html.match(/class="feature-item"/g) || []).length, features.length, locale);
+        assert.equal((html.match(/<h3 class="feature-title">/g) || []).length, features.filter(feature => feature.title).length, locale);
+        assert.doesNotMatch(html, /<p class="feature-description">\s*<\/p>/);
         assert.equal((html.match(/<img /g) || []).length, features.flatMap(feature => feature.images ?? []).length, locale);
         assert.doesNotMatch(html, /class="feature-group/);
     }

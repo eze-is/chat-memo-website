@@ -14,7 +14,7 @@ function localized(value, locale) {
 
 function renderFeature(feature, locale) {
     const title = escapeHtml(localized(feature.title, locale));
-    const paragraphs = localized(feature.description, locale).split('\n\n').map(paragraph =>
+    const paragraphs = localized(feature.description, locale).split('\n\n').filter(Boolean).map(paragraph =>
         `<p class="feature-description">${escapeHtml(paragraph)}</p>`).join('\n                            ');
     const images = (feature.images ?? []).filter(image => /^\/resource\/updates\/[a-z0-9./-]+\.(?:png|webp)$/.test(image.src));
     const figures = images.map(image =>

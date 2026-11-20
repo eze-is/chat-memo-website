@@ -70,8 +70,9 @@ test('全部历史更新四语完整，英文是唯一缺译兜底', () => {
             for (const locale of locales) assert.ok(update[field][locale]?.trim(), `${update.version} ${field}.${locale}`);
         }
         for (const feature of update.features) {
+            assert.ok(feature.title || feature.description, `${update.version} 需要标题或正文`);
             for (const field of ['title', 'description']) {
-                if (field === 'title' && feature.title === undefined) continue;
+                if (feature[field] === undefined) continue;
                 for (const locale of locales) assert.ok(feature[field][locale]?.trim(), `${update.version} ${field}.${locale}`);
             }
         }
