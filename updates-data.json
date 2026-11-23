@@ -1442,6 +1442,47 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.13",
+      "date": {
+        "zh-CN": "2026年11月23日",
+        "en": "November 23, 2026",
+        "ja": "2026年11月23日",
+        "es": "23 de noviembre de 2026"
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "支持 Antigravity 的自动备份与跨 AI 互通。",
+            "en": "Back up your Antigravity chats and use them across AI tools.",
+            "ja": "Antigravity の会話を自動で保存して、ほかの AI でも活用",
+            "es": "Guarda tus conversaciones de Antigravity y úsalas con otras herramientas de IA"
+          },
+          "description": {
+            "zh-CN": "桌面端和 agy 命令行里的对话都能自动备份。",
+            "en": "Chat Memo can now automatically save conversations from both the Antigravity desktop app and the agy command line.",
+            "ja": "Chat Memo で、Antigravity のデスクトップアプリとコマンドラインツール agy のどちらの会話も自動でバックアップできるようになりました。",
+            "es": "Chat Memo ya puede guardar automáticamente tus conversaciones tanto en la aplicación de escritorio de Antigravity como en su herramienta de línea de comandos, agy."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "国内下载从此提提提提速了。",
+            "en": "Downloads just got faster in mainland China.",
+            "ja": "中国本土からのダウンロードがぐっと速く",
+            "es": "Descargas más rápidas en China continental"
+          },
+          "description": {
+            "zh-CN": "在中国大陆，官网下载和新版客户端更新都会优先走国内下载源。网速给力时，更新包也能快乐秒下。",
+            "en": "The website and newer versions of the desktop app now use a local mirror when one is available. On a fast connection, you can download an update in seconds.",
+            "ja": "中国本土では、公式サイトからダウンロードするときや、新しいバージョンのデスクトップアプリを更新するときに、国内のミラーサーバーを優先して使います。回線が速ければ、更新ファイルを数秒でダウンロードできることもあります。",
+            "es": "En China continental, el sitio web y las versiones recientes de la aplicación de escritorio dan prioridad a los servidores de descarga locales. Con una conexión rápida, puedes descargar una actualización en cuestión de segundos."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.12",
       "date": {
         "zh-CN": "2026年11月23日",
