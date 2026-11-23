@@ -58,6 +58,34 @@ test('Intel 下载使用 Intel 准备入口，并接受固定版本的 Intel DMG
   assert.deepEqual(h.assigned, ['https://chatmemo.ai' + intel])
 })
 
+test('GitHub 回退只接受官方仓库中同版本的三个固定安装包，镜像仍走同源文件', async () => {
+  const release = 'https://github.com/eze-is/chatmemo-desktop-releases/releases/download/v1.2.3'
+  for (const suffix of ['arm64.dmg', 'x64.dmg', 'x64.exe']) {
+    const filename = `chatmemo-1.2.3-${suffix}`
+    for (const path of [`${release}/${filename}`, `/desktop/download/file/v1.2.3/${'a'.repeat(64)}/${filename}`]) {
+      const h = harness({ fetchImpl: async () => ready(path) })
+      h.click(h.anchor())
+      await flush()
+      assert.deepEqual(h.assigned, [new URL(path, 'https://chatmemo.ai').href])
+    }
+  }
+
+  const valid = `${release}/chatmemo-1.2.3-arm64.dmg`
+  for (const path of [
+    valid.replace('github.com', 'other.example'), valid.replace('eze-is/', 'other/'),
+    valid.replace('chatmemo-desktop-releases/', 'other-releases/'), valid.replace('https:', 'http:'),
+    valid.replace('github.com', 'user@github.com'), valid.replace('github.com', 'github.com:8443'),
+    valid.replace('v1.2.3', 'v1.2.4'), valid.replace('arm64.dmg', 'arm64.zip'), valid.replace('.dmg', '.exe'),
+    valid + '?query', valid + '#fragment', valid + '?', valid + '#',
+  ]) {
+    const h = harness({ fetchImpl: async () => ready(path) })
+    h.click(h.anchor())
+    await flush()
+    assert.deepEqual(h.assigned, [], path)
+    assert.equal(h.failure.hidden, false, path)
+  }
+})
+
 test('不可信目的地与准备失败显示弹窗，而不是跳转错误页面', async () => {
   for (const value of ['https://evil.example/file', '/desktop/releases/v1.2.3/chatmemo-9.9.9-arm64.dmg', '/desktop/releases/v1.2.3/chatmemo-1.2.3-arm64.dmg?x=1']) {
     const h = harness({ fetchImpl: async () => ready(value) }); h.click(h.anchor()); await flush()

@@ -29,12 +29,18 @@
         return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(host) ? window.location.origin : 'https://chatmemo.ai';
     }
     function safeDownload(path, base) {
+        if (typeof path !== 'string') return null;
         try {
-            const url = new URL(path, base);
             const version = '(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)\\.(?:0|[1-9]\\d*)';
-            const mirror = new RegExp(`^/desktop/download/file/v(${version})/[a-f0-9]{64}/chatmemo-\\1-(?:arm64\\.dmg|x64\\.dmg|x64\\.exe)$`);
-            const github = new RegExp(`^/desktop/releases/v(${version})/chatmemo-\\1-(?:arm64\\.dmg|x64\\.dmg|x64\\.exe)$`);
-            return url.origin === base && (mirror.test(url.pathname) || github.test(url.pathname)) && !url.search && !url.hash ? url.href : null;
+            const filename = 'chatmemo-\\1-(?:arm64\\.dmg|x64\\.dmg|x64\\.exe)';
+            const pinned = `v(${version})/${filename}`;
+            const github = new RegExp(`^https://github\\.com/eze-is/chatmemo-desktop-releases/releases/download/${pinned}$`);
+            if (github.test(path)) return path;
+            const url = new URL(path, base);
+            if (url.href !== base + url.pathname) return null;
+            const mirror = new RegExp(`^/desktop/download/file/v(${version})/[a-f0-9]{64}/${filename}$`);
+            const release = new RegExp(`^/desktop/releases/${pinned}$`);
+            return mirror.test(url.pathname) || release.test(url.pathname) ? url.href : null;
         } catch { return null; }
     }
     async function begin(anchor, platform) {
