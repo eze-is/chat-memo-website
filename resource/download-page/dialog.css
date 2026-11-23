@@ -20,16 +20,15 @@
 
 /* 下载入口复用弹窗里的版本和下载链接。 */
 .desktop-download-choice { position: relative; }
-.desktop-download-choice > a[aria-disabled="true"] { opacity: .68; cursor: default; }
-.desktop-download-toggle { display: block; margin: 6px auto 0; padding: 3px 8px; border: 0; border-radius: 6px; color: #536fe4; background: transparent; font: inherit; font-size: 13px; font-weight: 500; line-height: 1.4; cursor: pointer; }
-.desktop-download-toggle[hidden] { display: none; }
-/* 已推荐的首页按钮不显示箭头，键盘和读屏仍可找到版本选择。 */
-.desktop-download-toggle--compact:not(:focus-visible) { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.desktop-download-toggle--compact:focus-visible { position: absolute; z-index: 81; bottom: calc(100% + 7px); left: 50%; margin: 0; transform: translateX(-50%); white-space: nowrap; background: #fff; box-shadow: 0 3px 12px rgb(0 0 0 / 12%); }
+.desktop-download-choice > a[aria-disabled="true"] { cursor: default; }
+.desktop-download-toggle { position: absolute; top: 50%; right: 3px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; transform: translateY(-50%); border: 0; border-radius: 7px; color: inherit; background: transparent; cursor: pointer; }
+.desktop-download-toggle svg { width: 16px; height: 16px; transition: transform 160ms ease; }
+.desktop-download-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 .desktop-download-choice--nav > a { padding-right: 42px; }
-.desktop-download-choice--nav .desktop-download-toggle { position: absolute; top: 50%; right: 3px; display: grid; place-items: center; width: 36px; height: 36px; margin: 0; padding: 0; transform: translateY(-50%); border-radius: 7px; color: white; }
-.desktop-download-choice--nav .desktop-download-toggle svg { width: 16px; height: 16px; transition: transform 160ms ease; }
-.desktop-download-choice--nav .desktop-download-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.desktop-download-choice--nav .desktop-download-toggle { color: white; }
+/* 首页用悬停展开；触屏和键盘用户可通过按钮内的箭头选版本。 */
+@media (hover: hover) { .desktop-download-choice:not(.desktop-download-choice--nav) .desktop-download-toggle:not(:focus-visible) { clip-path: inset(50%); } }
+@media (hover: none) { .desktop-download-choice > .hero-download-primary { padding-right: 42px; } }
 .desktop-download-toggle:hover { background: rgb(83 111 228 / 8%); }
 .desktop-download-toggle:focus-visible, .desktop-download-menu a:focus-visible { outline: 2px solid #6480ea; outline-offset: 2px; }
 .desktop-download-menu { position: absolute; top: calc(100% + 8px); left: 50%; z-index: 80; width: 280px; max-width: calc(100vw - 32px); padding: 8px; transform: translateX(-50%); border: 1px solid rgb(0 0 0 / 7%); border-radius: 18px; background: #fff; box-shadow: 0 16px 40px rgb(27 33 55 / 14%); }

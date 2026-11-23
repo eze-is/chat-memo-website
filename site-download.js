@@ -108,14 +108,9 @@
             const toggle = document.createElement('button');
             toggle.type = 'button';
             toggle.className = 'desktop-download-toggle';
-            if (inNavigation) {
-                toggle.setAttribute('aria-label', 'Choose a version');
-                toggle.setAttribute('data-aria-label-key', 'download-select-version');
-                toggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-            } else {
-                toggle.setAttribute('data-key', 'download-select-version');
-                toggle.textContent = 'Choose a version';
-            }
+            toggle.setAttribute('aria-label', 'Choose a version');
+            toggle.setAttribute('data-aria-label-key', 'download-select-version');
+            toggle.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-controls', `desktop-download-menu-${index}`);
             const menu = document.createElement('div');
@@ -155,17 +150,16 @@
             primary.addEventListener('click', event => {
                 if (primary.hasAttribute('aria-disabled')) event.preventDefault();
             });
-            menus.push({ primary, menu, toggle, close: () => setOpen(false) });
+            menus.push({ primary, menu, close: () => setOpen(false) });
         });
         document.addEventListener('pointerdown', event => {
             menus.forEach(({ primary, close }) => { if (!primary.parentElement.contains(event.target)) close(); });
         });
         void detectDevice().then(platform => {
             if (!platform) return;
-            menus.forEach(({ primary, menu, toggle }) => {
+            menus.forEach(({ primary, menu }) => {
                 primary.href = `https://chatmemo.ai/desktop/download/${platform}?link=website`;
                 primary.removeAttribute('aria-disabled');
-                if (!primary.closest('header')) toggle.classList.add('desktop-download-toggle--compact');
                 menu.querySelector(`[data-download-os="${platform}"] .desktop-download-current`).hidden = false;
             });
         });
