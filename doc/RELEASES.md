@@ -41,6 +41,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [37c1d75] — 2026-11-23 22:15:56 UTC+8 · Desktop 1.0.13 四语更新说明
+
+- [Desktop 1.0.13](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.13) 于 22:15:24（UTC+8）公开为稳定版。官网更新页随后发布两条说明。简中和英文与桌面端最终发布稿逐句一致。
+- Cloudflare Pages 的 production 部署 `a38573ef-8b1f-420d-85a0-857267ac0fa6` 对应 `main@37c1d7552c35abdc9dd65100db9f69beab3978ec`，部署于 `2026-11-23T14:15:56.616292Z` 成功。71 项官网测试及四语静态一致性检查通过。Ego Lite 在 375px 宽度检查四语卡片，标题和正文均完整显示。
+- 22:16 从正式域名回读的简中、英文、日文、西班牙文更新页与 `updates-data.json` 均和生产提交逐字节相同。Ego Lite 已在正式英文页读到两个新标题。三个官网下载入口都返回 302，分别指向 1.0.13 对应平台的安装包；无效路径返回 404。[官网更新日志](https://chatmemo.ai/zh-CN/updates)
+
 ### [f9248b0] — 2026-11-23 19:01:05 UTC+8 · Desktop 1.0.12 四语更新说明
 
 - [Desktop 1.0.12](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.12) 于 18:59:28（UTC+8）公开。官网随后发布三项更新说明，覆盖 Antigravity 备份、远程查询来源分组及下载与重启。中文与英文正文逐条采用桌面发布说明，日文和西班牙文经过独立核对。
