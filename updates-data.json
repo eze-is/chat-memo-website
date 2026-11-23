@@ -1442,6 +1442,62 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.12",
+      "date": {
+        "zh-CN": "2026年11月23日",
+        "en": "November 23, 2026",
+        "ja": "2026年11月23日",
+        "es": "23 de noviembre de 2026"
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "备份 Antigravity 对话",
+            "en": "Back up Antigravity conversations",
+            "ja": "Antigravity の会話をバックアップ",
+            "es": "Copias de seguridad de las conversaciones de Antigravity"
+          },
+          "description": {
+            "zh-CN": "在连接页开启 Antigravity 备份后，可以搜索和阅读主对话与旁问。Pro 用户还可以在 Antigravity 中查询 Chat Memo 记忆。",
+            "en": "Enable Antigravity backup in Connections to search and read conversations and side questions. Pro users can also query Chat Memo from Antigravity.",
+            "ja": "「接続」で Antigravity のバックアップを有効にすると、メインの会話とそこから派生した質問を検索して読めます。Pro では、Antigravity から Chat Memo に保存した内容も検索できます。",
+            "es": "Activa la copia de seguridad de Antigravity en Conexiones para buscar y leer tanto las conversaciones principales como las preguntas que surgen al margen de ellas. Con Pro también puedes consultar desde Antigravity los recuerdos que has guardado en Chat Memo."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "按来源查询记忆",
+            "en": "Choose sources for remote memory queries",
+            "ja": "検索する会話の保存元を選択",
+            "es": "Selección de fuentes para las consultas remotas"
+          },
+          "description": {
+            "zh-CN": "远程 AI 查询记忆时，可以按本机资料库提供的分组选择来源。",
+            "en": "Remote AI tools now show sources grouped by your desktop when you query saved memories.",
+            "ja": "リモートの AI で保存した会話を検索するとき、デスクトップ版のライブラリが提供するグループから、検索対象の保存元を選べます。",
+            "es": "Al consultar tus recuerdos desde una IA remota, puedes elegir entre las fuentes agrupadas por tu biblioteca local."
+          }
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "更新下载与重启",
+            "en": "Update downloads and restarts",
+            "ja": "アップデートのダウンロードと再起動",
+            "es": "Descarga de actualizaciones y reinicio"
+          },
+          "description": {
+            "zh-CN": "切换网络后可重新下载更新。下载超过一分钟或失败时，可从官网下载；修复了 Mac 打开过托盘后重启更新可能卡住的问题。",
+            "en": "Retry a download after switching networks, or use the website if it takes over a minute or fails. Fixed a Mac update restart that could hang after opening the tray.",
+            "ja": "ネットワークを切り替えた後でも、更新のダウンロードを再試行できます。ダウンロードに 1 分を超える時間がかかる場合や失敗した場合は、公式サイトからもダウンロードできます。また、Mac のメニューバーで Chat Memo のメニューを開いた後、更新のための再起動が途中で止まることがある問題を修正しました。",
+            "es": "Si cambias de red, puedes volver a intentar la descarga de la actualización. Si tarda más de un minuto o falla, también puedes descargarla desde el sitio web oficial. En Mac, corregimos un bloqueo que podía producirse al reiniciar para actualizar después de abrir el menú de Chat Memo desde la barra de menús."
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.11",
       "date": {
         "zh-CN": "2026年11月19日",
