@@ -1,6 +1,32 @@
 {
   "updates": [
     {
+      "version": "v2.1.1",
+      "date": {
+        "zh-CN": "2026年11月23日",
+        "en": "November 23, 2026",
+        "ja": "2026年11月23日",
+        "es": "23 de noviembre de 2026"
+      },
+      "features": [
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "修复 ChatGPT 侧栏配对时的灰屏",
+            "en": "Fixed desktop pairing from the sidebar on ChatGPT",
+            "ja": "ChatGPT でのサイドバーからのペアリングを修正",
+            "es": "Se corrigió la vinculación desde la barra lateral en ChatGPT"
+          },
+          "description": {
+            "zh-CN": "登录 ChatGPT 后，从扩展侧栏点「配对」，即可打开 Chat Memo 桌面端继续配对。",
+            "en": "When signed in to ChatGPT, clicking Pair in the extension sidebar now opens Chat Memo Desktop so you can continue pairing.",
+            "ja": "ChatGPT にログインした状態で拡張機能のサイドバーにある「ペアリング」を選ぶと、Chat Memo のデスクトップアプリが開き、ペアリングを続けられるようになりました。",
+            "es": "Si has iniciado sesión en ChatGPT, al hacer clic en «Vincular» en la barra lateral de la extensión se abre la aplicación de escritorio de Chat Memo para continuar la vinculación."
+          }
+        }
+      ]
+    },
+    {
       "version": "v2.1.0",
       "date": {
         "zh-CN": "2026年11月19日",
