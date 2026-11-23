@@ -41,6 +41,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [f9248b0] — 2026-11-23 19:01:05 UTC+8 · Desktop 1.0.12 四语更新说明
+
+- [Desktop 1.0.12](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.12) 于 18:59:28（UTC+8）公开。官网随后发布三项更新说明，覆盖 Antigravity 备份、远程查询来源分组及下载与重启。中文与英文正文逐条采用桌面发布说明，日文和西班牙文经过独立核对。
+- Pages production 部署 `7ed63159-8f1c-4b7e-b22a-ed8050b0d94f` 对应 `main@f9248b0dca6ffabaa0469b3e1f0daec92237ef6f`，部署成功于 `2026-11-23T11:01:05.785986Z`。71 项测试及四语生成一致性通过。
+- 正式域名的四语更新页、`updates-data.json` 均与发布文件逐字节一致。Ego Lite 从英文更新页切换至中文，新版本和正文正常显示。官网 Apple 芯片 Mac、Intel Mac 和 Windows 下载入口均返回 302，分别指向对应的 1.0.12 安装包；无效更新路径返回 404。[官网更新日志](https://chatmemo.ai/zh-CN/updates)
+
 ### [19d0867] — 2026-11-23 18:30:33 UTC+8 · 下载页接收 GitHub 固定版本直链
 
 - 官网先行支持准备接口返回固定版本的 GitHub 安装包地址，并继续接收原有官网地址。仅接收公开包仓、标签和文件版本一致的三个正式安装包。
