@@ -1494,6 +1494,74 @@
   ],
   "desktopUpdates": [
     {
+      "version": "v1.0.14",
+      "date": {
+        "zh-CN": "待发布",
+        "en": "Upcoming",
+        "ja": "公開予定",
+        "es": "Próximamente"
+      },
+      "features": [
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "ChatGPT、Gemini 网页对话，全图片、格式无损保存",
+            "en": "Save ChatGPT and Gemini web chats with images and formatting",
+            "ja": "ChatGPT と Gemini のウェブ版で画像と書式を保ったまま会話を保存",
+            "es": "Los chats web de ChatGPT y Gemini conservan las imágenes y el formato"
+          },
+          "description": {
+            "zh-CN": "ChatGPT 和 Gemini 的网页新对话，现在也能按原来的排版保存图片和公式了。",
+            "en": "New ChatGPT and Gemini chats on the web now keep images and formulas in their original layout.",
+            "ja": "ChatGPT と Gemini のウェブ版で新しく始めた会話では、画像や数式を元のレイアウトのまま保存できます。",
+            "es": "Los chats nuevos de ChatGPT y Gemini en la web guardan las imágenes y las fórmulas en su posición original."
+          },
+          "images": [
+            {
+              "src": "/resource/updates/1.0.14/gemini-images-and-formulas.png",
+              "alt": {
+                "zh-CN": "Chat Memo 桌面端的 Gemini 示例对话保留了单摆示意图和周期公式",
+                "en": "A sample Gemini chat in Chat Memo Desktop with its pendulum diagram and period formula",
+                "ja": "Chat Memo デスクトップ版に保存した Gemini の会話例。振り子の図と周期の式が表示されています",
+                "es": "Un chat de ejemplo de Gemini en Chat Memo para escritorio con un diagrama de péndulos y la fórmula del período"
+              },
+              "width": 2000,
+              "height": 1440
+            },
+            {
+              "src": "/resource/updates/1.0.14/chatgpt-landscape.png",
+              "alt": {
+                "zh-CN": "Chat Memo 桌面端的 ChatGPT 示例对话，保留了雪峰、秋林和山湖倒影的风景图",
+                "en": "A sample ChatGPT chat in Chat Memo Desktop showing a landscape image of snowy peaks, autumn larches, and their reflections in a lake",
+                "ja": "Chat Memo デスクトップ版に保存した ChatGPT の会話例。雪山と色づいたカラマツが湖面に映る風景画像が表示されています",
+                "es": "Un chat de ejemplo de ChatGPT en Chat Memo para escritorio con una imagen de picos nevados y alerces otoñales reflejados en un lago"
+              },
+              "width": 1360,
+              "height": 1300
+            }
+          ]
+        },
+        {
+          "type": "fix",
+          "title": {
+            "zh-CN": "修复了 Gemini 网页版用 MCP 读不到正文的问题",
+            "en": "Gemini on the web can read conversation text through MCP again",
+            "ja": "Gemini のウェブ版で MCP 経由で会話本文を読み取れない問題を修正",
+            "es": "Gemini en la web vuelve a leer el texto de los chats mediante MCP"
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "支持更大的 DeepSeek 网页版的导出包导入",
+            "en": "Import larger ZIP exports from DeepSeek on the web",
+            "ja": "DeepSeek のウェブ版から書き出した大きな ZIP ファイルも取り込み可能に",
+            "es": "Importa archivos ZIP de mayor tamaño exportados desde DeepSeek en la web"
+          }
+        }
+      ]
+    },
+    {
       "version": "v1.0.13",
       "date": {
         "zh-CN": "2026年11月23日",
