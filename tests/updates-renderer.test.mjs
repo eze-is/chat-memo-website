@@ -64,6 +64,17 @@ test('按原文展示更新说明时不补写摘要、小标题或空占位', ()
     assert.doesNotMatch(html, /<img |class="update-images?"/);
 });
 
+test('整幅截图按原顺序逐张展示', () => {
+    const images = ['conversation', 'formula'].map(name => ({
+        src: `/resource/updates/${name}.png`, alt: name, fullWidth: true
+    }));
+    const entry = { version: 'v2.1.2', features: [{ images }] };
+    const html = render({ updates: [entry] }, 'en');
+    assert.doesNotMatch(html, /class="update-images"/);
+    assert.equal((html.match(/class="update-image"/g) || []).length, 2);
+    assert.ok(html.indexOf('conversation.png') < html.indexOf('formula.png'));
+});
+
 test('长版更新说明保留段落和顺序，配图及下载入口随对应段落展示', () => {
     const entry = {
         version: 'v2.1.0',

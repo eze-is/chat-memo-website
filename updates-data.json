@@ -22,7 +22,33 @@
             "en": "Chat Memo now automatically saves new ChatGPT and Gemini web chats with their formatting. Images stay where they appeared, equations remain readable, tables keep their rows and columns, and code keeps its indentation.\n\nOver the next month, we’ll bring image and formatting support to more AI platforms. We want Chat Memo to be the best browser extension in the world for saving AI chats as they appear on the web.",
             "ja": "Chat Memo は、ChatGPT と Gemini のウェブ版での新しい会話を書式ごと自動保存します。画像は元の位置に表示され、数式もそのまま読めます。表の行と列、コードのインデントも保たれます。\n\n今後1か月で、ほかの AI サービスでも画像や書式を順次保存できるようにします。ウェブ上の AI との会話を元の見た目のまま残せる、世界でいちばんのブラウザ拡張機能を目指しています。",
             "es": "Chat Memo ahora guarda automáticamente los chats nuevos de las versiones web de ChatGPT y Gemini con su formato. Las imágenes se mantienen en su sitio, las fórmulas se pueden leer tal como aparecen, las tablas conservan sus filas y columnas y el código mantiene la sangría.\n\nA lo largo del próximo mes iremos incorporando esta función a otras plataformas de IA. Queremos que Chat Memo sea la mejor extensión de navegador del mundo para guardar las conversaciones de IA tal como se ven en la web."
-          }
+          },
+          "images": [
+            {
+              "src": "/resource/updates/2.1.2/gemini-chat-photo-sidebar.png",
+              "width": 3360,
+              "height": 1604,
+              "alt": {
+                "zh-CN": "左侧 Gemini 聊天流里，教堂照片下方是提问「这是个啥呢」，紧接着是 Gemini 的回答。右侧 Chat Memo 记录保留了同一张照片、提问和回复。",
+                "en": "A Gemini conversation shows a chapel photo, the user’s question below it and the reply. The Chat Memo sidebar preserves the same photo with the original exchange.",
+                "ja": "左の Gemini の会話には礼拝堂の写真、質問、回答が順に表示されています。右の Chat Memo にも同じ写真とやり取りが残っています。",
+                "es": "En el chat de Gemini se ven la foto de una capilla, la pregunta del usuario y la respuesta. El panel lateral de Chat Memo conserva la misma foto junto con la conversación."
+              },
+              "fullWidth": true
+            },
+            {
+              "src": "/resource/updates/2.1.2/gemini-format-sidebar.png",
+              "width": 2740,
+              "height": 800,
+              "alt": {
+                "zh-CN": "左侧 Gemini 原文和右侧 Chat Memo 记录都显示蒸发量公式 E = P − R，表格中上午为 3.2 mm，下午为 4.5 mm。",
+                "en": "Both the Gemini chat and the Chat Memo sidebar show the equation E = P − R and the same two rows of readings, 3.2 mm in the morning and 4.5 mm in the afternoon.",
+                "ja": "左の Gemini と右の Chat Memo の両方で、蒸発量の式 E = P − R と、午前 3.2 mm、午後 4.5 mm の表を読めます。",
+                "es": "El chat de Gemini y el panel lateral de Chat Memo muestran la fórmula E = P − R y las mismas dos filas de datos, 3,2 mm por la mañana y 4,5 mm por la tarde."
+              },
+              "fullWidth": true
+            }
+          ]
         }
       ]
     },

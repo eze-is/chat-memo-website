@@ -20,7 +20,8 @@ function renderFeature(feature, locale) {
     const figures = images.map(image =>
         `<a class="update-image" href="${escapeHtml(image.src)}" target="_blank" rel="noopener"><img src="${escapeHtml(image.src)}" alt="${escapeHtml(localized(image.alt, locale))}" width="${escapeHtml(image.width)}" height="${escapeHtml(image.height)}" loading="lazy"></a>`
     ).join('');
-    const media = images.length > 1 ? `<div class="update-images">${figures}</div>` : figures;
+    const useGrid = images.length > 1 && !images.every(image => image.fullWidth === true);
+    const media = useGrid ? `<div class="update-images">${figures}</div>` : figures;
     const download = localized(feature.desktopDownload, locale);
     const action = download
         ? `<a class="update-download" href="/${locale}/downloads" data-desktop-download-primary>${escapeHtml(download)}</a>`
