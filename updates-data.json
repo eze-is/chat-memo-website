@@ -1,6 +1,47 @@
 {
   "updates": [
     {
+      "version": "v2.1.2",
+      "date": {
+        "zh-CN": "待发布",
+        "en": "Pending release",
+        "ja": "公開予定",
+        "es": "Pendiente de publicación"
+      },
+      "features": [
+        {
+          "type": "new",
+          "title": {
+            "zh-CN": "ChatGPT 和 Gemini 也能保存表格、代码、公式和图片了",
+            "en": "Save tables, code, equations and images from ChatGPT and Gemini",
+            "ja": "ChatGPT と Gemini でも表・コード・数式・画像を保存",
+            "es": "Guarda tablas, código, fórmulas e imágenes de ChatGPT y Gemini"
+          },
+          "description": {
+            "zh-CN": "在插件里重读回答时，表格保留行列，代码保留缩进，图片显示在对话原来的位置。要补齐旧记录，打开原网页，滚动到想更新的那段对话即可。",
+            "en": "Saved tables keep their rows and columns, code retains its indentation, and images appear where they were in the conversation. To update an older chat, reopen it on the original site and scroll to the part you want to update.",
+            "ja": "保存した回答では、表の行や列、コードのインデントが保たれ、画像も会話内の元の位置に表示されます。過去の記録を更新するには、元のサイトで会話を開き、更新したい箇所までスクロールしてください。",
+            "es": "Al volver a leer una respuesta, las tablas conservan sus filas y columnas, el código mantiene la sangría y las imágenes aparecen en su lugar. Para actualizar un chat guardado, ábrelo en el sitio original y desplázate hasta el fragmento que quieras actualizar."
+          }
+        },
+        {
+          "type": "improvement",
+          "title": {
+            "zh-CN": "DeepSeek、ChatGPT 和 Gemini 的网页会话标题会同步到 Chat Memo",
+            "en": "Saved chats follow title changes on DeepSeek, ChatGPT and Gemini",
+            "ja": "DeepSeek、ChatGPT、Gemini での会話名の変更を保存済みの会話にも反映",
+            "es": "Los chats guardados reflejan los cambios de título en DeepSeek, ChatGPT y Gemini"
+          },
+          "description": {
+            "zh-CN": "在网页上给会话改名后，Chat Memo 里保存的同一条对话也会更新标题。你在插件里手动起的别名仍会保留。后续版本会逐步为其他平台补上标题同步。",
+            "en": "Rename a conversation on the original site and its title updates in Chat Memo. If you gave it a custom name in the extension, that name stays. Future releases will gradually bring title syncing to other platforms.",
+            "ja": "元のサイトで会話名を変更すると、Chat Memo に保存した会話のタイトルも更新されます。拡張機能で自分で付けた名前はそのまま表示されます。タイトルの同期は、今後のアップデートでほかのサービスにも順次対応します。",
+            "es": "Si cambias el título de una conversación en el sitio original, también se actualiza en Chat Memo. Si le has puesto un nombre en la extensión, se conserva ese nombre. En próximas versiones iremos incorporando la sincronización de títulos a otras plataformas."
+          }
+        }
+      ]
+    },
+    {
       "version": "v2.1.1",
       "date": {
         "zh-CN": "2026年11月23日",
