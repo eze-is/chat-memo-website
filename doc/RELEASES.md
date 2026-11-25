@@ -41,6 +41,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [5f142d0] — 2026-11-26 00:47:05 UTC+8 · Desktop 1.0.14 官网双图日志
+
+- [Desktop 1.0.14 稳定版](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.14) 于 00:45:12（UTC+8）公开。官网内容提交 `5f142d09dc52ea107fd997e4c43878b79b16c4cc` 随后发布到 production。Cloudflare Pages 部署 `8cda3648-b372-49d1-bab6-b2cc193e1453` 的 deploy 阶段于 `2026-11-25T16:47:05.302301Z` 完成。
+- 用户确认双图预览。两张配图取自 Desktop 阅读界面的匿名示例，分别展示 Gemini 单摆图与公式、ChatGPT 对话中的生成风景图。Ego Lite 预览覆盖桌面与 390 px 手机布局，并点击两张图查看原件。
+- 合并当时官网主干后，72 项测试和四语生成一致性通过。正式域名的中、英、日、西四个页面均含三项说明和两张配图。排除 Cloudflare 在页面末尾注入的统计脚本后，四份 HTML 与发布文件逐字节相同。`updates-data.json` 及两个 PNG 在正式域名返回 200，字节与提交一致。[中文更新日志](https://chatmemo.ai/zh-CN/updates)
+
 ### [660de8f] — 2026-11-26 00:17:48 UTC+8 · 插件 2.1.2 实拍配图
 
 - 更新说明的四语正文先于 11 月 25 日 23:47:23 在生产环境部署，提交为 `976a67b9b0904046d1e267334083dc8dae2b1150`，Pages 部署 ID 为 `18e30e91-0bab-4dcd-b6f0-42d23caf1dc5`。
