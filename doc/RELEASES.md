@@ -41,6 +41,12 @@ GA4 是官网营销页浏览量的唯一统计源。原有首页、欢迎页、�
 
 ## 页面运行内容发布回执
 
+### [c927239] — 2026-11-26 08:44:31 UTC+8 · 插件入门 FAQ
+
+- 官网仓 `main@c92723900e0b6a6dd52d5a7d48603ffe3d5a9067` 的 Cloudflare Pages production 部署为 `200ef2be-49d2-4d86-9b6d-ef5e87b336d7`，deploy 阶段于 `2026-11-26T00:44:31.467933Z` 完成。已从 Pages 项目核对为正式域名指向的部署。
+- 发布前重建四语静态页，72 项测试与四语生成一致性检查通过。正式域名中、英、日、西四个入门页与词包均返回 200。剔除 Cloudflare 注入的统计脚本后，四页 HTML 与发布提交逐字节一致，词包也逐字节一致。中立入口 `/welcome` 同样包含新问答。
+- Ego Lite 在桌面宽度检查中文页，在 390 像素宽度检查四语页，确认三条更新问答可展开、第一条可收起、正文无横向溢出，旧侧边栏问答已移除。两处反馈入口指向 `/feedback`，实际访问跳转成功并返回 200。[中文插件入门](https://chatmemo.ai/zh-CN/welcome)
+
 ### [5f142d0] — 2026-11-26 00:47:05 UTC+8 · Desktop 1.0.14 官网双图日志
 
 - [Desktop 1.0.14 稳定版](https://github.com/eze-is/chatmemo-desktop-releases/releases/tag/v1.0.14) 于 00:45:12（UTC+8）公开。官网内容提交 `5f142d09dc52ea107fd997e4c43878b79b16c4cc` 随后发布到 production。Cloudflare Pages 部署 `8cda3648-b372-49d1-bab6-b2cc193e1453` 的 deploy 阶段于 `2026-11-25T16:47:05.302301Z` 完成。
