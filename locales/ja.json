@@ -56,13 +56,13 @@
     "download-win-arch": "64 ビット",
     "download-retry-error": "取得できません。しばらくしてから再度お試しください。",
     "download-current-device": "このデバイス",
-    "download-select-version": "バージョンを選択"
+    "download-select-version": "バージョンを選択",
+    "store-chrome-updates": "新バージョンは通常こちらで先に公開されます。"
   },
   "home": {
-    "dropdown-chrome": "Chrome ウェブストア",
-    "dropdown-chrome-desc": "公式ストアから最新版を入手",
+    "dropdown-chrome": "Chrome ウェブストア（おすすめ）",
     "dropdown-edge": "Edge アドオン",
-    "dropdown-edge-desc": "Edge ユーザーにおすすめ",
+    "dropdown-edge-desc": "Microsoft からインストール",
     "hero-title": "AIとの会話を保存。別のAIでも、続きから。",
     "hero-subtitle": "Chat Memoは、ChatGPT、Claude、DeepSeekなどに散らばる会話をリアルタイムで保存。自分だけの、検索できる記憶として残します。会話を失わず、別のAIでも好きなときに続きを話せます。",
     "hero-chrome-btn": "拡張機能を追加",
@@ -227,6 +227,9 @@
     "download-chrome-label": "Chrome ウェブストアを開く",
     "download-edge-label": "Microsoft Edge アドオンを開く",
     "download-desktop-image": "Chat Memo デスクトップ版の画面",
-    "download-extension-image": "AI の会話と Chat Memo ブラウザ拡張機能の画面"
+    "download-extension-image": "AI の会話と Chat Memo ブラウザ拡張機能の画面",
+    "download-chrome-badge": "おすすめ・更新が早い",
+    "download-chrome-store-name": "Chrome ウェブストア",
+    "download-edge-store-name": "Microsoft Edge アドオン"
   }
 }

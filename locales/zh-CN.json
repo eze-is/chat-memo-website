@@ -34,11 +34,11 @@
     "download-win-arch": "64 位",
     "download-retry-error": "暂时无法获取安装包，请稍后重试。",
     "download-current-device": "当前设备",
-    "download-select-version": "选择版本"
+    "download-select-version": "选择版本",
+    "store-chrome-updates": "新版通常更早上架"
   },
   "home": {
-    "dropdown-chrome": "Chrome 商店",
-    "dropdown-chrome-desc": "确保最新版本",
+    "dropdown-chrome": "Chrome 商店（推荐）",
     "dropdown-edge": "Edge 商店",
     "dropdown-edge-desc": "国内可访问",
     "hero-title": "实时备份 AI 对话，换个 AI 也能继续聊",
@@ -224,9 +224,12 @@
     "download-intel-label": "下载 macOS Intel 版",
     "download-mac-requirement": "需要 macOS 12 或更高版本",
     "download-win-label": "下载 Windows 版",
-    "download-chrome-label": "前往 Chrome 网上应用店",
-    "download-edge-label": "前往 Microsoft Edge 加载项商店",
+    "download-chrome-label": "前往 Chrome 商店",
+    "download-edge-label": "前往 Microsoft Edge 商店",
     "download-desktop-image": "Chat Memo 桌面端界面",
-    "download-extension-image": "Chat Memo 浏览器插件与 AI 对话界面"
+    "download-extension-image": "Chat Memo 浏览器插件与 AI 对话界面",
+    "download-chrome-badge": "推荐·更新快",
+    "download-chrome-store-name": "Chrome 商店",
+    "download-edge-store-name": "Microsoft Edge 商店"
   }
 }

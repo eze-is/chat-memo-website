@@ -56,13 +56,13 @@
     "download-win-arch": "64 bits",
     "download-retry-error": "Aún no está disponible. Inténtalo de nuevo más tarde.",
     "download-current-device": "Dispositivo actual",
-    "download-select-version": "Elegir versión"
+    "download-select-version": "Elegir versión",
+    "store-chrome-updates": "Las actualizaciones suelen llegar antes."
   },
   "home": {
-    "dropdown-chrome": "Chrome Web Store",
-    "dropdown-chrome-desc": "Fuente oficial, versión más reciente",
+    "dropdown-chrome": "Chrome Web Store (recomendada)",
     "dropdown-edge": "Tienda de Edge",
-    "dropdown-edge-desc": "Recomendado para quienes usan Edge",
+    "dropdown-edge-desc": "Instala la extensión desde Microsoft",
     "hero-title": "Guarda tus chats. Continúa con otra IA.",
     "hero-subtitle": "Chat Memo guarda en tiempo real tus chats de ChatGPT, Claude, DeepSeek y más en una memoria personal y privada. Búscalos y retoma el hilo con otra IA cuando quieras.",
     "hero-chrome-btn": "Instalar extensión",
@@ -227,6 +227,9 @@
     "download-chrome-label": "Abrir Chrome Web Store",
     "download-edge-label": "Abrir Complementos de Microsoft Edge",
     "download-desktop-image": "Interfaz de escritorio de Chat Memo",
-    "download-extension-image": "Extensión de Chat Memo junto a una conversación con IA"
+    "download-extension-image": "Extensión de Chat Memo junto a una conversación con IA",
+    "download-chrome-badge": "Recomendada · Se actualiza antes",
+    "download-chrome-store-name": "Chrome Web Store",
+    "download-edge-store-name": "Complementos de Microsoft Edge"
   }
 }

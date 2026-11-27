@@ -34,13 +34,13 @@
     "download-win-arch": "64-bit",
     "download-retry-error": "Still unavailable. Please try again later.",
     "download-current-device": "Current device",
-    "download-select-version": "Choose a version"
+    "download-select-version": "Choose a version",
+    "store-chrome-updates": "Updates usually arrive here first."
   },
   "home": {
-    "dropdown-chrome": "Chrome Store",
-    "dropdown-chrome-desc": "Official source, latest version",
+    "dropdown-chrome": "Chrome Web Store (recommended)",
     "dropdown-edge": "Edge Store",
-    "dropdown-edge-desc": "Recommended for Edge users",
+    "dropdown-edge-desc": "Install from Microsoft",
     "hero-title": "Auto-save every AI chat. Continue with any AI.",
     "hero-subtitle": "Chat Memo saves your chats from ChatGPT, Claude, DeepSeek and more in real time as your private, searchable memory. Keep your conversations and pick up with another AI, anytime.",
     "hero-chrome-btn": "Install Extension",
@@ -227,6 +227,9 @@
     "download-chrome-label": "Open Chrome Web Store",
     "download-edge-label": "Open Microsoft Edge Add-ons",
     "download-desktop-image": "Chat Memo desktop interface",
-    "download-extension-image": "Chat Memo extension alongside an AI conversation"
+    "download-extension-image": "Chat Memo extension alongside an AI conversation",
+    "download-chrome-badge": "Recommended · Faster updates",
+    "download-chrome-store-name": "Chrome Web Store",
+    "download-edge-store-name": "Microsoft Edge Add-ons"
   }
 }
